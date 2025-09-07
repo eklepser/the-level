@@ -1,0 +1,13 @@
+ui.png
+size:1024,512
+repeat:none
+button_normal
+bounds:518,266,64,64
+button_pressed
+bounds:2,8,64,64
+code_field_bg
+bounds:2,74,256,256
+code_field_cursor
+bounds:2,2,3,4
+code_field_selection
+bounds:260,74,256,256

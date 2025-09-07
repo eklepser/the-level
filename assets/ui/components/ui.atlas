@@ -1,0 +1,9 @@
+ui.png
+size:1024,512
+repeat:none
+code_field_bg
+bounds:2,8,256,256
+code_field_cursor
+bounds:2,2,5,4
+code_field_selection
+bounds:260,8,256,256
