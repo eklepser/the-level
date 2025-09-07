@@ -13,7 +13,6 @@ public class World extends Actor {
 
     @Override
     public void act(float delta) {
-        cat.update();
         super.act(delta);
     }
 
