@@ -1,61 +1,67 @@
 package com.eklepser.thelevel.logic.decoder;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.eklepser.thelevel.graphics.ui.code_editor.CodeLine;
 import com.eklepser.thelevel.logic.Cat;
-import com.eklepser.thelevel.logic.Direction;
 
 import java.util.List;
 
 public class Translator {
-    public static void translateAll(List<CodeLine> codeLines, Cat cat, Actor actor) {
-        System.out.println("Translating");
-        runCommands(codeLines, cat, actor, 0);
+    private final List<CodeLine> codeLines;
+    private final List<String> allowedInstructions;
+
+    public Translator(List<CodeLine> codeLines, Cat target, Actor actor) {
+        this.codeLines = codeLines;
+        allowedInstructions = Instruction.defaultAllowed().stream().map(
+            instruction -> instruction.name).toList();
     }
 
-    private static void runCommands(List<CodeLine> codeLines, Cat cat, Actor actor, int start) {
-        SequenceAction sequence = new SequenceAction();
-        for (int i = start; i < codeLines.size(); i++) {
-            int finalI = i;
-            sequence.addAction(Actions.run(() -> executeCommand(codeLines.get(finalI), cat, codeLines, actor)));
-            sequence.addAction(Actions.run(() -> codeLines.get(finalI).setCompleting(true)));
-            sequence.addAction(Actions.delay(0.25f));
-            sequence.addAction(Actions.run(() -> codeLines.get(finalI).setCompleting(false)));
-        }
-        actor.clearActions();
-        actor.addAction(sequence);
-    }
+    public TranslationResult translateAll() {
+        for (int i = 0; i < codeLines.size(); i++) {
+            String text = codeLines.get(i).getText();
+            if (text.isBlank()) continue;
+            String[] words = text.split("\\s+");
 
-    private static void executeCommand(CodeLine codeLine, Cat cat, List<CodeLine> codeLines, Actor actor) {
-        {
-            String text = codeLine.getText();
-            String[] parts = text.split("\\s+");
-            if (parts[0].equals("MOVE")) {
-                switch (parts[1]) {
-                    case "UP":
-                        System.out.println("UP");
-                        cat.move(Direction.UP);
-                        break;
-                    case "RIGHT":
-                        System.out.println("RIGHT");
-                        cat.move(Direction.RIGHT);
-                        break;
-                    case "DOWN":
-                        System.out.println("DOWN");
-                        cat.move(Direction.DOWN);
-                        break;
-                    case "LEFT":
-                        System.out.println("LEFT");
-                        cat.move(Direction.LEFT);
-                        break;
-                }
+            // Instruction existing check:
+            String instructionName = words[0].toLowerCase();
+            Instruction instruction;
+            if (allowedInstructions.contains(instructionName)) {
+                instruction = Instruction.fromName(instructionName);
             }
-            else if (parts[0].equals("GOTO")) {
-                int start = Integer.parseInt(parts[1]) - 1;
-                runCommands(codeLines, cat, actor, start);
+            else {
+                String message = String.format("LINE %d: INSTRUCTION %s IS NOT ALLOWED", i + 1, instructionName);
+                return new TranslationResult(false, message);
+            }
+
+            // Instruction format check:
+            if (instruction.expectedArgs != words.length - 1) {
+                String message = String.format("LINE %d: INSTRUCTION FORMAT IS NOT CORRECTED", i + 1);
+                return new TranslationResult(false, message);
+            }
+
+            // Instruction arguments check:
+            switch (instruction) {
+                case MOVE:
+                    if (!instruction.allowedArgs.contains(words[1].toLowerCase())) {
+                        String message = String.format("LINE %d: ARGUMENT IS NOT ALLOWED", i + 1);
+                        return new TranslationResult(false, message);
+                    }
+                    break;
+                case GOTO:
+                    try {
+                        int lineNum = Integer.parseInt(words[1]);
+                        if ((lineNum < 1) || (lineNum > codeLines.size())) {
+                            String message = String.format("LINE %d: ARGUMENT OUT OF RANGE", i + 1);
+                            return new TranslationResult(false, message);
+                        }
+                    }
+                    catch (NumberFormatException e) {
+                        String message = String.format("LINE %d: ARGUMENT IS NOT ALLOWED", i + 1);
+                        return new TranslationResult(false, message);
+                    }
+                    break;
             }
         }
+        return new TranslationResult(true, "");
     }
 }

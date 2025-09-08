@@ -8,15 +8,17 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.eklepser.thelevel.Resources;
 
 public class CodeLine extends TextField {
+    final Color lineColor = Color.PURPLE;
+
     public CodeLine() {
         super("", Resources.getSkin().get("code-field", TextField.TextFieldStyle.class));
         this.getStyle().cursor = new TextureRegionDrawable(
             new Texture(Gdx.files.internal("ui/components/code_field_cursor.png")));
-        this.setColor(Color.PURPLE);
+        this.setColor(lineColor);
     }
 
     public void setCompleting(boolean isCompleting) {
-        if (isCompleting) this.setColor(Color.PURPLE);
-        else this.setColor(Color.BROWN);
+        if (isCompleting) this.setColor(Color.WHITE);
+        else this.setColor(lineColor);
     }
 }

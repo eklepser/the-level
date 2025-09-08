@@ -13,20 +13,25 @@ import com.eklepser.thelevel.graphics.ui.common.TextLabel;
 import com.eklepser.thelevel.graphics.world.World;
 import com.eklepser.thelevel.logic.Cat;
 import com.eklepser.thelevel.logic.Direction;
-import com.eklepser.thelevel.logic.decoder.Translator;
+import com.eklepser.thelevel.logic.decoder.Executor;
 
 public class Editor {
     private final Table root;
+    private final CodeField codeField;
     private final InputProcessor keyboardProcessor;
+    private final Executor executor;
 
     public Editor(Cat cat, World gameField) {
         root = new Table();
         root.add(new TextLabel("Code:")).padBottom(10);
-        CodeField codeField = new CodeField(root, 8);
-        Button runButton = createRunButton(codeField, cat, gameField);
-        root.row();
-        root.add(runButton);
+        codeField = new CodeField(root, 8);
         keyboardProcessor = createKeyboardProcessor(codeField);
+        executor = new Executor(codeField.getCodeLines(), gameField, cat);
+
+        root.row();
+        root.add(createRunButton());
+        root.add(createResetButton());
+        root.add(createClearButton());
     }
 
     private InputAdapter createKeyboardProcessor(CodeField codeField) {
@@ -45,13 +50,38 @@ public class Editor {
         };
     }
 
-    private Button createRunButton(CodeField codeField, Cat cat, World gameField) {
+    private Button createRunButton() {
         Button button = new TextButton("Run", Resources.getSkin());
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Running");
-                Translator.translateAll(codeField.getCodeLines(), cat, gameField);
+                executor.translateAll();
+                //executor.executeAll(0);
+            }
+        });
+        return button;
+    }
+
+    private Button createResetButton() {
+        Button button = new TextButton("Stop", Resources.getSkin());
+        button.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Stopping");
+                codeField.getCodeLines().forEach(codeLine -> codeLine.setCompleting(false));
+            }
+        });
+        return button;
+    }
+
+    private Button createClearButton() {
+        Button button = new TextButton("Clear", Resources.getSkin());
+        button.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Clearing");
+                codeField.getCodeLines().forEach(codeLine -> codeLine.setCompleting(false));
+                codeField.getCodeLines().forEach(codeLine -> codeLine.setText(""));
             }
         });
         return button;
