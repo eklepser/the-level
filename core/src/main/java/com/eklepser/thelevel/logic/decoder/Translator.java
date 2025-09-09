@@ -2,7 +2,7 @@ package com.eklepser.thelevel.logic.decoder;
 
 import com.eklepser.thelevel.graphics.ui.code_editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.commands.*;
-import com.eklepser.thelevel.logic.world.Cat;
+import com.eklepser.thelevel.logic.world.Entity;
 import com.eklepser.thelevel.util.Direction;
 
 import java.util.HashMap;
@@ -12,10 +12,10 @@ import java.util.Map;
 public class Translator {
     private final Executor executor;
     private final List<CodeLine> codeLines;
-    private final Cat target;
+    private final Entity target;
     private final List<String> allowedInstructions;
 
-    public Translator(Executor executor, List<CodeLine> codeLines, Cat target) {
+    public Translator(Executor executor, List<CodeLine> codeLines, Entity target) {
         this.executor = executor;
         this.codeLines = codeLines;
         this.target = target;

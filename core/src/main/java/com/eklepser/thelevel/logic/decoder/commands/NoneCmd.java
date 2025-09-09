@@ -7,6 +7,6 @@ public class NoneCmd extends Command {
 
     @Override
     public void execute() {
-        System.out.println("none");
+        System.out.println("NONE");
     }
 }

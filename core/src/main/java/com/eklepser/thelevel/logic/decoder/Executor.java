@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.eklepser.thelevel.graphics.ui.code_editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.commands.Command;
-import com.eklepser.thelevel.logic.world.Cat;
+import com.eklepser.thelevel.logic.world.Entity;
 
 import java.util.List;
 import java.util.Map;
@@ -16,7 +16,7 @@ public class Executor {
     private Map<CodeLine, Command> codeMap;
     private final Actor gameField;
 
-    public Executor(List<CodeLine> codeLines, Actor gameField, Cat target) {
+    public Executor(List<CodeLine> codeLines, Actor gameField, Entity target) {
         this.codeLines = codeLines;
         this.gameField = gameField;
         translator = new Translator(this, codeLines, target);

@@ -8,10 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.eklepser.thelevel.logic.world.Entity;
 import com.eklepser.thelevel.util.Resources;
 import com.eklepser.thelevel.graphics.ui.common.TextLabel;
-import com.eklepser.thelevel.graphics.world.World;
-import com.eklepser.thelevel.logic.world.Cat;
+import com.eklepser.thelevel.graphics.screen.GameField;
 import com.eklepser.thelevel.util.Direction;
 import com.eklepser.thelevel.logic.decoder.Executor;
 
@@ -22,12 +22,12 @@ public class Editor {
     private final Executor executor;
     private final TextLabel statusLabel;
 
-    public Editor(Cat cat, World gameField) {
+    public Editor(Entity entity, GameField gameField) {
         root = new Table();
         root.add(new TextLabel("Code:")).padBottom(10);
         codeField = new CodeField(root, 12);
         keyboardProcessor = createKeyboardProcessor(codeField);
-        executor = new Executor(codeField.getCodeLines(), gameField, cat);
+        executor = new Executor(codeField.getCodeLines(), gameField, entity);
         statusLabel = new TextLabel("Status:");
         statusLabel.setWrap(true);
 
