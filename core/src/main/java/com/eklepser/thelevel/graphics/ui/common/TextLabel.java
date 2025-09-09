@@ -1,7 +1,7 @@
 package com.eklepser.thelevel.graphics.ui.common;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.eklepser.thelevel.Resources;
+import com.eklepser.thelevel.util.Resources;
 
 public class TextLabel extends Label {
     public TextLabel(String text) {

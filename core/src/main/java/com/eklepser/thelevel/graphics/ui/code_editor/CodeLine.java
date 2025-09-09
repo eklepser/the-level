@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.eklepser.thelevel.Resources;
+import com.eklepser.thelevel.util.Resources;
 
 public class CodeLine extends TextField {
     final Color lineColor = Color.PURPLE;

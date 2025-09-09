@@ -1,14 +1,15 @@
-package com.eklepser.thelevel.logic;
+package com.eklepser.thelevel.logic.world;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
+import com.eklepser.thelevel.util.Direction;
 
 public class Cat {
-    private Batch batch;
-    private Texture texture;
-    private Vector2 pos;
-    private int size;
+    private final Batch batch;
+    private final Texture texture;
+    private final Vector2 pos;
+    private final int size;
 
     public Cat(Batch batch, Texture texture, Vector2 pos, int size) {
         this.batch = batch;

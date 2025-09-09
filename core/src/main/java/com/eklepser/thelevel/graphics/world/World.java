@@ -2,10 +2,10 @@ package com.eklepser.thelevel.graphics.world;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.eklepser.thelevel.logic.Cat;
+import com.eklepser.thelevel.logic.world.Cat;
 
 public class World extends Actor {
-    private Cat cat;
+    private final Cat cat;
 
     public World(Cat cat) {
         this.cat = cat;

@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.ui.code_editor.Editor;
 import com.eklepser.thelevel.graphics.world.World;
-import com.eklepser.thelevel.logic.Cat;
+import com.eklepser.thelevel.logic.world.Cat;
 
 public class PlayScreen extends ScreenAdapter {
     private Stage stage;
@@ -20,7 +20,7 @@ public class PlayScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        stage = new Stage(new FitViewport(500, 500));
+        stage = new Stage(new FitViewport(560, 560));
 
         cat = new Cat(stage.getBatch(), new Texture(Gdx.files.internal("world/cat.png")), Vector2.Zero, 40);
         Gdx.input.setInputProcessor(stage);

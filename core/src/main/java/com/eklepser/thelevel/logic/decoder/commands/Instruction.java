@@ -1,10 +1,11 @@
-package com.eklepser.thelevel.logic.decoder;
+package com.eklepser.thelevel.logic.decoder.commands;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public enum Instruction {
-    MOVE("move", 1, new ArrayList<>(List.of("up", "down", "left", "right"))),
+    MOVE("move", 1, new ArrayList<>(List.of
+        ("u", "d", "l", "r", "up", "down", "left", "right"))),
     GOTO("goto", 1, null),
     NONE("none", 0, null);
 

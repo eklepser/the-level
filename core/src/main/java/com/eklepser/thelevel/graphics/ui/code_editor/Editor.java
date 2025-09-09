@@ -8,11 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.eklepser.thelevel.Resources;
+import com.eklepser.thelevel.util.Resources;
 import com.eklepser.thelevel.graphics.ui.common.TextLabel;
 import com.eklepser.thelevel.graphics.world.World;
-import com.eklepser.thelevel.logic.Cat;
-import com.eklepser.thelevel.logic.Direction;
+import com.eklepser.thelevel.logic.world.Cat;
+import com.eklepser.thelevel.util.Direction;
 import com.eklepser.thelevel.logic.decoder.Executor;
 
 public class Editor {

@@ -1,19 +1,24 @@
 package com.eklepser.thelevel.logic.decoder;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.eklepser.thelevel.graphics.ui.code_editor.CodeLine;
-import com.eklepser.thelevel.logic.Cat;
+import com.eklepser.thelevel.logic.decoder.commands.*;
+import com.eklepser.thelevel.logic.world.Cat;
+import com.eklepser.thelevel.util.Direction;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Translator {
+    private final Executor executor;
     private final List<CodeLine> codeLines;
+    private final Cat target;
     private final List<String> allowedInstructions;
 
-    public Translator(List<CodeLine> codeLines, Cat target, Actor actor) {
+    public Translator(Executor executor, List<CodeLine> codeLines, Cat target) {
+        this.executor = executor;
         this.codeLines = codeLines;
+        this.target = target;
         allowedInstructions = Instruction.defaultAllowed().stream().map(
             instruction -> instruction.name).toList();
     }
@@ -54,11 +59,16 @@ public class Translator {
             }
 
             // Instruction arguments check:
+            Command cmd = null;
             switch (instruction) {
                 case MOVE:
-                    if (!instruction.allowedArgs.contains(words[1].toLowerCase())) {
+                    String directionName = words[1].toLowerCase();
+                    if (!instruction.allowedArgs.contains(directionName)) {
                         String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);
                         return new TranslationResult(false, message);
+                    }
+                    else {
+                        cmd = new MoveCmd(instruction, target, Direction.getByName(directionName));
                     }
                     break;
                 case GOTO:
@@ -68,16 +78,20 @@ public class Translator {
                             String message = String.format("LINE %d: ARGUMENT %d OUT OF RANGE", i + 1, lineNum);
                             return new TranslationResult(false, message);
                         }
+                        else {
+                            cmd = new GotoCmd(instruction, executor, lineNum);
+                        }
                     }
                     catch (NumberFormatException e) {
                         String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);
                         return new TranslationResult(false, message);
                     }
                     break;
+                case NONE:
+                    cmd = new NoneCmd(instruction);
             }
-
             // Adding command-object to code map
-            codeMap.put(currentLine, new Command(text, currentLine));
+            codeMap.put(currentLine, cmd);
         }
         return new TranslationResult(true, "TRANSLATION: SUCCESS", codeMap);
     }
