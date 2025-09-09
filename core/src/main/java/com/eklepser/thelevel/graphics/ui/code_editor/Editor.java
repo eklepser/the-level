@@ -37,6 +37,8 @@ public class Editor {
         root.add(createClearButton());
         root.row();
         root.add(statusLabel).colspan(3).fillX().height(40).top();
+
+        setDefault();
     }
 
     private InputAdapter createKeyboardProcessor(CodeField codeField) {
@@ -74,6 +76,7 @@ public class Editor {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Stopping");
                 codeField.getCodeLines().forEach(codeLine -> codeLine.setCompleting(false));
+                executor.stop();
                 statusLabel.setText("Status: ");
             }
         });
@@ -86,6 +89,7 @@ public class Editor {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Clearing");
+                executor.stop();
                 codeField.getCodeLines().forEach(codeLine -> codeLine.setCompleting(false));
                 codeField.getCodeLines().forEach(codeLine -> codeLine.setText(""));
                 statusLabel.setText("Status: ");
@@ -97,4 +101,21 @@ public class Editor {
     public Table getTable() { return root; }
 
     public InputProcessor getKeyboardProcessor() { return keyboardProcessor; }
+
+    private void setDefault() {
+        for (int i = 0; i < codeField.getCodeLines().size(); i++) {
+            if (i==0) codeField.getCodeLines().get(i).setText(";My app");
+            if (i==1) codeField.getCodeLines().get(i).setText("MOVE UP ;go up!");
+            if (i==2) codeField.getCodeLines().get(i).setText(";boo ;boo ;boo");
+            if (i==3) codeField.getCodeLines().get(i).setText("MOVE RIGHT");
+            if (i==4) codeField.getCodeLines().get(i).setText("");
+            if (i==5) codeField.getCodeLines().get(i).setText("MOVE RIGHT");
+            if (i==6) codeField.getCodeLines().get(i).setText("MOVE DOWN");
+            if (i==7) codeField.getCodeLines().get(i).setText(";yoo");
+            if (i==8) codeField.getCodeLines().get(i).setText("MOVE LEFT");
+            if (i==9) codeField.getCodeLines().get(i).setText("MOVE UP");
+            if (i==10) codeField.getCodeLines().get(i).setText("");
+            if (i==11) codeField.getCodeLines().get(i).setText("GOTO 5");
+        }
+    }
 }

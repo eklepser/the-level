@@ -1,13 +1,15 @@
 package com.eklepser.thelevel.logic.decoder;
 
-import java.util.List;
+import com.eklepser.thelevel.graphics.ui.code_editor.CodeLine;
 
-public record TranslationResult(boolean success, String message, List<Command> commands) {
+import java.util.Map;
+
+public record TranslationResult(boolean success, String message, Map<CodeLine, Command> codeMap) {
     public TranslationResult(boolean success, String message) {
         this(success, message, null);
     }
 
-    public List<Command> getCommands() {
-        return commands;
+    public Map<CodeLine, Command> getCodeMap() {
+        return codeMap;
     }
 }

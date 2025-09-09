@@ -1,9 +1,21 @@
 package com.eklepser.thelevel.logic.decoder;
 
-public class Command {
-    Instruction instruction;
+import com.eklepser.thelevel.graphics.ui.code_editor.CodeLine;
 
-    public Command(Instruction instruction) {
-        this.instruction = instruction;
+public class Command {
+    private final String cmd;
+    private final CodeLine codeLine;
+
+    public Command(String cmd, CodeLine codeLine) {
+        this.cmd = cmd;
+        this.codeLine = codeLine;
+    }
+
+    public String getCmd() {
+        return cmd;
+    }
+
+    public CodeLine getCodeLine() {
+        return codeLine;
     }
 }

@@ -4,8 +4,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.eklepser.thelevel.graphics.ui.code_editor.CodeLine;
 import com.eklepser.thelevel.logic.Cat;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Translator {
     private final List<CodeLine> codeLines;
@@ -18,13 +19,24 @@ public class Translator {
     }
 
     public TranslationResult translateAll() {
-        List<Command> commands = new ArrayList<>();
+        Map<CodeLine, Command> codeMap = new HashMap<>();
         for (int i = 0; i < codeLines.size(); i++) {
-            String text = codeLines.get(i).getText();
+            CodeLine currentLine = codeLines.get(i);
+            codeMap.put(currentLine, null);
+            String text = currentLine.getText();
+
+            // Empty line and commentary check:
             if (text.isBlank()) continue;
-            String[] words = text.split("\\s+");
+            if (text.startsWith(";")) continue;
+            if (text.contains(";")) {
+                String[] commentarySplited = text.split(";");
+                if (commentarySplited.length > 1) {
+                    text = commentarySplited[0];
+                }
+            }
 
             // Instruction existing check:
+            String[] words = text.split("\\s+");
             String instructionName = words[0].toLowerCase();
             Instruction instruction;
             if (allowedInstructions.contains(instructionName)) {
@@ -64,12 +76,9 @@ public class Translator {
                     break;
             }
 
-            // Creating new command-object
-            Command command = new Command(instruction);
-
-            // Adding command-object to all-commands list
-            commands.add(command);
+            // Adding command-object to code map
+            codeMap.put(currentLine, new Command(text, currentLine));
         }
-        return new TranslationResult(true, "TRANSLATION: SUCCESS", commands);
+        return new TranslationResult(true, "TRANSLATION: SUCCESS", codeMap);
     }
 }
