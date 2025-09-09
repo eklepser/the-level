@@ -6,4 +6,8 @@ public record TranslationResult(boolean success, String message, List<Command> c
     public TranslationResult(boolean success, String message) {
         this(success, message, null);
     }
+
+    public List<Command> getCommands() {
+        return commands;
+    }
 }

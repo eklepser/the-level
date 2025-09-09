@@ -20,18 +20,23 @@ public class Editor {
     private final CodeField codeField;
     private final InputProcessor keyboardProcessor;
     private final Executor executor;
+    private final TextLabel statusLabel;
 
     public Editor(Cat cat, World gameField) {
         root = new Table();
         root.add(new TextLabel("Code:")).padBottom(10);
-        codeField = new CodeField(root, 8);
+        codeField = new CodeField(root, 12);
         keyboardProcessor = createKeyboardProcessor(codeField);
         executor = new Executor(codeField.getCodeLines(), gameField, cat);
+        statusLabel = new TextLabel("Status:");
+        statusLabel.setWrap(true);
 
-        root.row();
+        root.row().padBottom(10);
         root.add(createRunButton());
         root.add(createResetButton());
         root.add(createClearButton());
+        root.row();
+        root.add(statusLabel).colspan(3).fillX().height(40).top();
     }
 
     private InputAdapter createKeyboardProcessor(CodeField codeField) {
@@ -55,8 +60,8 @@ public class Editor {
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                executor.translateAll();
-                //executor.executeAll(0);
+                String status = executor.translateAll();
+                statusLabel.setText(status);
             }
         });
         return button;
@@ -69,6 +74,7 @@ public class Editor {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Stopping");
                 codeField.getCodeLines().forEach(codeLine -> codeLine.setCompleting(false));
+                statusLabel.setText("Status: ");
             }
         });
         return button;
@@ -82,6 +88,7 @@ public class Editor {
                 System.out.println("Clearing");
                 codeField.getCodeLines().forEach(codeLine -> codeLine.setCompleting(false));
                 codeField.getCodeLines().forEach(codeLine -> codeLine.setText(""));
+                statusLabel.setText("Status: ");
             }
         });
         return button;

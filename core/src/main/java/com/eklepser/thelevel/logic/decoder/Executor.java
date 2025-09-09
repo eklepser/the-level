@@ -7,6 +7,7 @@ import com.eklepser.thelevel.graphics.ui.code_editor.CodeLine;
 import com.eklepser.thelevel.logic.Cat;
 import com.eklepser.thelevel.logic.Direction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Executor {
@@ -70,8 +71,17 @@ public class Executor {
         }
     }
 
-    public void translateAll() {
+    public String translateAll() {
         TranslationResult result = translator.translateAll();
-        if (!result.success()) System.out.println(result.message());
+        if (result.success()) {
+            List<Command> commands = new ArrayList<>(result.getCommands());
+            System.out.println(result.message());
+            System.out.println("Commands count: " + commands.size());
+            executeAll(0);
+        }
+        else {
+            System.out.println(result.message());
+        }
+        return result.message();
     }
 }

@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.eklepser.thelevel.graphics.ui.code_editor.CodeLine;
 import com.eklepser.thelevel.logic.Cat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Translator {
@@ -17,6 +18,7 @@ public class Translator {
     }
 
     public TranslationResult translateAll() {
+        List<Command> commands = new ArrayList<>();
         for (int i = 0; i < codeLines.size(); i++) {
             String text = codeLines.get(i).getText();
             if (text.isBlank()) continue;
@@ -43,7 +45,7 @@ public class Translator {
             switch (instruction) {
                 case MOVE:
                     if (!instruction.allowedArgs.contains(words[1].toLowerCase())) {
-                        String message = String.format("LINE %d: ARGUMENT IS NOT ALLOWED", i + 1);
+                        String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);
                         return new TranslationResult(false, message);
                     }
                     break;
@@ -51,17 +53,23 @@ public class Translator {
                     try {
                         int lineNum = Integer.parseInt(words[1]);
                         if ((lineNum < 1) || (lineNum > codeLines.size())) {
-                            String message = String.format("LINE %d: ARGUMENT OUT OF RANGE", i + 1);
+                            String message = String.format("LINE %d: ARGUMENT %d OUT OF RANGE", i + 1, lineNum);
                             return new TranslationResult(false, message);
                         }
                     }
                     catch (NumberFormatException e) {
-                        String message = String.format("LINE %d: ARGUMENT IS NOT ALLOWED", i + 1);
+                        String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);
                         return new TranslationResult(false, message);
                     }
                     break;
             }
+
+            // Creating new command-object
+            Command command = new Command(instruction);
+
+            // Adding command-object to all-commands list
+            commands.add(command);
         }
-        return new TranslationResult(true, "");
+        return new TranslationResult(true, "TRANSLATION: SUCCESS", commands);
     }
 }

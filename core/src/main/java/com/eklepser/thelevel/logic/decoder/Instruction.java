@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Instruction {
-    MOVE("move", 1, new ArrayList<>(List.of("up", "sown", "left", "right"))),
+    MOVE("move", 1, new ArrayList<>(List.of("up", "down", "left", "right"))),
     GOTO("goto", 1, null),
     NONE("none", 0, null);
 

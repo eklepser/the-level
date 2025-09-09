@@ -20,7 +20,7 @@ public class PlayScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        stage = new Stage(new FitViewport(400, 400));
+        stage = new Stage(new FitViewport(500, 500));
 
         cat = new Cat(stage.getBatch(), new Texture(Gdx.files.internal("world/cat.png")), Vector2.Zero, 40);
         Gdx.input.setInputProcessor(stage);
