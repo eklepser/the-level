@@ -31,7 +31,8 @@ public class Editor {
         statusLabel = new TextLabel("Status:");
         statusLabel.setWrap(true);
 
-        root.row().padBottom(10);
+        root.row().padTop(10).padBottom(10);
+        root.add(new TextLabel("Action:"));
         root.add(createRunButton());
         root.add(createResetButton());
         root.add(createClearButton());

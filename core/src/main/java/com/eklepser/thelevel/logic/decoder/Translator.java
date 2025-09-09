@@ -1,5 +1,6 @@
 package com.eklepser.thelevel.logic.decoder;
 
+import com.badlogic.gdx.math.Vector2;
 import com.eklepser.thelevel.graphics.ui.code_editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.commands.*;
 import com.eklepser.thelevel.logic.world.Entity;
@@ -13,17 +14,21 @@ public class Translator {
     private final Executor executor;
     private final List<CodeLine> codeLines;
     private final Entity target;
-    private final List<String> allowedInstructions;
+    private final List<Instruction> allowedInstruction;
 
     public Translator(Executor executor, List<CodeLine> codeLines, Entity target) {
         this.executor = executor;
         this.codeLines = codeLines;
         this.target = target;
-        allowedInstructions = Instruction.defaultAllowed().stream().map(
-            instruction -> instruction.name).toList();
+        allowedInstruction = Instruction.defaultAllowed();
+        allowedInstruction.add(Instruction.TP);
+        allowedInstruction.add(Instruction.ROT);
     }
 
     public TranslationResult translateAll() {
+        List<String> allowedInstructionNames = allowedInstruction.stream()
+            .map(instruction -> instruction.name).toList();
+
         Map<CodeLine, Command> codeMap = new HashMap<>();
         for (int i = 0; i < codeLines.size(); i++) {
             CodeLine currentLine = codeLines.get(i);
@@ -44,7 +49,7 @@ public class Translator {
             String[] words = text.split("\\s+");
             String instructionName = words[0].toLowerCase();
             Instruction instruction;
-            if (allowedInstructions.contains(instructionName)) {
+            if (allowedInstructionNames.contains(instructionName)) {
                 instruction = Instruction.fromName(instructionName);
             }
             else {
@@ -71,6 +76,16 @@ public class Translator {
                         cmd = new MoveCmd(instruction, target, Direction.getByName(directionName));
                     }
                     break;
+                case ROT:
+                    String rotationDirection = words[1].toLowerCase();
+                    if (!instruction.allowedArgs.contains(rotationDirection)) {
+                        String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);
+                        return new TranslationResult(false, message);
+                    }
+                    else {
+                        cmd = new RotateCmd(instruction, target, Direction.getByName(rotationDirection));
+                    }
+                    break;
                 case GOTO:
                     try {
                         int lineNum = Integer.parseInt(words[1]);
@@ -81,6 +96,17 @@ public class Translator {
                         else {
                             cmd = new GotoCmd(instruction, executor, lineNum);
                         }
+                    }
+                    catch (NumberFormatException e) {
+                        String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);
+                        return new TranslationResult(false, message);
+                    }
+                    break;
+                case TP:
+                    try {
+                        int posX = Integer.parseInt(words[1]);
+                        int posY = Integer.parseInt(words[2]);
+                        cmd = new TeleportCmd(instruction, target, new Vector2(posX, posY));
                     }
                     catch (NumberFormatException e) {
                         String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);

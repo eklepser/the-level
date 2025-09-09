@@ -3,16 +3,16 @@ package com.eklepser.thelevel.graphics.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.ui.code_editor.Editor;
 import com.eklepser.thelevel.logic.world.Entity;
 import com.eklepser.thelevel.util.Constants;
+
+import static com.eklepser.thelevel.util.Constants.EDITOR_MENU_SCALE;
 
 public class PlayScreen extends ScreenAdapter {
     private Stage stage;
@@ -52,8 +52,8 @@ public class PlayScreen extends ScreenAdapter {
 
         Editor editor = new Editor(entity, gameField);
 
-        rootTable.add(editor.getTable()).width(stage.getWidth() * 0.5f);
-        rootTable.add(gamePanel).width(stage.getWidth() * 0.5f).expand();
+        rootTable.add(editor.getTable()).width(stage.getWidth() * EDITOR_MENU_SCALE).fillX().expand();
+        rootTable.add(gamePanel).width(stage.getWidth() * (1 - EDITOR_MENU_SCALE)).expand();
 
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(editor.getKeyboardProcessor());

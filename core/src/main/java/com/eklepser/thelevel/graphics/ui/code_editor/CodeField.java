@@ -32,7 +32,7 @@ public class CodeField {
                 }
             });
             root.add(new TextLabel(String.valueOf(i + 1))).width(20).height(20).left().fillX();
-            root.add(codeline).width(120).height(20).right().padBottom(2).colspan(3);
+            root.add(codeline).height(20).right().padBottom(1).colspan(3).fillX().expand().colspan(3);
             codeLines.add(codeline);
         }
     }

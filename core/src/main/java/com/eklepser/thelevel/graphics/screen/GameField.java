@@ -23,11 +23,12 @@ public class GameField extends Actor {
         batch.flush();
         batch.setTransformMatrix(getStage().getCamera().view);
         batch.setProjectionMatrix(getStage().getCamera().projection);
-        entity.setOffset(new Vector2(getX(), getY()));
+        entity.setOffset(new Vector2(getX(), 0));
         entity.draw();
         batch.flush();
 
         //entity.draw();
         //entity.setOffset(new Vector2(getX(), getY()));
+        //System.out.println(entity.getWorldPos());
     }
 }

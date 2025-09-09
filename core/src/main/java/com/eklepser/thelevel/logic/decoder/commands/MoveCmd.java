@@ -29,6 +29,10 @@ public class MoveCmd extends Command {
             case RIGHT:
                 target.move(Direction.RIGHT);
                 break;
+            case FORWARD:
+                System.out.println(target.getFacingDirection());
+                target.move(target.getFacingDirection());
+                break;
         }
     }
 }
