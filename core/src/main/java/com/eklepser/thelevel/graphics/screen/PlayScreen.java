@@ -1,27 +1,31 @@
 package com.eklepser.thelevel.graphics.screen;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.eklepser.thelevel.graphics.ui.common.HelpWindow;
 import com.eklepser.thelevel.graphics.ui.editor.Editor;
 import com.eklepser.thelevel.logic.world.Entity;
 import com.eklepser.thelevel.util.Constants;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.eklepser.thelevel.util.Constants.EDITOR_MENU_SCALE;
 
-public class PlayScreen extends ScreenAdapter {
+public class PlayScreen extends ScreenAdapter implements InputProcessor {
     private Stage stage;
-    private final java.util.List<Entity> entities = new ArrayList<>();
+    private final List<Entity> entities = new ArrayList<>();
     private Editor editor;
     private GameField gameField;
+    private HelpWindow helpWindow;
 
     @Override
     public void show() {
@@ -33,7 +37,9 @@ public class PlayScreen extends ScreenAdapter {
         gameField = new GameField("world/levels/level.tmx", entities);
         stage = new Stage(new FitViewport(
             Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, new OrthographicCamera()));
+
         setupLayout();
+        setupInputProcessors();
     }
 
     @Override
@@ -57,21 +63,48 @@ public class PlayScreen extends ScreenAdapter {
     }
 
     private void setupLayout() {
+        helpWindow = new HelpWindow();
+        stage.addActor(helpWindow);
+
         // Setup components location:
         Table rootTable = new Table();
         rootTable.setFillParent(true);
         stage.addActor(rootTable);
-        editor = new Editor(stage, entities, 20);
+        editor = new Editor(helpWindow, entities, 20);
         rootTable.add(editor.getTable())
             .width(stage.getWidth() * EDITOR_MENU_SCALE)
             .top();
         rootTable.add().expand();
+    }
 
-        // Setup input processors:
+    private void setupInputProcessors() {
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(editor.getKeyboardProcessor());
+        multiplexer.addProcessor(this);
         multiplexer.addProcessor(stage);
+
         Gdx.input.setInputProcessor(multiplexer);
     }
+
+    public HelpWindow getHelpWindow() {
+        return helpWindow;
+    }
+
+    @Override public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.ESCAPE) {
+            helpWindow.setVisible(false);
+            return true;
+        }
+        return false;
+    }
+
+    @Override public boolean keyUp(int keycode) { return false; }
+    @Override public boolean keyTyped(char character) { return false; }
+    @Override public boolean touchDown(int screenX, int screenY, int pointer, int button) { return false; }
+    @Override public boolean touchUp(int screenX, int screenY, int pointer, int button) { return false; }
+    @Override public boolean touchCancelled(int screenX, int screenY, int pointer, int button) { return false; }
+    @Override public boolean touchDragged(int screenX, int screenY, int pointer) { return false; }
+    @Override public boolean mouseMoved(int screenX, int screenY) { return false; }
+    @Override public boolean scrolled(float amountX, float amountY) { return false; }
 }
 

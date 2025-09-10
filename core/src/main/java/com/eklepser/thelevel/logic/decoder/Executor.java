@@ -49,7 +49,6 @@ public class Executor {
             CodeLine currentLine = codeLines.get(i);
             Command currentCmd = codeMap.get(currentLine);
             if (currentCmd == null) continue;
-
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(true)));
             sequence.addAction(Actions.delay(0.25f));
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(false)));

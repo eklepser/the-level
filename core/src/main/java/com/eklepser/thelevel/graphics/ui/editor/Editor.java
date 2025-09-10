@@ -3,10 +3,13 @@ package com.eklepser.thelevel.graphics.ui.editor;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.eklepser.thelevel.graphics.ui.common.HelpWindow;
 import com.eklepser.thelevel.graphics.ui.common.TextLabel;
-import com.eklepser.thelevel.graphics.ui.editor.buttons.*;
+import com.eklepser.thelevel.graphics.ui.editor.buttons.ClearButton;
+import com.eklepser.thelevel.graphics.ui.editor.buttons.HelpButton;
+import com.eklepser.thelevel.graphics.ui.editor.buttons.RunButton;
+import com.eklepser.thelevel.graphics.ui.editor.buttons.StopButton;
 import com.eklepser.thelevel.logic.decoder.Executor;
 import com.eklepser.thelevel.logic.world.Entity;
 import com.eklepser.thelevel.util.CodeTemplates;
@@ -23,9 +26,9 @@ public class Editor {
     private TextLabel statusLabel;
     private TextLabel debugLabel;
 
-    public Editor(Stage rootStage, List<Entity> entities, int linesAmount) {
+    public Editor(HelpWindow helpWindow, List<Entity> entities, int linesAmount) {
         editorTable = new Table();
-        editorTable.add(new HelpButton(rootStage));
+        editorTable.add(new HelpButton(helpWindow));
         editorTable.add(new TextLabel("Code:")).padBottom(10).colspan(3);
 
         codeField = new CodeField(editorTable, linesAmount);

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.eklepser.thelevel.util.Constants;
 import com.eklepser.thelevel.util.Direction;
 
@@ -50,6 +51,7 @@ public class Entity extends Actor {
         facingDirection = direction;
         sprite.setOriginCenter();
         sprite.setRotation(Direction.getDegrees(direction));
+        addAction(new MoveToAction());
     }
 
     public void moveTo(Vector2 newPos)
