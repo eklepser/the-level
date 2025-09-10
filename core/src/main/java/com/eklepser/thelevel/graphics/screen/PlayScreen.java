@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.graphics.ui.code_editor.Editor;
+import com.eklepser.thelevel.graphics.ui.editor.Editor;
 import com.eklepser.thelevel.logic.world.Entity;
 import com.eklepser.thelevel.util.Constants;
 
@@ -20,6 +20,7 @@ import static com.eklepser.thelevel.util.Constants.EDITOR_MENU_SCALE;
 public class PlayScreen extends ScreenAdapter {
     private Stage stage;
     private final java.util.List<Entity> entities = new ArrayList<>();
+    private Editor editor;
     private GameField gameField;
 
     @Override
@@ -28,12 +29,6 @@ public class PlayScreen extends ScreenAdapter {
         entities.add(hero);
         Entity ktoto = new Entity("world/hero.png", new Vector2(1, 0), Constants.TILE_SIZE);
         entities.add(ktoto);
-        Entity ktoto2 = new Entity("world/hero.png", new Vector2(2, 0), Constants.TILE_SIZE);
-        entities.add(ktoto2);
-        Entity ktoto3 = new Entity("world/hero.png", new Vector2(3, 0), Constants.TILE_SIZE);
-        entities.add(ktoto3);
-        Entity ktoto4 = new Entity("world/hero.png", new Vector2(4, 0), Constants.TILE_SIZE);
-        entities.add(ktoto4);
 
         gameField = new GameField("world/levels/level.tmx", entities);
         stage = new Stage(new FitViewport(
@@ -45,6 +40,9 @@ public class PlayScreen extends ScreenAdapter {
     public void render(float delta) {
         Gdx.gl.glClearColor(0.05f, 0.03f, 0.05f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        String debugText = entities.get(0).getWorldPos().toString();
+        editor.setDebugText(debugText);
 
         gameField.act(delta);
         gameField.render();
@@ -63,7 +61,7 @@ public class PlayScreen extends ScreenAdapter {
         Table rootTable = new Table();
         rootTable.setFillParent(true);
         stage.addActor(rootTable);
-        Editor editor = new Editor(entities, 20);
+        editor = new Editor(stage, entities, 20);
         rootTable.add(editor.getTable())
             .width(stage.getWidth() * EDITOR_MENU_SCALE)
             .top();

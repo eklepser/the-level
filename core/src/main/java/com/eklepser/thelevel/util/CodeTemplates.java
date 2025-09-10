@@ -1,10 +1,10 @@
-package com.eklepser.thelevel.graphics.ui;
+package com.eklepser.thelevel.util;
 
-import com.eklepser.thelevel.graphics.ui.code_editor.CodeField;
+import com.eklepser.thelevel.graphics.ui.editor.CodeField;
 
 import java.util.List;
 
-public class EditorTemplates {
+public class CodeTemplates {
     public static final List<String> CODE_EXAMPLE_1 = List.of(";Code example #1",
         "MOVE UP ;go up!",
         ";boo ;boo ;boo",

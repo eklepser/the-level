@@ -65,10 +65,8 @@ public class Entity extends Actor {
     }
 
     public Vector2 getWorldPos() {
-        return pos.scl((float) 1 / Constants.TILE_SIZE);
+        return new Vector2(pos.x / Constants.TILE_SIZE, pos.y / Constants.TILE_SIZE);
     }
 
-    public Direction getFacingDirection() {
-        return facingDirection;
-    }
+    public Direction getFacingDirection() { return facingDirection; }
 }

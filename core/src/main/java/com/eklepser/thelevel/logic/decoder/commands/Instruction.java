@@ -5,7 +5,7 @@ import java.util.List;
 
 public enum Instruction {
     MOVE("move", 1, new ArrayList<>(List.of(
-        "u", "d", "l", "r", "up", "down", "left", "right", "forw", "f"))),
+        "u", "d", "l", "r", "up", "down", "left", "right", "forward", "f"))),
     ROT("rot", 1, new ArrayList<>(List.of(
         "l", "r", "left", "right"))),
     GOTO("goto", 1, null),

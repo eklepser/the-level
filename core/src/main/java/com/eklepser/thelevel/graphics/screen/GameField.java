@@ -24,8 +24,8 @@ public class GameField {
         camera = new OrthographicCamera();
         this.camera.setToOrtho(false, Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT);
         camera.position.set(0,Constants.EDITOR_MENU_SCALE * Constants.VIEWPORT_WIDTH, 0);
-        renderer.setView(camera);
         camera.update();
+        renderer.setView(camera);
     }
 
     public void render() {

@@ -1,7 +1,5 @@
 package com.eklepser.thelevel.util;
 
-import com.eklepser.thelevel.graphics.ui.EditorTemplates;
-
 import java.util.List;
 
 public class Constants {
@@ -13,5 +11,7 @@ public class Constants {
 
     public static final float EDITOR_MENU_SCALE = 0.4f; // value in range from 0 to 1.0f
 
-    public static final List<String> EDITOR_CODE_TEMPLATE = EditorTemplates.MOVE_FORWARD_CYCLE;
+    public static final List<String> EDITOR_CODE_TEMPLATE = CodeTemplates.MOVE_FORWARD_CYCLE;
+
+    public static boolean IS_DEBUG_MODE = true;
 }

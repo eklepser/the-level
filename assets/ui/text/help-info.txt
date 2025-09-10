@@ -1,0 +1,13 @@
+Available commands list:
+
+MOVE   U (UP) / D (DOWN) / L (LEFT) / R (RIGHT)
+MOVE   F (FORWARD)
+
+GOTO   line number
+
+ROT     L (LEFT) / R (RIGHT)
+
+NONE
+
+Use ";" for making comments
+
