@@ -3,7 +3,6 @@ package com.eklepser.thelevel.logic.decoder;
 import com.badlogic.gdx.math.Vector2;
 import com.eklepser.thelevel.graphics.ui.code_editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.commands.*;
-import com.eklepser.thelevel.logic.world.Entity;
 import com.eklepser.thelevel.util.Direction;
 
 import java.util.HashMap;
@@ -13,13 +12,11 @@ import java.util.Map;
 public class Translator {
     private final Executor executor;
     private final List<CodeLine> codeLines;
-    private final Entity target;
     private final List<Instruction> allowedInstruction;
 
-    public Translator(Executor executor, List<CodeLine> codeLines, Entity target) {
+    public Translator(Executor executor, List<CodeLine> codeLines) {
         this.executor = executor;
         this.codeLines = codeLines;
-        this.target = target;
         allowedInstruction = Instruction.defaultAllowed();
         allowedInstruction.add(Instruction.TP);
         allowedInstruction.add(Instruction.ROT);
@@ -73,7 +70,7 @@ public class Translator {
                         return new TranslationResult(false, message);
                     }
                     else {
-                        cmd = new MoveCmd(instruction, target, Direction.getByName(directionName));
+                        cmd = new MoveCmd(instruction, Direction.getByName(directionName));
                     }
                     break;
                 case ROT:
@@ -83,7 +80,7 @@ public class Translator {
                         return new TranslationResult(false, message);
                     }
                     else {
-                        cmd = new RotateCmd(instruction, target, Direction.getByName(rotationDirection));
+                        cmd = new RotateCmd(instruction, Direction.getByName(rotationDirection));
                     }
                     break;
                 case GOTO:
@@ -106,7 +103,7 @@ public class Translator {
                     try {
                         int posX = Integer.parseInt(words[1]);
                         int posY = Integer.parseInt(words[2]);
-                        cmd = new TeleportCmd(instruction, target, new Vector2(posX, posY));
+                        cmd = new TeleportCmd(instruction, new Vector2(posX, posY));
                     }
                     catch (NumberFormatException e) {
                         String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);

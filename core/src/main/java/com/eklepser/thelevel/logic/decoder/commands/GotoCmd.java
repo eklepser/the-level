@@ -1,6 +1,7 @@
 package com.eklepser.thelevel.logic.decoder.commands;
 
 import com.eklepser.thelevel.logic.decoder.Executor;
+import com.eklepser.thelevel.logic.world.Entity;
 
 public class GotoCmd extends Command {
     private final Executor executor;
@@ -13,7 +14,7 @@ public class GotoCmd extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute(Entity target) {
         System.out.println("GOTO " + lineNum);
         executor.executeAll(lineNum - 1, executor.getCodeMap());
     }

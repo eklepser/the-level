@@ -4,25 +4,15 @@ import com.eklepser.thelevel.logic.world.Entity;
 import com.eklepser.thelevel.util.Direction;
 
 public class RotateCmd extends Command {
-    private final Entity target;
     private final Direction direction;
-
-    public RotateCmd(Instruction instruction, Entity target, Direction direction) {
+    public RotateCmd(Instruction instruction, Direction direction) {
         super(instruction);
-        this.target = target;
         this.direction = direction;
     }
 
     @Override
-    public void execute() {
+    public void execute(Entity target) {
         System.out.println("ROTATE " + direction.name());
-        switch (direction) {
-            case LEFT:
-                target.rotate(Direction.LEFT);
-                break;
-            case RIGHT:
-                target.rotate(Direction.RIGHT);
-                break;
-        }
+        target.rotate(direction);
     }
 }

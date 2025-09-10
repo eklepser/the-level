@@ -18,13 +18,13 @@ public class Entity extends Actor {
     public Entity(Texture texture, Vector2 worldPos, int size) {
         sprite = new Sprite(texture);
         sprite.setOriginCenter();
-        this.pos = worldPos;
+        this.pos = worldPos.scl(Constants.TILE_SIZE);
         this.size = size;
     }
 
     public Entity(String textureName, Vector2 worldPos, int size) {
         sprite = new Sprite(new Texture(Gdx.files.internal(textureName)));
-        this.pos = worldPos;
+        this.pos = worldPos.scl(Constants.TILE_SIZE);
         this.size = size;
     }
 
@@ -42,16 +42,9 @@ public class Entity extends Actor {
         super.act(delta);
     }
 
-    public Vector2 getWorldPos() {
-        return new Vector2(pos.x / Constants.TILE_SIZE, pos.y / Constants.TILE_SIZE);
-    }
-
-    public Direction getFacingDirection() {
-        return facingDirection;
-    }
-
     public void move(Direction direction)
     {
+        if (direction.equals(Direction.FORWARD)) direction = facingDirection;
         pos.x += direction.vector.x * size;
         pos.y += direction.vector.y * size;
         facingDirection = direction;
@@ -69,5 +62,13 @@ public class Entity extends Actor {
         facingDirection = Direction.getRotatedDirection(facingDirection, rotateDirection);
         sprite.setOriginCenter();
         sprite.setRotation(Direction.getDegrees(facingDirection));
+    }
+
+    public Vector2 getWorldPos() {
+        return pos.scl((float) 1 / Constants.TILE_SIZE);
+    }
+
+    public Direction getFacingDirection() {
+        return facingDirection;
     }
 }

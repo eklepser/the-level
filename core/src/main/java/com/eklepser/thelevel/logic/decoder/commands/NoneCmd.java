@@ -1,12 +1,14 @@
 package com.eklepser.thelevel.logic.decoder.commands;
 
+import com.eklepser.thelevel.logic.world.Entity;
+
 public class NoneCmd extends Command {
     public NoneCmd(Instruction instruction) {
         super(instruction);
     }
 
     @Override
-    public void execute() {
+    public void execute(Entity target) {
         System.out.println("NONE");
     }
 }

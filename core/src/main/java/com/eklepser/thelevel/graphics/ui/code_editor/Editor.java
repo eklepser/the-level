@@ -10,10 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.eklepser.thelevel.graphics.ui.EditorTemplates;
 import com.eklepser.thelevel.logic.world.Entity;
+import com.eklepser.thelevel.util.Constants;
 import com.eklepser.thelevel.util.Resources;
 import com.eklepser.thelevel.graphics.ui.common.TextLabel;
 import com.eklepser.thelevel.util.Direction;
 import com.eklepser.thelevel.logic.decoder.Executor;
+
+import java.util.List;
 
 public class Editor {
     private final Table editorTable;
@@ -22,15 +25,15 @@ public class Editor {
     private final Executor executor;
     private TextLabel statusLabel;
 
-    public Editor(Entity entity) {
+    public Editor(List<Entity> entities, int linesAmount) {
         editorTable = new Table();
         editorTable.add(new TextLabel("Code:")).padBottom(10);
-        codeField = new CodeField(editorTable, 12);
+        codeField = new CodeField(editorTable, linesAmount);
         keyboardProcessor = createKeyboardProcessor(codeField);
-        executor = new Executor(codeField.getCodeLines(), entity);
+        executor = new Executor(codeField.getCodeLines(), entities);
 
         setupLayout();
-        EditorTemplates.setTemplate(codeField, EditorTemplates.MOVE_FORWARD_CYCLE);
+        EditorTemplates.setTemplate(codeField, Constants.EDITOR_CODE_TEMPLATE);
     }
 
     private void setupLayout() {
@@ -66,7 +69,7 @@ public class Editor {
         button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                String status = executor.translateAll();
+                String status = executor.checkAndExecute();
                 statusLabel.setText(status);
             }
         });
