@@ -14,17 +14,17 @@ public class Executor {
     private final Translator translator;
     private final List<CodeLine> codeLines;
     private Map<CodeLine, Command> codeMap;
-    private final Actor gameField;
+    private final Actor target;
 
-    public Executor(List<CodeLine> codeLines, Actor gameField, Entity target) {
+    public Executor(List<CodeLine> codeLines, Entity target) {
         this.codeLines = codeLines;
-        this.gameField = gameField;
+        this.target = target;
         translator = new Translator(this, codeLines, target);
     }
 
     public void executeAll(int start, Map<CodeLine, Command> codeMap) {
         System.out.println("Running");
-        gameField.clearActions();
+        target.clearActions();
         SequenceAction sequence = new SequenceAction();
         for (int i = start; i < codeLines.size(); i++) {
             CodeLine currentLine = codeLines.get(i);
@@ -36,7 +36,7 @@ public class Executor {
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(false)));
             sequence.addAction(Actions.run(currentCmd::execute));
         }
-        gameField.addAction(sequence);
+        target.addAction(sequence);
     }
 
     public String translateAll() {
@@ -53,7 +53,7 @@ public class Executor {
     }
 
     public void stop() {
-        gameField.clearActions();
+        target.clearActions();
     }
 
     public Map<CodeLine, Command> getCodeMap() {

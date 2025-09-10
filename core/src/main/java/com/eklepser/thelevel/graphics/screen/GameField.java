@@ -10,25 +10,14 @@ public class GameField extends Actor {
 
     public GameField(Entity entity) {
         this.entity = entity;
-        //entity.setOffset(new Vector2(getX(), getY()));
     }
 
-    @Override
     public void act(float delta) {
-        super.act(delta);
     }
 
-    @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.flush();
-        batch.setTransformMatrix(getStage().getCamera().view);
-        batch.setProjectionMatrix(getStage().getCamera().projection);
-        entity.setOffset(new Vector2(getX(), 0));
-        entity.draw();
-        batch.flush();
-
-        //entity.draw();
-        //entity.setOffset(new Vector2(getX(), getY()));
-        //System.out.println(entity.getWorldPos());
+//        batch.flush();
+//        entity.setOffset(new Vector2(getX(), 0));
+//        entity.draw(batch, 1.0f);
     }
 }

@@ -8,38 +8,41 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.eklepser.thelevel.graphics.ui.EditorTemplates;
 import com.eklepser.thelevel.logic.world.Entity;
 import com.eklepser.thelevel.util.Resources;
 import com.eklepser.thelevel.graphics.ui.common.TextLabel;
-import com.eklepser.thelevel.graphics.screen.GameField;
 import com.eklepser.thelevel.util.Direction;
 import com.eklepser.thelevel.logic.decoder.Executor;
 
 public class Editor {
-    private final Table root;
+    private final Table editorTable;
     private final CodeField codeField;
     private final InputProcessor keyboardProcessor;
     private final Executor executor;
-    private final TextLabel statusLabel;
+    private TextLabel statusLabel;
 
-    public Editor(Entity entity, GameField gameField) {
-        root = new Table();
-        root.add(new TextLabel("Code:")).padBottom(10);
-        codeField = new CodeField(root, 12);
+    public Editor(Entity entity) {
+        editorTable = new Table();
+        editorTable.add(new TextLabel("Code:")).padBottom(10);
+        codeField = new CodeField(editorTable, 12);
         keyboardProcessor = createKeyboardProcessor(codeField);
-        executor = new Executor(codeField.getCodeLines(), gameField, entity);
+        executor = new Executor(codeField.getCodeLines(), entity);
+
+        setupLayout();
+        EditorTemplates.setTemplate(codeField, EditorTemplates.MOVE_FORWARD_CYCLE);
+    }
+
+    private void setupLayout() {
         statusLabel = new TextLabel("Status:");
         statusLabel.setWrap(true);
-
-        root.row().padTop(10).padBottom(10);
-        root.add(new TextLabel("Action:"));
-        root.add(createRunButton());
-        root.add(createResetButton());
-        root.add(createClearButton());
-        root.row();
-        root.add(statusLabel).colspan(3).fillX().height(40).top();
-
-        setDefault();
+        editorTable.row().padTop(10).padBottom(10);
+        editorTable.add(new TextLabel("Action:"));
+        editorTable.add(createRunButton());
+        editorTable.add(createResetButton());
+        editorTable.add(createClearButton());
+        editorTable.row();
+        editorTable.add(statusLabel).colspan(3).fillX().height(40).top();
     }
 
     private InputAdapter createKeyboardProcessor(CodeField codeField) {
@@ -99,24 +102,7 @@ public class Editor {
         return button;
     }
 
-    public Table getTable() { return root; }
+    public Table getTable() { return editorTable; }
 
     public InputProcessor getKeyboardProcessor() { return keyboardProcessor; }
-
-    private void setDefault() {
-        for (int i = 0; i < codeField.getCodeLines().size(); i++) {
-            if (i==0) codeField.getCodeLines().get(i).setText(";My app");
-            if (i==1) codeField.getCodeLines().get(i).setText("MOVE UP ;go up!");
-            if (i==2) codeField.getCodeLines().get(i).setText(";boo ;boo ;boo");
-            if (i==3) codeField.getCodeLines().get(i).setText("MOVE RIGHT");
-            if (i==4) codeField.getCodeLines().get(i).setText("");
-            if (i==5) codeField.getCodeLines().get(i).setText("MOVE RIGHT");
-            if (i==6) codeField.getCodeLines().get(i).setText("MOVE DOWN");
-            if (i==7) codeField.getCodeLines().get(i).setText(";yoo");
-            if (i==8) codeField.getCodeLines().get(i).setText("MOVE LEFT");
-            if (i==9) codeField.getCodeLines().get(i).setText("MOVE UP");
-            if (i==10) codeField.getCodeLines().get(i).setText("");
-            if (i==11) codeField.getCodeLines().get(i).setText("GOTO 5");
-        }
-    }
 }

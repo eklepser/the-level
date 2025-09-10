@@ -5,47 +5,45 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.eklepser.thelevel.util.Constants;
 import com.eklepser.thelevel.util.Direction;
 
-public class Entity {
-    private final Batch batch;
+public class Entity extends Actor {
     private final Sprite sprite;
     private final Vector2 pos;
     private final int size;
-    private Vector2 offset = Vector2.Zero;
     private Direction facingDirection = Direction.UP;
 
-    public Entity(Batch batch, Texture texture, Vector2 worldPos, int size) {
-        this.batch = batch;
+    public Entity(Texture texture, Vector2 worldPos, int size) {
         sprite = new Sprite(texture);
         sprite.setOriginCenter();
         this.pos = worldPos;
         this.size = size;
     }
 
-    public Entity(Batch batch, String textureName, Vector2 worldPos, int size) {
-        this.batch = batch;
+    public Entity(String textureName, Vector2 worldPos, int size) {
         sprite = new Sprite(new Texture(Gdx.files.internal(textureName)));
         this.pos = worldPos;
         this.size = size;
     }
 
-    public void setOffset(Vector2 offset) {
-        this.offset = offset;
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        float x = pos.x;
+        float y = pos.y;
+        sprite.setPosition(x, y);
+        sprite.setSize(size, size);
+        sprite.draw(batch);
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
     }
 
     public Vector2 getWorldPos() {
         return new Vector2(pos.x / Constants.TILE_SIZE, pos.y / Constants.TILE_SIZE);
-    }
-
-    public void draw() {
-        float x = offset.x + pos.x;
-        float y = offset.y + pos.y;
-        sprite.setPosition(x, y);
-        sprite.setSize(size, size);
-        sprite.draw(batch);
-        //batch.draw(sprite, x, y, size, size);
     }
 
     public Direction getFacingDirection() {

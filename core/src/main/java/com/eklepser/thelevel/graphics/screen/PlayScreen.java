@@ -20,10 +20,10 @@ public class PlayScreen extends ScreenAdapter {
 
     @Override
     public void show() {
-        stage = new Stage(new FitViewport(Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT));
-        Gdx.input.setInputProcessor(stage);
-
-        entity = new Entity(stage.getBatch(), "world/cat.png", Vector2.Zero, Constants.TILE_SIZE);
+        stage = new Stage(new FitViewport(
+            Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT));
+        entity = new Entity("world/cat.png", Vector2.Zero, Constants.TILE_SIZE);
+        stage.addActor(entity);
 
         setupLayout();
     }
@@ -32,6 +32,7 @@ public class PlayScreen extends ScreenAdapter {
     public void render(float delta) {
         Gdx.gl.glClearColor(0.05f, 0.03f, 0.05f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         stage.act(delta);
         stage.draw();
     }
@@ -42,19 +43,17 @@ public class PlayScreen extends ScreenAdapter {
     }
 
     private void setupLayout() {
+        // Setup components location:
         Table rootTable = new Table();
         rootTable.setFillParent(true);
         stage.addActor(rootTable);
+        Editor editor = new Editor(entity);
+        rootTable.add(editor.getTable())
+            .width(stage.getWidth() * EDITOR_MENU_SCALE)
+            .top();
+        rootTable.add().expand();
 
-        Table gamePanel = new Table();
-        GameField gameField = new GameField(entity);
-        gamePanel.add(gameField).grow();
-
-        Editor editor = new Editor(entity, gameField);
-
-        rootTable.add(editor.getTable()).width(stage.getWidth() * EDITOR_MENU_SCALE).fillX().expand();
-        rootTable.add(gamePanel).width(stage.getWidth() * (1 - EDITOR_MENU_SCALE)).expand();
-
+        // Setup input processors:
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(editor.getKeyboardProcessor());
         multiplexer.addProcessor(stage);
