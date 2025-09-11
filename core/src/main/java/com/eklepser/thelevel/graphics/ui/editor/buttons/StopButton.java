@@ -11,7 +11,7 @@ import com.eklepser.thelevel.util.Resources;
 public class StopButton extends TextButton {
     public StopButton(Executor executor, TextLabel statusLabel, CodeTable codeTable) {
         super("Stop", Resources.getSkin());
-        this.addListener(new ClickListener() {
+        addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Stopping");

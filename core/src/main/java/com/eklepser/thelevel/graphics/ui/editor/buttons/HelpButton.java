@@ -9,7 +9,7 @@ import com.eklepser.thelevel.util.Resources;
 public class HelpButton extends TextButton {
     public HelpButton(HelpWindow helpWindow) {
         super("Help", Resources.getSkin());
-        this.addListener(new ClickListener() {
+        addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 helpWindow.toggle();

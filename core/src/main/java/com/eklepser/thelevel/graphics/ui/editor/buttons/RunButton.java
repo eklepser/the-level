@@ -10,7 +10,7 @@ import com.eklepser.thelevel.util.Resources;
 public class RunButton extends TextButton {
     public RunButton(Executor executor, TextLabel statusLabel) {
         super("Run", Resources.getSkin());
-        this.addListener(new ClickListener() {
+        addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 String status = executor.checkAndExecute();

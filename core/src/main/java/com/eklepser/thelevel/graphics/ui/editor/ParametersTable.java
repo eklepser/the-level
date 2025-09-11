@@ -30,8 +30,8 @@ public class ParametersTable extends Table {
             }
         });
 
-        this.add(label).padTop(10);
-        this.row();
-        this.add(slider);
+        add(label).padTop(10);
+        row();
+        add(slider);
     }
 }

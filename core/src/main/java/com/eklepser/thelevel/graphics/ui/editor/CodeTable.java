@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
 import com.eklepser.thelevel.graphics.ui.common.TextLabel;
+import com.eklepser.thelevel.util.CodeTemplates;
 import com.eklepser.thelevel.util.Direction;
 
 import java.util.ArrayList;
@@ -53,5 +54,9 @@ public class CodeTable extends Table {
         if ((lineNum >= 0) && (lineNum < codeLines.size())) {
             root.getStage().setKeyboardFocus(codeLines.get(lineNum));
         }
+    }
+
+    public void setTemplate(List<String> template) {
+        CodeTemplates.setTemplate(this, template);
     }
 }

@@ -48,7 +48,7 @@ public class Entity extends Actor {
 
         Vector2 targetWorldPos = new Vector2(
             worldPos.x + direction.vector.x, worldPos.y + direction.vector.y);
-        this.addAction(Actions.moveTo(
+        addAction(Actions.moveTo(
             targetWorldPos.x * size, targetWorldPos.y * size, animationSpeed));
 
         worldPos.set(targetWorldPos);

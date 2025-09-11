@@ -12,13 +12,13 @@ public class CodeLine extends TextField {
 
     public CodeLine() {
         super("", Resources.getSkin().get("code-field", TextField.TextFieldStyle.class));
-        this.getStyle().cursor = new TextureRegionDrawable(
+        getStyle().cursor = new TextureRegionDrawable(
             new Texture(Gdx.files.internal("ui/components/code_field_cursor.png")));
-        this.setColor(lineColor);
+        setColor(lineColor);
     }
 
     public void setCompleting(boolean isCompleting) {
-        if (isCompleting) this.setColor(Color.WHITE);
-        else this.setColor(lineColor);
+        if (isCompleting) setColor(Color.WHITE);
+        else setColor(lineColor);
     }
 }
