@@ -1,0 +1,30 @@
+{
+    "activeFile": "levels/level.tmx",
+    "expandedProjectPaths": [
+        "levels",
+        "."
+    ],
+    "fileStates": {
+        "levels/gamefield.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "levels/level.tmx": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 146.75,
+                "y": 188.5
+            }
+        }
+    },
+    "openFiles": [
+        "levels/gamefield.tsx",
+        "levels/level.tmx"
+    ],
+    "project": "untitled.tiled-project",
+    "recentFiles": [
+        "levels/gamefield.tsx",
+        "levels/level.tmx"
+    ]
+}

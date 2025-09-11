@@ -14,6 +14,6 @@ public class MoveCmd extends Command {
     @Override
     public void execute(Entity target) {
         System.out.println("MOVE " + direction.name());
-        target.move(direction);
+        target.checkCollisionsAndMove(direction);
     }
 }

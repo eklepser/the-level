@@ -27,6 +27,11 @@ public class CodeTemplates {
         "GOTO 2"
     );
 
+    public static final List<String> MOVE_UP_CYCLE = List.of(";Move up cycle",
+        "MOVE U",
+        "GOTO 2"
+    );
+
     public static void setTemplate(CodeTable codeTable, List<String> template) {
         for (int i = 0; i < template.size(); i++) {
             if (i < codeTable.getCodeLines().size()) {

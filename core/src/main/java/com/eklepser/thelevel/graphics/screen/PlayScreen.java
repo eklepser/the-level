@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.ui.common.HelpWindow;
 import com.eklepser.thelevel.graphics.ui.editor.EditorTable;
 import com.eklepser.thelevel.graphics.ui.editor.KeyboardProcessor;
+import com.eklepser.thelevel.logic.world.GameField;
 import com.eklepser.thelevel.logic.world.Entity;
 import com.eklepser.thelevel.util.Constants;
 
@@ -28,7 +29,7 @@ public class PlayScreen extends ScreenAdapter {
 
     public PlayScreen() {
         stage = new Stage(new FitViewport(
-            Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, new OrthographicCamera()));;
+            Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, new OrthographicCamera()));
         entities = new ArrayList<>();
         editor = new EditorTable(this, entities, 20);
         gameField = new GameField("world/levels/level.tmx", entities);
