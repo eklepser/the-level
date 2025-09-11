@@ -3,11 +3,8 @@ package com.eklepser.thelevel.graphics.screen;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.ui.common.HelpWindow;
@@ -33,6 +30,10 @@ public class PlayScreen extends ScreenAdapter implements InputProcessor {
         entities.add(hero);
         Entity ktoto = new Entity("world/hero.png", new Vector2(1, 0), Constants.TILE_SIZE);
         entities.add(ktoto);
+        Entity ktoto1 = new Entity("world/hero.png", new Vector2(3, 0), Constants.TILE_SIZE);
+        entities.add(ktoto1);
+        Entity ktoto2 = new Entity("world/hero.png", new Vector2(4, 0), Constants.TILE_SIZE);
+        entities.add(ktoto2);
 
         gameField = new GameField("world/levels/level.tmx", entities);
         stage = new Stage(new FitViewport(

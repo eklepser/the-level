@@ -14,6 +14,7 @@ public class Executor {
     private final List<CodeLine> codeLines;
     private Map<CodeLine, Command> codeMap;
     private final List<Entity> targets;
+    private final float executionSpeed = 0.4f;
 
     public Executor(List<CodeLine> codeLines, List<Entity> targets) {
         this.codeLines = codeLines;
@@ -26,7 +27,7 @@ public class Executor {
         if (result.success()) {
             codeMap = result.getCodeMap();
             System.out.println(result.message());
-            executeAll(0, codeMap);
+            execute(0, codeMap);
         }
         else {
             System.out.println(result.message());
@@ -34,7 +35,7 @@ public class Executor {
         return result.message();
     }
 
-    public void executeAll(int start, Map<CodeLine, Command> codeMap) {
+    public void execute(int start, Map<CodeLine, Command> codeMap) {
         for (Entity target : targets) {
             target.clearActions();
             SequenceAction action = getSequenceAction(start, codeMap, target);
@@ -49,9 +50,11 @@ public class Executor {
             CodeLine currentLine = codeLines.get(i);
             Command currentCmd = codeMap.get(currentLine);
             if (currentCmd == null) continue;
+
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(true)));
-            sequence.addAction(Actions.delay(0.25f));
+            sequence.addAction(Actions.delay(executionSpeed));
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(false)));
+            target.setAnimationSpeed(executionSpeed / 4.0f);
             sequence.addAction(Actions.run(() -> currentCmd.execute(target)));
         }
         return sequence;

@@ -16,6 +16,6 @@ public class GotoCmd extends Command {
     @Override
     public void execute(Entity target) {
         System.out.println("GOTO " + lineNum);
-        executor.executeAll(lineNum - 1, executor.getCodeMap());
+        executor.execute(lineNum - 1, executor.getCodeMap());
     }
 }
