@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Editor {
     private final Table editorTable;
-    private final CodeField codeField;
+    private final CodeTable codeTable;
     private final InputProcessor keyboardProcessor;
     private final Executor executor;
     private TextLabel statusLabel;
@@ -28,28 +28,33 @@ public class Editor {
 
     public Editor(HelpWindow helpWindow, List<Entity> entities, int linesAmount) {
         editorTable = new Table();
-        editorTable.add(new HelpButton(helpWindow));
-        editorTable.add(new TextLabel("Code:")).padBottom(10).colspan(3);
+        editorTable.setDebug(Constants.IS_UI_DEBUGGING);
 
-        codeField = new CodeField(editorTable, linesAmount);
-        keyboardProcessor = createKeyboardProcessor(codeField);
-        executor = new Executor(codeField.getCodeLines(), entities);
+        codeTable = new CodeTable(editorTable, linesAmount);
+        executor = new Executor(codeTable.getCodeLines(), entities);
+        keyboardProcessor = createKeyboardProcessor(codeTable);
+
+        editorTable.add(new HelpButton(helpWindow));
+        editorTable.add(new ParametersTable(executor)).padBottom(10).colspan(3).fillX().padLeft(10);
 
         setupLayout();
-        CodeTemplates.setTemplate(codeField, Constants.EDITOR_CODE_TEMPLATE);
+        CodeTemplates.setTemplate(codeTable, Constants.EDITOR_CODE_TEMPLATE);
     }
 
     private void setupLayout() {
+        editorTable.row().colspan(4).fillX().expand();
+        editorTable.add(codeTable);
         statusLabel = new TextLabel("Status:");
         statusLabel.setWrap(true);
         editorTable.row().padTop(10).padBottom(10);
         editorTable.add(new TextLabel("Action:"));
         editorTable.add(new RunButton(executor, statusLabel));
-        editorTable.add(new StopButton(executor, statusLabel, codeField));
-        editorTable.add(new ClearButton(executor, statusLabel, codeField));
+        editorTable.add(new StopButton(executor, statusLabel, codeTable));
+        editorTable.add(new ClearButton(executor, statusLabel, codeTable));
         editorTable.row();
         editorTable.add(statusLabel).colspan(3).fillX().height(40).top();
-        if (Constants.IS_DEBUG_MODE) {
+
+        if (Constants.IS_CODE_DEBUGGING) {
             debugLabel = new TextLabel("Debug:");
             editorTable.row();
             editorTable.add(debugLabel).colspan(3).fillX().height(40).top();
@@ -64,15 +69,15 @@ public class Editor {
         if (debugLabel != null) debugLabel.setText(text);
     }
 
-    private InputAdapter createKeyboardProcessor(CodeField codeField) {
+    private InputAdapter createKeyboardProcessor(CodeTable codeTable) {
         return new InputAdapter() {
             @Override
             public boolean keyDown(int keycode) {
                 if (keycode == Input.Keys.DOWN || keycode == Input.Keys.ENTER) {
-                    codeField.setSelectedLine(Direction.DOWN);
+                    codeTable.setSelectedLine(Direction.DOWN);
                     return true;
                 } else if (keycode == Input.Keys.UP) {
-                    codeField.setSelectedLine(Direction.UP);
+                    codeTable.setSelectedLine(Direction.UP);
                     return true;
                 }
                 return false;

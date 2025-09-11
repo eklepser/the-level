@@ -9,12 +9,12 @@ import com.eklepser.thelevel.util.Direction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CodeField {
+public class CodeTable extends Table {
     private final Table root;
     private final List<CodeLine> codeLines = new ArrayList<>();
     private int selectedLine = -1;
 
-    public CodeField(Table root, int linesAmount) {
+    public CodeTable(Table root, int linesAmount) {
         this.root = root;
         createCodeLines(linesAmount);
     }
@@ -22,8 +22,9 @@ public class CodeField {
     private void createCodeLines(int linesAmount) {
         for (int i = 0; i < linesAmount; i++)
         {
-            root.row();
+            row();
             CodeLine codeline = new CodeLine();
+            TextLabel label = new TextLabel((String.valueOf(i + 1)));
             int finalI = i;
             codeline.addListener(new FocusListener() {
                 @Override
@@ -31,8 +32,9 @@ public class CodeField {
                     if (focused) selectedLine = finalI;
                 }
             });
-            root.add(new TextLabel(String.valueOf(i + 1))).width(20).height(20).left().fillX();
-            root.add(codeline).height(20).right().padBottom(1).colspan(3).fillX().expand().colspan(3);
+
+            add(label).width(20).height(20).left().fillX().padRight(10);
+            add(codeline).height(20).right().padBottom(1).colspan(3).fillX().expand().colspan(3);
             codeLines.add(codeline);
         }
     }

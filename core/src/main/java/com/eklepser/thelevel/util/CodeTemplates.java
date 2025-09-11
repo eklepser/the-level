@@ -1,6 +1,6 @@
 package com.eklepser.thelevel.util;
 
-import com.eklepser.thelevel.graphics.ui.editor.CodeField;
+import com.eklepser.thelevel.graphics.ui.editor.CodeTable;
 
 import java.util.List;
 
@@ -27,14 +27,14 @@ public class CodeTemplates {
         "GOTO 2"
     );
 
-    public static void setTemplate(CodeField codeField, List<String> template) {
+    public static void setTemplate(CodeTable codeTable, List<String> template) {
         for (int i = 0; i < template.size(); i++) {
-            if (i < codeField.getCodeLines().size()) {
-                codeField.getCodeLines().get(i).setText(template.get(i));
+            if (i < codeTable.getCodeLines().size()) {
+                codeTable.getCodeLines().get(i).setText(template.get(i));
             }
         }
-        for (int i = template.size(); i < codeField.getCodeLines().size(); i++) {
-            codeField.getCodeLines().get(i).setText("");
+        for (int i = template.size(); i < codeTable.getCodeLines().size(); i++) {
+            codeTable.getCodeLines().get(i).setText("");
         }
     }
 }

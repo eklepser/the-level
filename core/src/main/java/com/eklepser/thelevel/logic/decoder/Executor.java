@@ -14,7 +14,7 @@ public class Executor {
     private final List<CodeLine> codeLines;
     private Map<CodeLine, Command> codeMap;
     private final List<Entity> targets;
-    private final float executionSpeed = 0.4f;
+    private float executionSpeed = 0.5f;
 
     public Executor(List<CodeLine> codeLines, List<Entity> targets) {
         this.codeLines = codeLines;
@@ -66,5 +66,9 @@ public class Executor {
 
     public void stop() {
         targets.forEach(Actor::clearActions);
+    }
+
+    public void setExecutionSpeed(float executionSpeed) {
+        this.executionSpeed = executionSpeed;
     }
 }

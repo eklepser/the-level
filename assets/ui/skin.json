@@ -59,5 +59,16 @@
       "titleFontColor": "white",
       "background": "code-field-bg"
     }
+  },
+
+  "com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle": {
+    "default-vertical": {
+      "background": "slider-bg",
+      "knob": "slider-knob"
+    },
+    "default-horizontal": {
+      "background": "slider-bg",
+      "knob": "slider-knob"
+    }
   }
 }
