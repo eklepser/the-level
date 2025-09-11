@@ -12,11 +12,11 @@
   },
 
   "com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable": {
-    "code-field-bg": { "region": "code_field_bg" },
-    "code-field-cursor": { "region": "code_field_cursor" },
-    "code-field-selection": { "region": "code_field_selection" },
-    "button-up": { "region": "button_normal" },
-    "button-down": { "region": "button_pressed" }
+    "code-field-bg": { "region": "code-field-bg" },
+    "code-field-cursor": { "region": "code-field-cursor" },
+    "code-field-selection": { "region": "code-field-selection" },
+    "button-up": { "region": "button-normal" },
+    "button-down": { "region": "button-pressed" }
   },
 
   "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
@@ -68,7 +68,8 @@
     },
     "default-horizontal": {
       "background": "slider-bg",
-      "knob": "slider-knob"
+      "knob": "slider-knob",
+      "knobDown": "slider-knob-down"
     }
   }
 }
