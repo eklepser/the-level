@@ -13,6 +13,6 @@ public class TeleportCmd extends Command {
 
     @Override
     public void execute(Entity target) {
-       target.moveTo(worldPos);
+       target.teleport(worldPos);
     }
 }

@@ -56,7 +56,7 @@ public class Entity extends Actor {
         sprite.setRotation(Direction.getDegrees(direction));
     }
 
-    public void moveTo(Vector2 worldPos) {
+    public void teleport(Vector2 worldPos) {
         setPosition(worldPos.x * size, worldPos.y * size);
         this.worldPos.set(worldPos);
     }

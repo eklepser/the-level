@@ -24,7 +24,7 @@ public class PlayScreen extends ScreenAdapter {
     private final List<Entity> entities;
     private final EditorTable editor;
     private final GameField gameField;
-    private final HelpWindow helpWindow;
+    private final HelpWindow helpWindow = new HelpWindow();
 
     public PlayScreen() {
         stage = new Stage(new FitViewport(
@@ -32,7 +32,6 @@ public class PlayScreen extends ScreenAdapter {
         entities = new ArrayList<>();
         editor = new EditorTable(this, entities, 20);
         gameField = new GameField("world/levels/level.tmx", entities);
-        helpWindow = new HelpWindow();
     }
 
     @Override
@@ -42,17 +41,14 @@ public class PlayScreen extends ScreenAdapter {
     }
 
     private void setupLayout() {
-        // Creating help window
-        stage.addActor(helpWindow);
-
-        // Setup components location:
         Table rootTable = new Table();
         rootTable.setFillParent(true);
-        stage.addActor(rootTable);
         rootTable.add(editor)
             .width(stage.getWidth() * EDITOR_MENU_SCALE)
             .top();
         rootTable.add().expand();
+        stage.addActor(rootTable);
+        stage.addActor(helpWindow);
     }
 
     private void setupInputProcessors() {

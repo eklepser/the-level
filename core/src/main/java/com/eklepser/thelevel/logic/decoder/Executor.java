@@ -10,11 +10,11 @@ import com.eklepser.thelevel.logic.world.Entity;
 import java.util.List;
 import java.util.Map;
 
-public class Executor {
+public class Executor implements TimeController {
     private final List<CodeLine> codeLines;
     private Map<CodeLine, Command> codeMap;
     private final List<Entity> targets;
-    private float executionSpeed = 0.5f;
+    private float executionDelay = 0.5f;
 
     public Executor(List<CodeLine> codeLines, List<Entity> targets) {
         this.codeLines = codeLines;
@@ -43,6 +43,11 @@ public class Executor {
         }
     }
 
+    @Override
+    public float getDelay() {
+        return executionDelay;
+    }
+
     private SequenceAction getSequenceAction(int start, Map<CodeLine, Command> codeMap, Entity target) {
         System.out.println("Running");
         SequenceAction sequence = new SequenceAction();
@@ -50,12 +55,14 @@ public class Executor {
             CodeLine currentLine = codeLines.get(i);
             Command currentCmd = codeMap.get(currentLine);
             if (currentCmd == null) continue;
-
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(true)));
-            sequence.addAction(Actions.delay(executionSpeed));
+            sequence.addAction(new TimedAction(this));
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(false)));
-            target.setAnimationSpeed(executionSpeed / 4.0f);
-            sequence.addAction(Actions.run(() -> currentCmd.execute(target)));
+
+            sequence.addAction(Actions.run(() -> {
+                target.setAnimationSpeed(this.executionDelay / 4.0f); // ← Читаем текущее значение!
+                currentCmd.execute(target);
+            }));
         }
         return sequence;
     }
@@ -69,6 +76,6 @@ public class Executor {
     }
 
     public void setExecutionSpeed(float executionSpeed) {
-        this.executionSpeed = executionSpeed;
+        this.executionDelay = executionSpeed;
     }
 }

@@ -13,6 +13,6 @@ public class Constants {
 
     public static final List<String> EDITOR_CODE_TEMPLATE = CodeTemplates.MOVE_FORWARD_CYCLE;
 
-    public static boolean IS_UI_DEBUGGING = true;
+    public static boolean IS_UI_DEBUGGING = false;
     public static boolean IS_CODE_DEBUGGING = true;
 }
