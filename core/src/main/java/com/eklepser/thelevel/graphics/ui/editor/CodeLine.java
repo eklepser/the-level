@@ -13,7 +13,7 @@ public class CodeLine extends TextField {
     public CodeLine() {
         super("", Resources.getSkin().get("code-field", TextField.TextFieldStyle.class));
         getStyle().cursor = new TextureRegionDrawable(
-            new Texture(Gdx.files.internal("ui/components/code_field_cursor.png")));
+            new Texture(Gdx.files.internal("ui/components/code-field-cursor.png")));
         setColor(lineColor);
     }
 
