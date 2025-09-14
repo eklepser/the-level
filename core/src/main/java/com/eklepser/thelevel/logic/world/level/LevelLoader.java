@@ -21,6 +21,7 @@ public class LevelLoader {
     public List<Rectangle> loadWalls(String layerName) {
         MapLayer layer = getLayer(layerName);
         List<Rectangle> objects = new ArrayList<>();
+        if (layer == null) return objects;
         for (MapObject obj : layer.getObjects()) {
             if (obj instanceof RectangleMapObject rectObj) {
                 Rectangle rect = rectObj.getRectangle();
@@ -34,6 +35,7 @@ public class LevelLoader {
     public List<Zone> loadZones(String layerName) {
         MapLayer layer = getLayer(layerName);
         List<Zone> objects = new ArrayList<>();
+        if (layer == null) return objects;
         for (MapObject obj : layer.getObjects()) {
             String type = obj.getProperties().get("type", "unknown", String.class);
             Zone newZone;

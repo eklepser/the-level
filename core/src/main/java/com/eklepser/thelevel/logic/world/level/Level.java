@@ -16,6 +16,7 @@ import java.util.List;
 public class Level {
     private final GameScreen playScreen;
     private final TiledMap map;
+    private final Vector2 size;
     private final Vector2 startPos;
     private final List<Entity> entities;
     private final List<Rectangle> walls;
@@ -24,6 +25,7 @@ public class Level {
     public Level(GameScreen screen, LevelDescription desc) {
         playScreen = screen;
         this.map = new TmxMapLoader().load(desc.mapPath());
+        size = desc.getSize();
         startPos = desc.getStartPos();
 
         LevelLoader loader = new LevelLoader(this);
@@ -61,4 +63,6 @@ public class Level {
     public List<Zone> getZones() { return zones; }
 
     public GameScreen getPlayScreen() { return playScreen; }
+
+    public Vector2 getSize() { return size; }
 }
