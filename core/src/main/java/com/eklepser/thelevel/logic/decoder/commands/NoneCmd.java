@@ -1,6 +1,6 @@
 package com.eklepser.thelevel.logic.decoder.commands;
 
-import com.eklepser.thelevel.logic.world.Entity;
+import com.eklepser.thelevel.logic.world.collision.Entity;
 
 public class NoneCmd extends Command {
     public NoneCmd(Instruction instruction) {

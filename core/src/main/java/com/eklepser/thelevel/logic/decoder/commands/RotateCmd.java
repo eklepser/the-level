@@ -1,6 +1,6 @@
 package com.eklepser.thelevel.logic.decoder.commands;
 
-import com.eklepser.thelevel.logic.world.Entity;
+import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.util.Direction;
 
 public class RotateCmd extends Command {

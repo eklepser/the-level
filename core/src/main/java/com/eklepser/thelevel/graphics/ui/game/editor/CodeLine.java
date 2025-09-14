@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.ui.editor;
+package com.eklepser.thelevel.graphics.ui.game.editor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

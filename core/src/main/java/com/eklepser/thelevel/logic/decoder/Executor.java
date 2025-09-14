@@ -3,9 +3,9 @@ package com.eklepser.thelevel.logic.decoder;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.eklepser.thelevel.graphics.ui.editor.CodeLine;
+import com.eklepser.thelevel.graphics.ui.game.editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.commands.Command;
-import com.eklepser.thelevel.logic.world.Entity;
+import com.eklepser.thelevel.logic.world.collision.Entity;
 
 import java.util.List;
 import java.util.Map;

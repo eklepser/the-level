@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.ui.editor.buttons;
+package com.eklepser.thelevel.graphics.ui.game.editor.buttons;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;

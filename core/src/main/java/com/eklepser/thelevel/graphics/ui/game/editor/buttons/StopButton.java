@@ -1,10 +1,10 @@
-package com.eklepser.thelevel.graphics.ui.editor.buttons;
+package com.eklepser.thelevel.graphics.ui.game.editor.buttons;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.eklepser.thelevel.graphics.ui.common.TextLabel;
-import com.eklepser.thelevel.graphics.ui.editor.CodeTable;
+import com.eklepser.thelevel.graphics.ui.game.editor.CodeTable;
 import com.eklepser.thelevel.logic.decoder.Executor;
 import com.eklepser.thelevel.util.Resources;
 

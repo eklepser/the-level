@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.logic.world;
+package com.eklepser.thelevel.logic.world.collision;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.eklepser.thelevel.util.Direction;
 
 public abstract class Controllable extends Actor {
@@ -15,9 +14,12 @@ public abstract class Controllable extends Actor {
     protected final int size;
     protected float animationSpeed = 0;
     protected final Vector2 worldPos;
+    protected final Vector2 targetWorldPos = new Vector2();
+    protected Direction facingDirection = Direction.UP;
 
     public Controllable(Vector2 worldPos, int size, Texture texture) {
         this.worldPos = worldPos;
+        targetWorldPos.set(worldPos);
         this.size = size;
         this.sprite = new Sprite(texture);
     }
@@ -35,26 +37,27 @@ public abstract class Controllable extends Actor {
         super.act(delta);
     }
 
-    public Vector2 getWorldPos() { return new Vector2(worldPos.x, worldPos.y); }
+    public void setMoving(Direction direction) {
+        if (direction.equals(Direction.FORWARD)) direction = facingDirection;
+        else facingDirection = direction;
+        targetWorldPos.set(worldPos.cpy().add(direction.vector));
+        sprite.setRotation(Direction.getDegrees(direction));
+    }
+
+    public void teleport(Vector2 worldPos) {
+        setPosition(worldPos.x * size, worldPos.y * size);
+        this.worldPos.set(worldPos);
+    }
+
+    public void setAnimationSpeed(float animationSpeed) { this.animationSpeed = animationSpeed; }
 
     public Rectangle getRect(Vector2 worldPos) {
         return new Rectangle(worldPos.x * size, worldPos.y * size, size, size);
     }
 
-    public void setAnimationSpeed(float animationSpeed) { this.animationSpeed = animationSpeed; }
+    public Rectangle getRect() { return getRect(worldPos); }
 
-    protected void move(Vector2 targetWorldPos) {
-        addAction(Actions.moveTo(
-            targetWorldPos.x * size, targetWorldPos.y * size, animationSpeed));
-        worldPos.set(targetWorldPos);
-    }
+    public Rectangle getTargetRect() { return getRect(targetWorldPos); }
 
-    protected void hit(Direction direction) {
-        addAction(Actions.sequence(
-            Actions.moveBy(direction.vector.x * size / 4.0f,
-                direction.vector.y * size / 4.0f, animationSpeed / 2),
-            Actions.moveBy(-direction.vector.x * size / 4.0f,
-                -direction.vector.y * size / 4.0f, animationSpeed / 2)
-        ));
-    }
+    public Vector2 getWorldPos() { return worldPos; }
 }

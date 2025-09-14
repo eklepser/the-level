@@ -1,26 +1,26 @@
-package com.eklepser.thelevel.graphics.ui.editor;
+package com.eklepser.thelevel.graphics.ui.game.editor;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.eklepser.thelevel.graphics.screen.PlayScreen;
+import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.graphics.ui.common.TextLabel;
-import com.eklepser.thelevel.graphics.ui.editor.buttons.ClearButton;
-import com.eklepser.thelevel.graphics.ui.editor.buttons.HelpButton;
-import com.eklepser.thelevel.graphics.ui.editor.buttons.RunButton;
-import com.eklepser.thelevel.graphics.ui.editor.buttons.StopButton;
+import com.eklepser.thelevel.graphics.ui.game.editor.buttons.ClearButton;
+import com.eklepser.thelevel.graphics.ui.game.editor.buttons.HelpButton;
+import com.eklepser.thelevel.graphics.ui.game.editor.buttons.RunButton;
+import com.eklepser.thelevel.graphics.ui.game.editor.buttons.StopButton;
 import com.eklepser.thelevel.logic.decoder.Executor;
-import com.eklepser.thelevel.logic.world.Entity;
+import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.util.Constants;
 
 import java.util.List;
 
 public class EditorTable extends Table {
-    private final PlayScreen screen;
+    private final GameScreen screen;
     private final CodeTable codeTable;
     private final Executor executor;
     private final TextLabel statusLabel;
     private TextLabel debugLabel;
 
-    public EditorTable(PlayScreen screen, List<Entity> entities, int linesAmount) {
+    public EditorTable(GameScreen screen, List<Entity> entities, int linesAmount) {
         this.screen = screen;
         setDebug(Constants.IS_UI_DEBUGGING);
 

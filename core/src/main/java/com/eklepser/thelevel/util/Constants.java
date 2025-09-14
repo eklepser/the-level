@@ -11,7 +11,7 @@ public class Constants {
 
     public static final float EDITOR_MENU_SCALE = 0.4f; // value in range from 0 to 1.0f
 
-    public static final List<String> EDITOR_CODE_TEMPLATE = CodeTemplates.MOVE_FORWARD_CYCLE;
+    public static final List<String> EDITOR_CODE_TEMPLATE = CodeTemplates.CODE_EXAMPLE_1;
 
     public static boolean IS_UI_DEBUGGING = false;
     public static boolean IS_CODE_DEBUGGING = true;

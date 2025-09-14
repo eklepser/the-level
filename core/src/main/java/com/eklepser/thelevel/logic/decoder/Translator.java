@@ -1,7 +1,7 @@
 package com.eklepser.thelevel.logic.decoder;
 
 import com.badlogic.gdx.math.Vector2;
-import com.eklepser.thelevel.graphics.ui.editor.CodeLine;
+import com.eklepser.thelevel.graphics.ui.game.editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.commands.*;
 import com.eklepser.thelevel.util.Direction;
 

@@ -1,5 +1,6 @@
 package com.eklepser.thelevel.graphics.screen;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ScreenAdapter;
@@ -8,28 +9,36 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.graphics.ui.common.HelpWindow;
-import com.eklepser.thelevel.graphics.ui.editor.EditorTable;
-import com.eklepser.thelevel.graphics.ui.editor.KeyboardProcessor;
-import com.eklepser.thelevel.logic.world.GameField;
+import com.eklepser.thelevel.graphics.ui.game.HelpWindow;
+import com.eklepser.thelevel.graphics.ui.game.WinWindow;
+import com.eklepser.thelevel.graphics.ui.game.editor.EditorTable;
+import com.eklepser.thelevel.graphics.ui.game.editor.KeyboardProcessor;
+import com.eklepser.thelevel.graphics.ui.game.GameField;
 import com.eklepser.thelevel.logic.world.level.Level;
+import com.eklepser.thelevel.logic.world.level.LevelDescription;
 import com.eklepser.thelevel.util.Constants;
 
 import static com.eklepser.thelevel.util.Constants.EDITOR_MENU_SCALE;
 
-public class PlayScreen extends ScreenAdapter {
+public class GameScreen extends ScreenAdapter {
+    private final Game game;
     private final Stage stage;
     private final Level level;
     private final GameField gameField;
     private final EditorTable editor;
-    private final HelpWindow helpWindow = new HelpWindow();
+    private final HelpWindow helpWindow;
+    private final WinWindow winWindow;
 
-    public PlayScreen() {
+    public GameScreen(Game game, LevelDescription desc) {
+        this.game = game;
         stage = new Stage(new FitViewport(
             Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, new OrthographicCamera()));
-        level = new Level("world/levels/level.tmx");
+        level = new Level(this, desc);
         gameField = new GameField(level);
-        editor = new EditorTable(this, level.getEntities(), 20);
+
+        helpWindow = new HelpWindow(game);
+        winWindow = new WinWindow();
+        editor = new EditorTable(this, level.getEntities(), desc.codeLinesNum());
     }
 
     @Override
@@ -41,12 +50,11 @@ public class PlayScreen extends ScreenAdapter {
     private void setupLayout() {
         Table rootTable = new Table();
         rootTable.setFillParent(true);
-        rootTable.add(editor)
-            .width(stage.getWidth() * EDITOR_MENU_SCALE)
-            .top();
+        rootTable.add(editor).width(stage.getWidth() * EDITOR_MENU_SCALE).top();
         rootTable.add().expand();
         stage.addActor(rootTable);
         stage.addActor(helpWindow);
+        stage.addActor(winWindow);
     }
 
     private void setupInputProcessors() {
@@ -80,5 +88,7 @@ public class PlayScreen extends ScreenAdapter {
     public EditorTable getEditor() {
         return editor;
     }
+
+    public WinWindow getWinWindow() { return winWindow; }
 }
 

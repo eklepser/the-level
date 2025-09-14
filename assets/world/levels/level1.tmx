@@ -15,7 +15,7 @@
 3,3,3,3,3,3,3,3,3,3
 </data>
  </layer>
- <objectgroup id="3" name="walls">
+ <objectgroup id="3" name="walls" visible="0">
   <object id="15" x="4" y="-3" width="313" height="29"/>
   <object id="16" x="133" y="131" width="55.5" height="57.5"/>
   <object id="17" x="5" y="35.5" width="23.5" height="275.5"/>
@@ -23,6 +23,10 @@
   <object id="19" x="293.5" y="33" width="21.5" height="269.5"/>
  </objectgroup>
  <objectgroup id="4" name="zones">
-  <object id="21" x="232" y="71" width="17.5" height="18"/>
+  <object id="21" type="Zone" x="232" y="71" width="17.5" height="18">
+   <properties>
+    <property name="type" value="win"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

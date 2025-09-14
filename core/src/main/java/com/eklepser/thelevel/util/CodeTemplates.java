@@ -1,6 +1,6 @@
 package com.eklepser.thelevel.util;
 
-import com.eklepser.thelevel.graphics.ui.editor.CodeTable;
+import com.eklepser.thelevel.graphics.ui.game.editor.CodeTable;
 
 import java.util.List;
 

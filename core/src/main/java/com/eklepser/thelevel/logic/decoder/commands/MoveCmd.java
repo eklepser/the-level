@@ -1,6 +1,6 @@
 package com.eklepser.thelevel.logic.decoder.commands;
 
-import com.eklepser.thelevel.logic.world.Entity;
+import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.util.Direction;
 
 public class MoveCmd extends Command {
@@ -14,6 +14,6 @@ public class MoveCmd extends Command {
     @Override
     public void execute(Entity target) {
         System.out.println("MOVE " + direction.name());
-        target.checkCollisionsAndMove(direction);
+        target.setMoving(direction);
     }
 }

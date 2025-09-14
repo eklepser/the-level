@@ -1,9 +1,11 @@
-package com.eklepser.thelevel.logic.world;
+package com.eklepser.thelevel.graphics.ui.game;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.eklepser.thelevel.logic.world.collision.CollisionManager;
+import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.util.Constants;
 
@@ -27,8 +29,6 @@ public class GameField {
         this.batch = renderer.getBatch();
 
         collisionManager = new CollisionManager(level);
-
-        spawnEntities();
     }
 
     public void draw() {
@@ -39,11 +39,7 @@ public class GameField {
     }
 
     public void act(float delta) {
-       level.update(delta);
-    }
-
-    private void spawnEntities() {
-        Entity hero1 = new Entity(new Vector2(2, 2), Constants.TILE_SIZE, "world/hero.png", collisionManager);
-        level.addEntity(hero1);
+        collisionManager.update();
+        level.update(delta);
     }
 }

@@ -1,6 +1,8 @@
-package com.eklepser.thelevel.graphics.ui.common;
+package com.eklepser.thelevel.graphics.ui.game;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.eklepser.thelevel.graphics.ui.common.TextLabel;
 import com.eklepser.thelevel.util.Constants;
 import com.eklepser.thelevel.util.Resources;
 
@@ -9,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class HelpWindow extends Window {
-    public HelpWindow() {
+    public HelpWindow(Game game) {
         super("", Resources.getSkin());
         float editorWidth = Constants.VIEWPORT_WIDTH * Constants.EDITOR_MENU_SCALE;
         setSize(Constants.VIEWPORT_WIDTH - editorWidth, Constants.VIEWPORT_HEIGHT);
@@ -22,12 +24,12 @@ public class HelpWindow extends Window {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        row();
+        add(new CloseLevelButton(game)).width(Constants.VIEWPORT_WIDTH / 4.0f);
         setResizable(true);
         setVisible(false);
         setColor(0.5f, 0, 0.75f, 0.9f);
     }
 
-    public void toggle() {
-        setVisible(!isVisible());
-    }
+    public void toggle() { setVisible(!isVisible()); }
 }

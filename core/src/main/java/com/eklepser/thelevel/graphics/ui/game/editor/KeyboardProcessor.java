@@ -1,15 +1,15 @@
-package com.eklepser.thelevel.graphics.ui.editor;
+package com.eklepser.thelevel.graphics.ui.game.editor;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.eklepser.thelevel.graphics.screen.PlayScreen;
+import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.util.Direction;
 
 public class KeyboardProcessor extends InputAdapter {
-    private final PlayScreen screen;
+    private final GameScreen screen;
     private final CodeTable codeTable;
 
-    public KeyboardProcessor(PlayScreen screen) {
+    public KeyboardProcessor(GameScreen screen) {
         this.screen = screen;
         codeTable = screen.getEditor().getCodeTable();
     }

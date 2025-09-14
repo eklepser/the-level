@@ -1,7 +1,7 @@
 package com.eklepser.thelevel.logic.decoder.commands;
 
 import com.badlogic.gdx.math.Vector2;
-import com.eklepser.thelevel.logic.world.Entity;
+import com.eklepser.thelevel.logic.world.collision.Entity;
 
 public class TeleportCmd extends Command {
     private final Vector2 worldPos;

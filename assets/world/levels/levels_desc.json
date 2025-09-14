@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Level One",
+    "mapPath": "world/levels/level1.tmx",
+    "codeLinesNum": 5,
+    "startPosX": 2,
+    "startPosY": 2
+  },
+  {
+    "name": "Level Two",
+    "mapPath": "world/levels/level2.tmx",
+    "codeLinesNum": 10,
+    "startPosX": 1,
+    "startPosY": 1
+  }
+]
