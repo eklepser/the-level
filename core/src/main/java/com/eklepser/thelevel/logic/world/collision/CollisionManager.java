@@ -26,7 +26,7 @@ public class CollisionManager {
                 entity.onPossibleCollision();
             }
             if (isZoneCollision(entity.getTargetRect())) {
-
+                System.out.println("Entity reaction");
             }
         }
     }

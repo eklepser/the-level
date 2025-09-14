@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "levels/level.tmx",
+    "activeFile": "levels/level2.tmx",
     "expandedProjectPaths": [
         ".",
         "levels"
@@ -32,6 +32,22 @@
                 "y": 159.81286549707602
             }
         },
+        "levels/level2.tmx": {
+            "scale": 2,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 140.75,
+                "y": 171.5
+            }
+        },
+        "levels/level3.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 247.5,
+                "y": 12
+            }
+        },
         "levels/selection.tmx": {
             "scale": 2,
             "selectedLayer": 0,
@@ -41,16 +57,16 @@
             }
         }
     },
-    "map.height": 9,
+    "map.height": 20,
     "map.lastUsedFormat": "tmx",
-    "map.width": 9,
+    "map.width": 5,
     "openFiles": [
-        "levels/gamefield.tsx",
-        "levels/level.tmx"
+        "levels/level2.tmx"
     ],
     "project": "untitled.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "levels/level2.tmx",
         "levels/level.tmx",
         "levels/selection.tmx",
         "levels/level1.tmx",

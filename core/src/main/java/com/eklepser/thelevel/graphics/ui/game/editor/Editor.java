@@ -5,14 +5,11 @@ import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.graphics.ui.common.TextLabel;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.ClearButton;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.HelpButton;
-import com.eklepser.thelevel.graphics.ui.game.editor.buttons.RunButton;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.ResetButton;
+import com.eklepser.thelevel.graphics.ui.game.editor.buttons.RunButton;
 import com.eklepser.thelevel.logic.decoder.Executor;
-import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.util.Constants;
-
-import java.util.List;
 
 public class Editor extends Table {
     private final GameScreen screen;

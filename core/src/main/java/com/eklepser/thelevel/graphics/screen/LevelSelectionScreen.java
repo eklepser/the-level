@@ -6,16 +6,10 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.ui.level_selection.LevelsTable;
-import com.eklepser.thelevel.graphics.ui.level_selection.buttons.BackButton;
-import com.eklepser.thelevel.graphics.ui.level_selection.buttons.LevelButton;
-import com.eklepser.thelevel.graphics.ui.menu.buttons.ExitButton;
-import com.eklepser.thelevel.graphics.ui.menu.buttons.StartButton;
-import com.eklepser.thelevel.logic.world.level.LevelDescription;
 import com.eklepser.thelevel.util.Constants;
 
 public class LevelSelectionScreen extends ScreenAdapter {
