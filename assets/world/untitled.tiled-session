@@ -5,13 +5,13 @@
     },
     "activeFile": "levels/level2.tmx",
     "expandedProjectPaths": [
-        ".",
-        "levels"
+        "levels",
+        "."
     ],
     "fileStates": {
         "levels/gamefield.tsx": {
-            "scaleInDock": 1,
-            "scaleInEditor": 1
+            "scaleInDock": 2,
+            "scaleInEditor": 5.5
         },
         "levels/level.tmx": {
             "expandedObjectLayers": [
@@ -25,19 +25,23 @@
             }
         },
         "levels/level1.tmx": {
-            "scale": 2.671875,
-            "selectedLayer": 0,
+            "expandedObjectLayers": [
+                4,
+                3
+            ],
+            "scale": 2,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 160,
-                "y": 159.81286549707602
+                "x": 95,
+                "y": 22.25
             }
         },
         "levels/level2.tmx": {
             "scale": 2,
-            "selectedLayer": 0,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 140.75,
-                "y": 171.5
+                "x": 96.5,
+                "y": 176.25
             }
         },
         "levels/level3.tmx": {
@@ -57,19 +61,20 @@
             }
         }
     },
-    "map.height": 20,
+    "map.height": 8,
     "map.lastUsedFormat": "tmx",
-    "map.width": 5,
+    "map.width": 8,
     "openFiles": [
+        "levels/level1.tmx",
         "levels/level2.tmx"
     ],
     "project": "untitled.tiled-project",
     "property.type": "string",
     "recentFiles": [
-        "levels/level2.tmx",
-        "levels/level.tmx",
-        "levels/selection.tmx",
         "levels/level1.tmx",
-        "levels/gamefield.tsx"
+        "levels/level2.tmx",
+        "levels/gamefield.tsx",
+        "levels/level.tmx",
+        "levels/selection.tmx"
     ]
 }

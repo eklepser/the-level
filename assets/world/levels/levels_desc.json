@@ -2,19 +2,19 @@
   {
     "name": "Level One",
     "mapPath": "world/levels/level1.tmx",
-    "codeLinesNum": 5,
-    "startPosX": 1,
-    "startPosY": 1,
-    "width": 10,
-    "height": 10
+    "codeLinesNum": 4,
+    "startPosX": 2,
+    "startPosY": 2,
+    "width": 7,
+    "height": 7
   },
   {
     "name": "Level Two",
     "mapPath": "world/levels/level2.tmx",
-    "codeLinesNum": 10,
-    "startPosX": 1,
-    "startPosY": 1,
-    "width": 10,
-    "height": 10
+    "codeLinesNum": 3,
+    "startPosX": 2,
+    "startPosY": 2,
+    "width": 8,
+    "height": 8
   }
 ]
