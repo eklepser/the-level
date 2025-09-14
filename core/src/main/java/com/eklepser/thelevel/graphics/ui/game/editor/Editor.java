@@ -6,30 +6,36 @@ import com.eklepser.thelevel.graphics.ui.common.TextLabel;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.ClearButton;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.HelpButton;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.RunButton;
-import com.eklepser.thelevel.graphics.ui.game.editor.buttons.StopButton;
+import com.eklepser.thelevel.graphics.ui.game.editor.buttons.ResetButton;
 import com.eklepser.thelevel.logic.decoder.Executor;
 import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.util.Constants;
 
 import java.util.List;
 
-public class EditorTable extends Table {
+public class Editor extends Table {
     private final GameScreen screen;
+    private final Level level;
     private final CodeTable codeTable;
     private final Executor executor;
     private final TextLabel statusLabel;
     private TextLabel debugLabel;
+    private final RunButton runButton;
 
-    public EditorTable(GameScreen screen, List<Entity> entities, int linesAmount) {
+    public Editor(GameScreen screen, Level level, int linesAmount) {
         this.screen = screen;
+        this.level = level;
         setDebug(Constants.IS_UI_DEBUGGING);
 
         codeTable = new CodeTable(this, linesAmount);
         codeTable.setTemplate(Constants.EDITOR_CODE_TEMPLATE);
-        executor = new Executor(codeTable.getCodeLines(), entities);
+        executor = new Executor(codeTable.getCodeLines(), level.getEntities());
 
         statusLabel = new TextLabel("Status:");
         statusLabel.setWrap(true);
+
+        runButton = new RunButton(executor, statusLabel);
 
         setupLayout();
     }
@@ -43,9 +49,9 @@ public class EditorTable extends Table {
 
         row().padTop(10);
         add(new TextLabel("Action:"));
-        add(new RunButton(executor, statusLabel));
-        add(new StopButton(executor, statusLabel, codeTable));
-        add(new ClearButton(executor, statusLabel, codeTable));
+        add(runButton).fillX().padRight(10);
+        add(new ResetButton(this)).fillX().padRight(10);
+        add(new ClearButton(this)).fillX().padRight(10);
 
         row().padTop(10).colspan(4);
         add(statusLabel).fillX();
@@ -57,11 +63,17 @@ public class EditorTable extends Table {
         }
     }
 
-    public void setDebugText(String text) {
-        if (debugLabel != null) debugLabel.setText(text);
-    }
+    public Level getLevel() { return level; }
+
+    public Executor getExecutor() { return executor; }
 
     public CodeTable getCodeTable() {
         return codeTable;
     }
+
+    public TextLabel getStatusLabel() { return statusLabel; }
+
+    public RunButton getRunButton() { return runButton; }
+
+    public TextLabel getDebugLabel() { return debugLabel; }
 }

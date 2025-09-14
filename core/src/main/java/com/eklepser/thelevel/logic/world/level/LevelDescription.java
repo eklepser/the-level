@@ -9,7 +9,7 @@ public final class LevelDescription {
     private float startPosX;
     private float startPosY;
 
-    public LevelDescription() {}
+    public LevelDescription() { }
 
     public Vector2 getStartPos() { return new Vector2(startPosX, startPosY); }
 

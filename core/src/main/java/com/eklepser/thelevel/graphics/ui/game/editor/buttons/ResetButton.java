@@ -6,20 +6,19 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.eklepser.thelevel.graphics.ui.game.editor.Editor;
 import com.eklepser.thelevel.util.Resources;
 
-public class ClearButton extends TextButton {
-    public ClearButton(Editor editor) {
-        super("Clear", Resources.getSkin());
+public class ResetButton extends TextButton {
+    public ResetButton(Editor editor) {
+        super("Reset", Resources.getSkin());
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Clearing");
-                editor.getExecutor().stop();
+                System.out.println("Resetting");
                 editor.getCodeTable().getCodeLines().forEach(
                     codeLine -> codeLine.setCompleting(false));
-                editor.getCodeTable().getCodeLines().forEach(
-                    codeLine -> codeLine.setText(""));
+                editor.getExecutor().stop();
                 editor.getStatusLabel().setText("Status: ");
                 editor.getRunButton().setRunning(false);
+                editor.getLevel().reset();
             }
         });
     }

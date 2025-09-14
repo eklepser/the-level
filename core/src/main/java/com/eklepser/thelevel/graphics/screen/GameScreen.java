@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.ui.game.HelpWindow;
 import com.eklepser.thelevel.graphics.ui.game.WinWindow;
-import com.eklepser.thelevel.graphics.ui.game.editor.EditorTable;
+import com.eklepser.thelevel.graphics.ui.game.editor.Editor;
 import com.eklepser.thelevel.graphics.ui.game.editor.KeyboardProcessor;
 import com.eklepser.thelevel.graphics.ui.game.GameField;
 import com.eklepser.thelevel.logic.world.level.Level;
@@ -22,23 +22,23 @@ import static com.eklepser.thelevel.util.Constants.EDITOR_MENU_SCALE;
 
 public class GameScreen extends ScreenAdapter {
     private final Game game;
+    private final HelpWindow helpWindow;
+    private final WinWindow winWindow;
     private final Stage stage;
     private final Level level;
     private final GameField gameField;
-    private final EditorTable editor;
-    private final HelpWindow helpWindow;
-    private final WinWindow winWindow;
+    private final Editor editor;
 
     public GameScreen(Game game, LevelDescription desc) {
         this.game = game;
+        helpWindow = new HelpWindow(game);
+        winWindow = new WinWindow(game);
+
         stage = new Stage(new FitViewport(
             Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, new OrthographicCamera()));
         level = new Level(this, desc);
         gameField = new GameField(level);
-
-        helpWindow = new HelpWindow(game);
-        winWindow = new WinWindow();
-        editor = new EditorTable(this, level.getEntities(), desc.codeLinesNum());
+        editor = new Editor(this, level, desc.codeLinesNum());
     }
 
     @Override
@@ -85,7 +85,7 @@ public class GameScreen extends ScreenAdapter {
         return helpWindow;
     }
 
-    public EditorTable getEditor() {
+    public Editor getEditor() {
         return editor;
     }
 

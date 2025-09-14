@@ -26,7 +26,6 @@ public class LevelSelectionScreen extends ScreenAdapter {
         this.game = game;
         stage = new Stage(new FitViewport(
             Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, new OrthographicCamera()));
-
     }
 
     @Override

@@ -8,14 +8,20 @@ import com.eklepser.thelevel.logic.decoder.Executor;
 import com.eklepser.thelevel.util.Resources;
 
 public class RunButton extends TextButton {
+    private boolean isRunning = false;
+
     public RunButton(Executor executor, TextLabel statusLabel) {
         super("Run", Resources.getSkin());
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (isRunning) return;
                 String status = executor.checkAndExecute();
                 statusLabel.setText(status);
+                isRunning = true;
             }
         });
     }
+
+    public void setRunning(boolean running) { isRunning = running; }
 }

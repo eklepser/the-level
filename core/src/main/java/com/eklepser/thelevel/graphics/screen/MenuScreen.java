@@ -34,7 +34,7 @@ public class MenuScreen extends ScreenAdapter {
         rootTable.setFillParent(true);
         rootTable.add(new StartButton(game)).width(Constants.VIEWPORT_WIDTH / 4.0f);
         rootTable.row();
-        rootTable.add(new ExitButton()).width(Constants.VIEWPORT_WIDTH / 4.0f).padTop(20);
+        rootTable.add(new ExitButton()).width(Constants.VIEWPORT_WIDTH / 8.0f).padTop(20);
         stage.addActor(rootTable);
     }
 

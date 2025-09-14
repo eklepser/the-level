@@ -3,8 +3,8 @@
     "name": "Level One",
     "mapPath": "world/levels/level1.tmx",
     "codeLinesNum": 5,
-    "startPosX": 2,
-    "startPosY": 2
+    "startPosX": 7,
+    "startPosY": 7
   },
   {
     "name": "Level Two",

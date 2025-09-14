@@ -16,6 +16,7 @@ import java.util.List;
 public class Level {
     private final GameScreen playScreen;
     private final TiledMap map;
+    private final Vector2 startPos;
     private final List<Entity> entities;
     private final List<Rectangle> walls;
     private final List<Zone> zones;
@@ -23,11 +24,13 @@ public class Level {
     public Level(GameScreen screen, LevelDescription desc) {
         playScreen = screen;
         this.map = new TmxMapLoader().load(desc.mapPath());
+        startPos = desc.getStartPos();
+
         LevelLoader loader = new LevelLoader(this);
         this.entities = new ArrayList<>();
         this.walls = loader.loadWalls("walls");
         this.zones =  loader.loadZones("zones");
-        spawnEntity(desc.getStartPos());
+        spawnEntity(startPos.cpy());
     }
 
     public void draw(Batch batch) {
@@ -37,6 +40,11 @@ public class Level {
     public void update(float delta) {
         entities.forEach(Entity::update);
         entities.forEach(entity -> entity.act(delta));
+    }
+
+    public void reset() {
+        entities.clear();
+        spawnEntity(startPos.cpy());
     }
 
     public void spawnEntity(Vector2 worldPos) {
