@@ -11,10 +11,10 @@
         },
         "levels/level.tmx": {
             "scale": 2,
-            "selectedLayer": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 199,
-                "y": 173.75
+                "x": 198.75,
+                "y": 173.5
             }
         }
     },
@@ -23,6 +23,7 @@
         "levels/level.tmx"
     ],
     "project": "untitled.tiled-project",
+    "property.type": "color",
     "recentFiles": [
         "levels/gamefield.tsx",
         "levels/level.tmx"

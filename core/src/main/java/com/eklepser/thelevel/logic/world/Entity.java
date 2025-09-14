@@ -20,14 +20,14 @@ public class Entity extends Controllable {
     public void checkCollisionsAndMove(Direction direction)
     {
         if (direction.equals(Direction.FORWARD)) direction = facingDirection;
+        else facingDirection = direction;
 
         Vector2 targetWorldPos = worldPos.cpy().add(direction.vector);
         Rectangle targetRect = getRect(targetWorldPos);
+        sprite.setRotation(Direction.getDegrees(direction));
 
         if (!collisionManager.checkWallCollisions(targetRect)) {
             move(targetWorldPos);
-            facingDirection = direction;
-            sprite.setRotation(Direction.getDegrees(direction));
         }
         else hit(direction);
     }

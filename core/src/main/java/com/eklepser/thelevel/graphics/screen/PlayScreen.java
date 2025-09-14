@@ -12,27 +12,24 @@ import com.eklepser.thelevel.graphics.ui.common.HelpWindow;
 import com.eklepser.thelevel.graphics.ui.editor.EditorTable;
 import com.eklepser.thelevel.graphics.ui.editor.KeyboardProcessor;
 import com.eklepser.thelevel.logic.world.GameField;
-import com.eklepser.thelevel.logic.world.Entity;
+import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.util.Constants;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.eklepser.thelevel.util.Constants.EDITOR_MENU_SCALE;
 
 public class PlayScreen extends ScreenAdapter {
     private final Stage stage;
-    private final List<Entity> entities;
-    private final EditorTable editor;
+    private final Level level;
     private final GameField gameField;
+    private final EditorTable editor;
     private final HelpWindow helpWindow = new HelpWindow();
 
     public PlayScreen() {
         stage = new Stage(new FitViewport(
             Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, new OrthographicCamera()));
-        entities = new ArrayList<>();
-        editor = new EditorTable(this, entities, 20);
-        gameField = new GameField("world/levels/level.tmx", entities);
+        level = new Level("world/levels/level.tmx");
+        gameField = new GameField(level);
+        editor = new EditorTable(this, level.getEntities(), 20);
     }
 
     @Override
@@ -64,11 +61,8 @@ public class PlayScreen extends ScreenAdapter {
         Gdx.gl.glClearColor(0.05f, 0.03f, 0.05f, 1.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        String debugText = entities.get(0).getWorldPos().toString();
-        editor.setDebugText(debugText);
-
         gameField.act(delta);
-        gameField.render();
+        gameField.draw();
 
         stage.act(delta);
         stage.draw();
