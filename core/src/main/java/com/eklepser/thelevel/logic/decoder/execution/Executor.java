@@ -1,31 +1,31 @@
-package com.eklepser.thelevel.logic.decoder;
+package com.eklepser.thelevel.logic.decoder.execution;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.eklepser.thelevel.graphics.ui.game.editor.CodeLine;
-import com.eklepser.thelevel.logic.decoder.commands.Command;
+import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.world.collision.Entity;
-import com.eklepser.thelevel.logic.world.level.LevelDescription;
+import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 
 import java.util.List;
 import java.util.Map;
 
 public class Executor implements TimeController {
-    private final LevelDescription desc;
+    private final LevelConfiguration conf;
     private final List<CodeLine> codeLines;
     private Map<CodeLine, Command> codeMap;
     private final List<Entity> targets;
     private float executionDelay = 0.5f;
 
-    public Executor(LevelDescription desc, List<CodeLine> codeLines, List<Entity> targets) {
+    public Executor(LevelConfiguration conf, List<CodeLine> codeLines, List<Entity> targets) {
         this.codeLines = codeLines;
-        this.desc = desc;
+        this.conf = conf;
         this.targets = targets;
     }
 
     public String checkAndExecute() {
-        Translator translator = new Translator(desc.getAllowedInstructions(), codeLines, this);
+        Translator translator = new Translator(conf.getAllowedInstructions(), codeLines, this);
         TranslationResult result = translator.translateAll();
         if (result.success()) {
             codeMap = result.getCodeMap();

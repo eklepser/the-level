@@ -1,6 +1,6 @@
-package com.eklepser.thelevel.logic.decoder.commands;
+package com.eklepser.thelevel.logic.decoder.command;
 
-import com.eklepser.thelevel.logic.decoder.Executor;
+import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 
 public class GotoCmd extends Command {

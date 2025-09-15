@@ -4,8 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.eklepser.thelevel.graphics.ui.common.TextLabel;
-import com.eklepser.thelevel.logic.decoder.Executor;
+import com.eklepser.thelevel.graphics.common.TextLabel;
+import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.util.Resources;
 
 public class ParametersTable extends Table {

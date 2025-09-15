@@ -5,32 +5,32 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.eklepser.thelevel.graphics.screen.GameScreen;
+import com.eklepser.thelevel.graphics.ui.game.GameScreen;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.zone.Zone;
-import com.eklepser.thelevel.util.Constants;
+import com.eklepser.thelevel.util.Layout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
-    private final LevelDescription desc;
+    private final LevelConfiguration conf;
     private final GameScreen playScreen;
     private final TiledMap map;
     private final List<Entity> entities;
     private final List<Rectangle> walls;
     private final List<Zone> zones;
 
-    public Level(GameScreen screen, LevelDescription desc) {
-        this.desc = desc;
+    public Level(GameScreen screen, LevelConfiguration conf) {
+        this.conf = conf;
         playScreen = screen;
-        this.map = new TmxMapLoader().load(desc.mapPath());
+        this.map = new TmxMapLoader().load(conf.mapPath());
 
         LevelLoader loader = new LevelLoader(this);
         this.entities = new ArrayList<>();
         this.walls = loader.loadWalls("walls");
         this.zones =  loader.loadZones("zones");
-        spawnEntity(desc.getStartPos().cpy());
+        spawnEntity(conf.getStartPos().cpy());
     }
 
     public void draw(Batch batch) {
@@ -44,15 +44,15 @@ public class Level {
 
     public void reset() {
         entities.clear();
-        spawnEntity(desc.getStartPos().cpy());
+        spawnEntity(conf.getStartPos().cpy());
     }
 
     public void spawnEntity(Vector2 worldPos) {
-        Entity entity = new Entity(worldPos, Constants.TILE_SIZE, "world/hero.png");
+        Entity entity = new Entity(worldPos, Layout.TILE_SIZE, "world/entity/target.png");
         entities.add(entity);
     }
 
-    public LevelDescription getDesc() { return desc; }
+    public LevelConfiguration getConf() { return conf; }
 
     public List<Entity> getEntities() { return entities; }
 

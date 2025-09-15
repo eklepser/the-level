@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.eklepser.thelevel.logic.world.collision.CollisionManager;
 import com.eklepser.thelevel.logic.world.level.Level;
-import com.eklepser.thelevel.util.Constants;
+import com.eklepser.thelevel.util.Layout;
 
 public class GameField {
     private final Level level;
@@ -17,13 +17,13 @@ public class GameField {
     public GameField(Level level) {
         this.level = level;
 
-        float zoom = level.getDesc().getCameraZoom();
-        float levelWidth = level.getDesc().getSize().x * Constants.TILE_SIZE;
-        float cameraX = (levelWidth - Constants.VIEWPORT_WIDTH * Constants.EDITOR_MENU_SCALE / zoom) / 2.0f;
-        float cameraY = level.getDesc().getSize().y * Constants.TILE_SIZE / 2;
+        float zoom = level.getConf().getCameraZoom();
+        float levelWidth = level.getConf().getSize().x * Layout.TILE_SIZE;
+        float cameraX = (levelWidth - Layout.VIEWPORT_WIDTH * Layout.EDITOR_MENU_SCALE / zoom) / 2.0f;
+        float cameraY = level.getConf().getSize().y * Layout.TILE_SIZE / 2;
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.VIEWPORT_WIDTH / zoom,
-            Constants.VIEWPORT_HEIGHT / zoom);
+        camera.setToOrtho(false, Layout.VIEWPORT_WIDTH / zoom,
+            Layout.VIEWPORT_HEIGHT / zoom);
         camera.position.set(cameraX, cameraY, 0);
         camera.update();
 

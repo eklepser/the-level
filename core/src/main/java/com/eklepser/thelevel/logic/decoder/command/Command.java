@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.logic.decoder.commands;
+package com.eklepser.thelevel.logic.decoder.command;
 
 import com.eklepser.thelevel.logic.world.collision.Entity;
 

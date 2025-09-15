@@ -12,13 +12,7 @@ public class ResetButton extends TextButton {
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Resetting");
-                editor.getCodeTable().getCodeLines().forEach(
-                    codeLine -> codeLine.setCompleting(false));
-                editor.getExecutor().stop();
-                editor.getStatusLabel().setText("Status: ");
-                editor.getRunButton().setRunning(false);
-                editor.getLevel().reset();
+                editor.resetRunning();
             }
         });
     }

@@ -1,11 +1,11 @@
 package com.eklepser.thelevel.logic.world.level;
 
 import com.badlogic.gdx.math.Vector2;
-import com.eklepser.thelevel.logic.decoder.commands.Instruction;
+import com.eklepser.thelevel.logic.decoder.command.Instruction;
 
 import java.util.List;
 
-public final class LevelDescription {
+public final class LevelConfiguration {
     private String name;
     private String mapPath;
     private int codeLinesNum;
@@ -16,7 +16,7 @@ public final class LevelDescription {
     private int height;
     private float cameraZoom;
 
-    public LevelDescription() { }
+    public LevelConfiguration() { }
 
     public String name() { return name; }
 

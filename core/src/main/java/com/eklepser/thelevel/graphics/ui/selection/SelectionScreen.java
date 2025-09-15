@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.screen;
+package com.eklepser.thelevel.graphics.ui.selection;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -9,17 +9,16 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.graphics.ui.level_selection.LevelsTable;
-import com.eklepser.thelevel.util.Constants;
+import com.eklepser.thelevel.util.Layout;
 
-public class LevelSelectionScreen extends ScreenAdapter {
+public class SelectionScreen extends ScreenAdapter {
     private final Game game;
     private final Stage stage;
 
-    public LevelSelectionScreen(Game game) {
+    public SelectionScreen(Game game) {
         this.game = game;
         stage = new Stage(new FitViewport(
-            Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, new OrthographicCamera()));
+            Layout.VIEWPORT_WIDTH, Layout.VIEWPORT_HEIGHT, new OrthographicCamera()));
     }
 
     @Override

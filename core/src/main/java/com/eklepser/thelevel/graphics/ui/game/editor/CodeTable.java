@@ -3,9 +3,8 @@ package com.eklepser.thelevel.graphics.ui.game.editor;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
-import com.eklepser.thelevel.graphics.ui.common.TextLabel;
-import com.eklepser.thelevel.logic.world.level.LevelDescription;
-import com.eklepser.thelevel.util.CodeTemplates;
+import com.eklepser.thelevel.graphics.common.TextLabel;
+import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Direction;
 
 import java.util.ArrayList;
@@ -13,14 +12,14 @@ import java.util.List;
 
 public class CodeTable extends Table {
     private final Table root;
-    private final LevelDescription desc;
+    private final LevelConfiguration conf;
     private final List<CodeLine> codeLines = new ArrayList<>();
     private int selectedLine = -1;
 
-    public CodeTable(Table root, LevelDescription desc) {
-        this.desc = desc;
+    public CodeTable(Table root, LevelConfiguration conf) {
+        this.conf = conf;
         this.root = root;
-        createCodeLines(desc.codeLinesNum());
+        createCodeLines(conf.codeLinesNum());
     }
 
     private void createCodeLines(int linesAmount) {
@@ -36,14 +35,15 @@ public class CodeTable extends Table {
                     if (focused) selectedLine = finalI;
                 }
             });
-
             add(label).width(20).height(20).left().fillX().padRight(10);
             add(codeline).height(20).right().padBottom(1).colspan(3).fillX().expand().colspan(3);
             codeLines.add(codeline);
         }
     }
 
-    public List<CodeLine> getCodeLines() { return codeLines; }
+    public void clearCode() {
+        codeLines.forEach(codeLine -> codeLine.setText(""));
+    }
 
     public void setSelectedLine(Direction direction) {
         switch (direction)
@@ -59,7 +59,5 @@ public class CodeTable extends Table {
         }
     }
 
-    public void setTemplate(List<String> template) {
-        CodeTemplates.setTemplate(this, template);
-    }
+    public List<CodeLine> getCodeLines() { return codeLines; }
 }

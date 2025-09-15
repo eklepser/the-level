@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.screen;
+package com.eklepser.thelevel.graphics.ui.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -9,16 +9,13 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.graphics.ui.game.HelpWindow;
-import com.eklepser.thelevel.graphics.ui.game.WinWindow;
 import com.eklepser.thelevel.graphics.ui.game.editor.Editor;
 import com.eklepser.thelevel.graphics.ui.game.editor.KeyboardProcessor;
-import com.eklepser.thelevel.graphics.ui.game.GameField;
 import com.eklepser.thelevel.logic.world.level.Level;
-import com.eklepser.thelevel.logic.world.level.LevelDescription;
-import com.eklepser.thelevel.util.Constants;
+import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
+import com.eklepser.thelevel.util.Layout;
 
-import static com.eklepser.thelevel.util.Constants.EDITOR_MENU_SCALE;
+import static com.eklepser.thelevel.util.Layout.EDITOR_MENU_SCALE;
 
 public class GameScreen extends ScreenAdapter {
     private final Game game;
@@ -28,17 +25,20 @@ public class GameScreen extends ScreenAdapter {
     private final Level level;
     private final GameField gameField;
     private final Editor editor;
+    private final InputMultiplexer multiplexer;
 
-    public GameScreen(Game game, LevelDescription desc) {
+    public GameScreen(Game game, LevelConfiguration conf) {
         this.game = game;
-        helpWindow = new HelpWindow(game);
-        winWindow = new WinWindow(game);
-
         stage = new Stage(new FitViewport(
-            Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, new OrthographicCamera()));
-        level = new Level(this, desc);
+            Layout.VIEWPORT_WIDTH, Layout.VIEWPORT_HEIGHT, new OrthographicCamera()));
+        helpWindow = new HelpWindow(game);
+        winWindow = new WinWindow(game, this);
+
+        level = new Level(this, conf);
         gameField = new GameField(level);
         editor = new Editor(this, level);
+
+        multiplexer = new InputMultiplexer();
     }
 
     @Override
@@ -58,7 +58,6 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void setupInputProcessors() {
-        InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(new KeyboardProcessor(this));
         multiplexer.addProcessor(stage);
         Gdx.input.setInputProcessor(multiplexer);
@@ -80,6 +79,10 @@ public class GameScreen extends ScreenAdapter {
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
     }
+
+    public Stage getStage() { return stage; }
+
+    public InputMultiplexer getMultiplexer() { return multiplexer; }
 
     public HelpWindow getHelpWindow() {
         return helpWindow;

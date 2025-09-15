@@ -12,14 +12,7 @@ public class ClearButton extends TextButton {
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Clearing");
-                editor.getExecutor().stop();
-                editor.getCodeTable().getCodeLines().forEach(
-                    codeLine -> codeLine.setCompleting(false));
-                editor.getCodeTable().getCodeLines().forEach(
-                    codeLine -> codeLine.setText(""));
-                editor.getStatusLabel().setText("Status: ");
-                editor.getRunButton().setRunning(false);
+                editor.clearRunning();
             }
         });
     }

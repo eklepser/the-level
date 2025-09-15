@@ -1,10 +1,13 @@
-package com.eklepser.thelevel.util;
+package com.eklepser.thelevel.logic.decoder.execution;
 
 import com.eklepser.thelevel.graphics.ui.game.editor.CodeTable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CodeTemplates {
+    public static final List<String> EMPTY = new ArrayList<>();
+
     public static final List<String> CODE_EXAMPLE_1 = List.of(";Code example #1",
         "MOVE UP ;go up!",
         ";boo ;boo ;boo",

@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.logic.decoder;
+package com.eklepser.thelevel.logic.decoder.execution;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
 

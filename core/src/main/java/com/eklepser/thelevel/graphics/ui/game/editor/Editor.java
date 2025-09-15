@@ -1,27 +1,20 @@
 package com.eklepser.thelevel.graphics.ui.game.editor;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.eklepser.thelevel.graphics.screen.GameScreen;
-import com.eklepser.thelevel.graphics.ui.common.TextLabel;
+import com.eklepser.thelevel.graphics.ui.game.GameScreen;
+import com.eklepser.thelevel.graphics.common.TextLabel;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.ClearButton;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.HelpButton;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.ResetButton;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.RunButton;
-import com.eklepser.thelevel.logic.decoder.Executor;
-import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.level.Level;
-import com.eklepser.thelevel.logic.world.level.LevelDescription;
-import com.eklepser.thelevel.util.Constants;
-import com.eklepser.thelevel.util.Resources;
-
-import java.util.List;
+import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 
 public class Editor extends Table {
     private final GameScreen screen;
     private final Level level;
-    private final LevelDescription desc;
+    private final LevelConfiguration conf;
     private final CodeTable codeTable;
     private final Executor executor;
     private final TextLabel statusLabel;
@@ -30,17 +23,15 @@ public class Editor extends Table {
     public Editor(GameScreen screen, Level level) {
         this.screen = screen;
         this.level = level;
-        desc = level.getDesc();
-        setDebug(Constants.IS_UI_DEBUGGING);
+        conf = level.getConf();
 
-        codeTable = new CodeTable(this, desc);
-        codeTable.setTemplate(Constants.EDITOR_CODE_TEMPLATE);
-        executor = new Executor(desc, codeTable.getCodeLines(), level.getEntities());
+        codeTable = new CodeTable(this, conf);
+        executor = new Executor(conf, codeTable.getCodeLines(), level.getEntities());
 
         statusLabel = new TextLabel("Status:");
         statusLabel.setWrap(true);
 
-        runButton = new RunButton(executor, statusLabel);
+        runButton = new RunButton(this);
 
         setupLayout();
     }
@@ -59,7 +50,7 @@ public class Editor extends Table {
         add(new ClearButton(this)).fillX().padRight(10);
 
         row().padTop(10).colspan(4).padLeft(19);
-        TextLabel allowedCmdsLabel = new TextLabel("Allowed commands:\n" + desc.getAllowedInstructions());
+        TextLabel allowedCmdsLabel = new TextLabel("Allowed commands:\n" + conf.getAllowedInstructions());
         allowedCmdsLabel.setWrap(true);
         add(allowedCmdsLabel).fillX();
 
@@ -67,13 +58,31 @@ public class Editor extends Table {
         add(statusLabel).fillX();
     }
 
+    public void run() {
+        String status = executor.checkAndExecute();
+        statusLabel.setText(status);
+    }
+
+    public void resetRunning() {
+        System.out.println("Resetting");
+        getCodeTable().getCodeLines().forEach(
+            codeLine -> codeLine.setCompleting(false));
+        getExecutor().stop();
+        getStatusLabel().setText("Status: ");
+        getRunButton().setRunning(false);
+        getLevel().reset();
+    }
+
+    public void clearRunning() {
+        resetRunning();
+        codeTable.clearCode();
+    }
+
     public Level getLevel() { return level; }
 
     public Executor getExecutor() { return executor; }
 
-    public CodeTable getCodeTable() {
-        return codeTable;
-    }
+    public CodeTable getCodeTable() { return codeTable; }
 
     public TextLabel getStatusLabel() { return statusLabel; }
 

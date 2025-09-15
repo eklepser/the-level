@@ -1,10 +1,10 @@
-package com.eklepser.thelevel.graphics.ui.level_selection.buttons;
+package com.eklepser.thelevel.graphics.ui.selection.buttons;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.eklepser.thelevel.graphics.screen.MenuScreen;
+import com.eklepser.thelevel.graphics.ui.menu.MenuScreen;
 import com.eklepser.thelevel.util.Resources;
 
 public class BackButton extends TextButton {

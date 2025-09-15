@@ -1,7 +1,7 @@
 [
   {
     "name": "Level One",
-    "mapPath": "world/levels/level1.tmx",
+    "mapPath": "world/level/level1.tmx",
     "codeLinesNum": 4,
     "allowedInstructions": ["NONE","MOVE"],
     "startPosX": 2,
@@ -12,7 +12,7 @@
   },
   {
     "name": "Level Two",
-    "mapPath": "world/levels/level2.tmx",
+    "mapPath": "world/level/level2.tmx",
     "codeLinesNum": 3,
     "allowedInstructions": ["NONE","MOVE","GOTO"],
     "startPosX": 2,

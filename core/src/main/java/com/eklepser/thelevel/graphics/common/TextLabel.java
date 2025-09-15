@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.ui.common;
+package com.eklepser.thelevel.graphics.common;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.eklepser.thelevel.util.Resources;
