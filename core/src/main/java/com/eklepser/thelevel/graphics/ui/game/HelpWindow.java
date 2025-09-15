@@ -25,7 +25,7 @@ public class HelpWindow extends Window {
             throw new RuntimeException(e);
         }
         row();
-        add(new CloseLevelButton(game)).width(Constants.VIEWPORT_WIDTH / 4.0f);
+        add(new CloseLevelButton(game)).width(Constants.VIEWPORT_WIDTH / 4.0f).padBottom(40);
         setResizable(true);
         setVisible(false);
         setColor(0.5f, 0, 0.75f, 0.9f);

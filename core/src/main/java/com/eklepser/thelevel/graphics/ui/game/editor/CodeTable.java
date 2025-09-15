@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
 import com.eklepser.thelevel.graphics.ui.common.TextLabel;
+import com.eklepser.thelevel.logic.world.level.LevelDescription;
 import com.eklepser.thelevel.util.CodeTemplates;
 import com.eklepser.thelevel.util.Direction;
 
@@ -12,12 +13,14 @@ import java.util.List;
 
 public class CodeTable extends Table {
     private final Table root;
+    private final LevelDescription desc;
     private final List<CodeLine> codeLines = new ArrayList<>();
     private int selectedLine = -1;
 
-    public CodeTable(Table root, int linesAmount) {
+    public CodeTable(Table root, LevelDescription desc) {
+        this.desc = desc;
         this.root = root;
-        createCodeLines(linesAmount);
+        createCodeLines(desc.codeLinesNum());
     }
 
     private void createCodeLines(int linesAmount) {

@@ -1,6 +1,8 @@
 package com.eklepser.thelevel.graphics.ui.game.editor;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.graphics.ui.common.TextLabel;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.ClearButton;
@@ -8,26 +10,32 @@ import com.eklepser.thelevel.graphics.ui.game.editor.buttons.HelpButton;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.ResetButton;
 import com.eklepser.thelevel.graphics.ui.game.editor.buttons.RunButton;
 import com.eklepser.thelevel.logic.decoder.Executor;
+import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.level.Level;
+import com.eklepser.thelevel.logic.world.level.LevelDescription;
 import com.eklepser.thelevel.util.Constants;
+import com.eklepser.thelevel.util.Resources;
+
+import java.util.List;
 
 public class Editor extends Table {
     private final GameScreen screen;
     private final Level level;
+    private final LevelDescription desc;
     private final CodeTable codeTable;
     private final Executor executor;
     private final TextLabel statusLabel;
-    private TextLabel debugLabel;
     private final RunButton runButton;
 
-    public Editor(GameScreen screen, Level level, int linesAmount) {
+    public Editor(GameScreen screen, Level level) {
         this.screen = screen;
         this.level = level;
+        desc = level.getDesc();
         setDebug(Constants.IS_UI_DEBUGGING);
 
-        codeTable = new CodeTable(this, linesAmount);
+        codeTable = new CodeTable(this, desc);
         codeTable.setTemplate(Constants.EDITOR_CODE_TEMPLATE);
-        executor = new Executor(level, codeTable.getCodeLines());
+        executor = new Executor(desc, codeTable.getCodeLines(), level.getEntities());
 
         statusLabel = new TextLabel("Status:");
         statusLabel.setWrap(true);
@@ -50,14 +58,13 @@ public class Editor extends Table {
         add(new ResetButton(this)).fillX().padRight(10);
         add(new ClearButton(this)).fillX().padRight(10);
 
-        row().padTop(10).colspan(4);
-        add(statusLabel).fillX();
+        row().padTop(10).colspan(4).padLeft(19);
+        TextLabel allowedCmdsLabel = new TextLabel("Allowed commands:\n" + desc.getAllowedInstructions());
+        allowedCmdsLabel.setWrap(true);
+        add(allowedCmdsLabel).fillX();
 
-        if (Constants.IS_CODE_DEBUGGING) {
-            debugLabel = new TextLabel("Debug:");
-            row();
-            add(debugLabel).colspan(3).fillX().height(40).top();
-        }
+        row().padTop(10).colspan(4).padLeft(19);
+        add(statusLabel).fillX();
     }
 
     public Level getLevel() { return level; }
@@ -71,6 +78,4 @@ public class Editor extends Table {
     public TextLabel getStatusLabel() { return statusLabel; }
 
     public RunButton getRunButton() { return runButton; }
-
-    public TextLabel getDebugLabel() { return debugLabel; }
 }

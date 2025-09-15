@@ -38,7 +38,7 @@ public class GameScreen extends ScreenAdapter {
             Constants.VIEWPORT_WIDTH, Constants.VIEWPORT_HEIGHT, new OrthographicCamera()));
         level = new Level(this, desc);
         gameField = new GameField(level);
-        editor = new Editor(this, level, desc.codeLinesNum());
+        editor = new Editor(this, level);
     }
 
     @Override
