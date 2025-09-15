@@ -12,18 +12,16 @@ import java.util.Map;
 public class Translator {
     private final Executor executor;
     private final List<CodeLine> codeLines;
-    private final List<Instruction> allowedInstruction;
+    private final List<Instruction> allowedInstructions;
 
-    public Translator(Executor executor, List<CodeLine> codeLines) {
+    public Translator(List<Instruction> allowedInstructions, List<CodeLine> codeLines, Executor executor) {
         this.executor = executor;
         this.codeLines = codeLines;
-        allowedInstruction = Instruction.defaultAllowed();
-        allowedInstruction.add(Instruction.TP);
-        allowedInstruction.add(Instruction.ROT);
+        this.allowedInstructions = allowedInstructions;
     }
 
     public TranslationResult translateAll() {
-        List<String> allowedInstructionNames = allowedInstruction.stream()
+        List<String> allowedInstructionNames = allowedInstructions.stream()
             .map(instruction -> instruction.name).toList();
 
         Map<CodeLine, Command> codeMap = new HashMap<>();

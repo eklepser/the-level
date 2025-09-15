@@ -27,7 +27,7 @@ public class Editor extends Table {
 
         codeTable = new CodeTable(this, linesAmount);
         codeTable.setTemplate(Constants.EDITOR_CODE_TEMPLATE);
-        executor = new Executor(codeTable.getCodeLines(), level.getEntities());
+        executor = new Executor(level, codeTable.getCodeLines());
 
         statusLabel = new TextLabel("Status:");
         statusLabel.setWrap(true);

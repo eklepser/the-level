@@ -6,23 +6,26 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.eklepser.thelevel.graphics.ui.game.editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.commands.Command;
 import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.world.level.Level;
 
 import java.util.List;
 import java.util.Map;
 
 public class Executor implements TimeController {
+    private final Level level;
     private final List<CodeLine> codeLines;
     private Map<CodeLine, Command> codeMap;
     private final List<Entity> targets;
     private float executionDelay = 0.5f;
 
-    public Executor(List<CodeLine> codeLines, List<Entity> targets) {
+    public Executor(Level level, List<CodeLine> codeLines) {
+        this.level = level;
         this.codeLines = codeLines;
-        this.targets = targets;
+        this.targets = level.getEntities();
     }
 
     public String checkAndExecute() {
-        Translator translator = new Translator(this, codeLines);
+        Translator translator = new Translator(level.getDesc().getAllowedInstructions(), codeLines, this);
         TranslationResult result = translator.translateAll();
         if (result.success()) {
             codeMap = result.getCodeMap();

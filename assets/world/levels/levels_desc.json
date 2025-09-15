@@ -3,18 +3,22 @@
     "name": "Level One",
     "mapPath": "world/levels/level1.tmx",
     "codeLinesNum": 4,
+    "allowedInstructions": ["NONE","MOVE"],
     "startPosX": 2,
     "startPosY": 2,
     "width": 7,
-    "height": 7
+    "height": 7,
+    "cameraZoom": 1.67
   },
   {
     "name": "Level Two",
     "mapPath": "world/levels/level2.tmx",
     "codeLinesNum": 3,
+    "allowedInstructions": ["NONE","MOVE","GOTO"],
     "startPosX": 2,
     "startPosY": 2,
     "width": 8,
-    "height": 8
+    "height": 8,
+    "cameraZoom": 1.67
   }
 ]

@@ -14,25 +14,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
+    private final LevelDescription desc;
     private final GameScreen playScreen;
     private final TiledMap map;
-    private final Vector2 size;
-    private final Vector2 startPos;
     private final List<Entity> entities;
     private final List<Rectangle> walls;
     private final List<Zone> zones;
 
     public Level(GameScreen screen, LevelDescription desc) {
+        this.desc = desc;
         playScreen = screen;
         this.map = new TmxMapLoader().load(desc.mapPath());
-        size = desc.getSize();
-        startPos = desc.getStartPos();
 
         LevelLoader loader = new LevelLoader(this);
         this.entities = new ArrayList<>();
         this.walls = loader.loadWalls("walls");
         this.zones =  loader.loadZones("zones");
-        spawnEntity(startPos.cpy());
+        spawnEntity(desc.getStartPos().cpy());
     }
 
     public void draw(Batch batch) {
@@ -46,13 +44,15 @@ public class Level {
 
     public void reset() {
         entities.clear();
-        spawnEntity(startPos.cpy());
+        spawnEntity(desc.getStartPos().cpy());
     }
 
     public void spawnEntity(Vector2 worldPos) {
         Entity entity = new Entity(worldPos, Constants.TILE_SIZE, "world/hero.png");
         entities.add(entity);
     }
+
+    public LevelDescription getDesc() { return desc; }
 
     public List<Entity> getEntities() { return entities; }
 
@@ -63,6 +63,4 @@ public class Level {
     public List<Zone> getZones() { return zones; }
 
     public GameScreen getPlayScreen() { return playScreen; }
-
-    public Vector2 getSize() { return size; }
 }

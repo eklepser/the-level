@@ -17,11 +17,13 @@ public class GameField {
     public GameField(Level level) {
         this.level = level;
 
+        float zoom = level.getDesc().getCameraZoom();
+        float levelWidth = level.getDesc().getSize().x * Constants.TILE_SIZE;
+        float cameraX = (levelWidth - Constants.VIEWPORT_WIDTH * Constants.EDITOR_MENU_SCALE / zoom) / 2.0f;
+        float cameraY = level.getDesc().getSize().y * Constants.TILE_SIZE / 2;
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, Constants.VIEWPORT_WIDTH * 0.6f, Constants.VIEWPORT_HEIGHT * 0.6f);
-        float levelWidth = level.getSize().x * Constants.TILE_SIZE;
-        float cameraX = (levelWidth - Constants.VIEWPORT_WIDTH * Constants.EDITOR_MENU_SCALE * 0.6f) / 2.0f;
-        float cameraY = level.getSize().y * Constants.TILE_SIZE / 2;
+        camera.setToOrtho(false, Constants.VIEWPORT_WIDTH / zoom,
+            Constants.VIEWPORT_HEIGHT / zoom);
         camera.position.set(cameraX, cameraY, 0);
         camera.update();
 

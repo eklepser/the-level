@@ -31,8 +31,4 @@ public enum Instruction {
             default -> Instruction.NONE;
         };
     }
-
-    public static List<Instruction> defaultAllowed() {
-        return new ArrayList<>(List.of(MOVE, GOTO, NONE));
-    }
 }
