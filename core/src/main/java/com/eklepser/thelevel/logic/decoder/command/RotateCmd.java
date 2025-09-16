@@ -5,8 +5,7 @@ import com.eklepser.thelevel.util.Direction;
 
 public class RotateCmd extends Command {
     private final Direction direction;
-    public RotateCmd(Instruction instruction, Direction direction) {
-        super(instruction);
+    public RotateCmd(Direction direction) {
         this.direction = direction;
     }
 

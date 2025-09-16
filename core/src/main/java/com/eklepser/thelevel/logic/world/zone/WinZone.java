@@ -2,7 +2,7 @@ package com.eklepser.thelevel.logic.world.zone;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
-import com.eklepser.thelevel.graphics.ui.game.WinWindow;
+import com.eklepser.thelevel.graphics.game.WinWindow;
 
 public class WinZone extends Zone {
     private final WinWindow window;

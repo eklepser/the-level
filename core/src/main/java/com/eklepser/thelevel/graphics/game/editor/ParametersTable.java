@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.ui.game.editor;
+package com.eklepser.thelevel.graphics.game.editor;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
@@ -9,12 +9,10 @@ import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.util.Resources;
 
 public class ParametersTable extends Table {
-    private final Executor executor;
     private final Slider slider;
     private final TextLabel label;
 
     public ParametersTable(Executor executor) {
-        this.executor = executor;
         float[] values = {0.5f, 1.0f, 2.0f, 4.0f, 8.0f};
         int selected = 1;
 

@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.ui.game.editor;
+package com.eklepser.thelevel.graphics.game.editor;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;

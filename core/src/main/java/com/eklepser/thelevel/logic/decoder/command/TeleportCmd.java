@@ -6,8 +6,7 @@ import com.eklepser.thelevel.logic.world.collision.Entity;
 public class TeleportCmd extends Command {
     private final Vector2 worldPos;
 
-    public TeleportCmd(Instruction instruction, Vector2 worldPos) {
-        super(instruction);
+    public TeleportCmd(Vector2 worldPos) {
         this.worldPos = worldPos;
     }
 

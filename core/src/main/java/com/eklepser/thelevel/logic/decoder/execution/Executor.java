@@ -3,7 +3,7 @@ package com.eklepser.thelevel.logic.decoder.execution;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.eklepser.thelevel.graphics.ui.game.editor.CodeLine;
+import com.eklepser.thelevel.graphics.game.editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;

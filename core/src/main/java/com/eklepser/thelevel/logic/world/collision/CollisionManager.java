@@ -7,13 +7,11 @@ import com.eklepser.thelevel.logic.world.zone.Zone;
 import java.util.List;
 
 public class CollisionManager {
-    private final Level level;
     private final List<Entity> entities;
     private final List<Rectangle> walls;
     private final List<Zone> zones;
 
     public CollisionManager(Level level) {
-        this.level = level;
         entities = level.getEntities();
         walls = level.getWalls();
         zones = level.getZones();

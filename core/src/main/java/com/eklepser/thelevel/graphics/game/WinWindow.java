@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.ui.game;
+package com.eklepser.thelevel.graphics.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
@@ -10,7 +10,7 @@ import com.eklepser.thelevel.util.Resources;
 public class WinWindow extends Window {
     private final Game game;
 
-    public WinWindow(Game game, GameScreen screen) {
+    public WinWindow(Game game) {
         super("", Resources.getSkin());
         this.game = game;
         setupLayout();
@@ -27,7 +27,7 @@ public class WinWindow extends Window {
         setColor(0.5f, 0, 0.75f, 0.9f);
 
         row();
-        add(new CloseLevelButton(game)).width(Layout.VIEWPORT_WIDTH / 8.0f)
+        add(new ExitLevelButton(game)).width(Layout.VIEWPORT_WIDTH / 8.0f)
             .height(Layout.VIEWPORT_HEIGHT / 16.0f).padBottom(20);
     }
 

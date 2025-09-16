@@ -6,8 +6,7 @@ import com.eklepser.thelevel.util.Direction;
 public class MoveCmd extends Command {
     private final Direction direction;
 
-    public MoveCmd(Instruction instruction, Direction direction) {
-        super(instruction);
+    public MoveCmd(Direction direction) {
         this.direction = direction;
     }
 

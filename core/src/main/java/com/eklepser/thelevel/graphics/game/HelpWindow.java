@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.ui.game;
+package com.eklepser.thelevel.graphics.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
@@ -25,7 +25,7 @@ public class HelpWindow extends Window {
             throw new RuntimeException(e);
         }
         row();
-        add(new CloseLevelButton(game)).width(Layout.VIEWPORT_WIDTH / 4.0f)
+        add(new ExitLevelButton(game)).width(Layout.VIEWPORT_WIDTH / 4.0f)
             .height(Layout.VIEWPORT_HEIGHT / 16.0f).padBottom(40);
         setResizable(true);
         setVisible(false);

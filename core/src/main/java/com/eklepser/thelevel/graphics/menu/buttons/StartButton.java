@@ -1,19 +1,19 @@
-package com.eklepser.thelevel.graphics.ui.menu.buttons;
+package com.eklepser.thelevel.graphics.menu.buttons;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.eklepser.thelevel.graphics.selection.SelectionScreen;
 import com.eklepser.thelevel.util.Resources;
 
-public class ExitButton extends TextButton {
-    public ExitButton() {
-        super("EXIT", Resources.getSkin());
+public class StartButton extends TextButton {
+    public StartButton(Game game) {
+        super("START GAME", Resources.getSkin());
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("App terminated");
-                Gdx.app.exit();
+                game.setScreen(new SelectionScreen(game));
             }
         });
     }

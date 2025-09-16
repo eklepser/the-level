@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.ui.selection;
+package com.eklepser.thelevel.graphics.menu;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -9,13 +9,15 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.eklepser.thelevel.graphics.menu.buttons.ExitButton;
+import com.eklepser.thelevel.graphics.menu.buttons.StartButton;
 import com.eklepser.thelevel.util.Layout;
 
-public class SelectionScreen extends ScreenAdapter {
+public class MenuScreen extends ScreenAdapter {
     private final Game game;
     private final Stage stage;
 
-    public SelectionScreen(Game game) {
+    public MenuScreen(Game game) {
         this.game = game;
         stage = new Stage(new FitViewport(
             Layout.VIEWPORT_WIDTH, Layout.VIEWPORT_HEIGHT, new OrthographicCamera()));
@@ -30,10 +32,11 @@ public class SelectionScreen extends ScreenAdapter {
     private void setupLayout() {
         Table rootTable = new Table();
         rootTable.setFillParent(true);
-
-        LevelsTable levelsTable = new LevelsTable(game);
-        rootTable.add(levelsTable);
-
+        rootTable.add(new StartButton(game)).width(Layout.VIEWPORT_WIDTH / 4.0f)
+            .height(Layout.VIEWPORT_HEIGHT / 16.0f);
+        rootTable.row();
+        rootTable.add(new ExitButton()).width(Layout.VIEWPORT_WIDTH / 8.0f)
+            .height(Layout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         stage.addActor(rootTable);
     }
 

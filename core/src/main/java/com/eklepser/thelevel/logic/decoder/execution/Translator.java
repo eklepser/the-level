@@ -1,7 +1,7 @@
 package com.eklepser.thelevel.logic.decoder.execution;
 
 import com.badlogic.gdx.math.Vector2;
-import com.eklepser.thelevel.graphics.ui.game.editor.CodeLine;
+import com.eklepser.thelevel.graphics.game.editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.command.*;
 import com.eklepser.thelevel.util.Direction;
 
@@ -48,13 +48,13 @@ public class Translator {
                 instruction = Instruction.fromName(instructionName);
             }
             else {
-                String message = String.format("LINE %d: INSTRUCTION %s IS NOT ALLOWED", i + 1, instructionName);
+                String message = String.format("Line %d: instruction %s is not allowed", i + 1, words[0]);
                 return new TranslationResult(false, message);
             }
 
             // Instruction format check:
             if (instruction.expectedArgs != words.length - 1) {
-                String message = String.format("LINE %d: INSTRUCTION FORMAT IS NOT CORRECTED", i + 1);
+                String message = String.format("Line %d: instruction format is not valid", i + 1);
                 return new TranslationResult(false, message);
             }
 
@@ -64,36 +64,36 @@ public class Translator {
                 case MOVE:
                     String directionName = words[1].toLowerCase();
                     if (!instruction.allowedArgs.contains(directionName)) {
-                        String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);
+                        String message = String.format("Line %d: argument %s is not allowed", i + 1, words[1]);
                         return new TranslationResult(false, message);
                     }
                     else {
-                        cmd = new MoveCmd(instruction, Direction.getByName(directionName));
+                        cmd = new MoveCmd(Direction.getByName(directionName));
                     }
                     break;
                 case ROT:
                     String rotationDirection = words[1].toLowerCase();
                     if (!instruction.allowedArgs.contains(rotationDirection)) {
-                        String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);
+                        String message = String.format("Line %d: argument %s is not allowed", i + 1, words[1]);
                         return new TranslationResult(false, message);
                     }
                     else {
-                        cmd = new RotateCmd(instruction, Direction.getByName(rotationDirection));
+                        cmd = new RotateCmd(Direction.getByName(rotationDirection));
                     }
                     break;
                 case GOTO:
                     try {
                         int lineNum = Integer.parseInt(words[1]);
                         if ((lineNum < 1) || (lineNum > codeLines.size())) {
-                            String message = String.format("LINE %d: ARGUMENT %d OUT OF RANGE", i + 1, lineNum);
+                            String message = String.format("Line %d: argument %d is out of range", i + 1, lineNum);
                             return new TranslationResult(false, message);
                         }
                         else {
-                            cmd = new GotoCmd(instruction, executor, lineNum);
+                            cmd = new GotoCmd(executor, lineNum);
                         }
                     }
                     catch (NumberFormatException e) {
-                        String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);
+                        String message = String.format("Line %d: argument %s is not allowed", i + 1, words[1]);
                         return new TranslationResult(false, message);
                     }
                     break;
@@ -101,19 +101,19 @@ public class Translator {
                     try {
                         int posX = Integer.parseInt(words[1]);
                         int posY = Integer.parseInt(words[2]);
-                        cmd = new TeleportCmd(instruction, new Vector2(posX, posY));
+                        cmd = new TeleportCmd(new Vector2(posX, posY));
                     }
                     catch (NumberFormatException e) {
-                        String message = String.format("LINE %d: ARGUMENT %s IS NOT ALLOWED", i + 1, words[1]);
+                        String message = String.format("Line %d: argument %s is not allowed", i + 1, words[1]);
                         return new TranslationResult(false, message);
                     }
                     break;
                 case NONE:
-                    cmd = new NoneCmd(instruction);
+                    cmd = new NoneCmd();
             }
-            // Adding command-object to code map
+            // Adding command-object to code map:
             codeMap.put(currentLine, cmd);
         }
-        return new TranslationResult(true, "TRANSLATION: SUCCESS", codeMap);
+        return new TranslationResult(true, "Successfully running", codeMap);
     }
 }

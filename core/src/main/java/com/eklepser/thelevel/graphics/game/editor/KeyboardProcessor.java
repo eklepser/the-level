@@ -1,8 +1,8 @@
-package com.eklepser.thelevel.graphics.ui.game.editor;
+package com.eklepser.thelevel.graphics.game.editor;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.eklepser.thelevel.graphics.ui.game.GameScreen;
+import com.eklepser.thelevel.graphics.game.GameScreen;
 import com.eklepser.thelevel.util.Direction;
 
 public class KeyboardProcessor extends InputAdapter {

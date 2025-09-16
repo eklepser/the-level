@@ -5,7 +5,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.eklepser.thelevel.graphics.ui.game.GameScreen;
+import com.eklepser.thelevel.graphics.game.GameScreen;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.zone.Zone;
 import com.eklepser.thelevel.util.Layout;

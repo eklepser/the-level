@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.ui.game;
+package com.eklepser.thelevel.graphics.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.graphics.ui.game.editor.Editor;
-import com.eklepser.thelevel.graphics.ui.game.editor.KeyboardProcessor;
+import com.eklepser.thelevel.graphics.game.editor.Editor;
+import com.eklepser.thelevel.graphics.game.editor.KeyboardProcessor;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Layout;
@@ -18,7 +18,6 @@ import com.eklepser.thelevel.util.Layout;
 import static com.eklepser.thelevel.util.Layout.EDITOR_MENU_SCALE;
 
 public class GameScreen extends ScreenAdapter {
-    private final Game game;
     private final HelpWindow helpWindow;
     private final WinWindow winWindow;
     private final Stage stage;
@@ -28,11 +27,10 @@ public class GameScreen extends ScreenAdapter {
     private final InputMultiplexer multiplexer;
 
     public GameScreen(Game game, LevelConfiguration conf) {
-        this.game = game;
         stage = new Stage(new FitViewport(
             Layout.VIEWPORT_WIDTH, Layout.VIEWPORT_HEIGHT, new OrthographicCamera()));
         helpWindow = new HelpWindow(game);
-        winWindow = new WinWindow(game, this);
+        winWindow = new WinWindow(game);
 
         level = new Level(this, conf);
         gameField = new GameField(level);
@@ -79,10 +77,6 @@ public class GameScreen extends ScreenAdapter {
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
     }
-
-    public Stage getStage() { return stage; }
-
-    public InputMultiplexer getMultiplexer() { return multiplexer; }
 
     public HelpWindow getHelpWindow() {
         return helpWindow;

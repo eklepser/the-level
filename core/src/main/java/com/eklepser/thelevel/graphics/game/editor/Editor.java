@@ -1,12 +1,12 @@
-package com.eklepser.thelevel.graphics.ui.game.editor;
+package com.eklepser.thelevel.graphics.game.editor;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.eklepser.thelevel.graphics.ui.game.GameScreen;
 import com.eklepser.thelevel.graphics.common.TextLabel;
-import com.eklepser.thelevel.graphics.ui.game.editor.buttons.ClearButton;
-import com.eklepser.thelevel.graphics.ui.game.editor.buttons.HelpButton;
-import com.eklepser.thelevel.graphics.ui.game.editor.buttons.ResetButton;
-import com.eklepser.thelevel.graphics.ui.game.editor.buttons.RunButton;
+import com.eklepser.thelevel.graphics.game.GameScreen;
+import com.eklepser.thelevel.graphics.game.editor.buttons.ClearButton;
+import com.eklepser.thelevel.graphics.game.editor.buttons.HelpButton;
+import com.eklepser.thelevel.graphics.game.editor.buttons.ResetButton;
+import com.eklepser.thelevel.graphics.game.editor.buttons.RunButton;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
@@ -28,7 +28,7 @@ public class Editor extends Table {
         codeTable = new CodeTable(this, conf);
         executor = new Executor(conf, codeTable.getCodeLines(), level.getEntities());
 
-        statusLabel = new TextLabel("Status:");
+        statusLabel = new TextLabel("Status:\n-");
         statusLabel.setWrap(true);
 
         runButton = new RunButton(this);
@@ -60,7 +60,7 @@ public class Editor extends Table {
 
     public void run() {
         String status = executor.checkAndExecute();
-        statusLabel.setText(status);
+        statusLabel.setText("Status:\n" + status);
     }
 
     public void resetRunning() {
@@ -69,7 +69,6 @@ public class Editor extends Table {
             codeLine -> codeLine.setCompleting(false));
         getExecutor().stop();
         getStatusLabel().setText("Status: ");
-        getRunButton().setRunning(false);
         getLevel().reset();
     }
 

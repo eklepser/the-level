@@ -7,8 +7,7 @@ public class GotoCmd extends Command {
     private final Executor executor;
     private final int lineNum;
 
-    public GotoCmd(Instruction instruction, Executor executor, int lineNum) {
-        super(instruction);
+    public GotoCmd(Executor executor, int lineNum) {
         this.executor = executor;
         this.lineNum = lineNum;
     }

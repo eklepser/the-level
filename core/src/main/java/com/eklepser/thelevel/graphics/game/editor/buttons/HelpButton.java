@@ -1,9 +1,9 @@
-package com.eklepser.thelevel.graphics.ui.game.editor.buttons;
+package com.eklepser.thelevel.graphics.game.editor.buttons;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.eklepser.thelevel.graphics.ui.game.HelpWindow;
+import com.eklepser.thelevel.graphics.game.HelpWindow;
 import com.eklepser.thelevel.util.Resources;
 
 public class HelpButton extends TextButton {

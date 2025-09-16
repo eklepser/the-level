@@ -1,10 +1,10 @@
-package com.eklepser.thelevel.graphics.ui.selection.buttons;
+package com.eklepser.thelevel.graphics.selection.buttons;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.eklepser.thelevel.graphics.ui.game.GameScreen;
+import com.eklepser.thelevel.graphics.game.GameScreen;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Resources;
 

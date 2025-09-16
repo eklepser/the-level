@@ -2,7 +2,7 @@ package com.eklepser.thelevel;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.eklepser.thelevel.graphics.ui.menu.MenuScreen;
+import com.eklepser.thelevel.graphics.menu.MenuScreen;
 import com.eklepser.thelevel.util.Resources;
 
 public class MyGame extends Game {

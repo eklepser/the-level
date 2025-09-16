@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.ui.game;
+package com.eklepser.thelevel.graphics.game;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;

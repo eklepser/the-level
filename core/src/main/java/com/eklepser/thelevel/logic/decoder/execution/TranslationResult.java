@@ -1,6 +1,6 @@
 package com.eklepser.thelevel.logic.decoder.execution;
 
-import com.eklepser.thelevel.graphics.ui.game.editor.CodeLine;
+import com.eklepser.thelevel.graphics.game.editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 
 import java.util.Map;

@@ -1,11 +1,11 @@
-package com.eklepser.thelevel.graphics.ui.selection;
+package com.eklepser.thelevel.graphics.selection;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Json;
-import com.eklepser.thelevel.graphics.ui.selection.buttons.BackButton;
-import com.eklepser.thelevel.graphics.ui.selection.buttons.LevelButton;
+import com.eklepser.thelevel.graphics.selection.buttons.BackButton;
+import com.eklepser.thelevel.graphics.selection.buttons.LevelButton;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Layout;
 
