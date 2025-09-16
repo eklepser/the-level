@@ -63,7 +63,7 @@ public class Executor implements TimeController {
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(false)));
 
             sequence.addAction(Actions.run(() -> {
-                target.setAnimationSpeed(this.executionDelay / 4.0f); // ← Читаем текущее значение!
+                target.setAnimationSpeed(this.executionDelay / 4.0f);
                 currentCmd.execute(target);
             }));
         }

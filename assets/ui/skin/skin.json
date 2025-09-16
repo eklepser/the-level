@@ -71,5 +71,11 @@
       "knob": "slider-knob",
       "knobDown": "slider-knob-down"
     }
+  },
+
+  "com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle": {
+    "default": {
+      "background": "code-field-bg"
+    }
   }
 }

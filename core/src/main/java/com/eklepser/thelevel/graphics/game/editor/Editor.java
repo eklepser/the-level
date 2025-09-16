@@ -1,7 +1,7 @@
 package com.eklepser.thelevel.graphics.game.editor;
 
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Align;
 import com.eklepser.thelevel.graphics.common.TextLabel;
 import com.eklepser.thelevel.graphics.game.GameScreen;
 import com.eklepser.thelevel.graphics.game.editor.buttons.ClearButton;
@@ -11,6 +11,7 @@ import com.eklepser.thelevel.graphics.game.editor.buttons.RunButton;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
+import com.eklepser.thelevel.util.Resources;
 
 public class Editor extends Table {
     private final GameScreen screen;
@@ -22,6 +23,7 @@ public class Editor extends Table {
     private final TextLabel hotKeysLabel;
     private final RunButton runButton;
     private final ParametersTable parametersTable;
+    private final ScrollPane codeScrollPane;
 
     public Editor(GameScreen screen, Level level) {
         this.screen = screen;
@@ -29,9 +31,12 @@ public class Editor extends Table {
         conf = level.getConf();
 
         codeTable = new CodeTable(this, conf);
+        codeScrollPane = new ScrollPane(codeTable, Resources.getSkin());
+        codeTable.setupLayout(codeScrollPane);
+
         executor = new Executor(conf, codeTable.getCodeLines(), level.getEntities());
 
-        statusLabel = new TextLabel("Status:\n-");
+        statusLabel = new TextLabel("Status:\nNo status");
         statusLabel.setWrap(true);
         hotKeysLabel = new TextLabel("Hotkeys:\n" +
             "F1 and F2 -> change speed\n" +
@@ -40,15 +45,15 @@ public class Editor extends Table {
 
         runButton = new RunButton(this);
         parametersTable = new ParametersTable(executor);
-        setupLayout();
+        setupLayout(codeScrollPane);
     }
 
-    private void setupLayout() {
+    private void setupLayout(ScrollPane codeScrollPane) {
         add(new HelpButton(screen.getHelpWindow()));
         add(parametersTable).padBottom(10).colspan(3).fillX().padLeft(10);
 
         row().colspan(4).fillX().expandX();
-        add(codeTable);
+        add(codeScrollPane);
 
         row().padTop(10);
         add(new TextLabel("Action:"));
@@ -82,7 +87,7 @@ public class Editor extends Table {
         getCodeTable().getCodeLines().forEach(
             codeLine -> codeLine.setCompleting(false));
         getExecutor().stop();
-        getStatusLabel().setText("Status: ");
+        getStatusLabel().setText("Status:\nReset");
         getLevel().reset();
     }
 

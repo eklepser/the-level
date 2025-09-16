@@ -8,6 +8,7 @@ import com.eklepser.thelevel.util.Direction;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Translator {
     private final Executor executor;
@@ -114,6 +115,7 @@ public class Translator {
             // Adding command-object to code map:
             codeMap.put(currentLine, cmd);
         }
+        if (codeMap.values().stream().allMatch(Objects::isNull)) return new TranslationResult(false, "Code field is empty", codeMap);
         return new TranslationResult(true, "Successfully running", codeMap);
     }
 }

@@ -1,11 +1,13 @@
 package com.eklepser.thelevel.graphics.game.editor;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
 import com.eklepser.thelevel.graphics.common.TextLabel;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Direction;
+import com.eklepser.thelevel.util.Resources;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +15,17 @@ import java.util.List;
 public class CodeTable extends Table {
     private final Table root;
     private final LevelConfiguration conf;
+    private ScrollPane codeScrollPane;
     private final List<CodeLine> codeLines = new ArrayList<>();
     private int selectedLine = -1;
 
     public CodeTable(Table root, LevelConfiguration conf) {
         this.conf = conf;
         this.root = root;
+    }
+
+    public void setupLayout(ScrollPane scrollPane) {
+        codeScrollPane = scrollPane;
         createCodeLines(conf.codeLinesNum());
     }
 
@@ -33,6 +40,8 @@ public class CodeTable extends Table {
                 @Override
                 public void keyboardFocusChanged(FocusEvent event, Actor actor, boolean focused) {
                     if (focused) selectedLine = finalI;
+                    codeScrollPane.scrollTo(codeline.getX(), codeline.getY() + codeline.getHeight(),
+                        codeline.getWidth(), codeline.getHeight(), true, true);
                 }
             });
             add(label).width(20).height(20).left().fillX().padRight(10);
