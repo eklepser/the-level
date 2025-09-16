@@ -1,6 +1,7 @@
 package com.eklepser.thelevel.graphics.game.editor;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.eklepser.thelevel.graphics.common.TextLabel;
 import com.eklepser.thelevel.graphics.game.GameScreen;
 import com.eklepser.thelevel.graphics.game.editor.buttons.ClearButton;
@@ -18,7 +19,9 @@ public class Editor extends Table {
     private final CodeTable codeTable;
     private final Executor executor;
     private final TextLabel statusLabel;
+    private final TextLabel hotKeysLabel;
     private final RunButton runButton;
+    private final ParametersTable parametersTable;
 
     public Editor(GameScreen screen, Level level) {
         this.screen = screen;
@@ -30,17 +33,21 @@ public class Editor extends Table {
 
         statusLabel = new TextLabel("Status:\n-");
         statusLabel.setWrap(true);
+        hotKeysLabel = new TextLabel("Hotkeys:\n" +
+            "F1 and F2 -> change speed\n" +
+            "F4 or CTRL+\\ -> reset code\n" +
+            "F5 or CTRL+ENTER -> run code\n");
 
         runButton = new RunButton(this);
-
+        parametersTable = new ParametersTable(executor);
         setupLayout();
     }
 
     private void setupLayout() {
         add(new HelpButton(screen.getHelpWindow()));
-        add(new ParametersTable(executor)).padBottom(10).colspan(3).fillX().padLeft(10);
+        add(parametersTable).padBottom(10).colspan(3).fillX().padLeft(10);
 
-        row().colspan(4).fillX().expand();
+        row().colspan(4).fillX().expandX();
         add(codeTable);
 
         row().padTop(10);
@@ -56,9 +63,16 @@ public class Editor extends Table {
 
         row().padTop(10).colspan(4).padLeft(19);
         add(statusLabel).fillX();
+
+        row();
+        add().expandY().fillY();
+
+        row().padTop(10).colspan(4).padLeft(19);
+        add(hotKeysLabel).fillX();
     }
 
     public void run() {
+        resetRunning();
         String status = executor.checkAndExecute();
         statusLabel.setText("Status:\n" + status);
     }
@@ -86,4 +100,6 @@ public class Editor extends Table {
     public TextLabel getStatusLabel() { return statusLabel; }
 
     public RunButton getRunButton() { return runButton; }
+
+    public ParametersTable getParametersTable() { return parametersTable; }
 }

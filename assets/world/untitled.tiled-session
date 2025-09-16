@@ -3,74 +3,54 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "levels/level2.tmx",
+    "activeFile": "level/sandbox.tmx",
     "expandedProjectPaths": [
         "levels",
-        "."
+        ".",
+        "level"
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
-        "levels/gamefield.tsx": {
-            "scaleInDock": 2,
-            "scaleInEditor": 5.5
+        "level/gamefield.tsx": {
+            "scaleInDock": 1
         },
-        "levels/level.tmx": {
-            "expandedObjectLayers": [
-                4
-            ],
-            "scale": 2,
-            "selectedLayer": 2,
+        "level/level1.tmx": {
+            "scale": 3.9866071428571423,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 216.25,
-                "y": 173.5
+                "x": 111.87458006718924,
+                "y": 112
             }
         },
-        "levels/level1.tmx": {
-            "expandedObjectLayers": [
-                4,
-                3
-            ],
-            "scale": 2,
+        "level/level2.tmx": {
+            "scale": 3.48828125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 127.85666293393058,
+                "y": 127.99999999999997
+            }
+        },
+        "level/sandbox.tmx": {
+            "scale": 1.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 95,
-                "y": 22.25
-            }
-        },
-        "levels/level2.tmx": {
-            "scale": 2,
-            "selectedLayer": 2,
-            "viewCenter": {
-                "x": 96.5,
-                "y": 176.25
-            }
-        },
-        "levels/level3.tmx": {
-            "scale": 1,
-            "selectedLayer": 0,
-            "viewCenter": {
-                "x": 247.5,
-                "y": 12
-            }
-        },
-        "levels/selection.tmx": {
-            "scale": 2,
-            "selectedLayer": 0,
-            "viewCenter": {
-                "x": 101.25,
-                "y": 116.5
+                "x": 401.3333333333333,
+                "y": 372.99999999999994
             }
         }
     },
-    "map.height": 8,
     "map.lastUsedFormat": "tmx",
-    "map.width": 8,
+    "map.width": 20,
     "openFiles": [
-        "levels/level1.tmx",
-        "levels/level2.tmx"
+        "level/sandbox.tmx",
+        "level/level2.tmx",
+        "level/level1.tmx"
     ],
     "project": "untitled.tiled-project",
-    "property.type": "string",
     "recentFiles": [
+        "level/level1.tmx",
+        "level/level2.tmx",
+        "level/sandbox.tmx",
         "levels/level1.tmx",
         "levels/level2.tmx",
         "levels/gamefield.tsx",

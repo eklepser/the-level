@@ -12,7 +12,6 @@ public class RunButton extends TextButton {
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                editor.resetRunning();
                 editor.run();
             }
         });

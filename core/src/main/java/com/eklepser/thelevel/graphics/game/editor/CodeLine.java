@@ -9,12 +9,18 @@ import com.eklepser.thelevel.util.Resources;
 
 public class CodeLine extends TextField {
     final Color lineColor = Color.PURPLE;
+    private static final int MAX_LENGTH = 20;
 
     public CodeLine() {
         super("", Resources.getSkin().get("code-field", TextField.TextFieldStyle.class));
         getStyle().cursor = new TextureRegionDrawable(
             new Texture(Gdx.files.internal("ui/component/code-field-cursor.png")));
         setColor(lineColor);
+
+        setTextFieldFilter((field, c) -> {
+            if (c == '\b' || c == '\u007F') return true;
+            return field.getText().length() < MAX_LENGTH;
+        });
     }
 
     public void setCompleting(boolean isCompleting) {

@@ -9,12 +9,14 @@ import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.util.Resources;
 
 public class ParametersTable extends Table {
+    private final Executor executor;
     private final Slider slider;
     private final TextLabel label;
+    private final float[] values = {0.5f, 1.0f, 2.0f, 4.0f, 8.0f};
+    private final int selected = 1;
 
     public ParametersTable(Executor executor) {
-        float[] values = {0.5f, 1.0f, 2.0f, 4.0f, 8.0f};
-        int selected = 1;
+        this.executor = executor;
 
         label = new TextLabel("Execution speed: " + values[selected]);
         slider = new Slider(0, values.length - 1, 1, false, Resources.getSkin());
@@ -31,5 +33,13 @@ public class ParametersTable extends Table {
         add(label).padTop(10);
         row();
         add(slider);
+    }
+
+    public void setNextSliderValue(int index) {
+        slider.setValue(slider.getValue() - 1);
+    }
+
+    public void setPrevSliderValue(int index) {
+        slider.setValue(slider.getValue() + 1);
     }
 }

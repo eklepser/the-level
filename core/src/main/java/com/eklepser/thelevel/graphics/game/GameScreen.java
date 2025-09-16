@@ -48,7 +48,7 @@ public class GameScreen extends ScreenAdapter {
     private void setupLayout() {
         Table rootTable = new Table();
         rootTable.setFillParent(true);
-        rootTable.add(editor).width(stage.getWidth() * EDITOR_MENU_SCALE).top();
+        rootTable.add(editor).width(stage.getWidth() * EDITOR_MENU_SCALE).top().fillY();
         rootTable.add().expand();
         stage.addActor(rootTable);
         stage.addActor(helpWindow);

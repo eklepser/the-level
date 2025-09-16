@@ -20,5 +20,16 @@
     "width": 8,
     "height": 8,
     "cameraZoom": 1.67
+  },
+  {
+    "name": "SandBox",
+    "mapPath": "world/level/sandbox.tmx",
+    "codeLinesNum": 20,
+    "allowedInstructions": ["NONE","MOVE","GOTO","ROT","TP"],
+    "startPosX": 4,
+    "startPosY": 3,
+    "width": 20,
+    "height": 20,
+    "cameraZoom": 1
   }
 ]
