@@ -109,6 +109,9 @@ public class Translator {
                         return new TranslationResult(false, message);
                     }
                     break;
+                case END:
+                    cmd = new EndCmd(executor);
+                    break;
                 case NONE:
                     cmd = new NoneCmd();
             }

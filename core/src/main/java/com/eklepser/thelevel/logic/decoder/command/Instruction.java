@@ -10,6 +10,7 @@ public enum Instruction {
         "l", "r", "left", "right"))),
     GOTO("goto", 1, null),
     TP("#tp", 2, null),
+    END("end", 0, null),
     NONE("none", 0, null);
 
     public final String name;
@@ -28,6 +29,7 @@ public enum Instruction {
             case "rot" -> Instruction.ROT;
             case "goto" -> Instruction.GOTO;
             case "#tp" -> Instruction.TP;
+            case "end" -> Instruction.END;
             default -> Instruction.NONE;
         };
     }

@@ -34,7 +34,7 @@ public class Editor extends Table {
         codeScrollPane = new ScrollPane(codeTable, Resources.getSkin());
         codeTable.setupLayout(codeScrollPane);
 
-        executor = new Executor(conf, codeTable.getCodeLines(), level.getEntities());
+        executor = new Executor(conf, codeTable.getCodeLines(), level.getEntities(), this);
 
         statusLabel = new TextLabel("Status:\nNo status");
         statusLabel.setWrap(true);
@@ -82,13 +82,18 @@ public class Editor extends Table {
         statusLabel.setText("Status:\n" + status);
     }
 
+    public void stop() {
+        executor.stop();
+        statusLabel.setText("Status:\nEnd");
+    }
+
     public void resetRunning() {
         System.out.println("Resetting");
-        getCodeTable().getCodeLines().forEach(
+        codeTable.getCodeLines().forEach(
             codeLine -> codeLine.setCompleting(false));
-        getExecutor().stop();
-        getStatusLabel().setText("Status:\nReset");
-        getLevel().reset();
+        executor.stop();
+        statusLabel.setText("Status:\nReset");
+        level.reset();
     }
 
     public void clearRunning() {

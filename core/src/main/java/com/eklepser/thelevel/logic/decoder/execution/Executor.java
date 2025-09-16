@@ -4,7 +4,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.eklepser.thelevel.graphics.game.editor.CodeLine;
+import com.eklepser.thelevel.graphics.game.editor.Editor;
 import com.eklepser.thelevel.logic.decoder.command.Command;
+import com.eklepser.thelevel.logic.decoder.command.EndCmd;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 
@@ -14,14 +16,16 @@ import java.util.Map;
 public class Executor implements TimeController {
     private final LevelConfiguration conf;
     private final List<CodeLine> codeLines;
+    private final Editor editor;
     private Map<CodeLine, Command> codeMap;
     private final List<Entity> targets;
     private float executionDelay = 0.5f;
 
-    public Executor(LevelConfiguration conf, List<CodeLine> codeLines, List<Entity> targets) {
-        this.codeLines = codeLines;
+    public Executor(LevelConfiguration conf, List<CodeLine> codeLines, List<Entity> targets, Editor editor) {
         this.conf = conf;
+        this.codeLines = codeLines;
         this.targets = targets;
+        this.editor = editor;
     }
 
     public String checkAndExecute() {
@@ -61,17 +65,14 @@ public class Executor implements TimeController {
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(true)));
             sequence.addAction(new TimedAction(this));
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(false)));
-
             sequence.addAction(Actions.run(() -> {
                 target.setAnimationSpeed(this.executionDelay / 4.0f);
                 currentCmd.execute(target);
             }));
         }
+        sequence.addAction(new TimedAction(this));
+        sequence.addAction(Actions.run(() -> getEditor().stop()));
         return sequence;
-    }
-
-    public Map<CodeLine, Command> getCodeMap() {
-        return codeMap;
     }
 
     public void stop() {
@@ -80,5 +81,11 @@ public class Executor implements TimeController {
 
     public void setExecutionSpeed(float executionSpeed) {
         this.executionDelay = executionSpeed;
+    }
+
+    public Editor getEditor() { return editor; }
+
+    public Map<CodeLine, Command> getCodeMap() {
+        return codeMap;
     }
 }
