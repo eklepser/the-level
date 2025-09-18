@@ -8,7 +8,9 @@ import com.eklepser.thelevel.graphics.game.editor.Editor;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.decoder.command.EndCmd;
 import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
+import com.eklepser.thelevel.logic.world.zone.Zone;
 
 import java.util.List;
 import java.util.Map;
@@ -19,13 +21,15 @@ public class Executor implements TimeController {
     private final Editor editor;
     private Map<CodeLine, Command> codeMap;
     private final List<Entity> targets;
+    private final List<Zone> zones;
     private float executionDelay = 0.5f;
 
-    public Executor(LevelConfiguration conf, List<CodeLine> codeLines, List<Entity> targets, Editor editor) {
+    public Executor(Level level, LevelConfiguration conf, Editor editor) {
+        this.targets = level.getEntities();
+        this.zones = level.getZones();
         this.conf = conf;
-        this.codeLines = codeLines;
-        this.targets = targets;
         this.editor = editor;
+        this.codeLines = editor.getCodeTable().getCodeLines();
     }
 
     public String checkAndExecute() {
@@ -71,7 +75,7 @@ public class Executor implements TimeController {
             }));
         }
         sequence.addAction(new TimedAction(this));
-        sequence.addAction(Actions.run(() -> getEditor().stop()));
+        sequence.addAction(Actions.run(editor::stop));
         return sequence;
     }
 
@@ -83,9 +87,11 @@ public class Executor implements TimeController {
         this.executionDelay = executionSpeed;
     }
 
-    public Editor getEditor() { return editor; }
-
     public Map<CodeLine, Command> getCodeMap() {
         return codeMap;
     }
+
+    public Editor getEditor() { return editor; }
+
+    public List<Zone> getZones() { return zones; }
 }

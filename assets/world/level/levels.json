@@ -25,7 +25,7 @@
     "name": "SandBox",
     "mapPath": "world/level/sandbox.tmx",
     "codeLinesNum": 50,
-    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT","TP"],
+    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT","TP", "IF"],
     "startPosX": 4,
     "startPosY": 3,
     "width": 20,

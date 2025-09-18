@@ -19,12 +19,19 @@ public class CollisionManager {
 
     public void update() {
         for (Entity entity : entities) {
-            if (this.isWallCollision(entity.getTargetRect())) {
+            for (Zone zone : zones) {
+                if (entity.getTargetRect().overlaps(zone.getRect())) {
+                    zone.onPossibleCollision();
+                    System.out.println("Possible collision!");
+                }
+                if (entity.getRect().overlaps(zone.getRect())) {
+                    zone.onCollision();
+                    System.out.println("Collision!");
+                }
+            }
+            if (isWallCollision(entity.getTargetRect())) {
                 entity.resetTargetWorldPos();
                 entity.onPossibleCollision();
-            }
-            if (isZoneCollision(entity.getRect())) {
-                System.out.println("Entity reaction");
             }
         }
     }
@@ -32,16 +39,6 @@ public class CollisionManager {
     private boolean isWallCollision(Rectangle rectangle) {
         for (Rectangle wall : walls) {
             if (rectangle.overlaps(wall)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isZoneCollision(Rectangle rectangle) {
-        for (Zone zone : zones) {
-            if (rectangle.overlaps(zone.getRect())) {
-                zone.onCollision();
                 return true;
             }
         }

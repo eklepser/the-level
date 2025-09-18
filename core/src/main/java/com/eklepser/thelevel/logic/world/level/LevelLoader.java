@@ -4,6 +4,7 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
+import com.eklepser.thelevel.logic.world.zone.ColoredZone;
 import com.eklepser.thelevel.logic.world.zone.PlateZone;
 import com.eklepser.thelevel.logic.world.zone.WinZone;
 import com.eklepser.thelevel.logic.world.zone.Zone;
@@ -56,9 +57,10 @@ public class LevelLoader {
     private Zone parseZone(String type, RectangleMapObject rectObj) {
         return switch (type) {
             case "win" -> WinZone.from(rectObj, level.getPlayScreen().getWinWindow());
+            case "colored" -> ColoredZone.from(rectObj);
             case "plate" -> PlateZone.from(rectObj);
             default -> {
-                System.out.println("Неизвестный тип объекта: " + type);
+                System.out.println("Unknown object type: " + type);
                 yield null;
             }
         };

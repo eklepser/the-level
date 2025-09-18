@@ -58,4 +58,10 @@ public abstract class Controllable extends Actor {
     public Rectangle getRect() { return getRect(worldPos); }
 
     public Rectangle getTargetRect() { return getRect(targetWorldPos); }
+
+    public Rectangle getFacingRect() {
+        return getRect(worldPos.cpy().add(facingDirection.vector));
+    }
+
+    public Vector2 getWorldPos() { return worldPos; }
 }

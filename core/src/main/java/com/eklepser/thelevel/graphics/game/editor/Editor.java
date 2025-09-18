@@ -34,7 +34,7 @@ public class Editor extends Table {
         codeScrollPane = new ScrollPane(codeTable, Resources.getSkin());
         codeTable.setupLayout(codeScrollPane);
 
-        executor = new Executor(conf, codeTable.getCodeLines(), level.getEntities(), this);
+        executor = new Executor(level, conf, this);
 
         statusLabel = new TextLabel("Status:\nNo status");
         statusLabel.setWrap(true);
