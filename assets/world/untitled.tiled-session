@@ -31,11 +31,11 @@
             }
         },
         "level/sandbox.tmx": {
-            "scale": 1.5,
+            "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 320.3333333333333,
-                "y": 319.6666666666667
+                "x": 293.75,
+                "y": 385.75
             }
         }
     },

@@ -21,6 +21,6 @@ public class IfCmd extends Command {
     public void execute(Entity target) {
         System.out.println("IF");
         if (condition.check(target, zones))
-            System.out.println("ABOBA!!!");
+            command.execute(target);
     }
 }

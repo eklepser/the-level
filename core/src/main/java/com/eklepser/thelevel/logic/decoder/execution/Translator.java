@@ -3,13 +3,11 @@ package com.eklepser.thelevel.logic.decoder.execution;
 import com.badlogic.gdx.math.Vector2;
 import com.eklepser.thelevel.graphics.game.editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.command.*;
+import com.eklepser.thelevel.logic.decoder.condition.Condition;
 import com.eklepser.thelevel.logic.decoder.condition.FacingCond;
 import com.eklepser.thelevel.util.Direction;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class Translator {
     private final Executor executor;
@@ -33,11 +31,10 @@ public class Translator {
             String text = uncomment(currentLine.getText());
             if (text.isEmpty()) continue;
 
-
             TranslationResult transResult = check(text, i);
             if (!transResult.success()) return transResult;
 
-            Command cmd = translate(text);
+            Command cmd = translate(text, i);
             codeMap.put(currentLine, cmd);
         }
         if (codeMap.values().stream().allMatch(Objects::isNull)) return new TranslationResult(false, "Code field is empty", codeMap);
@@ -68,6 +65,10 @@ public class Translator {
         }
 
         // Instruction format check:
+        if (instruction.equals(Instruction.IF) && (words.length <= 2)) {
+            String message = String.format("Line %d: instruction format is not valid", lineNum + 1);
+            return new TranslationResult(false, message);
+        }
         if ((instruction.argsNum != words.length - 1)
             && !instruction.equals(Instruction.IF)) {
             String message = String.format("Line %d: instruction format is not valid", lineNum + 1);
@@ -86,7 +87,7 @@ public class Translator {
             {
                 try {
                     int num = Integer.parseInt(words[1 + i]);
-                    if ((lineNum < 1) || (lineNum > codeLines.size())) {
+                    if ((num < 1) || (num > codeLines.size())) {
                         String message = String.format("Line %d: argument %d is out of range", lineNum + 1, num);
                         return new TranslationResult(false, message);
                     }
@@ -105,11 +106,16 @@ public class Translator {
                 String message = String.format("Line %d: condition %s is not allowed", lineNum + 1, words[1]);
                 return new TranslationResult(false, message);
             }
+            Condition cond = Condition.from(conditionType, conditionArg);
+            String[] newWords = Arrays.copyOfRange(words, 3, words.length);
+            String commandText = String.join(" ", newWords);
+            TranslationResult result = check(commandText, lineNum);
+            if (!result.success()) return result;
         }
         return new TranslationResult(true, "Successfully translated");
     }
 
-    private Command translate(String text) {
+    private Command translate(String text, int lineNum) {
         String[] words = text.split("\\s+");
         String instructionName = words[0].toLowerCase();
         Instruction instruction = Instruction.fromName(instructionName);
@@ -123,8 +129,7 @@ public class Translator {
                 cmd = new RotateCmd(Direction.getByName(words[1].toLowerCase()));
                 break;
             case GOTO:
-                int lineNum = Integer.parseInt(words[1]);
-                cmd = new GotoCmd(executor, lineNum);
+                cmd = new GotoCmd(executor, Integer.parseInt(words[1]));
                 break;
             case TP:
                 int posX = Integer.parseInt(words[1]);
@@ -134,8 +139,12 @@ public class Translator {
             case IF:
                 String conditionType = words[1].toLowerCase();
                 String conditionArg = words[2].toLowerCase();
-                cmd = new IfCmd(new FacingCond(conditionType, conditionArg),
-                        new NoneCmd(), executor.getZones());
+                Condition condition = Condition.from(conditionType, conditionArg);
+                String[] newWords = Arrays.copyOfRange(words, 3, words.length);
+                String commandText = String.join(" ", newWords);
+
+                Command conditionCmd = translate(commandText, lineNum);
+                cmd = new IfCmd(condition, conditionCmd, executor.getZones());
                 break;
             case END:
                 cmd = new EndCmd(executor);
