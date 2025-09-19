@@ -6,7 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.eklepser.thelevel.graphics.game.editor.CodeLine;
 import com.eklepser.thelevel.graphics.game.editor.Editor;
 import com.eklepser.thelevel.logic.decoder.command.Command;
-import com.eklepser.thelevel.logic.decoder.command.EndCmd;
+import com.eklepser.thelevel.logic.decoder.util.TimeController;
+import com.eklepser.thelevel.logic.decoder.util.TimedAction;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Executor implements TimeController {
+    private final Translator translator;
     private final LevelConfiguration conf;
     private final List<CodeLine> codeLines;
     private final Editor editor;
@@ -30,18 +32,14 @@ public class Executor implements TimeController {
         this.conf = conf;
         this.editor = editor;
         this.codeLines = editor.getCodeTable().getCodeLines();
+        translator = new Translator(conf.getAllowedInstructions(), codeLines, this);
     }
 
-    public String checkAndExecute() {
-        Translator translator = new Translator(conf.getAllowedInstructions(), codeLines, this);
+    public String runExecution() {
         TranslationResult result = translator.translateAll();
         if (result.success()) {
-            codeMap = result.getCodeMap();
-            System.out.println(result.message());
+            codeMap = translator.getCodeMap();
             execute(0, codeMap);
-        }
-        else {
-            System.out.println(result.message());
         }
         return result.message();
     }
@@ -49,23 +47,19 @@ public class Executor implements TimeController {
     public void execute(int start, Map<CodeLine, Command> codeMap) {
         for (Entity target : targets) {
             target.clearActions();
-            SequenceAction action = getSequenceAction(start, codeMap, target);
+            SequenceAction action = createSequenceAction(start, codeMap, target);
             target.addAction(action);
         }
     }
 
-    @Override
-    public float getDelay() {
-        return executionDelay;
-    }
-
-    private SequenceAction getSequenceAction(int start, Map<CodeLine, Command> codeMap, Entity target) {
+    private SequenceAction createSequenceAction(int start, Map<CodeLine, Command> codeMap, Entity target) {
         System.out.println("Running");
         SequenceAction sequence = new SequenceAction();
         for (int i = start; i < codeLines.size(); i++) {
             CodeLine currentLine = codeLines.get(i);
             Command currentCmd = codeMap.get(currentLine);
             if (currentCmd == null) continue;
+
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(true)));
             sequence.addAction(new TimedAction(this));
             sequence.addAction(Actions.run(() -> currentLine.setCompleting(false)));
@@ -79,6 +73,11 @@ public class Executor implements TimeController {
         return sequence;
     }
 
+    @Override
+    public float getDelay() {
+        return executionDelay;
+    }
+
     public void stop() {
         targets.forEach(Actor::clearActions);
     }
@@ -87,9 +86,7 @@ public class Executor implements TimeController {
         this.executionDelay = executionSpeed;
     }
 
-    public Map<CodeLine, Command> getCodeMap() {
-        return codeMap;
-    }
+    public Map<CodeLine, Command> getCodeMap() { return codeMap; }
 
     public Editor getEditor() { return editor; }
 

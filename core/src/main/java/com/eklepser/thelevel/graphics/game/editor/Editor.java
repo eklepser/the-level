@@ -78,7 +78,7 @@ public class Editor extends Table {
 
     public void run() {
         resetRunning();
-        String status = executor.checkAndExecute();
+        String status = executor.runExecution();
         statusLabel.setText("Status:\n" + status);
     }
 

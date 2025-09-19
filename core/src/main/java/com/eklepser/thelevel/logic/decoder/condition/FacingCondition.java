@@ -6,14 +6,14 @@ import com.eklepser.thelevel.logic.world.zone.Zone;
 
 import java.util.List;
 
-public class FacingCond extends Condition {
+public class FacingCondition implements Condition {
     private final String colorName;
 
-    public FacingCond(String name, String colorName) {
-        super("facing");
+    public FacingCondition(String colorName) {
         this.colorName = colorName;
     }
 
+    @Override
     public boolean check(Entity target, List<Zone> zones) {
         for (Zone zone : zones) {
             if (zone instanceof ColoredZone coloredZone) {

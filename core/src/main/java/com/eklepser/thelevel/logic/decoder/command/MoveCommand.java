@@ -3,10 +3,10 @@ package com.eklepser.thelevel.logic.decoder.command;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.util.Direction;
 
-public class MoveCmd extends Command {
+public class MoveCommand implements Command {
     private final Direction direction;
 
-    public MoveCmd(Direction direction) {
+    public MoveCommand(Direction direction) {
         this.direction = direction;
     }
 

@@ -11,8 +11,8 @@ public enum Instruction {
     GOTO("goto", 1, "num", null),
     IF("if", 0, "cond", new ArrayList<>(List.of("facing"))),
     TP("#tp", 2, "num", null),
-    END("end", 0, null,null),
-    NONE("none", 0, null, null);
+    END("end", 0, "none",null),
+    NONE("none", 0, "none", null);
 
     public final String name;
     public final int argsNum;
@@ -26,15 +26,12 @@ public enum Instruction {
         this.allowedArgs = allowedArgs;
     }
 
-    public static Instruction fromName(String name) {
-        return switch (name) {
-            case "move" -> Instruction.MOVE;
-            case "rot" -> Instruction.ROT;
-            case "goto" -> Instruction.GOTO;
-            case "if" -> Instruction.IF;
-            case "#tp" -> Instruction.TP;
-            case "end" -> Instruction.END;
-            default -> Instruction.NONE;
-        };
+    public static Instruction from(String name) {
+        for (Instruction instruction : values()) {
+            if (instruction.name.equals(name)) {
+                return instruction;
+            }
+        }
+        return NONE;
     }
 }

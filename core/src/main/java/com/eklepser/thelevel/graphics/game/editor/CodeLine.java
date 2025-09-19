@@ -9,7 +9,7 @@ import com.eklepser.thelevel.util.Resources;
 
 public class CodeLine extends TextField {
     final Color lineColor = Color.PURPLE;
-    private static final int MAX_LENGTH = 20;
+    private static final int MAX_LENGTH = 32;
 
     public CodeLine() {
         super("", Resources.getSkin().get("code-field", TextField.TextFieldStyle.class));
