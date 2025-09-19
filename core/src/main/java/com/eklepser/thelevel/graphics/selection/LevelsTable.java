@@ -22,7 +22,7 @@ public class LevelsTable extends Table {
     private void setupLayout() {
         Json json = new Json();
             ArrayList<LevelConfiguration> configs = json.fromJson(ArrayList.class, LevelConfiguration.class,
-            Gdx.files.internal("world/level/levels.json"));;
+            Gdx.files.internal("world/level/levels.json"));
         for (LevelConfiguration conf : configs) {
             add(new LevelButton(game, conf)).width(Layout.VIEWPORT_WIDTH / 4.0f)
                 .height(Layout.VIEWPORT_HEIGHT / 16.0f).padBottom(20);

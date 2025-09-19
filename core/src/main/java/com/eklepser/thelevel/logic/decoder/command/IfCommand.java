@@ -1,21 +1,26 @@
 package com.eklepser.thelevel.logic.decoder.command;
 
 import com.eklepser.thelevel.logic.decoder.condition.Condition;
-import com.eklepser.thelevel.logic.decoder.condition.ConditionPattern;
+import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.zone.Zone;
 
+import java.util.Arrays;
 import java.util.List;
 
-public class IfCommand implements Command {
+public class IfCommand extends Command {
     private final Condition condition;
     private final Command command;
     private final List<Zone> zones;
 
-    public IfCommand(Condition condition, Command command, List<Zone> zones) {
-        this.condition = condition;
-        this.command = command;
-        this.zones = zones;
+    public IfCommand(String[] args, Executor executor) {
+        String conditionName = args[0].toLowerCase();
+        String conditionArg = args[1].toLowerCase();
+        this.condition = Condition.from(conditionName, conditionArg);
+        String newInstruction = args[2];
+        String[] newArgs = Arrays.copyOfRange(args, 3, args.length);
+        this.command = Command.from(newInstruction, newArgs, executor);
+        this.zones = executor.getZones();
     }
 
     @Override

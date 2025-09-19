@@ -38,10 +38,12 @@ public class Editor extends Table {
 
         statusLabel = new TextLabel("Status:\nNo status");
         statusLabel.setWrap(true);
-        hotKeysLabel = new TextLabel("Hotkeys:\n" +
-            "F1 and F2 -> change speed\n" +
-            "F4 or CTRL+\\ -> reset code\n" +
-            "F5 or CTRL+ENTER -> run code\n");
+        hotKeysLabel = new TextLabel("""
+            Hotkeys:
+            F1 and F2 -> change speed
+            F4 or CTRL+\\ -> reset code
+            F5 or CTRL+ENTER -> run code
+            """);
 
         runButton = new RunButton(this);
         parametersTable = new ParametersTable(executor);

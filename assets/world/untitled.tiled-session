@@ -31,16 +31,17 @@
             }
         },
         "level/sandbox.tmx": {
-            "scale": 2,
+            "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 293.75,
-                "y": 385.75
+                "x": 174.5,
+                "y": 326.5
             }
         }
     },
+    "map.height": 10,
     "map.lastUsedFormat": "tmx",
-    "map.width": 20,
+    "map.width": 10,
     "openFiles": [
         "level/sandbox.tmx",
         "level/level2.tmx",

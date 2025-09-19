@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
 import com.eklepser.thelevel.graphics.common.TextLabel;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Direction;
-import com.eklepser.thelevel.util.Resources;
 
 import java.util.ArrayList;
 import java.util.List;

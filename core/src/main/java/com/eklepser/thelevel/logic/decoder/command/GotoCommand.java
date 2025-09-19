@@ -3,13 +3,13 @@ package com.eklepser.thelevel.logic.decoder.command;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 
-public class GotoCommand implements Command {
-    private final Executor executor;
+public class GotoCommand extends Command {
     private final int lineNum;
+    private final Executor executor;
 
-    public GotoCommand(Executor executor, int lineNum) {
+    public GotoCommand(String[] args, Executor executor) {
+        this.lineNum = Integer.parseInt(args[0]);
         this.executor = executor;
-        this.lineNum = lineNum;
     }
 
     @Override

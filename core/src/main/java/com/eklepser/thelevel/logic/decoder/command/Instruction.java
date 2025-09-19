@@ -4,22 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Instruction {
-    MOVE("move", 1, "word", new ArrayList<>(List.of(
+    MOVE(MoveCommand.class, "move", 1, "word", new ArrayList<>(List.of(
         "u", "d", "l", "r", "up", "down", "left", "right", "forward", "f"))),
-    ROT("rot", 1, "word", new ArrayList<>(List.of(
+    ROT(RotateCommand.class, "rot", 1, "word", new ArrayList<>(List.of(
         "l", "r", "left", "right"))),
-    GOTO("goto", 1, "num", null),
-    IF("if", 0, "cond", new ArrayList<>(List.of("facing"))),
-    TP("#tp", 2, "num", null),
-    END("end", 0, "none",null),
-    NONE("none", 0, "none", null);
+    GOTO(GotoCommand.class, "goto", 1, "num", null),
+    IF(IfCommand.class, "if", 0, "cond", new ArrayList<>(List.of("facing"))),
+    TP(TeleportCommand.class, "#tp", 2, "num", null),
+    END(EndCommand.class, "end", 0, "none",null),
+    NONE(NoneCommand.class, "none", 0, "none", null);
 
+    public final Class<? extends Command> commandClass;
     public final String name;
     public final int argsNum;
     public final String argsType;
     public final ArrayList<String> allowedArgs;
 
-    Instruction(String name, int argsNum, String argsType, ArrayList<String> allowedArgs) {
+    Instruction(Class<? extends Command> commandClass, String name,
+                int argsNum, String argsType, ArrayList<String> allowedArgs) {
+        this.commandClass = commandClass;
         this.name = name;
         this.argsNum = argsNum;
         this.argsType = argsType;

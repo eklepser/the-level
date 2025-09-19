@@ -1,36 +1,41 @@
 package com.eklepser.thelevel.logic.decoder.command;
 
-import com.badlogic.gdx.math.Vector2;
-import com.eklepser.thelevel.logic.decoder.condition.Condition;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.collision.Entity;
-import com.eklepser.thelevel.util.Direction;
 
-import java.util.Arrays;
+import java.lang.reflect.Constructor;
 
-public interface Command {
-    void execute(Entity target);
+public abstract class Command {
+    public abstract void execute(Entity target);
 
-    static Command from(String commandName, String[] args, Executor executor) {
+    public static Command from(String commandName, String[] args, Executor executor) {
         Instruction instruction = Instruction.from(commandName);
-        return switch (instruction) {
-            case MOVE -> new MoveCommand(Direction.getByName(args[0].toLowerCase()));
-            case ROT -> new RotateCommand(Direction.getByName(args[0].toLowerCase()));
-            case GOTO -> new GotoCommand(executor, Integer.parseInt(args[0]));
-            case TP -> new TeleportCommand(new Vector2((
-                Float.parseFloat(args[0])), Float.parseFloat(args[1])));
-            case IF -> {
-                String conditionName = args[0].toLowerCase();
-                String conditionArg = args[1].toLowerCase();
-                Condition condition = Condition.from(conditionName, conditionArg);
+        Class<? extends Command> commandsClass = instruction.commandClass;
+        try {
+            try {
+                Constructor<? extends Command> constructor = commandsClass.getConstructor(String[].class, Executor.class);
+                return constructor.newInstance(args, executor);
+            } catch (NoSuchMethodException ignored) { }
 
-                String newInstruction = args[2];
-                String[] newArgs = Arrays.copyOfRange(args, 3, args.length);
-                Command conditionalCommand = Command.from(newInstruction, newArgs, executor);
-                yield new IfCommand(condition, conditionalCommand, executor.getZones());
-            }
-            case END -> new EndCommand(executor);
-            default -> new NoneCommand();
-        };
+            try {
+                Constructor<? extends Command> constructor = commandsClass.getConstructor(String[].class);
+                return constructor.newInstance((Object) args);
+            } catch (NoSuchMethodException ignored) { }
+
+            try {
+                Constructor<? extends Command> constructor = commandsClass.getConstructor(Executor.class);
+                return constructor.newInstance(executor);
+            } catch (NoSuchMethodException ignored) { }
+
+            try {
+                Constructor<? extends Command> constructor = commandsClass.getConstructor();
+                return constructor.newInstance();
+            } catch (NoSuchMethodException ignored) { }
+
+            throw new RuntimeException("No suitable constructor found for command: " + commandName);
+        }
+        catch (Exception e) {
+            throw new RuntimeException("Failed to instantiate command: " + commandName, e);
+        }
     }
 }
