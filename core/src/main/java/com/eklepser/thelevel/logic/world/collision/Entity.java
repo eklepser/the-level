@@ -59,14 +59,4 @@ public class Entity extends Controllable implements Collidable {
     public void resetTargetWorldPos() {
         targetWorldPos.set(worldPos);
     }
-
-    public Entity clone() {
-        //Entity entity = (Entity) super.clone();
-        Entity newEntity = new Entity(worldPos.cpy(), Layout.TILE_SIZE, sprite);
-        Array<Action> actions = getActions();
-        actions.forEach(System.out::println);
-        actions.forEach(newEntity::addAction);
-
-        return newEntity;
-    }
 }

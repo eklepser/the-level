@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level/level3.tmx",
+    "activeFile": "level/level4.tmx",
     "expandedProjectPaths": [
         "level",
-        ".",
-        "levels"
+        "levels",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -32,21 +32,34 @@
         },
         "level/level3.tmx": {
             "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 176.25,
+                "y": 175.75
+            }
+        },
+        "level/level4.tmx": {
+            "expandedObjectLayers": [
+                3,
+                4
+            ],
+            "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 188.75,
-                "y": 214.75
+                "x": 171.25,
+                "y": 171.75
             }
         },
         "level/sandbox.tmx": {
             "expandedObjectLayers": [
-                5
+                5,
+                4
             ],
-            "scale": 1,
-            "selectedLayer": 3,
+            "scale": 1.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 174.5,
-                "y": 326.5
+                "x": 341.66666666666663,
+                "y": 319.6666666666667
             }
         }
     },
@@ -57,7 +70,8 @@
         "level/sandbox.tmx",
         "level/level2.tmx",
         "level/level1.tmx",
-        "level/level3.tmx"
+        "level/level3.tmx",
+        "level/level4.tmx"
     ],
     "project": "untitled.tiled-project",
     "property.type": "string",
@@ -66,6 +80,7 @@
         "level/level2.tmx",
         "level/level1.tmx",
         "level/level3.tmx",
+        "level/level4.tmx",
         "levels/level1.tmx",
         "levels/level2.tmx",
         "levels/gamefield.tsx",

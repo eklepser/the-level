@@ -74,7 +74,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="5" name="walls">
+ <objectgroup id="5" name="walls" visible="0">
   <object id="4" x="259.75" y="259.25" width="151.75" height="120.25"/>
   <object id="5" x="100.667" y="450.667" width="88" height="25.3333"/>
   <object id="6" x="164.667" y="128.667" width="22.6667" height="318"/>

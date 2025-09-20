@@ -33,6 +33,17 @@
     "cameraZoom": 1.33
   },
   {
+    "name": "Level Three",
+    "mapPath": "world/level/level4.tmx",
+    "codeLinesNum": 5,
+    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT","IF"],
+    "startPosX": 2,
+    "startPosY": 7,
+    "width": 10,
+    "height": 10,
+    "cameraZoom": 1.67
+  },
+  {
     "name": "SandBox",
     "mapPath": "world/level/sandbox.tmx",
     "codeLinesNum": 50,
