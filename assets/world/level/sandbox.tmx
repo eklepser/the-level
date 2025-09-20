@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="21">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="27">
  <tileset firstgid="1" source="gamefield.tsx"/>
  <layer id="1" name="background" width="20" height="20">
   <data encoding="csv">
@@ -61,7 +61,7 @@
     <property name="type" value="colored"/>
    </properties>
   </object>
-  <object id="15" x="259.727" y="515.455" width="23.8182" height="24.7273">
+  <object id="15" x="260.227" y="515.455" width="23.8182" height="24.7273">
    <properties>
     <property name="color" value="red"/>
     <property name="type" value="colored"/>

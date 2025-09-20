@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <object width="24.5" height="24">
+  <properties>
+   <property name="type" value="win"/>
+  </properties>
+ </object>
+</template>

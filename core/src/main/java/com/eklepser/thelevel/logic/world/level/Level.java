@@ -32,7 +32,7 @@ public class Level {
         entities = new ArrayList<>();
         entitiesToAdd = new ArrayList<>();
         walls = loader.loadWalls("walls");
-        zones =  loader.loadZones("zones");
+        zones = loader.loadZones("zones");
         walls.forEach(wall -> zones.add(new Wall(wall)));
         spawnEntity(conf.getStartPos().cpy());
     }

@@ -1,6 +1,7 @@
 package com.eklepser.thelevel.logic.decoder.command;
 
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.util.Direction;
@@ -27,5 +28,10 @@ public class CloneCommand extends Command {
         newEntity.setMoving(direction);
         SequenceAction action = executor.createSequenceAction(executor.getCurrentLineNum() + 1, executor.getCodeMap(), newEntity);
         newEntity.addAction(action);
+    }
+
+    @Override
+    public Image[] getIcons(Entity target) {
+        return null;
     }
 }

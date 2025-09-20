@@ -5,11 +5,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.utils.Array;
 import com.eklepser.thelevel.util.Direction;
-import com.eklepser.thelevel.util.Layout;
 
 public class Entity extends Controllable implements Collidable {
     public Entity(Vector2 worldPos, int size, String textureName) {

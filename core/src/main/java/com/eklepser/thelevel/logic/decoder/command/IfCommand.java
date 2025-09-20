@@ -1,5 +1,9 @@
 package com.eklepser.thelevel.logic.decoder.command;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.eklepser.thelevel.logic.decoder.condition.Condition;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.collision.Entity;
@@ -31,5 +35,18 @@ public class IfCommand extends Command {
             System.out.println("EXECUTING COND CMD");
             command.execute(target);
         }
+    }
+
+    @Override
+    public Image[] getIcons(Entity target) {
+        Image commandImage = new Image(new Texture(Gdx.files.internal("ui/icon/if.png")));
+        Image conditionImage = condition.getIcon();
+        if (condition.check(target, zones)) {
+            Image conditionCommandImage = command.getIcons(target)[0];
+            return new Image[] {commandImage, conditionImage, conditionCommandImage};
+        }
+        commandImage.setColor(Color.DARK_GRAY);
+        conditionImage.setColor(Color.DARK_GRAY);
+        return new Image[] {commandImage, conditionImage};
     }
 }

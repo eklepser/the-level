@@ -6,18 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Direction {
-    UP(0, 1),
-    DOWN(0, -1),
-    LEFT(-1, 0),
-    RIGHT(1, 0),
-    FORWARD(0, 0);
+    UP(0, 1, "up"),
+    DOWN(0, -1, "down"),
+    LEFT(-1, 0, "left"),
+    RIGHT(1, 0, "right"),
+    FORWARD(0, 0, "forward");
 
     public final Vector2 vector;
+    public final String name;
     public static final List<Direction> orderedDirections = new ArrayList<>(List.of(
         UP, RIGHT, DOWN, LEFT));
 
-    Direction(float x, float y) {
+    Direction(float x, float y, String name) {
         this.vector = new Vector2(x, y);
+        this.name = name;
     }
 
     public static Direction getByName(String name) {

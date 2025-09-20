@@ -1,5 +1,6 @@
 package com.eklepser.thelevel.logic.decoder.condition;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.zone.Zone;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 public abstract class Condition {
     protected abstract boolean matches(Entity target, Zone zone);
+    public abstract Image getIcon();
 
     public boolean check(Entity target, List<Zone> zones) {
         for (Zone zone : zones) {

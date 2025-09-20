@@ -12,7 +12,7 @@ public class KeyboardProcessor extends InputAdapter {
 
     public KeyboardProcessor(GameScreen screen) {
         this.screen = screen;
-        editor = screen.getEditor();
+        editor = screen.getRootTable().getEditor();
     }
 
     @Override

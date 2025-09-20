@@ -71,4 +71,6 @@ public abstract class Controllable extends Actor {
     }
 
     public Vector2 getWorldPos() { return worldPos; }
+
+    public Direction getFacingDirection() { return facingDirection; }
 }

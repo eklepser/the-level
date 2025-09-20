@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.eklepser.thelevel.graphics.game.editor.CodeLine;
 import com.eklepser.thelevel.graphics.game.editor.Editor;
+import com.eklepser.thelevel.graphics.game.root.StatusRow;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.decoder.util.TimeController;
 import com.eklepser.thelevel.logic.decoder.util.TimedAction;
@@ -12,6 +13,7 @@ import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.logic.world.zone.Zone;
+import jdk.jshell.Snippet;
 
 import java.util.List;
 import java.util.Map;
@@ -26,12 +28,14 @@ public class Executor implements TimeController {
     private final List<Zone> zones;
     private float executionDelay = 0.5f;
     private int currentLineNum;
+    private final StatusRow statusRow;
 
     public Executor(Level level, LevelConfiguration conf, Editor editor) {
         targets = level.getEntities();
         zones = level.getZones();
         this.conf = conf;
         this.editor = editor;
+        statusRow = editor.getRootTable().getStatusRow();
         codeLines = editor.getCodeTable().getCodeLines();
         translator = new Translator(conf.getAllowedInstructions(), codeLines, this);
     }
@@ -65,6 +69,7 @@ public class Executor implements TimeController {
             int finalI = i;
             sequence.addAction(Actions.run(() -> setCompleting(finalI, codeLine)));
             sequence.addAction(new TimedAction(this));
+            sequence.addAction(Actions.run(() -> statusRow.update(currentCmd, target)));
             sequence.addAction(Actions.run(() -> codeLine.setCompleting(false)));
             sequence.addAction(Actions.run(() -> {
                 target.setAnimationSpeed(this.executionDelay / 4.0f);

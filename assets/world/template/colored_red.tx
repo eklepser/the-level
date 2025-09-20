@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <object width="23.8182" height="24.7273">
+  <properties>
+   <property name="color" value="red"/>
+   <property name="type" value="colored"/>
+  </properties>
+ </object>
+</template>

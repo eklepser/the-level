@@ -7,15 +7,12 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.graphics.game.editor.Editor;
 import com.eklepser.thelevel.graphics.game.editor.KeyboardProcessor;
+import com.eklepser.thelevel.graphics.game.root.RootTable;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Layout;
-
-import static com.eklepser.thelevel.util.Layout.EDITOR_MENU_SCALE;
 
 public class GameScreen extends ScreenAdapter {
     private final HelpWindow helpWindow;
@@ -23,8 +20,8 @@ public class GameScreen extends ScreenAdapter {
     private final Stage stage;
     private final Level level;
     private final GameField gameField;
-    private final Editor editor;
     private final InputMultiplexer multiplexer;
+    private final RootTable rootTable;
 
     public GameScreen(Game game, LevelConfiguration conf) {
         stage = new Stage(new FitViewport(
@@ -33,8 +30,9 @@ public class GameScreen extends ScreenAdapter {
         winWindow = new WinWindow(game);
 
         level = new Level(this, conf);
+        rootTable = new RootTable(level);
         gameField = new GameField(level);
-        editor = new Editor(this, level);
+
 
         multiplexer = new InputMultiplexer();
     }
@@ -46,10 +44,6 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void setupLayout() {
-        Table rootTable = new Table();
-        rootTable.setFillParent(true);
-        rootTable.add(editor).width(stage.getWidth() * EDITOR_MENU_SCALE).top().fillY();
-        rootTable.add().expand();
         stage.addActor(rootTable);
         stage.addActor(helpWindow);
         stage.addActor(winWindow);
@@ -78,12 +72,10 @@ public class GameScreen extends ScreenAdapter {
         stage.getViewport().update(width, height, true);
     }
 
+    public RootTable getRootTable() { return rootTable; }
+
     public HelpWindow getHelpWindow() {
         return helpWindow;
-    }
-
-    public Editor getEditor() {
-        return editor;
     }
 
     public WinWindow getWinWindow() { return winWindow; }

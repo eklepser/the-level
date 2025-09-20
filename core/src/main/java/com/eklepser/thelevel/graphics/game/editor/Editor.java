@@ -8,13 +8,14 @@ import com.eklepser.thelevel.graphics.game.editor.buttons.ClearButton;
 import com.eklepser.thelevel.graphics.game.editor.buttons.HelpButton;
 import com.eklepser.thelevel.graphics.game.editor.buttons.ResetButton;
 import com.eklepser.thelevel.graphics.game.editor.buttons.RunButton;
+import com.eklepser.thelevel.graphics.game.root.RootTable;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Resources;
 
 public class Editor extends Table {
-    private final GameScreen screen;
+    private final RootTable rootTable;
     private final Level level;
     private final LevelConfiguration conf;
     private final CodeTable codeTable;
@@ -25,8 +26,8 @@ public class Editor extends Table {
     private final ParametersTable parametersTable;
     private final ScrollPane codeScrollPane;
 
-    public Editor(GameScreen screen, Level level) {
-        this.screen = screen;
+    public Editor(RootTable rootTable, Level level) {
+        this.rootTable = rootTable;
         this.level = level;
         conf = level.getConf();
 
@@ -51,7 +52,6 @@ public class Editor extends Table {
     }
 
     private void setupLayout(ScrollPane codeScrollPane) {
-        add(new HelpButton(screen.getHelpWindow()));
         add(parametersTable).padBottom(10).colspan(3).fillX().padLeft(10);
 
         row().colspan(4).fillX().expandX();
@@ -84,9 +84,9 @@ public class Editor extends Table {
         statusLabel.setText("Status:\n" + status);
     }
 
-    public void stop() {
-        executor.stop();
-        statusLabel.setText("Status:\nEnd");
+    public void clearRunning() {
+        resetRunning();
+        codeTable.clearCode();
     }
 
     public void resetRunning() {
@@ -95,13 +95,16 @@ public class Editor extends Table {
             codeLine -> codeLine.setCompleting(false));
         executor.stop();
         statusLabel.setText("Status:\nReset");
+        rootTable.getStatusRow().clear();
         level.reset();
     }
 
-    public void clearRunning() {
-        resetRunning();
-        codeTable.clearCode();
+    public void stop() {
+        executor.stop();
+        statusLabel.setText("Status:\nEnd");
     }
+
+    public RootTable getRootTable() { return rootTable; }
 
     public Level getLevel() { return level; }
 

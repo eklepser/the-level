@@ -1,5 +1,6 @@
 package com.eklepser.thelevel.logic.decoder.command;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.collision.Entity;
 
@@ -7,6 +8,7 @@ import java.lang.reflect.Constructor;
 
 public abstract class Command {
     public abstract void execute(Entity target);
+    public abstract Image[] getIcons(Entity target);
 
     public static Command from(String commandName, String[] args, Executor executor) {
         Instruction instruction = Instruction.from(commandName);
