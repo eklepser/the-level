@@ -10,6 +10,8 @@ public enum Instruction {
         "l", "r", "left", "right"))),
     GOTO(GotoCommand.class, "goto", 1, "num", null),
     IF(IfCommand.class, "if", 0, "cond", new ArrayList<>(List.of("facing"))),
+    CLONE(CloneCommand.class, "clone", 1, "word", new ArrayList<>(List.of(
+        "u", "d", "l", "r", "up", "down", "left", "right", "forward", "f"))),
     TP(TeleportCommand.class, "#tp", 2, "num", null),
     END(EndCommand.class, "end", 0, "none",null),
     NONE(NoneCommand.class, "none", 0, "none", null);

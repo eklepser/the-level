@@ -22,10 +22,21 @@
     "cameraZoom": 1.67
   },
   {
+    "name": "Labyrinth",
+    "mapPath": "world/level/level3.tmx",
+    "codeLinesNum": 10,
+    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT", "IF"],
+    "startPosX": 1,
+    "startPosY": 1,
+    "width": 11,
+    "height": 11,
+    "cameraZoom": 1.33
+  },
+  {
     "name": "SandBox",
     "mapPath": "world/level/sandbox.tmx",
     "codeLinesNum": 50,
-    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT","TP", "IF"],
+    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT","CLONE","TP","IF"],
     "startPosX": 4,
     "startPosY": 3,
     "width": 20,

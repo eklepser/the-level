@@ -25,13 +25,14 @@ public class Executor implements TimeController {
     private final List<Entity> targets;
     private final List<Zone> zones;
     private float executionDelay = 0.5f;
+    private int currentLineNum;
 
     public Executor(Level level, LevelConfiguration conf, Editor editor) {
-        this.targets = level.getEntities();
-        this.zones = level.getZones();
+        targets = level.getEntities();
+        zones = level.getZones();
         this.conf = conf;
         this.editor = editor;
-        this.codeLines = editor.getCodeTable().getCodeLines();
+        codeLines = editor.getCodeTable().getCodeLines();
         translator = new Translator(conf.getAllowedInstructions(), codeLines, this);
     }
 
@@ -45,6 +46,8 @@ public class Executor implements TimeController {
     }
 
     public void execute(int start, Map<CodeLine, Command> codeMap) {
+        System.out.println("targets:");
+        System.out.println(targets);
         for (Entity target : targets) {
             target.clearActions();
             SequenceAction action = createSequenceAction(start, codeMap, target);
@@ -52,17 +55,17 @@ public class Executor implements TimeController {
         }
     }
 
-    private SequenceAction createSequenceAction(int start, Map<CodeLine, Command> codeMap, Entity target) {
+    public SequenceAction createSequenceAction(int start, Map<CodeLine, Command> codeMap, Entity target) {
         System.out.println("Running");
         SequenceAction sequence = new SequenceAction();
         for (int i = start; i < codeLines.size(); i++) {
-            CodeLine currentLine = codeLines.get(i);
-            Command currentCmd = codeMap.get(currentLine);
+            CodeLine codeLine = codeLines.get(i);
+            Command currentCmd = codeMap.get(codeLine);
             if (currentCmd == null) continue;
-
-            sequence.addAction(Actions.run(() -> currentLine.setCompleting(true)));
+            int finalI = i;
+            sequence.addAction(Actions.run(() -> setCompleting(finalI, codeLine)));
             sequence.addAction(new TimedAction(this));
-            sequence.addAction(Actions.run(() -> currentLine.setCompleting(false)));
+            sequence.addAction(Actions.run(() -> codeLine.setCompleting(false)));
             sequence.addAction(Actions.run(() -> {
                 target.setAnimationSpeed(this.executionDelay / 4.0f);
                 currentCmd.execute(target);
@@ -71,6 +74,11 @@ public class Executor implements TimeController {
         sequence.addAction(new TimedAction(this));
         sequence.addAction(Actions.run(editor::stop));
         return sequence;
+    }
+
+    private void setCompleting(int lineNum, CodeLine currentLine) {
+        currentLine.setCompleting(true);
+        currentLineNum = lineNum;
     }
 
     @Override
@@ -91,4 +99,8 @@ public class Executor implements TimeController {
     public Editor getEditor() { return editor; }
 
     public List<Zone> getZones() { return zones; }
+
+    public int getCurrentLineNum() {
+        return currentLineNum;
+    }
 }

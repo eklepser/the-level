@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.eklepser.thelevel.graphics.game.GameScreen;
 import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.world.zone.Wall;
 import com.eklepser.thelevel.logic.world.zone.Zone;
 import com.eklepser.thelevel.util.Layout;
 
@@ -18,6 +19,7 @@ public class Level {
     private final GameScreen playScreen;
     private final TiledMap map;
     private final List<Entity> entities;
+    private final List<Entity> entitiesToAdd;
     private final List<Rectangle> walls;
     private final List<Zone> zones;
 
@@ -27,9 +29,11 @@ public class Level {
         this.map = new TmxMapLoader().load(conf.mapPath());
 
         LevelLoader loader = new LevelLoader(this);
-        this.entities = new ArrayList<>();
-        this.walls = loader.loadWalls("walls");
-        this.zones =  loader.loadZones("zones");
+        entities = new ArrayList<>();
+        entitiesToAdd = new ArrayList<>();
+        walls = loader.loadWalls("walls");
+        zones =  loader.loadZones("zones");
+        walls.forEach(wall -> zones.add(new Wall(wall)));
         spawnEntity(conf.getStartPos().cpy());
     }
 
@@ -38,6 +42,12 @@ public class Level {
     }
 
     public void update(float delta) {
+        if (!entitiesToAdd.isEmpty()) {
+            entities.addAll(entitiesToAdd);
+            entitiesToAdd.clear();
+            System.out.println("entities:");
+            System.out.println(entities);
+        }
         entities.forEach(Entity::update);
         entities.forEach(entity -> entity.act(delta));
     }
@@ -55,6 +65,8 @@ public class Level {
     public LevelConfiguration getConf() { return conf; }
 
     public List<Entity> getEntities() { return entities; }
+
+    public List<Entity> getEntitiesToAdd() { return entitiesToAdd; }
 
     public List<Rectangle> getWalls() { return walls; }
 

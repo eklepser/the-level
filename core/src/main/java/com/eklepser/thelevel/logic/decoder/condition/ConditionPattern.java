@@ -5,7 +5,7 @@ import java.util.List;
 
 public enum ConditionPattern {
     FACING(FacingCondition.class, "facing", 1, "word", new ArrayList<>(List.of(
-        "r", "g", "b", "red", "green", "blue"))),
+        "r", "g", "b", "red", "green", "blue", "wall"))),
     NONE(FacingCondition.class, "none", 0, "none", null);
 
     public final Class<? extends Condition> conditionClass;

@@ -22,7 +22,7 @@
   "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
     "text-label": {
       "font": "default-font",
-      "fontColor": "white"
+      "fontColor": "gray"
     }
   },
 
@@ -39,14 +39,14 @@
   "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
     "default": {
       "font": "default-font",
-      "fontColor": "white",
+      "fontColor": "gray",
       "downFontColor": "gray",
       "up": "button-up",
       "down": "button-down"
     },
     "run-button": {
       "font": "default-font",
-      "fontColor": "white",
+      "fontColor": "gray",
       "downFontColor": "gray",
       "up": "button-up",
       "down": "button-down"

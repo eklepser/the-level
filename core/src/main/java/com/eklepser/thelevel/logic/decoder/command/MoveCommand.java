@@ -8,7 +8,7 @@ public class MoveCommand extends Command {
     private final Direction direction;
 
     public MoveCommand(String[] args, Executor executor) {
-        this.direction = Direction.getByName(args[0]);
+        direction = Direction.getByName(args[0]);
     }
 
     @Override

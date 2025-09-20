@@ -3,12 +3,13 @@ package com.eklepser.thelevel.graphics.game.editor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.eklepser.thelevel.util.Resources;
 
 public class CodeLine extends TextField {
-    final Color lineColor = Color.PURPLE;
+    private final Color lineColor = Color.PURPLE;
     private static final int MAX_LENGTH = 32;
 
     public CodeLine() {
@@ -26,5 +27,11 @@ public class CodeLine extends TextField {
     public void setCompleting(boolean isCompleting) {
         if (isCompleting) setColor(Color.WHITE);
         else setColor(lineColor);
+    }
+
+    private float getTextY(BitmapFont font) {
+        return getY() + getStyle().background.getTopHeight() +
+            (getHeight() - getStyle().background.getTopHeight() - getStyle().background.getBottomHeight()) / 2 +
+            font.getCapHeight() / 2;
     }
 }

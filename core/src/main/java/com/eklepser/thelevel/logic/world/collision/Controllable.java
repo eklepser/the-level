@@ -24,6 +24,13 @@ public abstract class Controllable extends Actor {
         this.sprite = new Sprite(texture);
     }
 
+    public Controllable(Vector2 worldPos, int size, Sprite sprite) {
+        this.worldPos = worldPos;
+        targetWorldPos.set(worldPos);
+        this.size = size;
+        this.sprite = sprite;
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         sprite.setPosition(getX(), getY());
