@@ -1,11 +1,14 @@
 package com.eklepser.thelevel.graphics.game.editor;
 
+import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.eklepser.thelevel.graphics.common.TextLabel;
 import com.eklepser.thelevel.graphics.game.editor.buttons.ClearButton;
 import com.eklepser.thelevel.graphics.game.editor.buttons.ResetButton;
 import com.eklepser.thelevel.graphics.game.editor.buttons.RunButton;
+import com.eklepser.thelevel.graphics.game.editor.buttons.ShowCommandsButton;
 import com.eklepser.thelevel.graphics.game.root.RootTable;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.level.Level;
@@ -23,6 +26,7 @@ public class Editor extends Table {
     private final Executor executor;
     private final TextLabel statusLabel;
     private final RunButton runButton;
+    private final ShowCommandsButton showCommandsButton;
     private final ParametersPanel parametersPanel;
     private final CommandsPanel commandsPanel;
     private final ScrollPane codeScrollPane;
@@ -45,14 +49,21 @@ public class Editor extends Table {
         runButton = new RunButton(this);
         parametersPanel = new ParametersPanel(executor);
         commandsPanel = new CommandsPanel(level.getConf());
+        showCommandsButton = new ShowCommandsButton(commandsPanel);
         setupLayout(codeScrollPane);
     }
 
     private void setupLayout(ScrollPane codeScrollPane) {
         // Setup elements:
-        Table commandsTable = new Table();
-        commandsTable.add(new TextLabel("Allowed commands:")).left().row();
-        commandsTable.add(commandsPanel).left();
+        Table commandsTable = new Table().left();
+        HorizontalGroup group = new HorizontalGroup();
+        group.addActor(new TextLabel("Allowed commands ("));
+        group.addActor(showCommandsButton);
+        group.addActor(new TextLabel("):"));
+
+        commandsTable.add(group).left();
+        commandsTable.row().colspan(2).fillY().expandY();
+        commandsTable.add(commandsPanel).left().fillY().expandY();
 
         // Adding elements:
         add(parametersPanel).padBottom(10).colspan(3).fillX().padLeft(10);
@@ -70,10 +81,7 @@ public class Editor extends Table {
 
         // commands panel
         row().padTop(10).colspan(3).padLeft(19);
-        add(commandsTable).left();
-//        TextLabel allowedCmdsLabel = new TextLabel("Allowed commands:\n" + conf.getAllowedInstructions());
-//        allowedCmdsLabel.setWrap(true);
-//        add(allowedCmdsLabel).fillX();
+        add(commandsTable).left().expandY().fillY();
 
         row().padTop(10).colspan(3).padLeft(19);
         add(statusLabel).fillX();
