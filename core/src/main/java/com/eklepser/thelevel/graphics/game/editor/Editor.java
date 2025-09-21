@@ -21,7 +21,6 @@ public class Editor extends Table {
     private final CodeTable codeTable;
     private final Executor executor;
     private final TextLabel statusLabel;
-    private final TextLabel hotKeysLabel;
     private final RunButton runButton;
     private final ParametersTable parametersTable;
     private final ScrollPane codeScrollPane;
@@ -39,12 +38,6 @@ public class Editor extends Table {
 
         statusLabel = new TextLabel("Status:\nNo status");
         statusLabel.setWrap(true);
-        hotKeysLabel = new TextLabel("""
-            Hotkeys:
-            F1 and F2 -> change speed
-            F4 or CTRL+\\ -> reset code
-            F5 or CTRL+ENTER -> run code
-            """);
 
         runButton = new RunButton(this);
         parametersTable = new ParametersTable(executor);
@@ -75,11 +68,11 @@ public class Editor extends Table {
         add().expandY().fillY();
 
         row().padTop(10).colspan(4).padLeft(19);
-        add(hotKeysLabel).fillX();
     }
 
     public void run() {
         resetRunning();
+        rootTable.getStatusRow().clear();
         String status = executor.runExecution();
         statusLabel.setText("Status:\n" + status);
     }
@@ -95,7 +88,6 @@ public class Editor extends Table {
             codeLine -> codeLine.setCompleting(false));
         executor.stop();
         statusLabel.setText("Status:\nReset");
-        rootTable.getStatusRow().clear();
         level.reset();
     }
 
