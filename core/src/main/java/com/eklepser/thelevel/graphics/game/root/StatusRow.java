@@ -6,42 +6,36 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Align;
 import com.eklepser.thelevel.graphics.common.TextLabel;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.world.collision.Entity;
-import com.eklepser.thelevel.util.Layout;
 
 import java.util.LinkedList;
 
 public class StatusRow extends Table {
 
     private final LinkedList<Actor[]> itemGroups = new LinkedList<>();
-    private final int itemsLimit = 100;
-    private final float fadingSpeed = 0.005f;
+    private final int itemsLimit = 999;
     private final Image startImage;
+    private final Image winImage;
 
     public StatusRow() {
         setHeight(32);
         setFillParent(true);
         add(new TextLabel("")).height(32);
         startImage = new Image(new Texture(Gdx.files.internal("ui/icon/start.png")));
+        winImage = new Image(new Texture(Gdx.files.internal("ui/icon/win.png")));
+        clear();
     }
 
     public void update(Command command, Entity target) {
+        int totalItems = itemGroups.stream()
+            .mapToInt(arr -> arr.length).sum();
+        if (totalItems >= itemsLimit) itemGroups.removeFirst();
+
         itemGroups.add(command.getIcons(target));
         clearChildren();
 
-        for (int i = 0; i < itemGroups.size(); i++) {
-            Actor[] group = itemGroups.get(i);
-            for (Actor actor : group) {
-                float coef = 1 - (float) (itemGroups.size() - i) * fadingSpeed;
-                actor.setColor(actor.getColor().r, actor.getColor().g, actor.getColor().b, coef);
-            }
-        }
-
-
-        add(startImage).size(32, 32).expand(false, false);
         for (Actor[] group : itemGroups) {
             add().padLeft(4);
             for (Actor item : group) {
@@ -55,6 +49,11 @@ public class StatusRow extends Table {
     public void clear() {
         clearChildren();
         itemGroups.clear();
-        add(new TextLabel("")).height(32);
+        itemGroups.add(new Actor[] {startImage});
+        add(startImage).size(32, 32).expand(false, false).padLeft(4);
+    }
+
+    public void win() {
+        add(winImage).size(32, 32).expand(false, false).padLeft(4);
     }
 }

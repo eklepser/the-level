@@ -33,7 +33,6 @@ public class GameScreen extends ScreenAdapter {
         rootTable = new RootTable(level);
         gameField = new GameField(level);
 
-
         multiplexer = new InputMultiplexer();
     }
 

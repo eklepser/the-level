@@ -3,6 +3,7 @@ package com.eklepser.thelevel.logic.world.zone;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.eklepser.thelevel.graphics.game.WinWindow;
+import com.eklepser.thelevel.logic.decoder.execution.Executor;
 
 public class WinZone extends Zone {
     private final WinWindow window;
@@ -22,11 +23,13 @@ public class WinZone extends Zone {
     public void onPossibleCollision() { }
 
     @Override
-    public void onCollision() {
+    public void onCollision(Executor executor) {
         if (!activated) {
             System.out.println("WIN COLLISION DETECTED");
-            window.toggle();
+            executor.win();
         }
         activated = true;
     }
+
+    public void setActivated(boolean activated) { this.activated = activated; }
 }

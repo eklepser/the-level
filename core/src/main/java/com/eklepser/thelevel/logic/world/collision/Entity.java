@@ -5,7 +5,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.util.Direction;
 
 public class Entity extends Controllable implements Collidable {
@@ -25,7 +28,7 @@ public class Entity extends Controllable implements Collidable {
     }
 
     @Override
-    public void onCollision() { }
+    public void onCollision(Executor executor) { }
 
     public void update()
     {
@@ -39,9 +42,15 @@ public class Entity extends Controllable implements Collidable {
     }
 
     private void move(Vector2 targetWorldPos) {
-        addAction(Actions.moveTo(
-            targetWorldPos.x * size, targetWorldPos.y * size, animationSpeed));
-        worldPos.set(targetWorldPos);
+        addAction(new SequenceAction(Actions.moveTo(
+        targetWorldPos.x * size, targetWorldPos.y * size, animationSpeed),
+        new Action() {
+            @Override
+            public boolean act(float delta) {
+                worldPos.set(targetWorldPos);
+                return true;
+            }
+        }));
     }
 
     private void hit(Direction direction) {

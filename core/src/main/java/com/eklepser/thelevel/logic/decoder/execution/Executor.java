@@ -1,5 +1,6 @@
 package com.eklepser.thelevel.logic.decoder.execution;
 
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
@@ -13,7 +14,6 @@ import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.logic.world.zone.Zone;
-import jdk.jshell.Snippet;
 
 import java.util.List;
 import java.util.Map;
@@ -86,13 +86,18 @@ public class Executor implements TimeController {
         currentLineNum = lineNum;
     }
 
-    @Override
-    public float getDelay() {
-        return executionDelay;
+    public void win() {
+        stop();
+        statusRow.win();
     }
 
     public void stop() {
         targets.forEach(Actor::clearActions);
+    }
+
+    @Override
+    public float getDelay() {
+        return executionDelay;
     }
 
     public void setExecutionSpeed(float executionSpeed) {

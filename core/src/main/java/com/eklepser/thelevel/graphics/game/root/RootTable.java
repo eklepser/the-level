@@ -13,9 +13,9 @@ public class RootTable extends Table {
     private final StatusRow statusRow;
 
     public RootTable(Level level) {
-        setDebug(true);
+        //setDebug(true);
         statusRow = new StatusRow();
-        this.editor = new Editor(this, level);;
+        editor = new Editor(this, level);;
         setFillParent(true);
 
         add(editor).width(VIEWPORT_WIDTH * EDITOR_MENU_SCALE).top().fillY();

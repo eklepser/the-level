@@ -12,6 +12,8 @@ import com.eklepser.thelevel.graphics.game.root.RootTable;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
+import com.eklepser.thelevel.logic.world.zone.WinZone;
+import com.eklepser.thelevel.logic.world.zone.Zone;
 import com.eklepser.thelevel.util.Resources;
 
 public class Editor extends Table {
@@ -88,12 +90,21 @@ public class Editor extends Table {
             codeLine -> codeLine.setCompleting(false));
         executor.stop();
         statusLabel.setText("Status:\nReset");
+        resetWin();
         level.reset();
     }
 
     public void stop() {
         executor.stop();
         statusLabel.setText("Status:\nEnd");
+    }
+
+    private void resetWin() {
+        for (Zone zone : level.getZones()) {
+            if (zone instanceof WinZone winZone) {
+                winZone.setActivated(false);
+            }
+        }
     }
 
     public RootTable getRootTable() { return rootTable; }

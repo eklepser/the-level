@@ -39,14 +39,14 @@ public class IfCommand extends Command {
 
     @Override
     public Image[] getIcons(Entity target) {
-        Image commandImage = new Image(new Texture(Gdx.files.internal("ui/icon/if.png")));
+        //Image commandImage = new Image(new Texture(Gdx.files.internal("ui/icon/if.png")));
         Image conditionImage = condition.getIcon();
         if (condition.check(target, zones)) {
             Image conditionCommandImage = command.getIcons(target)[0];
-            return new Image[] {commandImage, conditionImage, conditionCommandImage};
+            return new Image[] {conditionImage, conditionCommandImage};
         }
-        commandImage.setColor(Color.DARK_GRAY);
+        //commandImage.setColor(Color.DARK_GRAY);
         conditionImage.setColor(Color.DARK_GRAY);
-        return new Image[] {commandImage, conditionImage};
+        return new Image[] {conditionImage};
     }
 }
