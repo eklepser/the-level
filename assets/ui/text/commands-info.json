@@ -1,0 +1,44 @@
+[
+  {
+    "titleText": "/_1.5  MOVE [argument]",
+    "iconPath": "ui/icon/move.png",
+    "argsText": "/ Arguments: /gray u (up), r (right), d (down), l (left), f (forward)",
+    "descriptionText": "Description yoo"
+  },
+  {
+    "titleText": "/_1.5  ROT (ROTATE) [argument]",
+    "iconPath": "ui/icon/rot.png",
+    "argsText": "/ Arguments: /gray r (right), l (left)",
+    "descriptionText": "Description yoo"
+  },
+  {
+    "titleText": "/_1.5 GOTO [line number]",
+    "iconPath": "ui/icon/goto.png",
+    "argsText": "",
+    "descriptionText": "Description yoo"
+  },
+  {
+    "titleText": "/_1.5 IF [condition] [command]",
+    "iconPath": "ui/icon/if.png",
+    "argsText": "/ Conditions: /gray facing /red red, /green green, /blue blue, /gray wall",
+    "descriptionText": "Description yoo"
+  },
+  {
+    "titleText": "/_1.5 CLONE [argument]",
+    "iconPath": "ui/icon/clone.png",
+    "argsText": "/ Arguments: /gray u (up), r (right), d (down), l (left), f (forward)",
+    "descriptionText": "Description yoo"
+  },
+  {
+    "titleText": "/_1.5 END",
+    "iconPath": "ui/icon/end.png",
+    "argsText": "",
+    "descriptionText": "Description yoo"
+  },
+  {
+    "titleText": "/_1.5 NONE",
+    "iconPath": "ui/icon/none.png",
+    "argsText": "",
+    "descriptionText": "Description yoo"
+  }
+]

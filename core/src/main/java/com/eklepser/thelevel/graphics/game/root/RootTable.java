@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.eklepser.thelevel.graphics.common.TextLabel;
+import com.eklepser.thelevel.graphics.game.GameScreen;
 import com.eklepser.thelevel.graphics.game.editor.Editor;
 import com.eklepser.thelevel.logic.world.level.Level;
 
@@ -12,13 +13,15 @@ import static com.eklepser.thelevel.util.Layout.EDITOR_MENU_SCALE;
 import static com.eklepser.thelevel.util.Layout.VIEWPORT_WIDTH;
 
 public class RootTable extends Table {
+    private final GameScreen screen;
     private final ToolBar toolBar;
     private final TextLabel infoLabel;
     private final StatusBar statusBar;
     private final Editor editor;
 
-    public RootTable(Level level) {
-        toolBar = new ToolBar();
+    public RootTable(GameScreen screen, Level level) {
+        this.screen = screen;
+        toolBar = new ToolBar(this);
         infoLabel = new TextLabel("");
         statusBar = new StatusBar();
         editor = new Editor(this, level);
@@ -52,6 +55,8 @@ public class RootTable extends Table {
         row().colspan(2);
         add(statusTable).left().padRight(10).height(32);
     }
+
+    public GameScreen getScreen() { return screen; }
 
     public StatusBar getStatusRow() { return statusBar; }
 
