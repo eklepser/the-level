@@ -1,12 +1,11 @@
 package com.eklepser.thelevel.logic.decoder.execution;
 
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.eklepser.thelevel.graphics.game.editor.CodeLine;
 import com.eklepser.thelevel.graphics.game.editor.Editor;
-import com.eklepser.thelevel.graphics.game.root.StatusRow;
+import com.eklepser.thelevel.graphics.game.root.StatusBar;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.decoder.util.TimeController;
 import com.eklepser.thelevel.logic.decoder.util.TimedAction;
@@ -28,14 +27,14 @@ public class Executor implements TimeController {
     private final List<Zone> zones;
     private float executionDelay = 0.5f;
     private int currentLineNum;
-    private final StatusRow statusRow;
+    private final StatusBar statusbar;
 
     public Executor(Level level, LevelConfiguration conf, Editor editor) {
         targets = level.getEntities();
         zones = level.getZones();
         this.conf = conf;
         this.editor = editor;
-        statusRow = editor.getRootTable().getStatusRow();
+        statusbar = editor.getRootTable().getStatusRow();
         codeLines = editor.getCodeTable().getCodeLines();
         translator = new Translator(conf.getAllowedInstructions(), codeLines, this);
     }
@@ -50,8 +49,6 @@ public class Executor implements TimeController {
     }
 
     public void execute(int start, Map<CodeLine, Command> codeMap) {
-        System.out.println("targets:");
-        System.out.println(targets);
         for (Entity target : targets) {
             target.clearActions();
             SequenceAction action = createSequenceAction(start, codeMap, target);
@@ -69,7 +66,7 @@ public class Executor implements TimeController {
             int finalI = i;
             sequence.addAction(Actions.run(() -> setCompleting(finalI, codeLine)));
             sequence.addAction(new TimedAction(this));
-            sequence.addAction(Actions.run(() -> statusRow.update(currentCmd, target)));
+            sequence.addAction(Actions.run(() -> statusbar.update(currentCmd, target)));
             sequence.addAction(Actions.run(() -> codeLine.setCompleting(false)));
             sequence.addAction(Actions.run(() -> {
                 target.setAnimationSpeed(this.executionDelay / 4.0f);
@@ -88,7 +85,7 @@ public class Executor implements TimeController {
 
     public void win() {
         stop();
-        statusRow.win();
+        statusbar.win();
     }
 
     public void stop() {

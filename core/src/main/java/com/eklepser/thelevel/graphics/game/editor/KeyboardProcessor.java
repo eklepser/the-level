@@ -30,11 +30,11 @@ public class KeyboardProcessor extends InputAdapter {
             }
         }
         else if (keycode == Input.Keys.F1) {
-            editor.getParametersTable().setNextSliderValue(0);
+            editor.getParametersTable().setNextSliderValue();
             return true;
         }
         else if (keycode == Input.Keys.F2) {
-            editor.getParametersTable().setPrevSliderValue(0);
+            editor.getParametersTable().setPrevSliderValue();
             return true;
         }
         else if (keycode == Input.Keys.F4) {

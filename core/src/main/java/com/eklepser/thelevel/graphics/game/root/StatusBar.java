@@ -12,17 +12,13 @@ import com.eklepser.thelevel.logic.world.collision.Entity;
 
 import java.util.LinkedList;
 
-public class StatusRow extends Table {
-
+public class StatusBar extends Table {
     private final LinkedList<Actor[]> itemGroups = new LinkedList<>();
     private final int itemsLimit = 999;
     private final Image startImage;
     private final Image winImage;
 
-    public StatusRow() {
-        setHeight(32);
-        setFillParent(true);
-        add(new TextLabel("")).height(32);
+    public StatusBar() {
         startImage = new Image(new Texture(Gdx.files.internal("ui/icon/start.png")));
         winImage = new Image(new Texture(Gdx.files.internal("ui/icon/win.png")));
         clear();
@@ -32,10 +28,8 @@ public class StatusRow extends Table {
         int totalItems = itemGroups.stream()
             .mapToInt(arr -> arr.length).sum();
         if (totalItems >= itemsLimit) itemGroups.removeFirst();
-
         itemGroups.add(command.getIcons(target));
         clearChildren();
-
         for (Actor[] group : itemGroups) {
             add().padLeft(4);
             for (Actor item : group) {
