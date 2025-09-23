@@ -3,7 +3,6 @@ package com.eklepser.thelevel.logic.game.world.zone;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.eklepser.thelevel.logic.game.world.World;
-import com.eklepser.thelevel.logic.interaction.collision.Entity;
 
 public class LevelZone extends WorldZone {
     private final int levelId;
@@ -21,6 +20,6 @@ public class LevelZone extends WorldZone {
 
     @Override
     public void onCollision(World world) {
-        world.setSelectedLevel(levelId);
+        world.setSelectedLevelId(levelId);
     }
 }

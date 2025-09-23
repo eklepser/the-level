@@ -40,7 +40,7 @@ public class KeyboardProcessor extends InputAdapter {
             return true;
         }
         else if (keycode == Input.Keys.ENTER) {
-            game.setScreen(new LevelScreen(game, world.getLevelsInfo().get(0)));
+            game.setScreen(new LevelScreen(game, world.getSelectedLevelInfo()));
         }
         else if (keycode == Input.Keys.ESCAPE) {
             game.setScreen(new MenuScreen(game));

@@ -3,23 +3,22 @@ package com.eklepser.thelevel.logic.game.world;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
-import com.eklepser.thelevel.graphics.level.LevelScreen;
 import com.eklepser.thelevel.graphics.world.WorldScreen;
 import com.eklepser.thelevel.logic.game.common.GameArea;
 import com.eklepser.thelevel.logic.game.level.LevelConfiguration;
-import com.eklepser.thelevel.logic.game.level.LevelLoader;
 import com.eklepser.thelevel.logic.game.world.zone.WorldZone;
 import com.eklepser.thelevel.logic.interaction.collision.Entity;
 import com.eklepser.thelevel.util.ConfigurationLoader;
 import com.eklepser.thelevel.util.Layout;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class World extends GameArea {
     private final Entity player;
     private final List<Rectangle> walls;
     private final List<WorldZone> zones;
-    private int selectedLevel;
+    private int selectedLevelId;
     private final List<LevelConfiguration> levelsInfo;
 
     public World(WorldScreen screen, WorldConfiguration conf) {
@@ -71,15 +70,23 @@ public class World extends GameArea {
         return zones;
     }
 
-    public int getSelectedLevel() {
-        return selectedLevel;
+    public int getSelectedLevelId() {
+        return selectedLevelId;
     }
 
-    public void setSelectedLevel(int selectedLevel) {
-        this.selectedLevel = selectedLevel;
+    public void setSelectedLevelId(int selectedLevelId) {
+        this.selectedLevelId = selectedLevelId;
     }
 
     public List<LevelConfiguration> getLevelsInfo() {
         return levelsInfo;
+    }
+
+    public LevelConfiguration getSelectedLevelInfo() {
+        LevelConfiguration found = levelsInfo.stream()
+            .filter(conf -> conf.getId() == selectedLevelId)
+            .findFirst()
+            .orElse(null);
+        return found;
     }
 }

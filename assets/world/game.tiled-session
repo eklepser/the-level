@@ -84,7 +84,7 @@
         "level/world1.tmx"
     ],
     "project": "game.tiled-project",
-    "property.type": "int",
+    "property.type": "string",
     "recentFiles": [
         "level/level3.tmx",
         "level/gamefield.tsx",

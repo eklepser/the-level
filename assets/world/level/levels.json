@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "Level One",
     "mapPath": "world/level/level1.tmx",
     "codeLinesNum": 4,
@@ -11,6 +12,7 @@
     "cameraZoom": 1.67
   },
   {
+    "id": 2,
     "name": "Level Two",
     "mapPath": "world/level/level2.tmx",
     "codeLinesNum": 3,
@@ -22,17 +24,7 @@
     "cameraZoom": 1.67
   },
   {
-    "name": "Labyrinth",
-    "mapPath": "world/level/level3.tmx",
-    "codeLinesNum": 10,
-    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT", "IF"],
-    "startPosX": 1,
-    "startPosY": 1,
-    "width": 11,
-    "height": 11,
-    "cameraZoom": 1.33
-  },
-  {
+    "id": 3,
     "name": "Level Three",
     "mapPath": "world/level/level4.tmx",
     "codeLinesNum": 5,
@@ -44,6 +36,19 @@
     "cameraZoom": 1.67
   },
   {
+    "id": 4,
+    "name": "Labyrinth",
+    "mapPath": "world/level/level3.tmx",
+    "codeLinesNum": 10,
+    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT", "IF"],
+    "startPosX": 1,
+    "startPosY": 1,
+    "width": 11,
+    "height": 11,
+    "cameraZoom": 1.33
+  },
+  {
+    "id": 0,
     "name": "SandBox",
     "mapPath": "world/level/sandbox.tmx",
     "codeLinesNum": 50,

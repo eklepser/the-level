@@ -7,6 +7,7 @@ import com.eklepser.thelevel.logic.game.common.Configuration;
 import java.util.List;
 
 public final class LevelConfiguration extends Configuration {
+    private int id;
     private int codeLinesNum;
     private List<Instruction> allowedInstructions;
     private float startPosX;
@@ -14,6 +15,10 @@ public final class LevelConfiguration extends Configuration {
     private int width;
     private int height;
     private float cameraZoom;
+
+    public int getId() {
+        return id;
+    }
 
     public int codeLinesNum() { return codeLinesNum; }
 
