@@ -3,16 +3,16 @@ package com.eklepser.thelevel.logic.decoder.execution;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.eklepser.thelevel.graphics.game.editor.CodeLine;
-import com.eklepser.thelevel.graphics.game.editor.Editor;
-import com.eklepser.thelevel.graphics.game.root.StatusBar;
+import com.eklepser.thelevel.graphics.level.editor.CodeLine;
+import com.eklepser.thelevel.graphics.level.editor.Editor;
+import com.eklepser.thelevel.graphics.level.root.StatusBar;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.decoder.util.TimeController;
 import com.eklepser.thelevel.logic.decoder.util.TimedAction;
-import com.eklepser.thelevel.logic.world.collision.Entity;
-import com.eklepser.thelevel.logic.world.level.Level;
-import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
-import com.eklepser.thelevel.logic.world.zone.Zone;
+import com.eklepser.thelevel.logic.interaction.collision.Entity;
+import com.eklepser.thelevel.logic.game.level.Level;
+import com.eklepser.thelevel.logic.game.level.LevelConfiguration;
+import com.eklepser.thelevel.logic.game.level.zone.LevelZone;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +24,7 @@ public class Executor implements TimeController {
     private final Editor editor;
     private Map<CodeLine, Command> codeMap;
     private final List<Entity> targets;
-    private final List<Zone> zones;
+    private final List<LevelZone> zones;
     private float executionDelay = 0.5f;
     private int currentLineNum;
     private final StatusBar statusbar;
@@ -34,7 +34,7 @@ public class Executor implements TimeController {
         zones = level.getZones();
         this.conf = conf;
         this.editor = editor;
-        statusbar = editor.getRootTable().getStatusRow();
+        statusbar = editor.getRootTable().getStatusBar();
         codeLines = editor.getCodeTable().getCodeLines();
         translator = new Translator(conf.getAllowedInstructions(), codeLines, this);
     }
@@ -105,7 +105,7 @@ public class Executor implements TimeController {
 
     public Editor getEditor() { return editor; }
 
-    public List<Zone> getZones() { return zones; }
+    public List<LevelZone> getZones() { return zones; }
 
     public int getCurrentLineNum() {
         return currentLineNum;

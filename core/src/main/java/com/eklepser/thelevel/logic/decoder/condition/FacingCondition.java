@@ -3,10 +3,10 @@ package com.eklepser.thelevel.logic.decoder.condition;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.eklepser.thelevel.logic.world.collision.Entity;
-import com.eklepser.thelevel.logic.world.zone.ColoredZone;
-import com.eklepser.thelevel.logic.world.zone.Wall;
-import com.eklepser.thelevel.logic.world.zone.Zone;
+import com.eklepser.thelevel.logic.interaction.collision.Entity;
+import com.eklepser.thelevel.logic.game.level.zone.ColoredZone;
+import com.eklepser.thelevel.logic.game.level.zone.Wall;
+import com.eklepser.thelevel.logic.game.level.zone.LevelZone;
 
 public class FacingCondition extends Condition {
     private final String targetObject;
@@ -19,7 +19,7 @@ public class FacingCondition extends Condition {
     }
 
     @Override
-    public boolean matches(Entity target, Zone zone) {
+    public boolean matches(Entity target, LevelZone zone) {
         if (targetObject.equals("wall")) {
             System.out.println("wall");
             if ((zone instanceof Wall))

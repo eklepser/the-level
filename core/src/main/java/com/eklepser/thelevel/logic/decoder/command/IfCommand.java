@@ -1,13 +1,11 @@
 package com.eklepser.thelevel.logic.decoder.command;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.eklepser.thelevel.logic.decoder.condition.Condition;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
-import com.eklepser.thelevel.logic.world.collision.Entity;
-import com.eklepser.thelevel.logic.world.zone.Zone;
+import com.eklepser.thelevel.logic.interaction.collision.Entity;
+import com.eklepser.thelevel.logic.game.level.zone.LevelZone;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,7 +13,7 @@ import java.util.List;
 public class IfCommand extends Command {
     private final Condition condition;
     private final Command command;
-    private final List<Zone> zones;
+    private final List<LevelZone> zones;
 
     public IfCommand(String[] args, Executor executor) {
         String conditionName = args[0].toLowerCase();

@@ -1,0 +1,11 @@
+[
+  {
+    "name": "World 1",
+    "mapPath": "world/level/world1.tmx",
+    "startPosX": 6,
+    "startPosY": 1,
+    "width": 13,
+    "height": 13,
+    "cameraZoom": 1.67
+  }
+]

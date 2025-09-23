@@ -1,12 +1,12 @@
 [
   {
-    "titleText": "/_1.5  MOVE [argument]",
+    "titleText": "/_1.5 MOVE [argument]",
     "iconPath": "ui/icon/move.png",
     "argsText": "/ Arguments: /gray u (up), r (right), d (down), l (left), f (forward)",
     "descriptionText": "Description yoo"
   },
   {
-    "titleText": "/_1.5  ROT (ROTATE) [argument]",
+    "titleText": "/_1.5 ROT (ROTATE) [argument]",
     "iconPath": "ui/icon/rot.png",
     "argsText": "/ Arguments: /gray r (right), l (left)",
     "descriptionText": "Description yoo"

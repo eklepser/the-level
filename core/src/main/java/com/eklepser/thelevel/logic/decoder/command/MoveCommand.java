@@ -3,7 +3,7 @@ package com.eklepser.thelevel.logic.decoder.command;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.interaction.collision.Entity;
 import com.eklepser.thelevel.util.Direction;
 
 public class MoveCommand extends Command {
