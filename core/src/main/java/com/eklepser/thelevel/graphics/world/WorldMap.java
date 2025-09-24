@@ -3,8 +3,7 @@ package com.eklepser.thelevel.graphics.world;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.eklepser.thelevel.logic.game.world.World;
-import com.eklepser.thelevel.logic.interaction.collision.LevelCollisionManager;
+import com.eklepser.thelevel.logic.world.World;
 import com.eklepser.thelevel.logic.interaction.collision.WorldCollisionManager;
 import com.eklepser.thelevel.util.Layout;
 

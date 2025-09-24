@@ -1,12 +1,12 @@
-package com.eklepser.thelevel.logic.game.world;
+package com.eklepser.thelevel.logic.world;
 
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.eklepser.thelevel.logic.game.common.GameArea;
-import com.eklepser.thelevel.logic.game.world.zone.LevelZone;
-import com.eklepser.thelevel.logic.game.world.zone.WorldZone;
+import com.eklepser.thelevel.logic.world.zone.LevelZone;
+import com.eklepser.thelevel.logic.world.zone.WorldZone;
 
 import java.util.ArrayList;
 import java.util.List;

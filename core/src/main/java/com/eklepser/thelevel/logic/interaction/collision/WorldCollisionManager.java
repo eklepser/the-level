@@ -1,8 +1,8 @@
 package com.eklepser.thelevel.logic.interaction.collision;
 
 import com.badlogic.gdx.math.Rectangle;
-import com.eklepser.thelevel.logic.game.world.World;
-import com.eklepser.thelevel.logic.game.world.zone.WorldZone;
+import com.eklepser.thelevel.logic.world.World;
+import com.eklepser.thelevel.logic.world.zone.WorldZone;
 
 import java.util.List;
 

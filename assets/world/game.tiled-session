@@ -5,9 +5,9 @@
     },
     "activeFile": "level/world1.tmx",
     "expandedProjectPaths": [
+        "level",
         "template",
-        ".",
-        "level"
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -63,11 +63,11 @@
             }
         },
         "level/world1.tmx": {
-            "scale": 2,
-            "selectedLayer": 1,
+            "scale": 3,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 223.75,
-                "y": 193.25
+                "x": 196.49999999999997,
+                "y": 262.8333333333333
             }
         }
     },

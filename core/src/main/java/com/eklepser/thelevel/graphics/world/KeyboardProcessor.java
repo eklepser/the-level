@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.eklepser.thelevel.graphics.level.LevelScreen;
 import com.eklepser.thelevel.graphics.menu.MenuScreen;
-import com.eklepser.thelevel.logic.game.world.World;
+import com.eklepser.thelevel.logic.world.World;
 import com.eklepser.thelevel.logic.interaction.collision.Entity;
 import com.eklepser.thelevel.util.Direction;
 

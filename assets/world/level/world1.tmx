@@ -53,7 +53,7 @@
   </object>
   <object id="27" x="198.667" y="230" width="20.3333" height="20">
    <properties>
-    <property name="id" type="int" value="3"/>
+    <property name="id" type="int" value="4"/>
     <property name="type" value="level"/>
    </properties>
   </object>

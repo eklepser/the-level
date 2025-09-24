@@ -1,7 +1,7 @@
-package com.eklepser.thelevel.logic.game.world.zone;
+package com.eklepser.thelevel.logic.world.zone;
 
 import com.badlogic.gdx.math.Rectangle;
-import com.eklepser.thelevel.logic.game.world.World;
+import com.eklepser.thelevel.logic.world.World;
 
 public abstract class WorldZone {
     private final Rectangle rect;

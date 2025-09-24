@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.logic.game.world.WorldConfiguration;
-import com.eklepser.thelevel.logic.game.world.World;
+import com.eklepser.thelevel.logic.world.WorldConfiguration;
+import com.eklepser.thelevel.logic.world.World;
 import com.eklepser.thelevel.util.Layout;
 
 public class WorldScreen extends ScreenAdapter {

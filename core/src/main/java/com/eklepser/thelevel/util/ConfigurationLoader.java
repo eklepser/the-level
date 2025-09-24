@@ -3,7 +3,7 @@ package com.eklepser.thelevel.util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Json;
 import com.eklepser.thelevel.logic.game.level.LevelConfiguration;
-import com.eklepser.thelevel.logic.game.world.WorldConfiguration;
+import com.eklepser.thelevel.logic.world.WorldConfiguration;
 
 import java.util.ArrayList;
 
