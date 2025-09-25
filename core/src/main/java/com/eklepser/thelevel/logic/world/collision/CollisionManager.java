@@ -47,7 +47,6 @@ public class CollisionManager {
         for (Zone zone : zones) {
             Rectangle zoneRect = zone.getRect();
             if (entityRect.overlaps(zoneRect)) {
-                System.out.println("ZONE");
                 zone.onCollision(entity);
             }
         }

@@ -39,6 +39,13 @@ public class WorldProcessor extends InputAdapter {
             return true;
         }
         else if (keycode == Input.Keys.ENTER) {
+            if (world.getSelectedLevelId() != 0) {
+                Level level = new Level(world.getSelectedLevelConfig(), game);
+                game.setScreen(level.getScreen());
+            }
+        }
+        else if (keycode == Input.Keys.F1) {
+            world.setSelectedLevelId(0);
             Level level = new Level(world.getSelectedLevelConfig(), game);
             game.setScreen(level.getScreen());
         }

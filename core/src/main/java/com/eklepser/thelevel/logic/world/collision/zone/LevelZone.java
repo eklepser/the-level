@@ -23,6 +23,9 @@ public class LevelZone extends Zone {
 
     @Override
     public void onCollision(Entity entity) {
-        world.setSelectedLevelId(levelId);
+        if (world.getSelectedLevelId() != levelId) {
+            world.setSelectedLevelId(levelId);
+            world.getScreen().getRoot().getSelectingLayout().update();
+        }
     }
 }

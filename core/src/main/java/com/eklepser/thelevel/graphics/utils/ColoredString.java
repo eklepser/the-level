@@ -20,6 +20,12 @@ public class ColoredString extends HorizontalGroup {
         labels.forEach(this::addActor);
     }
 
+    public ColoredString() {
+        this.text = "";
+        this.font = Resources.getSkin().getFont("default");
+        labels = new ArrayList<>();
+    }
+
     private List<TextLabel> parseText(String text) {
         String[] parts = text.split("/");
         List<TextLabel> labels = new ArrayList<>();
@@ -61,5 +67,13 @@ public class ColoredString extends HorizontalGroup {
         };
     }
 
+    // Getters & setters:
     public String getText() { return text; }
+
+    public void setText(String text) {
+        labels.forEach(this::removeActor);
+        labels.clear();
+        labels.addAll(parseText(text));
+        labels.forEach(this::addActor);
+    }
 }

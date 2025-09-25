@@ -4,7 +4,7 @@
     "name": "Level One",
     "mapName": "level1.tmx",
     "codeLinesNum": 4,
-    "allowedInstructions": ["NONE","END","MOVE"],
+    "allowedInstructions": ["MOVE"],
     "startPosX": 2,
     "startPosY": 2,
     "cameraZoom": 1.67
@@ -14,7 +14,7 @@
     "name": "Level Two",
     "mapName": "level2.tmx",
     "codeLinesNum": 3,
-    "allowedInstructions": ["NONE","END","MOVE","GOTO"],
+    "allowedInstructions": ["MOVE","GOTO"],
     "startPosX": 2,
     "startPosY": 2,
     "cameraZoom": 1.67
@@ -24,7 +24,7 @@
     "name": "Level Three",
     "mapName": "level4.tmx",
     "codeLinesNum": 5,
-    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT","IF"],
+    "allowedInstructions": ["MOVE","GOTO","ROT","IF"],
     "startPosX": 2,
     "startPosY": 7,
     "cameraZoom": 1.67
@@ -34,7 +34,7 @@
     "name": "Labyrinth",
     "mapName": "level3.tmx",
     "codeLinesNum": 10,
-    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT", "IF"],
+    "allowedInstructions": ["MOVE","GOTO","ROT", "IF"],
     "startPosX": 1,
     "startPosY": 1,
     "cameraZoom": 1.33
@@ -44,7 +44,7 @@
     "name": "SandBox",
     "mapName": "sandbox.tmx",
     "codeLinesNum": 50,
-    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT","IF"],
+    "allowedInstructions": ["MOVE","GOTO","ROT","IF"],
     "startPosX": 4,
     "startPosY": 3,
     "cameraZoom": 0.8

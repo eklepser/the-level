@@ -51,18 +51,7 @@ public class EditorLayout extends Layout {
 
     @Override
     protected void setup() {
-        // Setup elements:
-        Table commandsTable = new Table().left();
-        HorizontalGroup group = new HorizontalGroup();
-        group.addActor(new TextLabel("Allowed commands ("));
-        group.addActor(showCommandsButton);
-        group.addActor(new TextLabel("):"));
-
-        commandsTable.add(group).left();
-        commandsTable.row().colspan(2).fillY().expandY();
-        commandsTable.add(commandsLayout).left().fillY().expandY();
-
-        // Adding elements:
+        // parameters menu
         add(parametersLayout).padBottom(10).colspan(3).fillX().padLeft(10);
 
         // code panel
@@ -76,9 +65,19 @@ public class EditorLayout extends Layout {
         add(new ClearButton(this)).fillX().padRight(10).padLeft(10);
 
         // commands panel
+        Table commandsTable = new Table().left();
+        HorizontalGroup group = new HorizontalGroup();
+        group.addActor(new TextLabel("Allowed commands ("));
+        group.addActor(showCommandsButton);
+        group.addActor(new TextLabel("):"));
+        commandsTable.add(group).left();
+        commandsTable.row().colspan(2).fillY().expandY();
+        commandsTable.add(commandsLayout).left().fillY().expandY();
+
         row().padTop(10).colspan(3).padLeft(19);
         add(commandsTable).left().expandY().fillY();
 
+        // status label
         row().padTop(10).colspan(3).padLeft(19);
         add(statusLabel).fillX();
 

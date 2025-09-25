@@ -1,16 +1,16 @@
 package com.eklepser.thelevel.logic.world.world;
 
 import com.badlogic.gdx.Game;
+import com.eklepser.thelevel.graphics.Layout;
 import com.eklepser.thelevel.graphics.game.world.WorldScreen;
+import com.eklepser.thelevel.logic.world.collision.Collidable;
 import com.eklepser.thelevel.logic.world.collision.CollisionContext;
 import com.eklepser.thelevel.logic.world.collision.CollisionManager;
-import com.eklepser.thelevel.logic.world.entity.Entity;
-import com.eklepser.thelevel.logic.world.collision.Collidable;
 import com.eklepser.thelevel.logic.world.common.Configuration;
 import com.eklepser.thelevel.logic.world.common.GameMap;
-import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.logic.world.common.MapLoader;
-import com.eklepser.thelevel.graphics.Layout;
+import com.eklepser.thelevel.logic.world.entity.Entity;
+import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Resources;
 
 import java.util.ArrayList;
