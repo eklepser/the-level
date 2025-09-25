@@ -8,6 +8,5 @@ import com.eklepser.thelevel.logic.world.level.WorldProcessor;
 public class WorldScreen extends GameScreen {
     public WorldScreen(Game game, World world) {
         super(game, world);
-        inputMultiplexer.addProcessor(new WorldProcessor(game,world));
     }
 }

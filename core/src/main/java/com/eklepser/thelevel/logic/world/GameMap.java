@@ -1,13 +1,20 @@
 package com.eklepser.thelevel.logic.world;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.eklepser.thelevel.graphics.level.LevelScreen;
+import com.eklepser.thelevel.logic.world.level.MapLoader;
+import com.eklepser.thelevel.logic.world.zone.Collidable;
 import com.eklepser.thelevel.util.Layout;
 
+import java.util.List;
+
 public abstract class GameMap {
+    protected final Game game;
     protected final Configuration config;
     protected final TiledMap map;
     protected final OrthographicCamera camera;
@@ -15,7 +22,8 @@ public abstract class GameMap {
     protected final Batch batch;
 
     // GameMap common constructor:
-    public GameMap(Configuration config) {
+    public GameMap(Configuration config, Game game) {
+        this.game = game;
         this.config = config;
 
         // Map setup:

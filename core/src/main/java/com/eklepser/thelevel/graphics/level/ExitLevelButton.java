@@ -18,7 +18,7 @@ public class ExitLevelButton extends TextButton {
                 System.out.println("Exit");
                 WorldConfiguration worldConfig = Configuration.from(
                     WorldConfiguration.class, "world/world.json").get(0);
-                game.setScreen(new WorldScreen(game, new World(worldConfig)));
+                game.setScreen(new World(worldConfig, game).getScreen());
             }
         });
     }

@@ -18,7 +18,7 @@ public class StartButton extends TextButton {
             public void clicked(InputEvent event, float x, float y) {
                 WorldConfiguration worldConfig = Configuration.from(
                     WorldConfiguration.class, "world/world.json").get(0);
-                game.setScreen(new WorldScreen(game, new World(worldConfig)));
+                game.setScreen(new World(worldConfig, game).getScreen());
             }
         });
     }
