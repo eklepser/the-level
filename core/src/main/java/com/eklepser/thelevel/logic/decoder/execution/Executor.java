@@ -9,10 +9,10 @@ import com.eklepser.thelevel.graphics.level.root.StatusBar;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.decoder.util.TimeController;
 import com.eklepser.thelevel.logic.decoder.util.TimedAction;
-import com.eklepser.thelevel.logic.interaction.collision.Entity;
-import com.eklepser.thelevel.logic.game.level.Level;
-import com.eklepser.thelevel.logic.game.level.LevelConfiguration;
-import com.eklepser.thelevel.logic.game.level.zone.LevelZone;
+import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.world.level.Level;
+import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
+import com.eklepser.thelevel.logic.world.zone.Collidable;
 
 import java.util.List;
 import java.util.Map;
@@ -24,19 +24,19 @@ public class Executor implements TimeController {
     private final Editor editor;
     private Map<CodeLine, Command> codeMap;
     private final List<Entity> targets;
-    private final List<LevelZone> zones;
+    private final List<Collidable> zones;
     private float executionDelay = 0.5f;
     private int currentLineNum;
     private final StatusBar statusbar;
 
     public Executor(Level level, LevelConfiguration conf, Editor editor) {
         targets = level.getEntities();
-        zones = level.getZones();
+        zones = level.getCollidables();
         this.conf = conf;
         this.editor = editor;
         statusbar = editor.getRootTable().getStatusBar();
         codeLines = editor.getCodeTable().getCodeLines();
-        translator = new Translator(conf.getAllowedInstructions(), codeLines, this);
+        translator = new Translator(conf.allowedInstructions, codeLines, this);
     }
 
     public String runExecution() {
@@ -105,7 +105,7 @@ public class Executor implements TimeController {
 
     public Editor getEditor() { return editor; }
 
-    public List<LevelZone> getZones() { return zones; }
+    public List<Collidable> getZones() { return zones; }
 
     public int getCurrentLineNum() {
         return currentLineNum;

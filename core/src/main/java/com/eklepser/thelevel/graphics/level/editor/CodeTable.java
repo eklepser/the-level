@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
 import com.eklepser.thelevel.graphics.common.TextLabel;
-import com.eklepser.thelevel.logic.game.level.LevelConfiguration;
+import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Direction;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class CodeTable extends Table {
 
     public void setupLayout(ScrollPane scrollPane) {
         codeScrollPane = scrollPane;
-        createCodeLines(conf.codeLinesNum());
+        createCodeLines(conf.codeLinesNum);
     }
 
     private void createCodeLines(int linesAmount) {

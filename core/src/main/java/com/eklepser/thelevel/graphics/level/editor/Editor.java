@@ -10,10 +10,10 @@ import com.eklepser.thelevel.graphics.level.editor.buttons.RunButton;
 import com.eklepser.thelevel.graphics.level.editor.buttons.ShowCommandsButton;
 import com.eklepser.thelevel.graphics.level.root.RootTable;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
-import com.eklepser.thelevel.logic.game.level.Level;
-import com.eklepser.thelevel.logic.game.level.LevelConfiguration;
-import com.eklepser.thelevel.logic.game.level.zone.WinZone;
-import com.eklepser.thelevel.logic.game.level.zone.LevelZone;
+import com.eklepser.thelevel.logic.world.level.Level;
+import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
+import com.eklepser.thelevel.logic.world.zone.WinZone;
+import com.eklepser.thelevel.logic.world.zone.Collidable;
 import com.eklepser.thelevel.util.Layout;
 import com.eklepser.thelevel.util.Resources;
 
@@ -34,7 +34,7 @@ public class Editor extends Table {
     public Editor(RootTable rootTable, Level level) {
         this.rootTable = rootTable;
         this.level = level;
-        conf = (LevelConfiguration) level.getConf();
+        conf = (LevelConfiguration) level.getConfig();
 
         codeTable = new CodeTable(this, conf);
         codeScrollPane = new ScrollPane(codeTable, Resources.getSkin());
@@ -117,7 +117,7 @@ public class Editor extends Table {
     }
 
     private void resetWin() {
-        for (LevelZone zone : level.getZones()) {
+        for (Collidable zone : level.getCollidables()) {
             if (zone instanceof WinZone winZone) {
                 winZone.setActivated(false);
             }

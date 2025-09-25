@@ -57,6 +57,7 @@
     "startPosY": 3,
     "width": 20,
     "height": 20,
-    "cameraZoom": 0.8
+    "cameraZoom": 0.8,
+    "cameraOffsetX": -400
   }
 ]

@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.logic.interaction.collision;
+package com.eklepser.thelevel.logic.world.collision;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.util.Direction;
 
 public class Entity extends Controllable {
@@ -20,6 +19,11 @@ public class Entity extends Controllable {
     public Entity(Vector2 worldPos, int size, Sprite sprite) {
         super(worldPos, size, sprite);
         setPosition(worldPos.x * size, worldPos.y * size);
+    }
+
+    public Entity(int worldPosX, int worldPosY, int size, String textureName) {
+        super(new Vector2(worldPosX, worldPosY), size, new Texture(Gdx.files.internal(textureName)));
+        setPosition(worldPosX * size, worldPosY * size);
     }
 
     public void update()

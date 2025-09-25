@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.logic.interaction.collision;
+package com.eklepser.thelevel.logic.world.collision;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;

@@ -1,21 +1,20 @@
-package com.eklepser.thelevel.graphics.world;
+package com.eklepser.thelevel.logic.world.level;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.eklepser.thelevel.graphics.level.LevelScreen;
 import com.eklepser.thelevel.graphics.menu.MenuScreen;
-import com.eklepser.thelevel.logic.world.World;
-import com.eklepser.thelevel.logic.interaction.collision.Entity;
+import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.util.Direction;
 
-public class KeyboardProcessor extends InputAdapter {
+public class WorldProcessor extends InputAdapter {
     private final Game game;
     private final World world;
     private final Entity player;
     private int previousKey;
 
-    public KeyboardProcessor(Game game, World world) {
+    public WorldProcessor(Game game, World world) {
         this.game = game;
         this.world = world;
         this.player = world.getPlayer();
@@ -40,7 +39,8 @@ public class KeyboardProcessor extends InputAdapter {
             return true;
         }
         else if (keycode == Input.Keys.ENTER) {
-            game.setScreen(new LevelScreen(game, world.getSelectedLevelInfo()));
+            Level level = new Level(world.getSelectedLevelConfig(), game);
+            game.setScreen(level.getScreen());
         }
         else if (keycode == Input.Keys.ESCAPE) {
             game.setScreen(new MenuScreen(game));

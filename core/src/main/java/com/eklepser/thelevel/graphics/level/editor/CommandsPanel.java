@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.eklepser.thelevel.graphics.common.TextLabel;
 import com.eklepser.thelevel.logic.decoder.command.Instruction;
-import com.eklepser.thelevel.logic.game.level.LevelConfiguration;
+import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class CommandsPanel extends Table {
 
 
     public CommandsPanel(LevelConfiguration conf) {
-        allowedInstructions = conf.getAllowedInstructions();
+        allowedInstructions = conf.allowedInstructions;
         loadIcons(allowedInstructions, false);
     }
 

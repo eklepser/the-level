@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.eklepser.thelevel.graphics.common.TextLabel;
 import com.eklepser.thelevel.graphics.level.LevelScreen;
 import com.eklepser.thelevel.graphics.level.editor.Editor;
-import com.eklepser.thelevel.logic.game.level.Level;
+import com.eklepser.thelevel.logic.world.level.Level;
 
 import static com.eklepser.thelevel.util.Layout.EDITOR_MENU_SCALE;
 import static com.eklepser.thelevel.util.Layout.VIEWPORT_WIDTH;
@@ -30,7 +30,7 @@ public class RootTable extends Table {
 
     private void setupLayout() {
         // Setup elements:
-        infoLabel.setText(editor.getLevel().getConf().getName());
+        infoLabel.setText(editor.getLevel().getConfig().name);
 
         statusBar.left();
         ScrollPane scrollPane = new ScrollPane(statusBar);

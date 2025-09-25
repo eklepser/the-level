@@ -1,30 +1,25 @@
-package com.eklepser.thelevel.logic.game.level.zone;
+package com.eklepser.thelevel.logic.world.zone;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 
-public class ColoredZone extends LevelZone {
+public class ColoredZone extends Collidable {
     private final String colorName;
 
-    public ColoredZone(Rectangle rect, String colorName) {
+    public ColoredZone(Rectangle rect, Executor executor, String colorName) {
         super(rect);
         this.colorName = colorName;
     }
 
-    public static ColoredZone from(RectangleMapObject rectObj) {
+    public static ColoredZone from(RectangleMapObject rectObj, Executor executor) {
         Rectangle rect = rectObj.getRectangle();
         String color = rectObj.getProperties().get("color").toString();
-        return new ColoredZone(rect, color);
+        return new ColoredZone(rect, executor, color);
     }
 
     @Override
-    public void onPossibleCollision() {
-        System.out.println("Colored Zone possible collision");
-    }
-
-    @Override
-    public void onCollision(Executor executor) {
+    public void onCollision() {
         System.out.println("Colored zone collision!");
     }
 
