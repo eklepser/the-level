@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Level One",
+    "name": "/_3 Level One",
     "mapName": "level1.tmx",
     "codeLinesNum": 4,
     "allowedInstructions": ["MOVE"],
@@ -11,7 +11,7 @@
   },
   {
     "id": 2,
-    "name": "Level Two",
+    "name": "/_3 Level Two",
     "mapName": "level2.tmx",
     "codeLinesNum": 3,
     "allowedInstructions": ["MOVE","GOTO"],
@@ -21,7 +21,7 @@
   },
   {
     "id": 3,
-    "name": "Level Three",
+    "name": "/_3 Level Three",
     "mapName": "level4.tmx",
     "codeLinesNum": 5,
     "allowedInstructions": ["MOVE","GOTO","ROT","IF"],
@@ -31,7 +31,7 @@
   },
   {
     "id": 4,
-    "name": "Labyrinth",
+    "name": "/_3 Labyrinth",
     "mapName": "level3.tmx",
     "codeLinesNum": 10,
     "allowedInstructions": ["MOVE","GOTO","ROT", "IF"],
@@ -41,7 +41,7 @@
   },
   {
     "id": 0,
-    "name": "SandBox",
+    "name": "/_3 SandBox",
     "mapName": "sandbox.tmx",
     "codeLinesNum": 50,
     "allowedInstructions": ["MOVE","GOTO","ROT","IF"],

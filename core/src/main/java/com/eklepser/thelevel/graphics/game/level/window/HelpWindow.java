@@ -38,22 +38,27 @@ public class HelpWindow extends Window {
         setPosition(editorWidth, 0);
 
         for (CommandInfo info : commandInfos) {
-            commandsTable.add(getCommandPanel(info)).pad(10).expand().left().row();
+            commandsTable.add(getCommandPanel(info)).pad(10).expand().left().fillX().row();
         }
 
-        add(scrollPane);
+        add(scrollPane).left();
 
         row();
         add(exitLevelButton).width(Layout.VIEWPORT_WIDTH / 4.0f)
-            .height(Layout.VIEWPORT_HEIGHT / 16.0f).padBottom(40);
+            .height(Layout.VIEWPORT_HEIGHT / 16.0f).pad(30, 10, 30, 10);
         setVisible(false);
         setColor(0.5f, 0, 0.75f, 0.9f);
     }
 
     private Table getCommandPanel(CommandInfo info) {
-        ColoredString title = new ColoredString(info.getTitleText());
-        Image icon = new Image(new Texture(Gdx.files.internal(info.getIconPath())));
-        TextLabel desc = new TextLabel(info.getDescriptionText());
+        Image icon = new Image(new Texture(Gdx.files.internal(info.iconPath)));
+        ColoredString title = new ColoredString(info.titleText);
+        String argsText = info.argsText;
+        String exampleText = info.exampleText;
+        TextLabel desc = new TextLabel(info.descriptionText);
+        desc.setWrap(true);
+        desc.setColor(0.65f, 0.65f, 0.65f, 1);
+        //example.setColor(0.75f, 0.75f, 0.75f, 1);
 
         Table table = new Table();
         HorizontalGroup group = new HorizontalGroup();
@@ -62,17 +67,22 @@ public class HelpWindow extends Window {
         group.addActor(title);
 
         table.row().colspan(2);
-        table.add(group).left();
+        table.add(group).left().expandX();
 
-        String argsText = info.getArgsText();
         if (!argsText.isEmpty()) {
-            ColoredString args = new ColoredString(info.getArgsText());
+            ColoredString args = new ColoredString(argsText);
             table.row().colspan(2);
-            table.add(args).left();
+            table.add(args).left().padTop(4);
         }
 
-        table.row().colspan(2);
-        table.add(desc).left();
+        if (!exampleText.isEmpty()) {
+            ColoredString example = new ColoredString(exampleText);
+            table.row().colspan(2);
+            table.add(example).left().fillX();
+        }
+
+        table.row().colspan(2).padTop(4);
+        table.add(desc).left().fillX();
         return table;
     }
 

@@ -37,14 +37,14 @@ public class SelectingLayout extends Layout {
         row();
         add(commandsString).left();
         row();
-        add(commandsTable).left().padTop(4);
+        add(commandsTable).left().padTop(10);
     }
 
     //Class logic:
     public void update() {
         LevelConfiguration config = world.getSelectedLevelConfig();
 
-        levelString.setText("/_3 " + config.name);
+        levelString.setText(config.name);
         limitString.setText("/gray_1.5 Lines limit: /white_2 " + config.codeLinesNum);
         commandsString.setText("/gray_1.5 Allowed commands:");
 
@@ -56,7 +56,7 @@ public class SelectingLayout extends Layout {
             commandsTable.add(iconImage).padRight(5);
             TextLabel label = new TextLabel("(" + instruction.name + ")");
             commandsTable.add(label).padRight(10);
-            if (++count % itemsPerRow == 0) commandsTable.row().padTop(4);
+            if (++count % itemsPerRow == 0) commandsTable.row().padTop(10);
         }
     }
 }

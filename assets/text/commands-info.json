@@ -1,44 +1,51 @@
 [
   {
-    "titleText": "/_1.5 MOVE [argument]",
+    "titleText": "/_2 MOVE [argument]",
     "iconPath": "ui/icon/move.png",
-    "argsText": "/ Arguments: /gray u (up), r (right), d (down), l (left), f (forward)",
-    "descriptionText": "Description yoo"
+    "argsText": "/light-gray Arguments: / U (up), R (right), D (down), L (left), F (forward)",
+    "descriptionText": "Moves the target one tile in the specified direction.",
+    "exampleText": "/light-gray Example: / MOVE R"
   },
   {
-    "titleText": "/_1.5 ROT (ROTATE) [argument]",
+    "titleText": "/_2 ROT (ROTATE) [argument]",
     "iconPath": "ui/icon/rot.png",
-    "argsText": "/ Arguments: /gray r (right), l (left)",
-    "descriptionText": "Description yoo"
+    "argsText": "/light-gray Arguments: / R (right), L (left)",
+    "descriptionText": "Rotates the target 90 degrees right (clockwise) or left (counter-clockwise) relative to their current facing direction.",
+    "exampleText": "/light-gray Example: / ROT L"
   },
   {
-    "titleText": "/_1.5 GOTO [line number]",
+    "titleText": "/_2 GOTO [line number]",
     "iconPath": "ui/icon/goto.png",
     "argsText": "",
-    "descriptionText": "Description yoo"
+    "descriptionText": "Jumps to and resumes execution from the line with the specified number.",
+    "exampleText": "/light-gray Example: / GOTO 6"
   },
   {
-    "titleText": "/_1.5 IF [condition] [command]",
+    "titleText": "/_2 IF [condition] [command]",
     "iconPath": "ui/icon/if.png",
-    "argsText": "/ Conditions: /gray facing /red red, /green green, /blue blue, /gray wall",
-    "descriptionText": "Description yoo"
+    "argsText": "/light-gray Conditions: / facing /red red, /green green, /blue blue, / wall",
+    "descriptionText": "Executes the specified command only if the given condition is true.",
+    "exampleText": "/light-gray Example: / IF FACING RED MOVE U"
   },
   {
-    "titleText": "/_1.5 CLONE [argument]",
+    "titleText": "/_2 CLONE [argument]",
     "iconPath": "ui/icon/clone.png",
-    "argsText": "/ Arguments: /gray u (up), r (right), d (down), l (left), f (forward)",
-    "descriptionText": "Description yoo"
+    "argsText": "/light-gray Arguments: / U (up), R (right), D (down), L (left), F (forward)",
+    "descriptionText": "Creates a clone of the target in the specified direction. The newly created clone starts executing the same program from the current instruction.",
+    "exampleText": "/light-gray Example: / CLONE R"
   },
   {
-    "titleText": "/_1.5 END",
+    "titleText": "/gray_2 END",
     "iconPath": "ui/icon/end.png",
     "argsText": "",
-    "descriptionText": "Description yoo"
+    "descriptionText": "Stops the execution of all commands immediately.",
+    "exampleText": ""
   },
   {
-    "titleText": "/_1.5 NONE",
+    "titleText": "/gray_2 NONE",
     "iconPath": "ui/icon/none.png",
     "argsText": "",
-    "descriptionText": "Description yoo"
+    "descriptionText": "Does nothing. Can be used as a placeholder or to represent an empty instruction.",
+    "exampleText": ""
   }
 ]

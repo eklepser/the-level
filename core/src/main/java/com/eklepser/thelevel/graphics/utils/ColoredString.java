@@ -59,6 +59,7 @@ public class ColoredString extends HorizontalGroup {
             case "yellow" -> Color.YELLOW;
             case "cyan" -> Color.CYAN;
             case "magenta" -> Color.MAGENTA;
+            case "light-gray" -> new Color(0.85f, 0.85f, 0.85f, 1);
             case "gray" -> Color.GRAY;
             case "orange" -> Color.ORANGE;
             case "pink" -> Color.PINK;
