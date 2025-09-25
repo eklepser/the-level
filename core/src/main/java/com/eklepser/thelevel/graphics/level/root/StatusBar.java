@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.eklepser.thelevel.logic.decoder.command.Command;
-import com.eklepser.thelevel.logic.world.level.Entity;
+import com.eklepser.thelevel.logic.world.entity.Entity;
 
 import java.util.LinkedList;
 

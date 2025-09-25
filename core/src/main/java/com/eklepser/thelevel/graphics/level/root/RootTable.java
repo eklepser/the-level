@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.eklepser.thelevel.graphics.common.TextLabel;
 import com.eklepser.thelevel.graphics.level.LevelScreen;
-import com.eklepser.thelevel.graphics.level.editor.Editor;
+import com.eklepser.thelevel.graphics.level.root.editor.Editor;
 import com.eklepser.thelevel.logic.world.level.Level;
 
 import static com.eklepser.thelevel.util.Layout.EDITOR_MENU_SCALE;

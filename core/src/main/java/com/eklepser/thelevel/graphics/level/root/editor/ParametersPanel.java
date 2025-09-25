@@ -1,0 +1,47 @@
+package com.eklepser.thelevel.graphics.level.root.editor;
+
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Align;
+import com.eklepser.thelevel.graphics.common.TextLabel;
+import com.eklepser.thelevel.logic.decoder.execution.Executor;
+import com.eklepser.thelevel.util.Resources;
+
+public class ParametersPanel extends Table {
+    private final Executor executor;
+    private final Slider slider;
+    private final TextLabel label;
+    private final float[] values = {0.5f, 1.0f, 2.0f, 4.0f, 8.0f};
+    private final int selected = 1;
+
+    public ParametersPanel(Executor executor) {
+        this.executor = executor;
+        align(Align.left);
+
+        label = new TextLabel("Execution speed: " + values[selected]);
+        slider = new Slider(0, values.length - 1, 1, false, Resources.getSkin());
+        slider.setValue(selected);
+        slider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                float duration = values[(int) slider.getValue()];
+                executor.setExecutionSpeed(1 / duration);
+                label.setText("Execution speed: " + duration);
+            }
+        });
+
+        add(label).padTop(10).left();
+        row();
+        add(slider).left();
+    }
+
+    public void setNextSliderValue() {
+        slider.setValue(slider.getValue() - 1);
+    }
+
+    public void setPrevSliderValue() {
+        slider.setValue(slider.getValue() + 1);
+    }
+}

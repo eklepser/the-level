@@ -3,10 +3,10 @@ package com.eklepser.thelevel.logic.decoder.condition;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.eklepser.thelevel.logic.world.level.Entity;
-import com.eklepser.thelevel.logic.world.zone.ColoredZone;
-import com.eklepser.thelevel.logic.world.zone.Wall;
-import com.eklepser.thelevel.logic.world.zone.Collidable;
+import com.eklepser.thelevel.logic.world.entity.Entity;
+import com.eklepser.thelevel.logic.world.collision.zone.ColoredZone;
+import com.eklepser.thelevel.logic.world.collision.Wall;
+import com.eklepser.thelevel.logic.world.collision.Collidable;
 
 public class FacingCondition extends Condition {
     private final String targetObject;

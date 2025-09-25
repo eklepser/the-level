@@ -13,7 +13,6 @@ import com.eklepser.thelevel.graphics.common.ColoredString;
 import com.eklepser.thelevel.graphics.menu.buttons.ExitButton;
 import com.eklepser.thelevel.graphics.menu.buttons.StartButton;
 import com.eklepser.thelevel.util.Layout;
-import com.eklepser.thelevel.util.Resources;
 
 public class MenuScreen extends ScreenAdapter {
     private final Game game;

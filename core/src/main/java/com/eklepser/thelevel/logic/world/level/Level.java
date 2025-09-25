@@ -5,7 +5,10 @@ import com.eklepser.thelevel.graphics.level.LevelScreen;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.collision.CollisionContext;
 import com.eklepser.thelevel.logic.world.collision.CollisionManager;
-import com.eklepser.thelevel.logic.world.zone.Collidable;
+import com.eklepser.thelevel.logic.world.common.GameMap;
+import com.eklepser.thelevel.logic.world.common.MapLoader;
+import com.eklepser.thelevel.logic.world.entity.Entity;
+import com.eklepser.thelevel.logic.world.collision.Collidable;
 import com.eklepser.thelevel.util.Layout;
 
 import java.util.ArrayList;

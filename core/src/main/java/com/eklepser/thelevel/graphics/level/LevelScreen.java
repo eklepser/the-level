@@ -3,9 +3,9 @@ package com.eklepser.thelevel.graphics.level;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.eklepser.thelevel.graphics.level.editor.KeyboardProcessor;
+import com.eklepser.thelevel.graphics.level.root.editor.KeyboardProcessor;
 import com.eklepser.thelevel.graphics.level.root.RootTable;
-import com.eklepser.thelevel.logic.world.level.GameScreen;
+import com.eklepser.thelevel.graphics.common.GameScreen;
 import com.eklepser.thelevel.logic.world.level.Level;
 
 public class LevelScreen extends GameScreen {

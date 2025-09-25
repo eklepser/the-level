@@ -2,7 +2,7 @@ package com.eklepser.thelevel.graphics.level.root;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.eklepser.thelevel.graphics.level.editor.buttons.HelpButton;
+import com.eklepser.thelevel.graphics.level.root.editor.buttons.HelpButton;
 import com.eklepser.thelevel.util.Resources;
 
 public class ToolBar extends Table {

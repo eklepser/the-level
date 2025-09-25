@@ -2,7 +2,7 @@ package com.eklepser.thelevel.logic.decoder.command;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
-import com.eklepser.thelevel.logic.world.level.Entity;
+import com.eklepser.thelevel.logic.world.entity.Entity;
 
 import java.lang.reflect.Constructor;
 

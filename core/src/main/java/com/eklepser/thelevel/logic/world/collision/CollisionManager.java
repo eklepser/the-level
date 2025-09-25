@@ -1,10 +1,8 @@
 package com.eklepser.thelevel.logic.world.collision;
 
 import com.badlogic.gdx.math.Rectangle;
-import com.eklepser.thelevel.logic.world.level.Entity;
-import com.eklepser.thelevel.logic.world.zone.Collidable;
-import com.eklepser.thelevel.logic.world.zone.Wall;
-import com.eklepser.thelevel.logic.world.zone.Zone;
+import com.eklepser.thelevel.logic.world.entity.Entity;
+import com.eklepser.thelevel.logic.world.collision.zone.Zone;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,11 +3,11 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level/world1.tmx",
+    "activeFile": "level/sandbox.tmx",
     "expandedProjectPaths": [
-        "level",
+        ".",
         "template",
-        "."
+        "level"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -59,10 +59,13 @@
             "selectedLayer": 2,
             "viewCenter": {
                 "x": 320.25,
-                "y": 320.25
+                "y": 455.25
             }
         },
         "level/world1.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
             "scale": 3,
             "selectedLayer": 1,
             "viewCenter": {
@@ -90,8 +93,8 @@
         "level/gamefield.tsx",
         "level/level2.tmx",
         "level/level4.tmx",
-        "level/sandbox.tmx",
         "level/world1.tmx",
+        "level/sandbox.tmx",
         "level/common.tmx"
     ],
     "textEdit.monospace": true,

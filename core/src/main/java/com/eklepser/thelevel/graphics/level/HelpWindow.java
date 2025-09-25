@@ -24,7 +24,7 @@ public class HelpWindow extends Window {
         Table table = new Table();
         ScrollPane scrollPane = new ScrollPane(table);
         ArrayList<CommandInfo> infos = json.fromJson(ArrayList.class, CommandInfo.class,
-            Gdx.files.internal("ui/text/commands-info.json"));
+            Gdx.files.internal(Resources.COMMANDS_INFO));
         for (CommandInfo info : infos) {
             table.add(getCommandPanel(info)).pad(10).expand().left().row();
         }

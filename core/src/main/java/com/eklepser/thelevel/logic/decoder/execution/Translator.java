@@ -1,6 +1,6 @@
 package com.eklepser.thelevel.logic.decoder.execution;
 
-import com.eklepser.thelevel.graphics.level.editor.CodeLine;
+import com.eklepser.thelevel.graphics.level.root.editor.CodeLine;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.decoder.command.Instruction;
 import com.eklepser.thelevel.logic.decoder.condition.ConditionPattern;
