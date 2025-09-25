@@ -18,7 +18,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="3" name="walls" visible="0">
+ <objectgroup id="3" name="walls">
   <object id="1" x="131" y="226" width="26" height="90.5"/>
   <object id="2" x="257.5" y="227" width="29.5" height="91.5"/>
   <object id="3" x="261" y="96.5" width="23" height="93"/>
@@ -36,7 +36,11 @@
   <object id="15" x="227" y="321.5" width="24.5" height="60"/>
   <object id="16" x="162.5" y="258" width="26" height="26.5"/>
   <object id="17" x="98.5" y="258.5" width="25.5" height="24.5"/>
-  <object id="18" x="162.5" y="323.5" width="25" height="59.5"/>
+  <object id="18" x="162.5" y="323.5" width="25" height="59.5">
+   <properties>
+    <property name="type" value="wall"/>
+   </properties>
+  </object>
   <object id="19" x="194" y="388" width="28" height="20.5"/>
   <object id="20" x="65.5" y="227" width="27" height="24.5"/>
   <object id="21" x="36" y="193.5" width="26" height="27"/>

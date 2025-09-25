@@ -3,8 +3,9 @@ package com.eklepser.thelevel.logic.world.zone;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
+import com.eklepser.thelevel.logic.world.level.Entity;
 
-public class ColoredZone extends Collidable {
+public class ColoredZone extends Zone {
     private final String colorName;
 
     public ColoredZone(Rectangle rect, Executor executor, String colorName) {
@@ -19,7 +20,7 @@ public class ColoredZone extends Collidable {
     }
 
     @Override
-    public void onCollision() {
+    public void onCollision(Entity entity) {
         System.out.println("Colored zone collision!");
     }
 

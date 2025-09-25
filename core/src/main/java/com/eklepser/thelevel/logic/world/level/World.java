@@ -1,20 +1,19 @@
 package com.eklepser.thelevel.logic.world.level;
 
 import com.badlogic.gdx.Game;
-import com.eklepser.thelevel.graphics.level.LevelScreen;
 import com.eklepser.thelevel.graphics.level.WorldScreen;
-import com.eklepser.thelevel.logic.world.Configuration;
-import com.eklepser.thelevel.logic.world.GameMap;
-import com.eklepser.thelevel.logic.world.GameScreen;
-import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.world.collision.CollisionContext;
+import com.eklepser.thelevel.logic.world.collision.CollisionManager;
 import com.eklepser.thelevel.logic.world.zone.Collidable;
 import com.eklepser.thelevel.util.Layout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class World extends GameMap {
     private final WorldScreen screen;
     private final Entity player;
+    private final CollisionManager collisionManager;
     private int selectedLevelId;
     private final List<LevelConfiguration> levelConfigs;
     private final List<Collidable> collidables;
@@ -23,10 +22,12 @@ public class World extends GameMap {
         super(config, game);
         player = new Entity(config.startPosX, config.startPosY,
             Layout.TILE_SIZE, "world/entity/target.png");
+        collidables = new ArrayList<>();
         levelConfigs = Configuration.from(LevelConfiguration.class, "world/level/levels.json");
-        // Order is important! Screen -> collidables -> processors.
+        // Order is important! Screen -> map loader -> collision manager -> processors.
         screen = new WorldScreen(game, this);
-        collidables = MapLoader.loadCollidables(this);
+        MapLoader.loadCollidables(this, collidables);
+        collisionManager = new CollisionManager(this);
         screen.addProcessor(new WorldProcessor(game, this));
     }
 
@@ -40,12 +41,17 @@ public class World extends GameMap {
 
     @Override
     public void update(float delta) {
-        //collisionManager.updateWorld();
-        System.out.println(collidables.size());
+        collisionManager.update();
         player.update();
         player.act(delta);
     }
 
+    @Override
+    public CollisionContext getCollisionContext() {
+        return new CollisionContext(collidables, List.of(player));
+    }
+
+    // Class logic:
     public LevelConfiguration getSelectedLevelConfig() {
         return levelConfigs.stream()
             .filter(config -> config.id == selectedLevelId)

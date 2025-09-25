@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.logic.world;
+package com.eklepser.thelevel.logic.world.level;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -6,14 +6,13 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.eklepser.thelevel.graphics.level.LevelScreen;
-import com.eklepser.thelevel.logic.world.level.MapLoader;
+import com.eklepser.thelevel.logic.world.collision.CollisionSource;
 import com.eklepser.thelevel.logic.world.zone.Collidable;
 import com.eklepser.thelevel.util.Layout;
 
 import java.util.List;
 
-public abstract class GameMap {
+public abstract class GameMap implements CollisionSource {
     protected final Game game;
     protected final Configuration config;
     protected final TiledMap map;
@@ -26,9 +25,6 @@ public abstract class GameMap {
         this.game = game;
         this.config = config;
 
-        // Map setup:
-        map = new TmxMapLoader().load(config.mapPath);
-
         // Camera setup:
         float zoom = config.cameraZoom;
         //float cameraX = (levelWidth - Layout.VIEWPORT_WIDTH * Layout.EDITOR_MENU_SCALE / zoom) / 2.0f;
@@ -40,11 +36,10 @@ public abstract class GameMap {
         camera.position.set(cameraX, cameraY, 0);
         camera.update();
 
-        // Renderer setup:
+        // Map & renderer & batch setup:
+        map = new TmxMapLoader().load(config.mapPath);
         renderer = new OrthogonalTiledMapRenderer(map);
         renderer.setView(camera);
-
-        // Batch setup:
         batch = renderer.getBatch();
     }
 
@@ -72,5 +67,9 @@ public abstract class GameMap {
 
     public Batch getBatch() {
         return batch;
+    }
+
+    public Game getGame() {
+        return game;
     }
 }

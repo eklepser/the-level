@@ -9,7 +9,7 @@ import com.eklepser.thelevel.graphics.level.root.StatusBar;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.decoder.util.TimeController;
 import com.eklepser.thelevel.logic.decoder.util.TimedAction;
-import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.world.level.Entity;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.logic.world.zone.Collidable;

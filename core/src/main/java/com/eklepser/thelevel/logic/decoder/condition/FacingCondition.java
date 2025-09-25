@@ -3,7 +3,7 @@ package com.eklepser.thelevel.logic.decoder.condition;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.world.level.Entity;
 import com.eklepser.thelevel.logic.world.zone.ColoredZone;
 import com.eklepser.thelevel.logic.world.zone.Wall;
 import com.eklepser.thelevel.logic.world.zone.Collidable;
@@ -19,18 +19,19 @@ public class FacingCondition extends Condition {
     }
 
     @Override
-    public boolean matches(Entity target, Collidable zone) {
+    public boolean matches(Entity target, Collidable collidable) {
         if (targetObject.equals("wall")) {
-            System.out.println("wall");
-            if ((zone instanceof Wall))
-            {
-                return target.getFacingRect().overlaps(zone.getRect());
+            if ((collidable instanceof Wall wall)) {
+                return target.getFacingRect().overlaps(wall.getRect());
             }
             return false;
         }
-        if (!(zone instanceof ColoredZone coloredZone)) return false;
-        if (!target.getFacingRect().overlaps(zone.getRect())) return false;
-        return (targetObject.equals(coloredZone.getColorName()));
+        if (collidable instanceof ColoredZone coloredZone) {
+            if (target.getFacingRect().overlaps(coloredZone.getRect())) {
+                return (targetObject.equals(coloredZone.getColorName()));
+            }
+        }
+        return false;
     }
 
     @Override

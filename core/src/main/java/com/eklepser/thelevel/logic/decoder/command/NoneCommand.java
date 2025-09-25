@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.eklepser.thelevel.graphics.common.TextLabel;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
-import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.world.level.Entity;
 
 public class NoneCommand extends Command {
     private final TextLabel toolTip;

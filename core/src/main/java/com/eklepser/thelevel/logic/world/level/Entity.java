@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.logic.world.collision;
+package com.eklepser.thelevel.logic.world.level;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.eklepser.thelevel.logic.world.collision.Controllable;
 import com.eklepser.thelevel.util.Direction;
 
 public class Entity extends Controllable {

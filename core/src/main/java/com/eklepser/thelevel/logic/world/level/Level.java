@@ -2,11 +2,9 @@ package com.eklepser.thelevel.logic.world.level;
 
 import com.badlogic.gdx.Game;
 import com.eklepser.thelevel.graphics.level.LevelScreen;
-import com.eklepser.thelevel.graphics.level.WorldScreen;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
-import com.eklepser.thelevel.logic.world.GameMap;
-import com.eklepser.thelevel.logic.world.GameScreen;
-import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.world.collision.CollisionContext;
+import com.eklepser.thelevel.logic.world.collision.CollisionManager;
 import com.eklepser.thelevel.logic.world.zone.Collidable;
 import com.eklepser.thelevel.util.Layout;
 
@@ -17,15 +15,18 @@ public class Level extends GameMap {
     private final LevelScreen screen;
     private final List<Entity> entities;
     private final List<Entity> entitiesToAdd;
+    private final CollisionManager collisionManager;
     private final List<Collidable> collidables;
 
     public Level(LevelConfiguration config, Game game) {
         super(config, game);
         entities = new ArrayList<>();
         entitiesToAdd = new ArrayList<>();
-        // Order is important! Screen -> collidables.
+        collidables = new ArrayList<>();
+        // Order is important! Screen -> map loader -> collision manager.
         screen = new LevelScreen(game, this);
-        collidables = MapLoader.loadCollidables(this);
+        MapLoader.loadCollidables(this, collidables);
+        collisionManager = new CollisionManager(this);
 
         spawnEntity(config.startPosX, config.startPosY);
     }
@@ -40,6 +41,7 @@ public class Level extends GameMap {
 
     @Override
     public void update(float delta) {
+        collisionManager.update();
         if (!entitiesToAdd.isEmpty()) {
             entities.addAll(entitiesToAdd);
             entitiesToAdd.clear();
@@ -50,6 +52,12 @@ public class Level extends GameMap {
         entities.forEach(entity -> entity.act(delta));
     }
 
+    @Override
+    public CollisionContext getCollisionContext() {
+        return new CollisionContext(collidables, entities);
+    }
+
+    // Class logic:
     public void reset() {
         entities.clear();
         spawnEntity(config.startPosX, config.startPosY);

@@ -1,7 +1,7 @@
 package com.eklepser.thelevel.logic.decoder.condition;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.eklepser.thelevel.logic.world.collision.Entity;
+import com.eklepser.thelevel.logic.world.level.Entity;
 import com.eklepser.thelevel.logic.world.zone.Collidable;
 
 import java.lang.reflect.Constructor;

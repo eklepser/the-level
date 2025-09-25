@@ -1,7 +1,6 @@
 package com.eklepser.thelevel.logic.world.level;
 
 import com.eklepser.thelevel.logic.decoder.command.Instruction;
-import com.eklepser.thelevel.logic.world.Configuration;
 
 import java.util.List;
 

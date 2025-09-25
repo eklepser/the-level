@@ -3,9 +3,7 @@ package com.eklepser.thelevel.logic.world.level;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.eklepser.thelevel.graphics.level.LevelScreen;
 import com.eklepser.thelevel.graphics.menu.MenuScreen;
-import com.eklepser.thelevel.logic.world.collision.Entity;
 import com.eklepser.thelevel.util.Direction;
 
 public class WorldProcessor extends InputAdapter {

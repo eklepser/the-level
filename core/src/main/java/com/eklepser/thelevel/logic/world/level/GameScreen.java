@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.logic.world;
+package com.eklepser.thelevel.logic.world.level;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;

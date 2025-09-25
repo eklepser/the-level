@@ -1,17 +1,7 @@
 package com.eklepser.thelevel.logic.world.zone;
 
-import com.badlogic.gdx.math.Rectangle;
+import com.eklepser.thelevel.logic.world.level.Entity;
 
-public abstract class Collidable {
-    private final Rectangle rect;
-
-    public Collidable(Rectangle rect) {
-        this.rect = rect;
-    }
-
-    public abstract void onCollision();
-
-    public Rectangle getRect() {
-        return rect;
-    }
+public interface Collidable {
+   void onCollision(Entity entity);
 }

@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.logic.world;
+package com.eklepser.thelevel.logic.world.level;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Json;

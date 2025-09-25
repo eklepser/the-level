@@ -4,8 +4,9 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.eklepser.thelevel.graphics.level.WinWindow;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
+import com.eklepser.thelevel.logic.world.level.Entity;
 
-public class WinZone extends Collidable {
+public class WinZone extends Zone {
     private final WinWindow window;
     private final Executor executor;
     private boolean activated = false;
@@ -22,7 +23,7 @@ public class WinZone extends Collidable {
     }
 
     @Override
-    public void onCollision() {
+    public void onCollision(Entity entity) {
         if (!activated) {
             System.out.println("WIN COLLISION DETECTED");
             executor.win();

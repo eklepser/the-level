@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.eklepser.thelevel.logic.world.Configuration;
+import com.eklepser.thelevel.logic.world.level.Configuration;
 import com.eklepser.thelevel.logic.world.level.World;
 import com.eklepser.thelevel.logic.world.level.WorldConfiguration;
 import com.eklepser.thelevel.util.Resources;
