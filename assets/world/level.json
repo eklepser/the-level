@@ -7,8 +7,6 @@
     "allowedInstructions": ["NONE","END","MOVE"],
     "startPosX": 2,
     "startPosY": 2,
-    "width": 7,
-    "height": 7,
     "cameraZoom": 1.67
   },
   {
@@ -19,8 +17,6 @@
     "allowedInstructions": ["NONE","END","MOVE","GOTO"],
     "startPosX": 2,
     "startPosY": 2,
-    "width": 8,
-    "height": 8,
     "cameraZoom": 1.67
   },
   {
@@ -31,8 +27,6 @@
     "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT","IF"],
     "startPosX": 2,
     "startPosY": 7,
-    "width": 10,
-    "height": 10,
     "cameraZoom": 1.67
   },
   {
@@ -43,8 +37,6 @@
     "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT", "IF"],
     "startPosX": 1,
     "startPosY": 1,
-    "width": 11,
-    "height": 11,
     "cameraZoom": 1.33
   },
   {
@@ -52,12 +44,9 @@
     "name": "SandBox",
     "mapName": "sandbox.tmx",
     "codeLinesNum": 50,
-    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT","CLONE","TP","IF"],
+    "allowedInstructions": ["NONE","END","MOVE","GOTO","ROT","IF"],
     "startPosX": 4,
     "startPosY": 3,
-    "width": 20,
-    "height": 20,
-    "cameraZoom": 0.8,
-    "cameraOffsetX": -400
+    "cameraZoom": 0.8
   }
 ]

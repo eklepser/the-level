@@ -23,19 +23,19 @@ public class WorldProcessor extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.W || keycode == Input.Keys.UP) {
-            player.setMoving(Direction.UP);
+            player.setTargetWorldPos(Direction.UP);
             return true;
         }
         else if (keycode == Input.Keys.A || keycode == Input.Keys.LEFT) {
-            player.setMoving(Direction.LEFT);
+            player.setTargetWorldPos(Direction.LEFT);
             return true;
         }
         else if (keycode == Input.Keys.S || keycode == Input.Keys.DOWN) {
-            player.setMoving(Direction.DOWN);
+            player.setTargetWorldPos(Direction.DOWN);
             return true;
         }
         else if (keycode == Input.Keys.D || keycode == Input.Keys.RIGHT) {
-            player.setMoving(Direction.RIGHT);
+            player.setTargetWorldPos(Direction.RIGHT);
             return true;
         }
         else if (keycode == Input.Keys.ENTER) {

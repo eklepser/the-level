@@ -27,7 +27,7 @@ public class World extends GameMap {
     public World(WorldConfiguration config, Game game) {
         super(config, game);
         player = new Entity(config.startPosX, config.startPosY,
-            Layout.TILE_SIZE, "world/entity/target.png");
+            "world/entity/target.png");
         collidables = new ArrayList<>();
         levelConfigs = Configuration.from(LevelConfiguration.class, Resources.LEVEL_CONFIG);
         // Order is important! Screen -> map loader -> collision manager -> processors.
@@ -35,6 +35,16 @@ public class World extends GameMap {
         MapLoader.loadCollidables(this, collidables);
         collisionManager = new CollisionManager(this);
         screen.addProcessor(new WorldProcessor(game, this));
+    }
+
+    @Override
+    public void setupCamera() {
+        float cameraX = width * Layout.TILE_SIZE / 2.0f;
+        float cameraY = height * Layout.TILE_SIZE / 2.0f;
+        float zoom = config.cameraZoom;
+        camera.setToOrtho(false, Layout.VIEWPORT_WIDTH / zoom,
+            Layout.VIEWPORT_HEIGHT / zoom);
+        camera.position.set(cameraX, cameraY, 0);
     }
 
     @Override
@@ -54,7 +64,7 @@ public class World extends GameMap {
 
     @Override
     public CollisionContext getCollisionContext() {
-        return new CollisionContext(collidables, List.of(player));
+        return new CollisionContext(collidables, List.of(player), false);
     }
 
     // Class logic:

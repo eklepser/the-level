@@ -48,6 +48,7 @@ public class Executor implements TimeController {
         if (result.success()) {
             codeMap = translator.getCodeMap();
             execute(0, codeMap);
+            editorLayout.getRoot().getStatusBar().start();
         }
         return result.message();
     }

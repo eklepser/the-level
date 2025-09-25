@@ -11,6 +11,7 @@ public class CollisionManager {
     private final List<Wall> walls = new ArrayList<>();
     private final List<Zone> zones = new ArrayList<>();
     private final List<Entity> entities;
+    private final boolean hittingWalls;
 
     public CollisionManager(CollisionSource source) {
         CollisionContext context = source.getCollisionContext();
@@ -19,6 +20,7 @@ public class CollisionManager {
             if (collidable instanceof Zone zone) zones.add(zone);
         }
         entities = context.entities();
+        hittingWalls = context.hittingWalls();
     }
 
     public void update() {
@@ -35,6 +37,7 @@ public class CollisionManager {
             if (entityRect.overlaps(wallRect)) {
                 System.out.println("WALL");
                 wall.onCollision(entity);
+                if (hittingWalls) entity.hit();
             }
         }
     }

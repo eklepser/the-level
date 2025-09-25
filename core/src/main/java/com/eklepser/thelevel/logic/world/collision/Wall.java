@@ -12,9 +12,7 @@ public class Wall implements Collidable {
 
     @Override
     public void onCollision(Entity entity) {
-        System.out.println("wall collision");
         entity.resetTargetWorldPos();
-        entity.hit();
     }
 
     public Rectangle getRect() {

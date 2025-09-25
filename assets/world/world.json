@@ -5,10 +5,6 @@
     "mapName": "world1.tmx",
     "startPosX": 6,
     "startPosY": 1,
-    "width": 13,
-    "height": 13,
-    "cameraZoom": 1.67,
-    "cameraOffsetX": 0,
-    "cameraOffsetY": 0
+    "cameraZoom": 1.67
   }
 ]

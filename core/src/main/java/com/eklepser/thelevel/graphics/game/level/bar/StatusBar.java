@@ -31,6 +31,7 @@ public class StatusBar extends Layout {
         int totalItems = itemGroups.stream()
             .mapToInt(arr -> arr.length).sum();
         if (totalItems >= itemsLimit) itemGroups.removeFirst();
+
         itemGroups.add(command.getIcons(target));
         clearChildren();
         for (Actor[] group : itemGroups) {
@@ -48,6 +49,11 @@ public class StatusBar extends Layout {
     public void clear() {
         clearChildren();
         itemGroups.clear();
+    }
+
+    public void start() {
+        itemGroups.add(new Image[] {startImage});
+        add(startImage).size(32, 32).expand(false, false).padLeft(4);
     }
 
     public void win() {

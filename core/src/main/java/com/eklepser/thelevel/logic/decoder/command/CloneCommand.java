@@ -1,11 +1,9 @@
 package com.eklepser.thelevel.logic.decoder.command;
 
-import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.entity.Entity;
 import com.eklepser.thelevel.util.Direction;
-import com.eklepser.thelevel.graphics.Layout;
 
 import java.util.List;
 
@@ -23,11 +21,11 @@ public class CloneCommand extends Command {
     @Override
     public void execute(Entity target) {
         System.out.println("CLONE");
-        Entity newEntity = new Entity(target.getWorldPos().cpy(), Layout.TILE_SIZE, "world/entity/target.png");
-        entities.add(newEntity);
-        newEntity.setMoving(direction);
-        SequenceAction action = executor.createCommandAction(executor.getCurrentLineNum() + 1, executor.getCodeMap(), newEntity);
-        newEntity.addAction(action);
+        //Entity newEntity = new Entity(target.getWorldPos().cpy(), Layout.TILE_SIZE, "world/entity/target.png");
+//        entities.add(newEntity);
+//        newEntity.setMoving(direction);
+//        SequenceAction action = executor.createCommandAction(executor.getCurrentLineNum() + 1, executor.getCodeMap(), newEntity);
+//        newEntity.addAction(action);
     }
 
     @Override

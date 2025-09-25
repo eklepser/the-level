@@ -1,5 +1,6 @@
 package com.eklepser.thelevel.logic.world.entity;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -7,9 +8,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Align;
+import com.eklepser.thelevel.graphics.Layout;
 import com.eklepser.thelevel.util.Direction;
 
-public abstract class Controllable extends Actor {
+public abstract class TiledActor extends Actor {
     protected final Sprite sprite;
     protected final int size;
     protected float animationSpeed = 0.1f;
@@ -17,24 +20,26 @@ public abstract class Controllable extends Actor {
     protected final Vector2 targetWorldPos = new Vector2();
     protected Direction facingDirection = Direction.UP;
 
-    public Controllable(Vector2 worldPos, int size, Texture texture) {
-        this.worldPos = worldPos;
-        targetWorldPos.set(worldPos);
-        this.size = size;
-        this.sprite = new Sprite(texture);
+    public TiledActor(Vector2 worldPos, String textureName) {
+        this.worldPos = new Vector2(worldPos);
+        this.targetWorldPos.set(worldPos);
+        size = Layout.TILE_SIZE;
+
+        Texture texture = new Texture(Gdx.files.internal(textureName));
+        sprite = new Sprite(texture);
+        sprite.setSize(size, size);
+
+        setOrigin(Align.center);
+        updateActorPosition();
     }
 
-    public Controllable(Vector2 worldPos, int size, Sprite sprite) {
-        this.worldPos = worldPos;
-        targetWorldPos.set(worldPos);
-        this.size = size;
-        this.sprite = sprite;
+    protected void updateActorPosition() {
+        setPosition(worldPos.x * size, worldPos.y * size);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         sprite.setPosition(getX(), getY());
-        sprite.setSize(size, size);
         sprite.draw(batch);
     }
 
@@ -44,18 +49,7 @@ public abstract class Controllable extends Actor {
         super.act(delta);
     }
 
-    public void setMoving(Direction direction) {
-        if (direction.equals(Direction.FORWARD)) direction = facingDirection;
-        else facingDirection = direction;
-        targetWorldPos.set(worldPos.cpy().add(direction.vector));
-        sprite.setRotation(Direction.getDegrees(direction));
-    }
-
-    public void teleport(Vector2 worldPos) {
-        setPosition(worldPos.x * size, worldPos.y * size);
-        this.worldPos.set(worldPos);
-    }
-
+    // Getters & setters:
     public void setAnimationSpeed(float animationSpeed) { this.animationSpeed = animationSpeed; }
 
     public Rectangle getRect(Vector2 worldPos) {

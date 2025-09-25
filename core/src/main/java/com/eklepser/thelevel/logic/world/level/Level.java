@@ -35,6 +35,16 @@ public class Level extends GameMap {
     }
 
     @Override
+    public void setupCamera() {
+        float zoom = config.cameraZoom;
+        float cameraX = (width * Layout.TILE_SIZE - Layout.EDITOR_MENU_SCALE * Layout.VIEWPORT_WIDTH / zoom) / 2.0f;
+        float cameraY = height * Layout.TILE_SIZE / 2.0f;
+        camera.setToOrtho(false, Layout.VIEWPORT_WIDTH / zoom,
+            Layout.VIEWPORT_HEIGHT / zoom);
+        camera.position.set(cameraX, cameraY, 0);
+    }
+
+    @Override
     public void draw() {
         renderer.render();
         batch.begin();
@@ -55,7 +65,7 @@ public class Level extends GameMap {
 
     @Override
     public CollisionContext getCollisionContext() {
-        return new CollisionContext(collidables, entities);
+        return new CollisionContext(collidables, entities, true);
     }
 
     // Class logic:
@@ -65,7 +75,7 @@ public class Level extends GameMap {
     }
 
     public void spawnEntity(int worldPosX, int worldPosY) {
-        Entity entity = new Entity(worldPosX, worldPosY, Layout.TILE_SIZE, "world/entity/target.png");
+        Entity entity = new Entity(worldPosX, worldPosY, "world/entity/target.png");
         entities.add(entity);
     }
 

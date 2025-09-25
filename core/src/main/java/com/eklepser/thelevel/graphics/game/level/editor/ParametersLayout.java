@@ -29,6 +29,8 @@ public class ParametersLayout extends Layout {
                 label.setText("Execution speed: " + duration);
             }
         });
+
+        setup();
     }
 
     @Override
