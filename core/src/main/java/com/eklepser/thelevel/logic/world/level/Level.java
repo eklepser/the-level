@@ -1,24 +1,24 @@
 package com.eklepser.thelevel.logic.world.level;
 
 import com.badlogic.gdx.Game;
-import com.eklepser.thelevel.graphics.level.LevelScreen;
+import com.eklepser.thelevel.graphics.game.level.LevelScreen;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
+import com.eklepser.thelevel.logic.world.collision.Collidable;
 import com.eklepser.thelevel.logic.world.collision.CollisionContext;
 import com.eklepser.thelevel.logic.world.collision.CollisionManager;
 import com.eklepser.thelevel.logic.world.common.GameMap;
 import com.eklepser.thelevel.logic.world.common.MapLoader;
 import com.eklepser.thelevel.logic.world.entity.Entity;
-import com.eklepser.thelevel.logic.world.collision.Collidable;
-import com.eklepser.thelevel.util.Layout;
+import com.eklepser.thelevel.graphics.Layout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Level extends GameMap {
     private final LevelScreen screen;
+    private final CollisionManager collisionManager;
     private final List<Entity> entities;
     private final List<Entity> entitiesToAdd;
-    private final CollisionManager collisionManager;
     private final List<Collidable> collidables;
 
     public Level(LevelConfiguration config, Game game) {
@@ -48,8 +48,6 @@ public class Level extends GameMap {
         if (!entitiesToAdd.isEmpty()) {
             entities.addAll(entitiesToAdd);
             entitiesToAdd.clear();
-            System.out.println("entities:");
-            System.out.println(entities);
         }
         entities.forEach(Entity::update);
         entities.forEach(entity -> entity.act(delta));
@@ -81,6 +79,6 @@ public class Level extends GameMap {
     public List<Collidable> getCollidables() { return collidables; }
 
     public Executor getExecutor() {
-        return screen.getRootTable().getEditor().getExecutor();
+        return screen.getRoot().getEditor().getExecutor();
     }
 }

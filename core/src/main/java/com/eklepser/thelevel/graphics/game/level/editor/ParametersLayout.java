@@ -1,25 +1,23 @@
-package com.eklepser.thelevel.graphics.level.root.editor;
+package com.eklepser.thelevel.graphics.game.level.editor;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
-import com.eklepser.thelevel.graphics.common.TextLabel;
+import com.eklepser.thelevel.graphics.Layout;
+import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.util.Resources;
 
-public class ParametersPanel extends Table {
+public class ParametersLayout extends Layout {
     private final Executor executor;
-    private final Slider slider;
     private final TextLabel label;
-    private final float[] values = {0.5f, 1.0f, 2.0f, 4.0f, 8.0f};
+    private final Slider slider;
+    private final float[] values = {0.5f, 1.0f, 2.0f, 4.0f, 8.0f, 16.0f};
     private final int selected = 1;
 
-    public ParametersPanel(Executor executor) {
+    public ParametersLayout(Executor executor) {
         this.executor = executor;
-        align(Align.left);
-
         label = new TextLabel("Execution speed: " + values[selected]);
         slider = new Slider(0, values.length - 1, 1, false, Resources.getSkin());
         slider.setValue(selected);
@@ -31,12 +29,16 @@ public class ParametersPanel extends Table {
                 label.setText("Execution speed: " + duration);
             }
         });
+    }
 
-        add(label).padTop(10).left();
-        row();
+    @Override
+    protected void setup() {
+        align(Align.left);
+        add(label).padTop(10).left().row();
         add(slider).left();
     }
 
+    // Class logic:
     public void setNextSliderValue() {
         slider.setValue(slider.getValue() - 1);
     }

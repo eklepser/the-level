@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.eklepser.thelevel.graphics.common.TextLabel;
+import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.entity.Entity;
 
@@ -16,7 +16,7 @@ public class NoneCommand extends Command {
     public NoneCommand(Executor executor) {
         this.toolTip = new TextLabel("Tooltip");
         toolTip.setVisible(false);
-        executor.getEditor().getRootTable().getChildren().add(toolTip);
+        executor.getEditor().getRoot().getChildren().add(toolTip);
     }
 
     @Override

@@ -1,48 +1,48 @@
-package com.eklepser.thelevel.graphics.level.root.editor;
+package com.eklepser.thelevel.graphics.game.level.editor;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.eklepser.thelevel.graphics.level.LevelScreen;
+import com.eklepser.thelevel.graphics.game.level.LevelScreen;
 import com.eklepser.thelevel.util.Direction;
 
-public class KeyboardProcessor extends InputAdapter {
+public class EditorProcessor extends InputAdapter {
     private final LevelScreen screen;
-    private final Editor editor;
+    private final EditorLayout editorLayout;
     private int previousKey;
 
-    public KeyboardProcessor(LevelScreen screen) {
+    public EditorProcessor(LevelScreen screen) {
         this.screen = screen;
-        editor = screen.getRootTable().getEditor();
+        editorLayout = screen.getRoot().getEditor();
     }
 
     @Override
     public boolean keyDown(int keycode) {
         if (previousKey == Input.Keys.CONTROL_LEFT) {
             if (keycode == Input.Keys.ENTER) {
-                editor.run();
+                editorLayout.run();
                 previousKey = 0;
                 return true;
             }
             if (keycode == Input.Keys.BACKSLASH) {
-                editor.resetRunning();
+                editorLayout.resetRunning();
                 previousKey = 0;
                 return true;
             }
         }
         else if (keycode == Input.Keys.F1) {
-            editor.getParametersTable().setNextSliderValue();
+            editorLayout.getParametersTable().setNextSliderValue();
             return true;
         }
         else if (keycode == Input.Keys.F2) {
-            editor.getParametersTable().setPrevSliderValue();
+            editorLayout.getParametersTable().setPrevSliderValue();
             return true;
         }
         else if (keycode == Input.Keys.F4) {
-            editor.resetRunning();
+            editorLayout.resetRunning();
             return true;
         }
         else if (keycode == Input.Keys.F5) {
-        editor.run();
+        editorLayout.run();
         return true;
     }
 
@@ -51,11 +51,11 @@ public class KeyboardProcessor extends InputAdapter {
             return true;
         }
         else if (keycode == Input.Keys.DOWN || keycode == Input.Keys.ENTER) {
-            editor.getCodeTable().setSelectedLine(Direction.DOWN);
+            editorLayout.getCodeLayout().setSelectedLine(Direction.DOWN);
             return true;
         }
         else if (keycode == Input.Keys.UP || keycode == Input.Keys.TAB) {
-            editor.getCodeTable().setSelectedLine(Direction.UP);
+            editorLayout.getCodeLayout().setSelectedLine(Direction.UP);
             return true;
         }
         if (keycode != previousKey) previousKey = keycode;

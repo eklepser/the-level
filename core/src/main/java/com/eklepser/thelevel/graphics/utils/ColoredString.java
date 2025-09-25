@@ -1,9 +1,8 @@
-package com.eklepser.thelevel.graphics.common;
+package com.eklepser.thelevel.graphics.utils;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.eklepser.thelevel.util.Resources;
 
 import java.util.ArrayList;
@@ -18,13 +17,7 @@ public class ColoredString extends HorizontalGroup {
         this.text = text;
         this.font = Resources.getSkin().getFont("default");
         labels = parseText(text);
-        update();
-    }
-
-    public void update() {
-        for (Label label : labels) {
-            addActor(label);
-        }
+        labels.forEach(this::addActor);
     }
 
     private List<TextLabel> parseText(String text) {
@@ -52,20 +45,20 @@ public class ColoredString extends HorizontalGroup {
     }
 
     private Color parseColor(String colorName) {
-        switch (colorName) {
-            case "red": return Color.RED;
-            case "green": return Color.GREEN;
-            case "blue": return Color.BLUE;
-            case "black": return Color.BLACK;
-            case "yellow": return Color.YELLOW;
-            case "cyan": return Color.CYAN;
-            case "magenta": return Color.MAGENTA;
-            case "gray": return Color.GRAY;
-            case "orange": return Color.ORANGE;
-            case "pink": return Color.PINK;
-            case "brown": return Color.BROWN;
-            default: return Color.WHITE;
-        }
+        return switch (colorName) {
+            case "red" -> Color.RED;
+            case "green" -> Color.GREEN;
+            case "blue" -> Color.BLUE;
+            case "black" -> Color.BLACK;
+            case "yellow" -> Color.YELLOW;
+            case "cyan" -> Color.CYAN;
+            case "magenta" -> Color.MAGENTA;
+            case "gray" -> Color.GRAY;
+            case "orange" -> Color.ORANGE;
+            case "pink" -> Color.PINK;
+            case "brown" -> Color.BROWN;
+            default -> Color.WHITE;
+        };
     }
 
     public String getText() { return text; }

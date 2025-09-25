@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.common;
+package com.eklepser.thelevel.graphics.game;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
@@ -6,17 +6,17 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.logic.world.common.GameMap;
-import com.eklepser.thelevel.util.Layout;
+import com.eklepser.thelevel.graphics.Layout;
 
 public abstract class GameScreen extends ScreenAdapter {
     protected final Stage stage;
     protected final GameMap gameMap;
     protected final InputMultiplexer inputMultiplexer;
 
-    public GameScreen(Game game, GameMap gameMap) {
-        this.gameMap = gameMap;
+    public GameScreen(GameMap gameMap) {
         stage = new Stage(new FitViewport(
             Layout.VIEWPORT_WIDTH, Layout.VIEWPORT_HEIGHT, new OrthographicCamera()));
+        this.gameMap = gameMap;
         inputMultiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(inputMultiplexer);
     }

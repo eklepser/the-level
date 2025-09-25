@@ -1,18 +1,24 @@
-package com.eklepser.thelevel.graphics.level;
+package com.eklepser.thelevel.graphics.game.level.window;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
-import com.eklepser.thelevel.graphics.common.TextLabel;
-import com.eklepser.thelevel.util.Layout;
+import com.eklepser.thelevel.graphics.game.level.ExitLevelButton;
+import com.eklepser.thelevel.graphics.utils.TextLabel;
+import com.eklepser.thelevel.graphics.Layout;
 import com.eklepser.thelevel.util.Resources;
 
 public class WinWindow extends Window {
     private final Game game;
+    private final TextLabel winLabel;
+    private final ExitLevelButton exitLevelButton;
 
     public WinWindow(Game game) {
         super("", Resources.getSkin());
         this.game = game;
+        winLabel = new TextLabel("YOU WIN!");
+        exitLevelButton = new ExitLevelButton(game);
+
         setupLayout();
     }
 
@@ -21,13 +27,12 @@ public class WinWindow extends Window {
         setSize(Layout.VIEWPORT_WIDTH - editorWidth, Layout.VIEWPORT_HEIGHT);
         setPosition(editorWidth, 0);
 
-        TextLabel winLabel = new TextLabel("YOU WIN!");
         add(winLabel).pad(10).width(Layout.VIEWPORT_WIDTH / 8.0f).align(Align.center);
         setVisible(false);
         setColor(0.5f, 0, 0.75f, 0.9f);
 
         row();
-        add(new ExitLevelButton(game)).width(Layout.VIEWPORT_WIDTH / 8.0f)
+        add(exitLevelButton).width(Layout.VIEWPORT_WIDTH / 8.0f)
             .height(Layout.VIEWPORT_HEIGHT / 16.0f).padBottom(20);
     }
 

@@ -1,7 +1,9 @@
 package com.eklepser.thelevel.util;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class Resources {
@@ -17,5 +19,10 @@ public class Resources {
     }
 
     public static Skin getSkin() {
-        return skin; }
+        return skin;
+    }
+
+    public static Image getImage(String texturePath) {
+        return new Image(new Texture(Gdx.files.internal(texturePath)));
+    }
 }

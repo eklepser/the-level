@@ -1,36 +1,35 @@
-package com.eklepser.thelevel.graphics.level.root.editor;
+package com.eklepser.thelevel.graphics.game.level.editor;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
-import com.eklepser.thelevel.graphics.common.TextLabel;
+import com.eklepser.thelevel.graphics.Layout;
+import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CodeTable extends Table {
-    private final Table root;
+public class CodeLayout extends Layout {
+    private final EditorLayout root;
     private final LevelConfiguration conf;
     private ScrollPane codeScrollPane;
     private final List<CodeLine> codeLines = new ArrayList<>();
     private int selectedLine = -1;
 
-    public CodeTable(Table root, LevelConfiguration conf) {
-        this.conf = conf;
+    public CodeLayout(EditorLayout root, LevelConfiguration conf) {
         this.root = root;
+        this.conf = conf;
     }
 
-    public void setupLayout(ScrollPane scrollPane) {
-        codeScrollPane = scrollPane;
+    @Override
+    protected void setup() {
         createCodeLines(conf.codeLinesNum);
     }
 
     private void createCodeLines(int linesAmount) {
-        for (int i = 0; i < linesAmount; i++)
-        {
+        for (int i = 0; i < linesAmount; i++) {
             row();
             CodeLine codeline = new CodeLine();
             TextLabel label = new TextLabel((String.valueOf(i + 1)));
@@ -49,13 +48,13 @@ public class CodeTable extends Table {
         }
     }
 
+    // Class logic:
     public void clearCode() {
         codeLines.forEach(codeLine -> codeLine.setText(""));
     }
 
     public void setSelectedLine(Direction direction) {
-        switch (direction)
-        {
+        switch (direction) {
             case UP -> setSelectedLine(selectedLine - 1);
             case DOWN -> setSelectedLine(selectedLine + 1);
         }
@@ -65,6 +64,12 @@ public class CodeTable extends Table {
         if ((lineNum >= 0) && (lineNum < codeLines.size())) {
             root.getStage().setKeyboardFocus(codeLines.get(lineNum));
         }
+    }
+
+    // Getters & setters:
+    public void setCodeScrollPane(ScrollPane codeScrollPane) {
+        this.codeScrollPane = codeScrollPane;
+        setup();
     }
 
     public List<CodeLine> getCodeLines() { return codeLines; }

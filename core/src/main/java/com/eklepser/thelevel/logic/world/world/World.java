@@ -1,7 +1,7 @@
 package com.eklepser.thelevel.logic.world.world;
 
 import com.badlogic.gdx.Game;
-import com.eklepser.thelevel.graphics.level.WorldScreen;
+import com.eklepser.thelevel.graphics.game.world.WorldScreen;
 import com.eklepser.thelevel.logic.world.collision.CollisionContext;
 import com.eklepser.thelevel.logic.world.collision.CollisionManager;
 import com.eklepser.thelevel.logic.world.entity.Entity;
@@ -10,7 +10,7 @@ import com.eklepser.thelevel.logic.world.common.Configuration;
 import com.eklepser.thelevel.logic.world.common.GameMap;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.logic.world.common.MapLoader;
-import com.eklepser.thelevel.util.Layout;
+import com.eklepser.thelevel.graphics.Layout;
 import com.eklepser.thelevel.util.Resources;
 
 import java.util.ArrayList;
@@ -18,11 +18,11 @@ import java.util.List;
 
 public class World extends GameMap {
     private final WorldScreen screen;
-    private final Entity player;
     private final CollisionManager collisionManager;
+    private final Entity player;
+    private final List<Collidable> collidables;
     private int selectedLevelId;
     private final List<LevelConfiguration> levelConfigs;
-    private final List<Collidable> collidables;
 
     public World(WorldConfiguration config, Game game) {
         super(config, game);
@@ -65,7 +65,7 @@ public class World extends GameMap {
             .orElse(null);
     }
 
-    // Getters:
+    // Getters & setters:
     public WorldScreen getScreen() {
         return screen;
     }
@@ -76,6 +76,10 @@ public class World extends GameMap {
 
     public int getSelectedLevelId() {
         return selectedLevelId;
+    }
+
+    public void setSelectedLevelId(int selectedLevelId) {
+        this.selectedLevelId = selectedLevelId;
     }
 
     public List<LevelConfiguration> getLevelConfigurations() {

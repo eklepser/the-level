@@ -41,6 +41,7 @@ public class MapLoader {
         else if (gameMap instanceof World world) {
             return switch (type) {
                 case "level" -> LevelZone.from(rectObj, world);
+                case "world" -> null;
                 default -> {
                     System.out.println("Unknown collidable type: " + type);
                     yield null;

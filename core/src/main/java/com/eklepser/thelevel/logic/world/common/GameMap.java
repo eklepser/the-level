@@ -7,7 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.eklepser.thelevel.logic.world.collision.CollisionSource;
-import com.eklepser.thelevel.util.Layout;
+import com.eklepser.thelevel.graphics.Layout;
 import com.eklepser.thelevel.util.Resources;
 
 public abstract class GameMap implements CollisionSource {

@@ -23,6 +23,6 @@ public class LevelZone extends Zone {
 
     @Override
     public void onCollision(Entity entity) {
-        //world.setSelectedLevelId(levelId);
+        world.setSelectedLevelId(levelId);
     }
 }

@@ -1,36 +1,36 @@
-package com.eklepser.thelevel.graphics.level.root;
+package com.eklepser.thelevel.graphics.game.level;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.eklepser.thelevel.graphics.common.TextLabel;
-import com.eklepser.thelevel.graphics.level.LevelScreen;
-import com.eklepser.thelevel.graphics.level.root.editor.Editor;
+import com.eklepser.thelevel.graphics.Layout;
+import com.eklepser.thelevel.graphics.game.level.bar.StatusBar;
+import com.eklepser.thelevel.graphics.game.level.bar.ToolBar;
+import com.eklepser.thelevel.graphics.utils.TextLabel;
+import com.eklepser.thelevel.graphics.game.level.editor.EditorLayout;
 import com.eklepser.thelevel.logic.world.level.Level;
 
-import static com.eklepser.thelevel.util.Layout.EDITOR_MENU_SCALE;
-import static com.eklepser.thelevel.util.Layout.VIEWPORT_WIDTH;
-
-public class RootTable extends Table {
+public class LevelLayout extends Layout {
     private final LevelScreen screen;
+    private final EditorLayout editorLayout;
     private final ToolBar toolBar;
     private final TextLabel infoLabel;
     private final StatusBar statusBar;
-    private final Editor editor;
 
-    public RootTable(LevelScreen screen, Level level) {
+    public LevelLayout(LevelScreen screen, Level level) {
         this.screen = screen;
         toolBar = new ToolBar(this);
-        infoLabel = new TextLabel("");
+        infoLabel = new TextLabel();
         statusBar = new StatusBar();
-        editor = new Editor(this, level);
-
-        setFillParent(true);
-        setupLayout();
+        // Init editor after all others!
+        editorLayout = new EditorLayout(this, level);
+        setup();
     }
 
-    private void setupLayout() {
+    @Override
+    protected void setup() {
+        setFillParent(true);
         // Setup elements:
-        infoLabel.setText(editor.getLevel().getConfig().name);
+        infoLabel.setText(editorLayout.getLevel().getConfig().name);
 
         statusBar.left();
         ScrollPane scrollPane = new ScrollPane(statusBar);
@@ -47,16 +47,19 @@ public class RootTable extends Table {
         add(infoLabel);
 
         row();
-        add(editor).width(VIEWPORT_WIDTH * EDITOR_MENU_SCALE).top().expandY();
+        add(editorLayout).width(VIEWPORT_WIDTH * EDITOR_MENU_SCALE).top().expandY();
         add().expand();
 
         row().colspan(2);
         add(statusTable).left().padRight(10).height(32);
     }
 
+    // Getters:
     public LevelScreen getScreen() { return screen; }
 
-    public StatusBar getStatusBar() { return statusBar; }
+    public EditorLayout getEditor() {
+        return editorLayout;
+    }
 
-    public Editor getEditor() { return editor; }
+    public StatusBar getStatusBar() { return statusBar; }
 }

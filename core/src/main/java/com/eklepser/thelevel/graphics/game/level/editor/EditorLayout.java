@@ -1,58 +1,56 @@
-package com.eklepser.thelevel.graphics.level.root.editor;
+package com.eklepser.thelevel.graphics.game.level.editor;
 
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.eklepser.thelevel.graphics.common.TextLabel;
-import com.eklepser.thelevel.graphics.level.root.editor.buttons.ClearButton;
-import com.eklepser.thelevel.graphics.level.root.editor.buttons.ResetButton;
-import com.eklepser.thelevel.graphics.level.root.editor.buttons.RunButton;
-import com.eklepser.thelevel.graphics.level.root.editor.buttons.ShowCommandsButton;
-import com.eklepser.thelevel.graphics.level.root.RootTable;
+import com.eklepser.thelevel.graphics.Layout;
+import com.eklepser.thelevel.graphics.game.level.LevelLayout;
+import com.eklepser.thelevel.graphics.game.level.editor.buttons.ClearButton;
+import com.eklepser.thelevel.graphics.game.level.editor.buttons.ResetButton;
+import com.eklepser.thelevel.graphics.game.level.editor.buttons.RunButton;
+import com.eklepser.thelevel.graphics.game.level.editor.buttons.ShowCommandsButton;
+import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
+import com.eklepser.thelevel.logic.world.collision.Collidable;
+import com.eklepser.thelevel.logic.world.collision.zone.WinZone;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
-import com.eklepser.thelevel.logic.world.collision.zone.WinZone;
-import com.eklepser.thelevel.logic.world.collision.Collidable;
-import com.eklepser.thelevel.util.Layout;
 import com.eklepser.thelevel.util.Resources;
 
-public class Editor extends Table {
-    private final RootTable rootTable;
+public class EditorLayout extends Layout {
+    private final LevelLayout root;
     private final Level level;
     private final LevelConfiguration conf;
-    private final CodeTable codeTable;
+    private final CodeLayout codeLayout;
     private final Executor executor;
     private final TextLabel statusLabel;
     private final RunButton runButton;
     private final ShowCommandsButton showCommandsButton;
-    private final ParametersPanel parametersPanel;
-    private final CommandsPanel commandsPanel;
+    private final ParametersLayout parametersLayout;
+    private final CommandsLayout commandsLayout;
     private final ScrollPane codeScrollPane;
 
-
-    public Editor(RootTable rootTable, Level level) {
-        this.rootTable = rootTable;
+    public EditorLayout(LevelLayout root, Level level) {
+        this.root = root;
         this.level = level;
         conf = (LevelConfiguration) level.getConfig();
+        codeLayout = new CodeLayout(this, conf);
+        codeScrollPane = new ScrollPane(codeLayout, Resources.getSkin());
+        codeLayout.setCodeScrollPane(codeScrollPane);
+        // Init executor after codeLayout creating!
+        executor = new Executor(level, this);
 
-        codeTable = new CodeTable(this, conf);
-        codeScrollPane = new ScrollPane(codeTable, Resources.getSkin());
-        codeTable.setupLayout(codeScrollPane);
-
-        executor = new Executor(level, conf, this);
-
-        statusLabel = new TextLabel("Status:\nNo status");
-        statusLabel.setWrap(true);
-
+        statusLabel = new TextLabel("Status:\nNo status", true);
         runButton = new RunButton(this);
-        parametersPanel = new ParametersPanel(executor);
-        commandsPanel = new CommandsPanel(conf);
-        showCommandsButton = new ShowCommandsButton(commandsPanel);
-        setupLayout(codeScrollPane);
+        parametersLayout = new ParametersLayout(executor);
+        commandsLayout = new CommandsLayout(conf);
+        showCommandsButton = new ShowCommandsButton(commandsLayout);
+
+        setup();
     }
 
-    private void setupLayout(ScrollPane codeScrollPane) {
+    @Override
+    protected void setup() {
         // Setup elements:
         Table commandsTable = new Table().left();
         HorizontalGroup group = new HorizontalGroup();
@@ -62,10 +60,10 @@ public class Editor extends Table {
 
         commandsTable.add(group).left();
         commandsTable.row().colspan(2).fillY().expandY();
-        commandsTable.add(commandsPanel).left().fillY().expandY();
+        commandsTable.add(commandsLayout).left().fillY().expandY();
 
         // Adding elements:
-        add(parametersPanel).padBottom(10).colspan(3).fillX().padLeft(10);
+        add(parametersLayout).padBottom(10).colspan(3).fillX().padLeft(10);
 
         // code panel
         row().colspan(3).fillX().expandX();
@@ -73,7 +71,6 @@ public class Editor extends Table {
 
         // execution buttons
         row().padTop(10);
-        //add(new TextLabel("Action:"));
         add(runButton).fillX().padRight(10).padLeft(10);
         add(new ResetButton(this)).fillX().padRight(10).padLeft(10);
         add(new ClearButton(this)).fillX().padRight(10).padLeft(10);
@@ -89,21 +86,22 @@ public class Editor extends Table {
         add().expandY().fillY();
     }
 
+    // Class logic:
     public void run() {
         resetRunning();
-        rootTable.getStatusBar().clear();
+        root.getStatusBar().clear();
         String status = executor.runExecution();
         statusLabel.setText("Status:\n" + status);
     }
 
     public void clearRunning() {
         resetRunning();
-        codeTable.clearCode();
+        codeLayout.clearCode();
     }
 
     public void resetRunning() {
         System.out.println("Resetting");
-        codeTable.getCodeLines().forEach(
+        codeLayout.getCodeLines().forEach(
             codeLine -> codeLine.setCompleting(false));
         executor.stop();
         statusLabel.setText("Status:\nReset");
@@ -124,17 +122,18 @@ public class Editor extends Table {
         }
     }
 
-    public RootTable getRootTable() { return rootTable; }
+    // Getters:
+    public LevelLayout getRoot() { return root; }
 
     public Level getLevel() { return level; }
 
     public Executor getExecutor() { return executor; }
 
-    public CodeTable getCodeTable() { return codeTable; }
+    public CodeLayout getCodeLayout() { return codeLayout; }
 
     public TextLabel getStatusLabel() { return statusLabel; }
 
     public RunButton getRunButton() { return runButton; }
 
-    public ParametersPanel getParametersTable() { return parametersPanel; }
+    public ParametersLayout getParametersTable() { return parametersLayout; }
 }

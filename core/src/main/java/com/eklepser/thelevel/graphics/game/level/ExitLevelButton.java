@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.level;
+package com.eklepser.thelevel.graphics.game.level;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
