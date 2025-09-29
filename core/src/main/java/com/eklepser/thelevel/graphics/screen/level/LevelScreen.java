@@ -1,7 +1,8 @@
 package com.eklepser.thelevel.graphics.screen.level;
 
 import com.badlogic.gdx.Game;
-import com.eklepser.thelevel.graphics.screen.builder.GameScreen;
+import com.eklepser.thelevel.graphics.render.MapLoader;
+import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.graphics.screen.level.editor.EditorProcessor;
 import com.eklepser.thelevel.graphics.screen.level.window.HelpWindow;
 import com.eklepser.thelevel.graphics.screen.level.window.WinWindow;
@@ -15,7 +16,7 @@ public class LevelScreen extends GameScreen {
     private final WinWindow winWindow;
 
     public LevelScreen(Game game, LevelConfiguration config) {
-        super(config);
+        super(MapLoader.load(config.mapName));
         helpWindow = new HelpWindow(game);
         winWindow = new WinWindow(game);
         level = new Level(config, this);
@@ -24,14 +25,7 @@ public class LevelScreen extends GameScreen {
 
     @Override
     protected void setupCamera() {
-        float levelWidth = map.width * TILE_SIZE;
-        float levelHeight = map.height * TILE_SIZE;
-
-        float levelCenterX = levelWidth / 2f;
-        float levelCenterY = levelHeight / 2f;
-
-        camera.position.set(levelCenterX, levelCenterY, 0);
-        camera.update();
+        centerCamera();
     }
 
     @Override

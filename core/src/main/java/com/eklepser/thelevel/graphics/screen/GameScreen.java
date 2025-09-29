@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.screen.builder;
+package com.eklepser.thelevel.graphics.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -9,11 +9,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.graphics.screen.Layout;
 import com.eklepser.thelevel.graphics.render.MapLoader;
 import com.eklepser.thelevel.graphics.render.TileMap;
 import com.eklepser.thelevel.graphics.render.TileSet;
 import com.eklepser.thelevel.logic.world.common.Configuration;
+import com.eklepser.thelevel.util.Resources;
 
 public abstract class GameScreen extends ScreenAdapter {
     protected final Stage stage;
@@ -24,13 +24,13 @@ public abstract class GameScreen extends ScreenAdapter {
     protected final InputMultiplexer inputMultiplexer;
     public static final int TILE_SIZE = 32;
 
-    public GameScreen(Configuration config) {
+    public GameScreen(TileMap map) {
         stage = new Stage(new FitViewport(
             Layout.VIEWPORT_WIDTH, Layout.VIEWPORT_HEIGHT, new OrthographicCamera()));
-        this.map = MapLoader.load(config.mapName);
+        this.map = map;
 
         batch = new SpriteBatch();
-        tileset = new TileSet("world/map/gamefield-tileset.png", TILE_SIZE, TILE_SIZE);
+        tileset = Resources.getTileSet();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(true);
@@ -41,6 +41,17 @@ public abstract class GameScreen extends ScreenAdapter {
     }
 
     protected abstract void setupCamera();
+
+    protected void centerCamera() {
+        float levelWidth = map.width * TILE_SIZE;
+        float levelHeight = map.height * TILE_SIZE;
+
+        float levelCenterX = levelWidth / 2f;
+        float levelCenterY = levelHeight / 2f;
+
+        camera.position.set(levelCenterX, levelCenterY, 0);
+        camera.update();
+    }
 
     @Override
     public void render(float delta) {
@@ -73,7 +84,28 @@ public abstract class GameScreen extends ScreenAdapter {
         }
     }
 
+    // Getters:
     public TileMap getMap() {
         return map;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public SpriteBatch getBatch() {
+        return batch;
+    }
+
+    public TileSet getTileset() {
+        return tileset;
+    }
+
+    public OrthographicCamera getCamera() {
+        return camera;
+    }
+
+    public InputMultiplexer getInputMultiplexer() {
+        return inputMultiplexer;
     }
 }

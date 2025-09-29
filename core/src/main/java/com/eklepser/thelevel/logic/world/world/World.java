@@ -2,7 +2,7 @@ package com.eklepser.thelevel.logic.world.world;
 
 import com.badlogic.gdx.math.Vector2;
 import com.eklepser.thelevel.graphics.render.TileMap;
-import com.eklepser.thelevel.graphics.screen.builder.GameScreen;
+import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.graphics.screen.world.WorldScreen;
 import com.eklepser.thelevel.logic.world.collision.Collidable;
 import com.eklepser.thelevel.logic.world.common.Configuration;
@@ -30,7 +30,7 @@ public class World {
         player = new Entity((int) startPos.x, (int) startPos.y,
             "world/entity/target.png");
         collidables = new ArrayList<>();
-        levelConfigs = Configuration.from(LevelConfiguration.class, Resources.LEVEL_CONFIG);
+        levelConfigs = Configuration.listFrom(LevelConfiguration.class, Resources.LEVEL_CONFIG);
         // Order is important! Screen -> map loader -> collision manager -> processors.
         this.screen = screen;
 //        MapLoader.loadCollidables(this, collidables);

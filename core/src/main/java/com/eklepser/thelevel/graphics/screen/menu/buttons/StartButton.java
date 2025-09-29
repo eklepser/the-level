@@ -15,7 +15,7 @@ public class StartButton extends TextButton {
         addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                WorldConfiguration worldConfig = Configuration.from(
+                WorldConfiguration worldConfig = Configuration.listFrom(
                     WorldConfiguration.class, Resources.WORLD_CONFIG).get(0);
                 game.setScreen(new WorldScreen(game, worldConfig));
             }

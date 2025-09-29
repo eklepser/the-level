@@ -48,7 +48,7 @@ public class WorldProcessor extends InputAdapter {
         }
         else if (keycode == Input.Keys.F1) {
             world.setSelectedLevelId(0);
-            LevelConfiguration levelConfiguration = Configuration.from(
+            LevelConfiguration levelConfiguration = Configuration.listFrom(
                 LevelConfiguration.class, Resources.LEVEL_CONFIG).get(0);
             System.out.println("AAAAAAAAA");
             game.setScreen(new LevelScreen(game, levelConfiguration));

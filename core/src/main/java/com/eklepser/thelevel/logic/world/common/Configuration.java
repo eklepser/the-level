@@ -12,7 +12,12 @@ public abstract class Configuration {
     public String mapName;
     public float cameraZoom;
 
-    public static <T extends Configuration> List<T> from(Class<T> configClass, String configPath) {
+    public static <T extends Configuration> T from(Class<T> configClass, String configPath) {
+        Json json = new Json();
+        return json.fromJson(configClass, Gdx.files.internal(configPath));
+    }
+
+    public static <T extends Configuration> List<T> listFrom(Class<T> configClass, String configPath) {
         Json json = new Json();
         return json.fromJson(ArrayList.class, configClass, Gdx.files.internal(configPath));
     }

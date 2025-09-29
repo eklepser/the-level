@@ -16,7 +16,7 @@ public class ExitLevelButton extends TextButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Exit");
-                WorldConfiguration worldConfig = Configuration.from(
+                WorldConfiguration worldConfig = Configuration.listFrom(
                     WorldConfiguration.class, "world/world.json").get(0);
                 game.setScreen(new WorldScreen(game, worldConfig));
             }
