@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.eklepser.thelevel.logic.world.entity.Entity;
-import com.eklepser.thelevel.logic.world.collision.zone.ColoredZone;
+import com.eklepser.thelevel.logic.world.collision.zone.ColoredZoneOld;
 import com.eklepser.thelevel.logic.world.collision.Wall;
 import com.eklepser.thelevel.logic.world.collision.Collidable;
 
@@ -26,7 +26,7 @@ public class FacingCondition extends Condition {
             }
             return false;
         }
-        if (collidable instanceof ColoredZone coloredZone) {
+        if (collidable instanceof ColoredZoneOld coloredZone) {
             if (target.getFacingRect().overlaps(coloredZone.getRect())) {
                 return (targetObject.equals(coloredZone.getColorName()));
             }

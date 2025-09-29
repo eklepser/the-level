@@ -2,9 +2,7 @@
   {
     "id": 1,
     "name": "World 1",
-    "mapName": "test/level1.json",
-    "startPosX": 6,
-    "startPosY": 1,
+    "mapName": "test/world_map.json",
     "cameraZoom": 1.67
   }
 ]

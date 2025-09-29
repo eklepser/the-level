@@ -10,8 +10,6 @@ public abstract class Configuration {
     public int id;
     public String name;
     public String mapName;
-    public int startPosX;
-    public int startPosY;
     public float cameraZoom;
 
     public static <T extends Configuration> List<T> from(Class<T> configClass, String configPath) {

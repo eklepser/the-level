@@ -3,8 +3,8 @@ package com.eklepser.thelevel.logic.decoder.execution;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.eklepser.thelevel.graphics.game.level.editor.CodeLine;
-import com.eklepser.thelevel.graphics.game.level.editor.EditorLayout;
+import com.eklepser.thelevel.graphics.screen.level.editor.CodeLine;
+import com.eklepser.thelevel.graphics.screen.level.editor.EditorLayout;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.decoder.util.TimeController;
 import com.eklepser.thelevel.logic.decoder.util.TimedAction;
@@ -13,6 +13,7 @@ import com.eklepser.thelevel.logic.world.entity.Entity;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class Executor implements TimeController {
     public Executor(Level level, EditorLayout editorLayout) {
         this.editorLayout = editorLayout;
         targets = level.getEntities();
-        zones = level.getCollidables();
+        zones = new ArrayList<>();
         codeLines = editorLayout.getCodeLayout().getCodeLines();
         LevelConfiguration config = (LevelConfiguration) level.getConfig();
         translator = new Translator(config.allowedInstructions, codeLines, this);

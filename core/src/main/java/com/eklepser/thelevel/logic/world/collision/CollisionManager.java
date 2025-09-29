@@ -2,14 +2,14 @@ package com.eklepser.thelevel.logic.world.collision;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.eklepser.thelevel.logic.world.entity.Entity;
-import com.eklepser.thelevel.logic.world.collision.zone.Zone;
+import com.eklepser.thelevel.logic.world.collision.zone.ZoneOld;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CollisionManager {
     private final List<Wall> walls = new ArrayList<>();
-    private final List<Zone> zones = new ArrayList<>();
+    private final List<ZoneOld> zoneOlds = new ArrayList<>();
     private final List<Entity> entities;
     private final boolean hittingWalls;
 
@@ -17,7 +17,7 @@ public class CollisionManager {
         CollisionContext context = source.getCollisionContext();
         for (Collidable collidable : context.collidables()) {
             if (collidable instanceof Wall wall) walls.add(wall);
-            if (collidable instanceof Zone zone) zones.add(zone);
+            if (collidable instanceof ZoneOld zoneOld) zoneOlds.add(zoneOld);
         }
         entities = context.entities();
         hittingWalls = context.hittingWalls();
@@ -44,10 +44,10 @@ public class CollisionManager {
 
     private void zonesUpdate(Entity entity) {
         Rectangle entityRect = entity.getTargetRect();
-        for (Zone zone : zones) {
-            Rectangle zoneRect = zone.getRect();
+        for (ZoneOld zoneOld : zoneOlds) {
+            Rectangle zoneRect = zoneOld.getRect();
             if (entityRect.overlaps(zoneRect)) {
-                zone.onCollision(entity);
+                zoneOld.onCollision(entity);
             }
         }
     }

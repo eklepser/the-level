@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Direction {
-    UP(0, 1, "up"),
-    DOWN(0, -1, "down"),
+    UP(0, -1, "up"),
+    DOWN(0, 1, "down"),
     LEFT(-1, 0, "left"),
     RIGHT(1, 0, "right"),
     FORWARD(0, 0, "forward");
@@ -34,7 +34,7 @@ public enum Direction {
 
     public static float getDegrees(Direction direction) {
         return switch (direction) {
-            case DOWN -> 180;
+            case UP -> 180;
             case LEFT -> 90;
             case RIGHT -> 270;
             default -> 0;

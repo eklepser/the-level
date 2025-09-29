@@ -10,6 +10,9 @@ public class Entity extends TiledActor {
     public Entity(int worldPosX, int worldPosY, String textureName) {
         super(new Vector2(worldPosX, worldPosY), textureName);
         setPosition(worldPosX * size, worldPosY * size);
+
+        facingDirection = Direction.UP;
+        sprite.setRotation(Direction.getDegrees(facingDirection));
     }
 
     // Class logic:

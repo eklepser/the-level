@@ -1,48 +1,36 @@
 package com.eklepser.thelevel.logic.world.level;
 
-import com.badlogic.gdx.Game;
-import com.eklepser.thelevel.graphics.game.level.LevelScreen;
+import com.badlogic.gdx.math.Vector2;
+import com.eklepser.thelevel.graphics.render.TileMap;
+import com.eklepser.thelevel.graphics.screen.level.LevelScreen;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
-import com.eklepser.thelevel.logic.world.collision.Collidable;
-import com.eklepser.thelevel.logic.world.collision.CollisionContext;
-import com.eklepser.thelevel.logic.world.collision.CollisionManager;
 import com.eklepser.thelevel.logic.world.entity.Entity;
-import com.eklepser.thelevel.graphics.Layout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class Level {
     private final LevelConfiguration config;
     private final LevelScreen screen;
+    private final TileMap map;
     //private final CollisionManager collisionManager;
+    private final Vector2 startPos;
     private final List<Entity> entities;
     private final List<Entity> entitiesToAdd;
-    private final List<Collidable> collidables;
 
     public Level(LevelConfiguration config, LevelScreen screen) {
-//        super(config, game);
         this.config = config;
+        this.screen = screen;
+        map = screen.getMap();
+
+        startPos = map.getStartPos();
         entities = new ArrayList<>();
         entitiesToAdd = new ArrayList<>();
-        collidables = new ArrayList<>();
-        // Order is important! Screen -> map loader -> collision manager.
-        this.screen = screen;
-//        MapLoader.loadCollidables(this, collidables);
-//        collisionManager = new CollisionManager(this);
 
-        spawnEntity(config.startPosX, config.startPosY);
+        spawnEntity((int) startPos.x, (int) startPos.y);
     }
 
-//    @Override
-//    public void draw() {
-//        renderer.render();
-//        batch.begin();
-//        entities.forEach(entity -> entity.draw(batch, 1.0f));
-//        batch.end();
-//    }
-
-    //@Override
     public void update(float delta) {
         //collisionManager.update();
         if (!entitiesToAdd.isEmpty()) {
@@ -53,15 +41,10 @@ public class Level {
         entities.forEach(entity -> entity.act(delta));
     }
 
-    //@Override
-    public CollisionContext getCollisionContext() {
-        return new CollisionContext(collidables, entities, true);
-    }
-
     // Class logic:
     public void reset() {
         entities.clear();
-        //spawnEntity(config.startPosX, config.startPosY);
+        spawnEntity((int) startPos.x, (int) startPos.y);
     }
 
     public void spawnEntity(int worldPosX, int worldPosY) {
@@ -76,10 +59,8 @@ public class Level {
 
     public List<Entity> getEntitiesToAdd() { return entitiesToAdd; }
 
-    public List<Collidable> getCollidables() { return collidables; }
-
     public Executor getExecutor() {
-        return screen.getRoot().getEditor().getExecutor();
+        return screen.getLayout().getEditor().getExecutor();
     }
 
     public LevelConfiguration getConfig() {

@@ -16,6 +16,7 @@ public class MoveCommand extends Command {
     @Override
     public void execute(Entity target) {
         System.out.println("MOVE " + direction.name());
+        System.out.println(target.getWorldPos());
         target.setTargetWorldPos(direction);
     }
 

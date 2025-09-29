@@ -2,11 +2,9 @@
   {
     "id": 0,
     "name": "/_3 SandBox",
-    "mapName": "test/level2.json",
+    "mapName": "test/level.json",
     "codeLinesNum": 50,
     "allowedInstructions": ["MOVE","GOTO","ROT","IF"],
-    "startPosX": 4,
-    "startPosY": 3,
     "cameraZoom": 0.8
   },
   {
@@ -15,8 +13,6 @@
     "mapName": "level1.tmx",
     "codeLinesNum": 4,
     "allowedInstructions": ["MOVE"],
-    "startPosX": 2,
-    "startPosY": 2,
     "cameraZoom": 1.67
   },
   {
@@ -25,8 +21,6 @@
     "mapName": "level2.tmx",
     "codeLinesNum": 3,
     "allowedInstructions": ["MOVE","GOTO"],
-    "startPosX": 2,
-    "startPosY": 2,
     "cameraZoom": 1.67
   },
   {
@@ -35,8 +29,6 @@
     "mapName": "level4.tmx",
     "codeLinesNum": 5,
     "allowedInstructions": ["MOVE","GOTO","ROT","IF"],
-    "startPosX": 2,
-    "startPosY": 7,
     "cameraZoom": 1.67
   },
   {
@@ -45,8 +37,6 @@
     "mapName": "level3.tmx",
     "codeLinesNum": 10,
     "allowedInstructions": ["MOVE","GOTO","ROT", "IF"],
-    "startPosX": 1,
-    "startPosY": 1,
     "cameraZoom": 1.33
   },
   {
@@ -55,8 +45,6 @@
     "mapName": "level5.tmx",
     "codeLinesNum": 7,
     "allowedInstructions": ["MOVE","GOTO","ROT"],
-    "startPosX": 2,
-    "startPosY": 2,
     "cameraZoom": 1.5
   }
 ]
