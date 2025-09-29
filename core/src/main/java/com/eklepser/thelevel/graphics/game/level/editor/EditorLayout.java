@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.eklepser.thelevel.graphics.Layout;
+import com.eklepser.thelevel.graphics.builder.TileMap;
 import com.eklepser.thelevel.graphics.game.level.LevelLayout;
 import com.eklepser.thelevel.graphics.game.level.editor.buttons.ClearButton;
 import com.eklepser.thelevel.graphics.game.level.editor.buttons.ResetButton;

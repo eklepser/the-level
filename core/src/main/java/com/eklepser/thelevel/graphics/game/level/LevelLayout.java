@@ -3,10 +3,11 @@ package com.eklepser.thelevel.graphics.game.level;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.eklepser.thelevel.graphics.Layout;
+import com.eklepser.thelevel.graphics.builder.GameScreen;
+import com.eklepser.thelevel.graphics.builder.TileMap;
 import com.eklepser.thelevel.graphics.game.level.bar.StatusBar;
 import com.eklepser.thelevel.graphics.game.level.bar.ToolBar;
 import com.eklepser.thelevel.graphics.utils.ColoredString;
-import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.graphics.game.level.editor.EditorLayout;
 import com.eklepser.thelevel.logic.world.level.Level;
 

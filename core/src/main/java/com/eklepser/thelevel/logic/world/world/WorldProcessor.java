@@ -3,10 +3,14 @@ package com.eklepser.thelevel.logic.world.world;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.eklepser.thelevel.graphics.game.level.LevelScreen;
 import com.eklepser.thelevel.graphics.menu.MenuScreen;
+import com.eklepser.thelevel.logic.world.common.Configuration;
 import com.eklepser.thelevel.logic.world.entity.Entity;
 import com.eklepser.thelevel.logic.world.level.Level;
+import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Direction;
+import com.eklepser.thelevel.util.Resources;
 
 public class WorldProcessor extends InputAdapter {
     private final Game game;
@@ -40,14 +44,15 @@ public class WorldProcessor extends InputAdapter {
         }
         else if (keycode == Input.Keys.ENTER || keycode == Input.Keys.SPACE) {
             if (world.getSelectedLevelId() != 0) {
-                Level level = new Level(world.getSelectedLevelConfig(), game);
-                game.setScreen(level.getScreen());
+                //game.setScreen(new LevelScreen(game, world.getSelectedLevelConfig()));
             }
         }
         else if (keycode == Input.Keys.F1) {
             world.setSelectedLevelId(0);
-            Level level = new Level(world.getSelectedLevelConfig(), game);
-            game.setScreen(level.getScreen());
+            LevelConfiguration levelConfiguration = Configuration.from(
+                LevelConfiguration.class, Resources.LEVEL_CONFIG).get(0);
+            System.out.println("AAAAAAAAA");
+            game.setScreen(new LevelScreen(game, levelConfiguration));
         }
         else if (keycode == Input.Keys.ESCAPE) {
             game.setScreen(new MenuScreen(game));

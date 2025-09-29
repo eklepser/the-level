@@ -42,7 +42,8 @@ public class SelectingLayout extends Layout {
 
     //Class logic:
     public void update() {
-        LevelConfiguration config = world.getSelectedLevelConfig();
+        //LevelConfiguration config = world.getSelectedLevelConfig();
+        LevelConfiguration config = new LevelConfiguration();
 
         levelString.setText(config.name);
         limitString.setText("/gray_1.5 Lines limit: /white_2 " + config.codeLinesNum);

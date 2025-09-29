@@ -2,7 +2,7 @@
   {
     "id": 0,
     "name": "/_3 SandBox",
-    "mapName": "sandbox.tmx",
+    "mapName": "test/level2.json",
     "codeLinesNum": 50,
     "allowedInstructions": ["MOVE","GOTO","ROT","IF"],
     "startPosX": 4,

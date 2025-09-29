@@ -1,16 +1,17 @@
 package com.eklepser.thelevel.graphics.game.world;
 
 import com.eklepser.thelevel.graphics.Layout;
+import com.eklepser.thelevel.graphics.builder.GameScreen;
 import com.eklepser.thelevel.graphics.utils.ColoredString;
 import com.eklepser.thelevel.logic.world.world.World;
 
 public class WorldLayout extends Layout {
-    private final WorldScreen screen;
+    private final GameScreen screen;
     private final World world;
     private final SelectingLayout selectingLayout;
     private final ColoredString levelIdString;
 
-    public WorldLayout(WorldScreen screen, World world) {
+    public WorldLayout(GameScreen screen, World world) {
         this.screen = screen;
         this.world = world;
         selectingLayout = new SelectingLayout(world);

@@ -6,55 +6,45 @@ import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.collision.Collidable;
 import com.eklepser.thelevel.logic.world.collision.CollisionContext;
 import com.eklepser.thelevel.logic.world.collision.CollisionManager;
-import com.eklepser.thelevel.logic.world.common.GameMap;
-import com.eklepser.thelevel.logic.world.common.MapLoader;
 import com.eklepser.thelevel.logic.world.entity.Entity;
 import com.eklepser.thelevel.graphics.Layout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Level extends GameMap {
+public class Level {
+    private final LevelConfiguration config;
     private final LevelScreen screen;
-    private final CollisionManager collisionManager;
+    //private final CollisionManager collisionManager;
     private final List<Entity> entities;
     private final List<Entity> entitiesToAdd;
     private final List<Collidable> collidables;
 
-    public Level(LevelConfiguration config, Game game) {
-        super(config, game);
+    public Level(LevelConfiguration config, LevelScreen screen) {
+//        super(config, game);
+        this.config = config;
         entities = new ArrayList<>();
         entitiesToAdd = new ArrayList<>();
         collidables = new ArrayList<>();
         // Order is important! Screen -> map loader -> collision manager.
-        screen = new LevelScreen(game, this);
-        MapLoader.loadCollidables(this, collidables);
-        collisionManager = new CollisionManager(this);
+        this.screen = screen;
+//        MapLoader.loadCollidables(this, collidables);
+//        collisionManager = new CollisionManager(this);
 
         spawnEntity(config.startPosX, config.startPosY);
     }
 
-    @Override
-    public void setupCamera() {
-        float zoom = config.cameraZoom;
-        float cameraX = (width * Layout.TILE_SIZE - Layout.EDITOR_MENU_SCALE * Layout.VIEWPORT_WIDTH / zoom) / 2.0f;
-        float cameraY = height * Layout.TILE_SIZE / 2.0f;
-        camera.setToOrtho(false, Layout.VIEWPORT_WIDTH / zoom,
-            Layout.VIEWPORT_HEIGHT / zoom);
-        camera.position.set(cameraX, cameraY, 0);
-    }
+//    @Override
+//    public void draw() {
+//        renderer.render();
+//        batch.begin();
+//        entities.forEach(entity -> entity.draw(batch, 1.0f));
+//        batch.end();
+//    }
 
-    @Override
-    public void draw() {
-        renderer.render();
-        batch.begin();
-        entities.forEach(entity -> entity.draw(batch, 1.0f));
-        batch.end();
-    }
-
-    @Override
+    //@Override
     public void update(float delta) {
-        collisionManager.update();
+        //collisionManager.update();
         if (!entitiesToAdd.isEmpty()) {
             entities.addAll(entitiesToAdd);
             entitiesToAdd.clear();
@@ -63,7 +53,7 @@ public class Level extends GameMap {
         entities.forEach(entity -> entity.act(delta));
     }
 
-    @Override
+    //@Override
     public CollisionContext getCollisionContext() {
         return new CollisionContext(collidables, entities, true);
     }
@@ -71,7 +61,7 @@ public class Level extends GameMap {
     // Class logic:
     public void reset() {
         entities.clear();
-        spawnEntity(config.startPosX, config.startPosY);
+        //spawnEntity(config.startPosX, config.startPosY);
     }
 
     public void spawnEntity(int worldPosX, int worldPosY) {
@@ -90,5 +80,9 @@ public class Level extends GameMap {
 
     public Executor getExecutor() {
         return screen.getRoot().getEditor().getExecutor();
+    }
+
+    public LevelConfiguration getConfig() {
+        return config;
     }
 }

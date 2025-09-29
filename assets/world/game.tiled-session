@@ -5,10 +5,9 @@
     },
     "activeFile": "map/world1.tmx",
     "expandedProjectPaths": [
+        "template",
         ".",
-        "map",
-        "level",
-        "template"
+        "level"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -29,91 +28,70 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 128,
-                "y": 128
+                "y": 128.14970760233916
             }
         },
         "level/level3.tmx": {
             "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 176.25,
-                "y": 175.75
+                "x": 176,
+                "y": 176
             }
         },
         "level/level4.tmx": {
             "expandedObjectLayers": [
                 4
             ],
-            "scale": 2,
-            "selectedLayer": 3,
+            "scale": 3,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 160.25,
-                "y": 159.75
+                "x": 160.66666666666666,
+                "y": 150.66666666666669
             }
         },
         "level/sandbox.tmx": {
             "expandedObjectLayers": [
-                4,
-                5
+                5,
+                4
             ],
             "scale": 2,
             "selectedLayer": 2,
             "viewCenter": {
                 "x": 320.25,
-                "y": 455.25
-            }
-        },
-        "level/world1.tmx": {
-            "expandedObjectLayers": [
-                3
-            ],
-            "scale": 3,
-            "selectedLayer": 1,
-            "viewCenter": {
-                "x": 196.49999999999997,
-                "y": 262.8333333333333
+                "y": 320
             }
         },
         "map/common.tmx": {
-            "scale": 2.790625,
+            "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 160,
-                "y": 159.99999999999997
+                "x": 160.5,
+                "y": 160
             }
         },
-        "map/gamefield.tsx": {
-            "scaleInDock": 1
-        },
         "map/level4.tmx": {
-            "expandedObjectLayers": [
-                4
-            ],
-            "scale": 2,
-            "selectedLayer": 3,
+            "scale": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 136.75,
-                "y": -33.75
+                "x": 160.5,
+                "y": 160
             }
         },
         "map/level5.tmx": {
-            "scale": 2.790625,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 160,
-                "y": 159.99999999999997
+                "x": 160.5,
+                "y": 160
             }
         },
         "map/world1.tmx": {
-            "expandedObjectLayers": [
-                3,
-                4
-            ],
-            "scale": 4,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 221.125,
-                "y": 262.375
+                "x": 242.5,
+                "y": 207
             }
         }
     },

@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.Layout;
+import com.eklepser.thelevel.graphics.menu.buttons.BuilderButton;
 import com.eklepser.thelevel.graphics.menu.buttons.ExitButton;
 import com.eklepser.thelevel.graphics.menu.buttons.StartButton;
 import com.eklepser.thelevel.graphics.utils.ColoredString;
@@ -40,6 +41,9 @@ public class MenuScreen extends ScreenAdapter {
         rootTable.row();
         rootTable.add(new StartButton(game)).width(Layout.VIEWPORT_WIDTH / 4.0f)
             .height(Layout.VIEWPORT_HEIGHT / 16.0f);
+        rootTable.row();
+        rootTable.add(new BuilderButton(game)).width(Layout.VIEWPORT_WIDTH / 4.0f)
+            .height(Layout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         rootTable.row();
         rootTable.add(new ExitButton()).width(Layout.VIEWPORT_WIDTH / 8.0f)
             .height(Layout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
