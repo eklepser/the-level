@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.eklepser.thelevel.graphics.render.TileMap;
 import com.eklepser.thelevel.graphics.screen.level.LevelScreen;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
+import com.eklepser.thelevel.logic.world.collision.CollisionManager;
 import com.eklepser.thelevel.logic.world.entity.Entity;
 
 import java.util.ArrayList;
@@ -14,10 +15,10 @@ public class Level {
     private final LevelConfiguration config;
     private final LevelScreen screen;
     private final TileMap map;
-    //private final CollisionManager collisionManager;
     private final Vector2 startPos;
     private final List<Entity> entities;
     private final List<Entity> entitiesToAdd;
+    private final CollisionManager collisionManager;
 
     public Level(LevelConfiguration config, LevelScreen screen) {
         this.config = config;
@@ -27,12 +28,13 @@ public class Level {
         startPos = map.getStartPos();
         entities = new ArrayList<>();
         entitiesToAdd = new ArrayList<>();
+        collisionManager = new CollisionManager(map, entities);
 
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
 
     public void update(float delta) {
-        //collisionManager.update();
+        collisionManager.update();
         if (!entitiesToAdd.isEmpty()) {
             entities.addAll(entitiesToAdd);
             entitiesToAdd.clear();

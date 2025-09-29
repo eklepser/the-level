@@ -40,6 +40,7 @@ public class LevelScreen extends GameScreen {
         stage.addActor(helpWindow);
         stage.addActor(winWindow);
         inputMultiplexer.addProcessor(new EditorProcessor(this));
+        inputMultiplexer.addProcessor(stage);
     }
 
     @Override

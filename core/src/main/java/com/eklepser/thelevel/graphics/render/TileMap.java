@@ -2,7 +2,6 @@ package com.eklepser.thelevel.graphics.render;
 
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TileMap {

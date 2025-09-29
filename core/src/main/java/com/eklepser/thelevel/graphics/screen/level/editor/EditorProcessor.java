@@ -44,8 +44,7 @@ public class EditorProcessor extends InputAdapter {
         else if (keycode == Input.Keys.F5) {
         editorLayout.run();
         return true;
-    }
-
+        }
         else if (keycode == Input.Keys.ESCAPE) {
             screen.getHelpWindow().toggle();
             return true;

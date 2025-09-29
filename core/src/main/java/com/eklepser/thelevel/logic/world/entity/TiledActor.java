@@ -66,5 +66,7 @@ public abstract class TiledActor extends Actor {
 
     public Vector2 getWorldPos() { return worldPos; }
 
+    public Vector2 getTargetWorldPos() { return targetWorldPos; }
+
     public Direction getFacingDirection() { return facingDirection; }
 }

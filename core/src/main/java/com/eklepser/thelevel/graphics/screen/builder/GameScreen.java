@@ -38,7 +38,6 @@ public abstract class GameScreen extends ScreenAdapter {
 
         inputMultiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(inputMultiplexer);
-        inputMultiplexer.addProcessor(stage);
     }
 
     protected abstract void setupCamera();
@@ -50,6 +49,11 @@ public abstract class GameScreen extends ScreenAdapter {
         batch.begin();
         draw();
         batch.end();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
     }
 
     private void draw() {
@@ -67,11 +71,6 @@ public abstract class GameScreen extends ScreenAdapter {
                 batch.draw(region, screenX, screenY);
             }
         }
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        stage.getViewport().update(width, height, true);
     }
 
     public TileMap getMap() {
