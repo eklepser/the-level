@@ -1,10 +1,10 @@
 package com.eklepser.thelevel.logic.decoder.command;
 
+import java.lang.reflect.Constructor;
+
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.entity.Entity;
-
-import java.lang.reflect.Constructor;
 
 public abstract class Command {
     public abstract void execute(Entity target);
@@ -36,7 +36,7 @@ public abstract class Command {
 
             throw new RuntimeException("No suitable constructor found for command: " + commandName);
         }
-        catch (Exception e) {
+        catch (ReflectiveOperationException e) {
             throw new RuntimeException("Failed to instantiate command: " + commandName, e);
         }
     }

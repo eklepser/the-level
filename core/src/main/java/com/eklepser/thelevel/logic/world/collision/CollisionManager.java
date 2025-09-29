@@ -51,13 +51,4 @@ public class CollisionManager {
             }
         }
     }
-
-//    private boolean isWallCollision(Rectangle rectangle) {
-//        for (Rectangle wall : walls) {
-//            if (rectangle.overlaps(wall)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 }

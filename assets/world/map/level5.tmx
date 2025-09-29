@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="12">
+ <tileset firstgid="1" source="gamefield.tsx"/>
+ <layer id="1" name="background" width="10" height="10">
+  <data encoding="csv">
+1,1,1,2,1,1,11,1,1,1,
+1,13,13,13,13,13,13,13,13,2,
+1,13,1,11,12,1,2,1,13,1,
+1,13,11,13,13,13,13,1,13,1,
+11,13,12,13,1,2,13,11,13,2,
+12,13,1,13,2,13,13,1,13,1,
+11,13,1,13,1,11,1,2,13,1,
+11,13,1,13,13,13,13,13,13,2,
+12,1,11,11,12,1,11,1,2,12,
+12,11,11,12,11,11,1,2,2,12
+</data>
+ </layer>
+ <layer id="2" name="interactable" width="10" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,22,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,21,0,0,0,0,0,0,0,
+0,13,13,13,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="4" name="zones">
+  <object id="10" x="166.988" y="133.662" width="19.7088" height="21.1422">
+   <properties>
+    <property name="type" value="win"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="walls">
+  <object id="1" x="34.7592" y="34.0426" width="245.823" height="25.8007"/>
+  <object id="2" x="99.9776" y="99.9776" width="119.328" height="21.5006"/>
+  <object id="3" x="100.694" y="226.473" width="183.113" height="24.009"/>
+  <object id="4" x="260.157" y="66.2934" width="21.8589" height="153.371"/>
+  <object id="5" x="195.297" y="132.945" width="24.7256" height="55.1848"/>
+  <object id="6" x="165.554" y="162.688" width="21.1422" height="25.084"/>
+  <object id="7" x="100.694" y="131.512" width="22.5756" height="87.794"/>
+  <object id="8" x="35.4759" y="259.798" width="86.3606" height="19.3505"/>
+  <object id="9" x="35.1176" y="64.5017" width="24.7256" height="184.188"/>
+ </objectgroup>
+</map>

@@ -38,7 +38,7 @@ public class WorldProcessor extends InputAdapter {
             player.setTargetWorldPos(Direction.RIGHT);
             return true;
         }
-        else if (keycode == Input.Keys.ENTER) {
+        else if (keycode == Input.Keys.ENTER || keycode == Input.Keys.SPACE) {
             if (world.getSelectedLevelId() != 0) {
                 Level level = new Level(world.getSelectedLevelConfig(), game);
                 game.setScreen(level.getScreen());

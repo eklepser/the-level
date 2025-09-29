@@ -9,10 +9,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.graphics.utils.ColoredString;
+import com.eklepser.thelevel.graphics.Layout;
 import com.eklepser.thelevel.graphics.menu.buttons.ExitButton;
 import com.eklepser.thelevel.graphics.menu.buttons.StartButton;
-import com.eklepser.thelevel.graphics.Layout;
+import com.eklepser.thelevel.graphics.utils.ColoredString;
 
 public class MenuScreen extends ScreenAdapter {
     private final Game game;

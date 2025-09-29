@@ -10,7 +10,7 @@ public class MoveCommand extends Command {
     private final Direction direction;
 
     public MoveCommand(String[] args) {
-        direction = Direction.getByName(args[0]);
+        direction = Direction.getByName(args[0].toLowerCase());
     }
 
     @Override
