@@ -43,7 +43,7 @@ public class TilePalette extends TableLayout {
             });
             add(btn);
 
-            if (i % colsNum == 0) row();
+            if ((i + 1) % colsNum == 0) row();
         }
     }
 }

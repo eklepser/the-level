@@ -29,7 +29,7 @@ public class TileMap {
                 int tileId = tiles[y][x];
                 if (tileId < 0) continue;
 
-                TextureRegion region = Resources.getBlockTileSet().getTile(tileId);
+                TextureRegion region = Resources.getGroundTileSet().getTile(tileId);
                 if (region == null) continue;
 
                 float screenX = x * TILE_SIZE;

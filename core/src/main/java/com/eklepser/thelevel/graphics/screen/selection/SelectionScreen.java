@@ -36,6 +36,7 @@ public class SelectionScreen extends ScreenAdapter {
     @Override
     public void show() {
         multiplexer.addProcessor(stage);
+        multiplexer.addProcessor(new SelectionProcessor(game));
         stage.addActor(layout);
     }
 

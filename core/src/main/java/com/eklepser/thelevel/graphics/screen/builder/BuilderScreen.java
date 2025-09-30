@@ -1,23 +1,27 @@
 package com.eklepser.thelevel.graphics.screen.builder;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.graphics.utils.Loader;
 import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 
 public class BuilderScreen extends GameScreen {
+    private final LevelConfiguration config;
+    private final Game game;
     private final Builder builder;
     private final BuilderLayout layout;
     private final Stage gridStage;
 
-    public BuilderScreen(LevelConfiguration config) {
+    public BuilderScreen(Game game, LevelConfiguration config) {
         super(config.tileMap);
+        this.config = config;
+        this.game = game;
 
         // Order is important! Builder -> gridStage -> layout.
         builder = new Builder(this);
@@ -33,7 +37,7 @@ public class BuilderScreen extends GameScreen {
     @Override
     public void show() {
         stage.addActor(layout);
-        inputMultiplexer.addProcessor(new BuilderProcessor(this, map));
+        inputMultiplexer.addProcessor(new BuilderProcessor(game, this));
         inputMultiplexer.addProcessor(stage);
         inputMultiplexer.addProcessor(gridStage);
     }
@@ -62,6 +66,12 @@ public class BuilderScreen extends GameScreen {
     }
 
     private void updateCamera(float delta) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            stage.setKeyboardFocus(null);
+        }
+
+        if (layout.getConfigTable().hasTextFieldFocus()) return;
+
         float moveDistance = 200 * delta;
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
@@ -80,6 +90,10 @@ public class BuilderScreen extends GameScreen {
     }
 
     // Getters:
+    public LevelConfiguration getConfig() {
+        return config;
+    }
+
     public Builder getBuilder() {
         return builder;
     }

@@ -2,7 +2,6 @@ package com.eklepser.thelevel.graphics.screen.builder;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.eklepser.thelevel.graphics.render.TileMap;
-import com.eklepser.thelevel.graphics.render.TileSet;
 import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.util.Resources;
 
@@ -10,7 +9,7 @@ public class Builder {
     private final BuilderScreen screen;
     private final TileMap map;
 
-    private EditMode mode = EditMode.INSERT_BLOCK;
+    private EditMode mode = EditMode.INSERT_GROUND;
     private int selectedTileId;
 
     public Builder(BuilderScreen screen) {
@@ -41,6 +40,6 @@ public class Builder {
 
     public TextureRegion getSelectedTile() {
         if (mode.equals(EditMode.INSERT_ZONE)) return Resources.getZoneTileSet().getTile(selectedTileId);
-        return Resources.getBlockTileSet().getTile(selectedTileId);
+        return Resources.getGroundTileSet().getTile(selectedTileId);
     }
 }

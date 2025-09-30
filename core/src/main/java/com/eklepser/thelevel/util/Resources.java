@@ -14,14 +14,17 @@ public class Resources {
     public static final String MAP_DIRECTORY = "world/map/";
     public static final String WORLD_CONFIG = "world/world.json";
     public static final String LEVEL_CONFIG = "world/level.json";
+
     private static Skin skin;
-    private static TileSet blockTileSet;
+    private static TileSet groundTileSet;
+    private static TileSet wallTileSet;
     private static TileSet zoneTileSet;
 
     public static void load() {
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("ui/skin/ui.atlas"));
         skin = new Skin(Gdx.files.internal("ui/skin/skin.json"), atlas);
-        blockTileSet = new TileSet("world/block_tileset.png", "block" , TILE_SIZE, TILE_SIZE);
+        groundTileSet = new TileSet("world/ground_tileset.png", "block" , TILE_SIZE, TILE_SIZE);
+        wallTileSet = new TileSet("world/wall_tileset.png", "wall" , TILE_SIZE, TILE_SIZE);
         zoneTileSet = new TileSet("world/zone_tileset.png", "zone", TILE_SIZE, TILE_SIZE);
     }
 
@@ -30,8 +33,12 @@ public class Resources {
         return skin;
     }
 
-    public static TileSet getBlockTileSet() {
-        return blockTileSet;
+    public static TileSet getGroundTileSet() {
+        return groundTileSet;
+    }
+
+    public static TileSet getWallTileSet() {
+        return wallTileSet;
     }
 
     public static TileSet getZoneTileSet() {

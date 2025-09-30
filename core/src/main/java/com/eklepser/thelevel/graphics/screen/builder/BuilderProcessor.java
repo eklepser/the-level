@@ -1,17 +1,24 @@
 package com.eklepser.thelevel.graphics.screen.builder;
 
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.eklepser.thelevel.graphics.render.TileMap;
+import com.eklepser.thelevel.graphics.screen.selection.SelectionScreen;
+import com.eklepser.thelevel.util.Direction;
 
 public class BuilderProcessor extends InputAdapter {
+    private final Game game;
     private final BuilderScreen screen;
     private final TileMap map;
     private int previousKey;
 
-    public BuilderProcessor(BuilderScreen screen, TileMap map) {
+    public BuilderProcessor(Game game, BuilderScreen screen) {
+        this.game = game;
         this.screen = screen;
-        this.map = map;
+        map = screen.getMap();
     }
 
     @Override
@@ -24,5 +31,20 @@ public class BuilderProcessor extends InputAdapter {
         screen.getCamera().update();
 
         return true;
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.ESCAPE) {
+            game.setScreen(new SelectionScreen(game));
+        }
+        if (keycode != previousKey) previousKey = keycode;
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        screen.getStage().setKeyboardFocus(null);
+        return false;
     }
 }

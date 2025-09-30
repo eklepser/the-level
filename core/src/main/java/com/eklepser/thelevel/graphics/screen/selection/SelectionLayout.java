@@ -61,7 +61,7 @@ public class SelectionLayout extends TableLayout {
         public void clicked(InputEvent event, float x, float y) {
             LevelConfiguration config = Configuration.from(
                 LevelConfiguration.class, path);
-            game.setScreen(new BuilderScreen(config));
+            game.setScreen(new BuilderScreen(game, config));
         }
     }
 }

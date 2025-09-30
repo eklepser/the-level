@@ -8,15 +8,19 @@ public class BuilderLayout extends TableLayout {
     private final BuilderScreen screen;
 
     private final ConfigTable configTable;
-    private final TilePalette blockPalette;
+    private final TilePalette groundPalette;
+    private final TilePalette wallPalette;
     private final TilePalette zonePalette;
     private final StatusBar statusBar;
+
+    private boolean isTextFieldFocus = false;
 
     public BuilderLayout(BuilderScreen screen) {
         this.screen = screen;
 
         configTable = new ConfigTable(screen);
-        blockPalette = new TilePalette(screen, Resources.getBlockTileSet(), EditMode.INSERT_BLOCK);
+        groundPalette = new TilePalette(screen, Resources.getGroundTileSet(), EditMode.INSERT_GROUND);
+        wallPalette = new TilePalette(screen, Resources.getWallTileSet(), EditMode.INSERT_WALL);
         zonePalette = new TilePalette(screen, Resources.getZoneTileSet(), EditMode.INSERT_ZONE);
         statusBar = new StatusBar(screen);
 
@@ -27,10 +31,14 @@ public class BuilderLayout extends TableLayout {
     public void setup() {
         setFillParent(true);
 
-        add(configTable).left().row();
+        add(configTable).left().padBottom(20).row();
 
         add(new TextLabel("Tiles:")).left().row();
-        add(blockPalette).left();
+        add(groundPalette).left();
+        add().expandX().row();
+
+        add(new TextLabel("Walls:")).left().row();
+        add(wallPalette).left();
         add().expandX().row();
 
         add(new TextLabel("Zones:")).left().row();
@@ -45,4 +53,7 @@ public class BuilderLayout extends TableLayout {
     public void update() {
         statusBar.update();
     }
+
+    //Getters:
+    public ConfigTable getConfigTable() { return configTable; }
 }

@@ -1,7 +1,6 @@
 package com.eklepser.thelevel.graphics.screen.builder;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -21,7 +20,7 @@ public class GridActor extends Actor {
     public GridActor(BuilderScreen screen) {
         map = screen.getMap();
         builder = screen.getBuilder();
-        blockTileSet = Resources.getBlockTileSet();
+        blockTileSet = Resources.getGroundTileSet();
         zoneTileSet = Resources.getZoneTileSet();
 
         setSize(map.width * TILE_SIZE,
@@ -69,7 +68,7 @@ class GridListener extends InputListener {
         int mapX = x / TILE_SIZE;
         int mapY = y / TILE_SIZE;
 
-        if (builder.getMode().equals(EditMode.INSERT_BLOCK)) {
+        if (builder.getMode().equals(EditMode.INSERT_GROUND)) {
             map.tiles[mapY][mapX] = builder.getSelectedTileId();
         }
         else if (builder.getMode().equals(EditMode.INSERT_ZONE)) {
