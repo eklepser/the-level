@@ -16,7 +16,7 @@ public class LevelScreen extends GameScreen {
     private final WinWindow winWindow;
 
     public LevelScreen(Game game, LevelConfiguration config) {
-        super(MapLoader.load(config.mapName));
+        super(config.tileMap);
         helpWindow = new HelpWindow(game);
         winWindow = new WinWindow(game);
         level = new Level(config, this);

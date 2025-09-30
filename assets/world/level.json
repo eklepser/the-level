@@ -2,7 +2,7 @@
   {
     "id": 0,
     "name": "/_3 SandBox",
-    "mapName": "test/level.json",
+    "mapName": "builder/builder_level.json",
     "codeLinesNum": 50,
     "allowedInstructions": ["MOVE","GOTO","ROT","IF"],
     "cameraZoom": 0.8

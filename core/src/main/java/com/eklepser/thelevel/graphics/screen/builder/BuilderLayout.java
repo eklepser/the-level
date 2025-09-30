@@ -6,6 +6,8 @@ import com.eklepser.thelevel.util.Resources;
 
 public class BuilderLayout extends TableLayout {
     private final BuilderScreen screen;
+
+    private final ConfigTable configTable;
     private final TilePalette blockPalette;
     private final TilePalette zonePalette;
     private final StatusBar statusBar;
@@ -13,6 +15,7 @@ public class BuilderLayout extends TableLayout {
     public BuilderLayout(BuilderScreen screen) {
         this.screen = screen;
 
+        configTable = new ConfigTable(screen);
         blockPalette = new TilePalette(screen, Resources.getBlockTileSet(), EditMode.INSERT_BLOCK);
         zonePalette = new TilePalette(screen, Resources.getZoneTileSet(), EditMode.INSERT_ZONE);
         statusBar = new StatusBar(screen);
@@ -22,15 +25,16 @@ public class BuilderLayout extends TableLayout {
 
     @Override
     public void setup() {
-        setDebug(true);
         setFillParent(true);
 
-        add(new TextLabel("Tiles:")).row();
-        add(blockPalette);
+        add(configTable).left().row();
+
+        add(new TextLabel("Tiles:")).left().row();
+        add(blockPalette).left();
         add().expandX().row();
 
-        add(new TextLabel("Zones:")).row();
-        add(zonePalette);
+        add(new TextLabel("Zones:")).left().row();
+        add(zonePalette).left();
         add().expandX().row();
 
         add().expandY().row();

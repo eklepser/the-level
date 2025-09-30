@@ -1,5 +1,6 @@
 package com.eklepser.thelevel.logic.world.level;
 
+import com.eklepser.thelevel.graphics.render.TileMap;
 import com.eklepser.thelevel.logic.decoder.command.Instruction;
 import com.eklepser.thelevel.logic.world.common.Configuration;
 

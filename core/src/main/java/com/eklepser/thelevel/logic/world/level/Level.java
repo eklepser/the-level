@@ -9,7 +9,6 @@ import com.eklepser.thelevel.logic.world.entity.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 public class Level {
     private final LevelConfiguration config;

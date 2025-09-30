@@ -12,7 +12,7 @@ public class WorldScreen extends GameScreen {
     private final WorldLayout layout;
 
     public WorldScreen(Game game, WorldConfiguration config) {
-        super(MapLoader.load(config.mapName));
+        super(config.tileMap);
         world = new World(config, this);
         layout = new WorldLayout(this, world);
         inputMultiplexer.addProcessor(new WorldProcessor(game, world));

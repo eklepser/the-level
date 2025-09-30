@@ -18,10 +18,6 @@ public class Builder {
         map = screen.getMap();
     }
 
-    public void update(float delta) {
-
-    }
-
     // Getters & setters:
     public GameScreen getScreen() {
         return screen;
