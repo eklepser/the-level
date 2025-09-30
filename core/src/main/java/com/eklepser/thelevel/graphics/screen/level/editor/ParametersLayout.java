@@ -4,12 +4,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
-import com.eklepser.thelevel.graphics.screen.Layout;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.util.Resources;
 
-public class ParametersLayout extends Layout {
+public class ParametersLayout extends TableLayout {
     private final Executor executor;
     private final TextLabel label;
     private final Slider slider;
@@ -34,7 +34,7 @@ public class ParametersLayout extends Layout {
     }
 
     @Override
-    protected void setup() {
+    public void setup() {
         align(Align.left);
         add(label).padTop(10).left().row();
         add(slider).left();

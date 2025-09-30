@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.graphics.screen.Layout;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.screen.menu.buttons.BuilderButton;
 import com.eklepser.thelevel.graphics.screen.menu.buttons.ExitButton;
 import com.eklepser.thelevel.graphics.screen.menu.buttons.StartButton;
@@ -22,7 +22,7 @@ public class MenuScreen extends ScreenAdapter {
     public MenuScreen(Game game) {
         this.game = game;
         stage = new Stage(new FitViewport(
-            Layout.VIEWPORT_WIDTH, Layout.VIEWPORT_HEIGHT, new OrthographicCamera()));
+            TableLayout.VIEWPORT_WIDTH, TableLayout.VIEWPORT_HEIGHT, new OrthographicCamera()));
     }
 
     @Override
@@ -39,14 +39,14 @@ public class MenuScreen extends ScreenAdapter {
         rootTable.add(name).padBottom(20);
 
         rootTable.row();
-        rootTable.add(new StartButton(game)).width(Layout.VIEWPORT_WIDTH / 4.0f)
-            .height(Layout.VIEWPORT_HEIGHT / 16.0f);
+        rootTable.add(new StartButton(game)).width(TableLayout.VIEWPORT_WIDTH / 4.0f)
+            .height(TableLayout.VIEWPORT_HEIGHT / 16.0f);
         rootTable.row();
-        rootTable.add(new BuilderButton(game)).width(Layout.VIEWPORT_WIDTH / 4.0f)
-            .height(Layout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
+        rootTable.add(new BuilderButton(game)).width(TableLayout.VIEWPORT_WIDTH / 4.0f)
+            .height(TableLayout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         rootTable.row();
-        rootTable.add(new ExitButton()).width(Layout.VIEWPORT_WIDTH / 8.0f)
-            .height(Layout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
+        rootTable.add(new ExitButton()).width(TableLayout.VIEWPORT_WIDTH / 8.0f)
+            .height(TableLayout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         stage.addActor(rootTable);
     }
 

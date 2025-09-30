@@ -3,7 +3,7 @@ package com.eklepser.thelevel.graphics.screen.level.editor;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
-import com.eklepser.thelevel.graphics.screen.Layout;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Direction;
@@ -11,7 +11,7 @@ import com.eklepser.thelevel.util.Direction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CodeLayout extends Layout {
+public class CodeLayout extends TableLayout {
     private final EditorLayout root;
     private final LevelConfiguration conf;
     private ScrollPane codeScrollPane;
@@ -24,7 +24,7 @@ public class CodeLayout extends Layout {
     }
 
     @Override
-    protected void setup() {
+    public void setup() {
         createCodeLines(conf.codeLinesNum);
     }
 

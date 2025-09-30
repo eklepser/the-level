@@ -4,14 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.eklepser.thelevel.graphics.screen.Layout;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.utils.ColoredString;
 import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.logic.decoder.command.Instruction;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.logic.world.world.World;
 
-public class SelectingLayout extends Layout {
+public class SelectingLayout extends TableLayout {
     private final World world;
     private final ColoredString levelString;
     private final ColoredString limitString;
@@ -30,7 +30,7 @@ public class SelectingLayout extends Layout {
     }
 
     @Override
-    protected void setup() {
+    public void setup() {
         add(levelString).left();
         row();
         add(limitString).left();

@@ -3,7 +3,7 @@ package com.eklepser.thelevel.graphics.screen.level.editor;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.eklepser.thelevel.graphics.screen.Layout;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.screen.level.LevelLayout;
 import com.eklepser.thelevel.graphics.screen.level.editor.buttons.ClearButton;
 import com.eklepser.thelevel.graphics.screen.level.editor.buttons.ResetButton;
@@ -15,7 +15,7 @@ import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Resources;
 
-public class EditorLayout extends Layout {
+public class EditorLayout extends TableLayout {
     private final LevelLayout root;
     private final Level level;
     private final LevelConfiguration conf;
@@ -48,13 +48,13 @@ public class EditorLayout extends Layout {
     }
 
     @Override
-    protected void setup() {
+    public void setup() {
         // parameters menu
         add(parametersLayout).padBottom(10).colspan(3).fillX().padLeft(10);
 
         // code panel
         row().colspan(3).fillX().expandX();
-        add(codeScrollPane).maxHeight(Layout.VIEWPORT_HEIGHT / 2.0f);
+        add(codeScrollPane).maxHeight(TableLayout.VIEWPORT_HEIGHT / 2.0f);
 
         // execution buttons
         row().padTop(10);

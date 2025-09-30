@@ -1,11 +1,11 @@
 package com.eklepser.thelevel.graphics.screen.world;
 
-import com.eklepser.thelevel.graphics.screen.Layout;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.graphics.utils.ColoredString;
 import com.eklepser.thelevel.logic.world.world.World;
 
-public class WorldLayout extends Layout {
+public class WorldLayout extends TableLayout {
     private final GameScreen screen;
     private final World world;
     private final SelectingLayout selectingLayout;
@@ -21,7 +21,7 @@ public class WorldLayout extends Layout {
     }
 
     @Override
-    protected void setup() {
+    public void setup() {
         setFillParent(true);
 
         add(selectingLayout).left().padLeft(20).expandX();

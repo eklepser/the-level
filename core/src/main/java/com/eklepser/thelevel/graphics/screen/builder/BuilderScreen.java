@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.render.MapLoader;
 import com.eklepser.thelevel.graphics.screen.GameScreen;
-import com.eklepser.thelevel.graphics.screen.Layout;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 
 public class BuilderScreen extends GameScreen {
     private final Builder builder;
@@ -18,12 +18,12 @@ public class BuilderScreen extends GameScreen {
     public BuilderScreen() {
         super(MapLoader.load("test/builder.json"));
 
+        // Order is important! Builder -> gridStage -> layout.
         builder = new Builder(this);
-        layout = new BuilderLayout(this);
-
         gridStage = new Stage(new FitViewport(
-            Layout.VIEWPORT_WIDTH, Layout.VIEWPORT_HEIGHT, camera));
+            TableLayout.VIEWPORT_WIDTH, TableLayout.VIEWPORT_HEIGHT, camera));
         gridStage.addActor(new GridActor(this));
+        layout = new BuilderLayout(this);
     }
 
     @Override
@@ -39,6 +39,8 @@ public class BuilderScreen extends GameScreen {
 
     @Override
     public void render(float delta) {
+        layout.update();
+
         updateCamera(delta);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camera.combined);
@@ -79,5 +81,9 @@ public class BuilderScreen extends GameScreen {
     // Getters:
     public Builder getBuilder() {
         return builder;
+    }
+
+    public Stage getGridStage() {
+        return gridStage;
     }
 }

@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.Json;
 import com.eklepser.thelevel.graphics.screen.level.ExitLevelButton;
 import com.eklepser.thelevel.graphics.utils.ColoredString;
 import com.eklepser.thelevel.graphics.utils.TextLabel;
-import com.eklepser.thelevel.graphics.screen.Layout;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.util.Resources;
 
 import java.util.ArrayList;
@@ -33,8 +33,8 @@ public class HelpWindow extends Window {
     }
 
     private void setupLayout() {
-        float editorWidth = Layout.VIEWPORT_WIDTH * Layout.EDITOR_MENU_SCALE;
-        setSize(Layout.VIEWPORT_WIDTH - editorWidth, Layout.VIEWPORT_HEIGHT);
+        float editorWidth = TableLayout.VIEWPORT_WIDTH * TableLayout.EDITOR_MENU_SCALE;
+        setSize(TableLayout.VIEWPORT_WIDTH - editorWidth, TableLayout.VIEWPORT_HEIGHT);
         setPosition(editorWidth, 0);
 
         for (CommandInfo info : commandInfos) {
@@ -44,8 +44,8 @@ public class HelpWindow extends Window {
         add(scrollPane).left();
 
         row();
-        add(exitLevelButton).width(Layout.VIEWPORT_WIDTH / 4.0f)
-            .height(Layout.VIEWPORT_HEIGHT / 16.0f).pad(30, 10, 30, 10);
+        add(exitLevelButton).width(TableLayout.VIEWPORT_WIDTH / 4.0f)
+            .height(TableLayout.VIEWPORT_HEIGHT / 16.0f).pad(30, 10, 30, 10);
         setVisible(false);
         setColor(0.5f, 0, 0.75f, 0.9f);
     }

@@ -6,24 +6,28 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.eklepser.thelevel.graphics.render.TileSet;
-import com.eklepser.thelevel.graphics.screen.Layout;
-import com.eklepser.thelevel.util.Resources;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 
-public class TilePalette extends Layout {
+public class TilePalette extends TableLayout {
     private final TileSet tileSet;
     private final Builder builder;
+    private final EditMode mode;
+
     private final int colsNum = 4;
 
-    public TilePalette(BuilderScreen screen) {
-        tileSet = Resources.getTileSet();
+    private int tileType;
+
+    public TilePalette(BuilderScreen screen, TileSet tileSet, EditMode mode) {
+        this.tileSet = tileSet;
         builder = screen.getBuilder();
+        this.mode = mode;
 
         setup();
     }
 
     @Override
-    protected void setup() {
-        for (int i = 0; i < 20; i++) {
+    public void setup() {
+        for (int i = 0; i < 30; i++) {
             TextureRegion icon = tileSet.getTile(i);
             if (icon == null || icon.getTexture() == null) {
                 continue;
@@ -33,7 +37,8 @@ public class TilePalette extends Layout {
             ImageButton btn = new ImageButton(new TextureRegionDrawable(icon));
             btn.addListener(new ClickListener() {
                 @Override public void clicked(InputEvent event, float x, float y) {
-                    builder.setSelectedTile(finalI);
+                    builder.setMode(mode);
+                    builder.setSelectedTileId(finalI);
                 }
             });
             add(btn);

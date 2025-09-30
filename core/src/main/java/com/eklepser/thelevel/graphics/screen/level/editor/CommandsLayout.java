@@ -3,14 +3,14 @@ package com.eklepser.thelevel.graphics.screen.level.editor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.eklepser.thelevel.graphics.screen.Layout;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.logic.decoder.command.Instruction;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 
 import java.util.List;
 
-public class CommandsLayout extends Layout {
+public class CommandsLayout extends TableLayout {
     private final List<Instruction> allowedInstructions;
     private final int itemsPerRow = 4;
     private boolean showLabels = false;
@@ -21,7 +21,7 @@ public class CommandsLayout extends Layout {
     }
 
     @Override
-    protected void setup() {
+    public void setup() {
         int count = 0;
         for (Instruction instruction : allowedInstructions) {
             String iconPath = instruction.iconPath + ".png";

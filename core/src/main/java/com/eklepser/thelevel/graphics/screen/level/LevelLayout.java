@@ -2,14 +2,14 @@ package com.eklepser.thelevel.graphics.screen.level;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.eklepser.thelevel.graphics.screen.Layout;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.screen.level.bar.StatusBar;
 import com.eklepser.thelevel.graphics.screen.level.bar.ToolBar;
 import com.eklepser.thelevel.graphics.utils.ColoredString;
 import com.eklepser.thelevel.graphics.screen.level.editor.EditorLayout;
 import com.eklepser.thelevel.logic.world.level.Level;
 
-public class LevelLayout extends Layout {
+public class LevelLayout extends TableLayout {
     private final LevelScreen screen;
     private final EditorLayout editorLayout;
     private final ToolBar toolBar;
@@ -27,7 +27,7 @@ public class LevelLayout extends Layout {
     }
 
     @Override
-    protected void setup() {
+    public void setup() {
         setFillParent(true);
         // Setup elements:
         infoString.setText(editorLayout.getLevel().getConfig().name);

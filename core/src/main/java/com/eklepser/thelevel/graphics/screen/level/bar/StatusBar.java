@@ -4,14 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import com.eklepser.thelevel.graphics.screen.Layout;
+import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.logic.decoder.command.Command;
 import com.eklepser.thelevel.logic.world.entity.Entity;
 import com.eklepser.thelevel.util.Resources;
 
 import java.util.LinkedList;
 
-public class StatusBar extends Layout {
+public class StatusBar extends TableLayout {
     private final LinkedList<Actor[]> itemGroups;
     private final int itemsLimit = 999;
     private final Image startImage;
@@ -24,7 +24,7 @@ public class StatusBar extends Layout {
     }
 
     @Override
-    protected void setup() { }
+    public void setup() { }
 
     // Class logic:
     public void update(Command command, Entity target) {
