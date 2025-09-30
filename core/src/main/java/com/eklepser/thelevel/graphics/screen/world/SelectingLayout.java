@@ -45,7 +45,7 @@ public class SelectingLayout extends TableLayout {
         //LevelConfiguration config = world.getSelectedLevelConfig();
         LevelConfiguration config = new LevelConfiguration();
 
-        levelString.setText(config.name);
+        levelString.setText(config.tag);
         limitString.setText("/gray_1.5 Lines limit: /white_2 " + config.codeLinesNum);
         commandsString.setText("/gray_1.5 Allowed commands:");
 

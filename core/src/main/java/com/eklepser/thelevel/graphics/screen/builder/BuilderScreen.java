@@ -6,17 +6,18 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.eklepser.thelevel.graphics.render.MapLoader;
+import com.eklepser.thelevel.graphics.utils.Loader;
 import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
+import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 
 public class BuilderScreen extends GameScreen {
     private final Builder builder;
     private final BuilderLayout layout;
     private final Stage gridStage;
 
-    public BuilderScreen() {
-        super(MapLoader.load("test/builder.json"));
+    public BuilderScreen(LevelConfiguration config) {
+        super(config.tileMap);
 
         // Order is important! Builder -> gridStage -> layout.
         builder = new Builder(this);

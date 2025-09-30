@@ -30,7 +30,7 @@ public class LevelLayout extends TableLayout {
     public void setup() {
         setFillParent(true);
         // Setup elements:
-        infoString.setText(editorLayout.getLevel().getConfig().name);
+        infoString.setText(editorLayout.getLevel().getConfig().title);
 
         statusBar.left();
         ScrollPane scrollPane = new ScrollPane(statusBar);

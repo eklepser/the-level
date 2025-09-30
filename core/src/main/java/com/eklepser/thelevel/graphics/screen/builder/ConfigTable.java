@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
-import com.eklepser.thelevel.graphics.render.TileMap;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.logic.decoder.command.Instruction;
@@ -22,7 +21,8 @@ public class ConfigTable extends TableLayout {
     private final BuilderScreen screen;
     private final Builder builder;
 
-    private final TextField nameField;
+    private final TextField tagField;
+    private final TextField titleField;
     private final TextField codeLinesNum;
     private final TextField allowedCommands;
 
@@ -32,9 +32,13 @@ public class ConfigTable extends TableLayout {
         this.screen = screen;
         builder = screen.getBuilder();
 
-        nameField = new TextField("", Resources.getSkin().get(
+        tagField = new TextField("", Resources.getSkin().get(
             "code-field", TextField.TextFieldStyle.class));
-        nameField.setMaxLength(20);
+        tagField.setMaxLength(10);
+
+        titleField = new TextField("", Resources.getSkin().get(
+            "code-field", TextField.TextFieldStyle.class));
+        titleField.setMaxLength(20);
 
         codeLinesNum = new TextField("", Resources.getSkin().get(
             "code-field", TextField.TextFieldStyle.class));
@@ -59,8 +63,11 @@ public class ConfigTable extends TableLayout {
     public void setup() {
         add(saveButton).row();
 
-        add(new TextLabel("Level name:")).padRight(5).left();
-        add(nameField).padTop(5).row();
+        add(new TextLabel("Tag (file name):")).padRight(5).left();
+        add(tagField).padTop(5).row();
+
+        add(new TextLabel("Level title:")).padRight(5).left();
+        add(titleField).padTop(5).row();
 
         add(new TextLabel("Codelines amount:")).padRight(5).left();
         add(codeLinesNum).padTop(5).row();
@@ -71,23 +78,22 @@ public class ConfigTable extends TableLayout {
 
     private void saveLevel() {
         LevelConfiguration config = new LevelConfiguration();
-        config.id = 0;
-        config.name = nameField.getText();
+        config.id = 1;
+        config.tag = tagField.getText();
         config.tileMap = screen.getMap();
         config.cameraZoom = 1.0f;
+        config.title = titleField.getText();
         config.codeLinesNum = 10;
         config.allowedInstructions = new ArrayList<>(List.of(Instruction.MOVE));
-
 
         Json json = new Json();
         json.setOutputType(JsonWriter.OutputType.json);
         String jsonContent = json.toJson(config);
 
-        String path = String.format("assets/builder/level_%s.json", config.id);
+        String path = String.format("assets/builder/level_%s_%s.json", config.tag, config.id);
         FileHandle file = Gdx.files.local(path);
         file.writeString(jsonContent, false);
 
         Gdx.app.log("Save", "Level saved to: " + file.path());
     }
-
 }

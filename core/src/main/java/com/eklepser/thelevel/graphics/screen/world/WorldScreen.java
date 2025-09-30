@@ -1,7 +1,6 @@
 package com.eklepser.thelevel.graphics.screen.world;
 
 import com.badlogic.gdx.Game;
-import com.eklepser.thelevel.graphics.render.MapLoader;
 import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.logic.world.world.World;
 import com.eklepser.thelevel.logic.world.world.WorldConfiguration;

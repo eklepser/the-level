@@ -9,19 +9,9 @@ import java.util.List;
 
 public abstract class Configuration {
     public int id;
-    public String name;
+    public String tag;
     public TileMap tileMap;
-    //public String mapName;
     public float cameraZoom;
-
-    public Configuration() { }
-
-    public Configuration(int id, String name, TileMap tileMap, float cameraZoom) {
-        this.id = id;
-        this.name = name;
-        this.tileMap = tileMap;
-        this.cameraZoom = cameraZoom;
-    }
 
     public static <T extends Configuration> T from(Class<T> configClass, String configPath) {
         Json json = new Json();
