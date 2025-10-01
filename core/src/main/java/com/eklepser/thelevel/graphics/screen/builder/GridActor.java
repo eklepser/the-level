@@ -13,13 +13,12 @@ import static com.eklepser.thelevel.graphics.screen.TableLayout.TILE_SIZE;
 
 public class GridActor extends Actor {
     private final TileMap map;
-    private final Builder builder;
     private final TileSet blockTileSet;
     private final TileSet zoneTileSet;
 
     public GridActor(BuilderScreen screen) {
         map = screen.getMap();
-        builder = screen.getBuilder();
+
         blockTileSet = Resources.getGroundTileSet();
         zoneTileSet = Resources.getZoneTileSet();
 
@@ -40,10 +39,12 @@ public class GridActor extends Actor {
 
 // Input listener class for GridActor:
 class GridListener extends InputListener {
+    private final BuilderScreen screen;
     private final TileMap map;
     private final Builder builder;
 
     public GridListener(BuilderScreen screen) {
+        this.screen = screen;
         map = screen.getMap();
         builder = screen.getBuilder();
     }
@@ -70,10 +71,22 @@ class GridListener extends InputListener {
 
         if (builder.getMode().equals(EditMode.INSERT_GROUND)) {
             map.tiles[mapY][mapX] = builder.getSelectedTileId();
+
+            String message = String.format("Ground placed (%s, %s)", mapX, mapY);
+            screen.getLayout().getStatusBar().setActionText(message);
+        }
+        else if (builder.getMode().equals(EditMode.INSERT_WALL)) {
+            map.tiles[mapY][mapX] = builder.getSelectedTileId();
+
+            String message = String.format("Wall placed (%s, %s)", mapX, mapY);
+            screen.getLayout().getStatusBar().setActionText(message);
         }
         else if (builder.getMode().equals(EditMode.INSERT_ZONE)) {
             Zone zone = new Zone(mapX, mapY, "start");
             map.zones.add(zone);
+
+            String message = String.format("Zone placed (%s, %s)", mapX, mapY);
+            screen.getLayout().getStatusBar().setActionText(message);
         }
     }
 }

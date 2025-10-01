@@ -30,9 +30,7 @@ public class Builder {
         this.mode = mode;
     }
 
-    public int getSelectedTileId() {
-        return selectedTileId;
-    }
+    public int getSelectedTileId() { return selectedTileId; }
 
     public void setSelectedTileId(int selectedTileId) {
         this.selectedTileId = selectedTileId;
@@ -40,6 +38,7 @@ public class Builder {
 
     public TextureRegion getSelectedTile() {
         if (mode.equals(EditMode.INSERT_ZONE)) return Resources.getZoneTileSet().getTile(selectedTileId);
+        else if (mode.equals(EditMode.INSERT_WALL)) return Resources.getWallTileSet().getTile(selectedTileId);
         return Resources.getGroundTileSet().getTile(selectedTileId);
     }
 }

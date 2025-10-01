@@ -98,6 +98,10 @@ public class BuilderScreen extends GameScreen {
         return builder;
     }
 
+    public BuilderLayout getLayout() {
+        return layout;
+    }
+
     public Stage getGridStage() {
         return gridStage;
     }

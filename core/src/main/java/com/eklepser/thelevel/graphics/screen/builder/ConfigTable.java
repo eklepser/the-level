@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigTable extends TableLayout {
+    private final BuilderLayout root;
     private final LevelConfiguration config;
     private final Builder builder;
 
@@ -31,7 +32,8 @@ public class ConfigTable extends TableLayout {
 
     private final TextButton saveButton;
 
-    public ConfigTable(BuilderScreen screen) {
+    public ConfigTable(BuilderLayout root, BuilderScreen screen) {
+        this.root = root;
         config = screen.getConfig();
         builder = screen.getBuilder();
 
@@ -102,11 +104,14 @@ public class ConfigTable extends TableLayout {
         json.setOutputType(JsonWriter.OutputType.json);
         String jsonContent = json.toJson(newConfig);
 
-        String path = String.format("assets/builder/level_%s_%s.json", newConfig.tag, newConfig.id);
+        String path = String.format("builder/level_%s_%s.json", newConfig.tag, newConfig.id);
         FileHandle file = Gdx.files.local(path);
         file.writeString(jsonContent, false);
 
         Gdx.app.log("Save", "Level saved to: " + file.path());
+
+        String status = String.format("Level %s saved", config.tag);
+        root.getStatusBar().setActionText(status);
     }
 
     public boolean hasTextFieldFocus() {

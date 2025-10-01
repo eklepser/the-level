@@ -29,7 +29,7 @@ public class SelectionScreen extends ScreenAdapter {
         multiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(multiplexer);
 
-        levels = Loader.loadMetadata("assets/builder");
+        levels = Loader.loadMetadata("builder");
         layout = new SelectionLayout(game, levels);
     }
 
