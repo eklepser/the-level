@@ -5,21 +5,21 @@ import com.badlogic.gdx.math.Rectangle;
 import com.eklepser.thelevel.logic.world.entity.Entity;
 import com.eklepser.thelevel.logic.world.world.World;
 
-public class LevelZoneOld extends ZoneOld {
+public class LevelZone extends Zone {
     private final World world;
     private final int levelId;
 
-    public LevelZoneOld(Rectangle rect, World world, int levelId) {
-        super(rect);
+    public LevelZone(int x, int y, World world, int levelId) {
+        super(x, y);
         this.world = world;
         this.levelId = levelId;
     }
 
-    public static LevelZoneOld from(RectangleMapObject rectObj, World world) {
-        Rectangle rect = rectObj.getRectangle();
-        int levelId = (int) rectObj.getProperties().get("id");
-        return new LevelZoneOld(rect, world, levelId);
-    }
+//    public static LevelZone from(RectangleMapObject rectObj, World world) {
+//        Rectangle rect = rectObj.getRectangle();
+//        int levelId = (int) rectObj.getProperties().get("id");
+//        return new LevelZone(rect, world, levelId);
+//    }
 
     @Override
     public void onCollision(Entity entity) {

@@ -92,7 +92,7 @@ public class ConfigTable extends TableLayout {
     // Class logic:
     private void saveLevel() {
         LevelConfiguration newConfig = new LevelConfiguration();
-        newConfig.id = 1;
+        newConfig.id = 0;
         newConfig.tag = tagField.getText();
         newConfig.tileMap = config.tileMap;
         newConfig.cameraZoom = 1.0f;
@@ -104,7 +104,7 @@ public class ConfigTable extends TableLayout {
         json.setOutputType(JsonWriter.OutputType.json);
         String jsonContent = json.toJson(newConfig);
 
-        String path = String.format("builder/level_%s_%s.json", newConfig.tag, newConfig.id);
+        String path = String.format("builder/level_%s.json", newConfig.tag);
         FileHandle file = Gdx.files.local(path);
         file.writeString(jsonContent, false);
 

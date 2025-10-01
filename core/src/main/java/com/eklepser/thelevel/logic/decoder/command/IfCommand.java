@@ -6,6 +6,7 @@ import com.eklepser.thelevel.logic.decoder.condition.Condition;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.entity.Entity;
 import com.eklepser.thelevel.logic.world.collision.Collidable;
+import com.eklepser.thelevel.logic.world.level.Level;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,22 +14,24 @@ import java.util.List;
 public class IfCommand extends Command {
     private final Condition condition;
     private final Command command;
-    private final List<Collidable> zones;
+    private final Level level;
 
     public IfCommand(String[] args, Executor executor) {
         String conditionName = args[0].toLowerCase();
         String conditionArg = args[1].toLowerCase();
-        this.condition = Condition.from(conditionName, conditionArg);
+        condition = Condition.from(conditionName, conditionArg);
+
         String newInstruction = args[2];
         String[] newArgs = Arrays.copyOfRange(args, 3, args.length);
-        this.command = Command.from(newInstruction, newArgs, executor);
-        this.zones = executor.getZones();
+        command = Command.from(newInstruction, newArgs, executor);
+
+        level = executor.getEditor().getLevel();
     }
 
     @Override
     public void execute(Entity target) {
         System.out.println("IF");
-        if (condition.check(target, zones))
+        if (condition.check(target, level))
         {
             System.out.println("EXECUTING COND CMD");
             command.execute(target);
@@ -39,7 +42,7 @@ public class IfCommand extends Command {
     public Image[] getIcons(Entity target) {
         //Image commandImage = new Image(new Texture(Gdx.files.internal("ui/icon/if.png")));
         Image conditionImage = condition.getIcon();
-        if (condition.check(target, zones)) {
+        if (condition.check(target, level)) {
             Image conditionCommandImage = command.getIcons(target)[0];
             return new Image[] {conditionImage, conditionCommandImage};
         }

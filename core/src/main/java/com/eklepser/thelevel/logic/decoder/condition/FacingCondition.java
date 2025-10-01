@@ -3,10 +3,12 @@ package com.eklepser.thelevel.logic.decoder.condition;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.eklepser.thelevel.logic.world.collision.zone.Zone;
 import com.eklepser.thelevel.logic.world.entity.Entity;
-import com.eklepser.thelevel.logic.world.collision.zone.ColoredZoneOld;
+import com.eklepser.thelevel.logic.world.collision.zone.ColoredZone;
 import com.eklepser.thelevel.logic.world.collision.Wall;
 import com.eklepser.thelevel.logic.world.collision.Collidable;
+import com.eklepser.thelevel.logic.world.level.Level;
 
 public class FacingCondition extends Condition {
     private final String targetObject;
@@ -19,16 +21,18 @@ public class FacingCondition extends Condition {
     }
 
     @Override
-    public boolean matches(Entity target, Collidable collidable) {
+    public boolean check(Entity target, Level level) {
+        int targetX = (int) (target.getWorldPos().x + target.getFacingDirection().vector.x);
+        int targetY = (int) (target.getWorldPos().y + target.getFacingDirection().vector.y);
+
         if (targetObject.equals("wall")) {
-            if ((collidable instanceof Wall wall)) {
-                return target.getFacingRect().overlaps(wall.getRect());
-            }
-            return false;
+            return level.getMap().collision[targetY][targetX] == 1;
         }
-        if (collidable instanceof ColoredZoneOld coloredZone) {
-            if (target.getFacingRect().overlaps(coloredZone.getRect())) {
-                return (targetObject.equals(coloredZone.getColorName()));
+        else if (targetObject.equals("red")) {
+            for (Zone zone : level.getZones()) {
+                if (!(zone instanceof ColoredZone colored)) continue;
+                if (!colored.getColorName().equals("red")) continue;
+                return (targetX == zone.getX() && targetY == zone.getY());
             }
         }
         return false;

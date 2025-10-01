@@ -16,7 +16,7 @@ public class TileMap {
     public int height;
     public int[][] tiles;
     public int[][] collision;
-    public List<Zone> zones = new ArrayList<>();
+    public List<ZoneTile> zones = new ArrayList<>();
 
     public void draw(Batch batch) {
         drawBlocks(batch);
@@ -42,21 +42,21 @@ public class TileMap {
 
     private void drawZones(Batch batch) {
         if (zones == null) return;
-        for (Zone zone : zones) {
-            TextureRegion region = Resources.getTileset().getTile(zone.id);
+        for (ZoneTile zoneTile : zones) {
+            TextureRegion region = Resources.getTileset().getTile(zoneTile.id);
             if (region == null) continue;
 
-            float screenX = zone.x * TILE_SIZE;
-            float screenY = zone.y * TILE_SIZE;
+            float screenX = zoneTile.x * TILE_SIZE;
+            float screenY = zoneTile.y * TILE_SIZE;
 
             batch.draw(region, screenX, screenY);
         }
     }
 
     public Vector2 getStartPos() {
-        for (Zone zone : zones) {
-            if (zone.type.equals("start"))
-                return new Vector2(zone.x, zone.y);
+        for (ZoneTile zoneTile : zones) {
+            if (zoneTile.type.equals("start"))
+                return new Vector2(zoneTile.x, zoneTile.y);
         }
         return null;
     }

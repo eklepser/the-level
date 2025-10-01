@@ -16,10 +16,14 @@ public class LevelScreen extends GameScreen {
 
     public LevelScreen(Game game, LevelConfiguration config) {
         super(config.tileMap);
+
         helpWindow = new HelpWindow(game);
         winWindow = new WinWindow(game);
+
+        // Order is important! Level -> layout -> loadZones.
         level = new Level(config, this);
         layout = new LevelLayout(this, level);
+        level.loadZones(config.tileMap, layout);
     }
 
     @Override

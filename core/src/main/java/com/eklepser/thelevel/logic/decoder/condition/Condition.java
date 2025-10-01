@@ -3,22 +3,15 @@ package com.eklepser.thelevel.logic.decoder.condition;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.eklepser.thelevel.logic.world.entity.Entity;
 import com.eklepser.thelevel.logic.world.collision.Collidable;
+import com.eklepser.thelevel.logic.world.level.Level;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
 
 public abstract class Condition {
-    protected abstract boolean matches(Entity target, Collidable zone);
     public abstract Image getIcon();
 
-    public boolean check(Entity target, List<Collidable> zones) {
-        for (Collidable zone : zones) {
-            if (matches(target, zone)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    public abstract boolean check(Entity target, Level level);
 
     public static Condition from(String conditionName, String arg) {
         ConditionPattern pattern = ConditionPattern.from(conditionName);

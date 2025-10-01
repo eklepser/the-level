@@ -6,20 +6,15 @@ import com.eklepser.thelevel.graphics.screen.level.window.WinWindow;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.entity.Entity;
 
-public class WinZoneOld extends ZoneOld {
+public class WinZone extends Zone {
     private final WinWindow window;
     private final Executor executor;
     private boolean activated = false;
 
-    public WinZoneOld(Rectangle rect, WinWindow window, Executor executor) {
-        super(rect);
+    public WinZone(int x, int y, WinWindow window, Executor executor) {
+        super(x, y);
         this.window = window;
         this.executor = executor;
-    }
-
-    public static WinZoneOld from(RectangleMapObject rectObj, WinWindow window, Executor executor) {
-        Rectangle rect = rectObj.getRectangle();
-        return new WinZoneOld(rect, window, executor);
     }
 
     @Override

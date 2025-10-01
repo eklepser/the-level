@@ -7,10 +7,10 @@
   { "id": 21, "name": "wall_2", "type": "wall" },
   { "id": 30, "name": "start_zone", "type": "zone", "zoneType": "start"},
   { "id": 31, "name": "win_zone", "type": "zone","zoneType": "win" },
-  { "id": 40, "name": "green_plate", "type": "zone", "zoneType": "colored"},
-  { "id": 41, "name": "blue_plate", "type": "zone","zoneType": "colored" },
-  { "id": 42, "name": "red_plate", "type": "zone", "zoneType": "colored"},
-  { "id": 50, "name": "green_zone", "type": "zone","zoneType": "colored" },
-  { "id": 51, "name": "blue_zone", "type": "zone", "zoneType": "colored"},
-  { "id": 52, "name": "red_zone", "type": "zone","zoneType": "colored" }
+  { "id": 40, "name": "green_plate", "type": "zone", "zoneType": "colored", "zoneProperties": ["green"]},
+  { "id": 41, "name": "blue_plate", "type": "zone","zoneType": "colored", "zoneProperties": ["blue"] },
+  { "id": 42, "name": "red_plate", "type": "zone", "zoneType": "colored", "zoneProperties": ["red"]},
+  { "id": 50, "name": "green_zone", "type": "zone","zoneType": "colored", "zoneProperties": ["green"] },
+  { "id": 51, "name": "blue_zone", "type": "zone", "zoneType": "colored", "zoneProperties": ["blue"]},
+  { "id": 52, "name": "red_zone", "type": "zone","zoneType": "colored", "zoneProperties": ["red"] }
 ]

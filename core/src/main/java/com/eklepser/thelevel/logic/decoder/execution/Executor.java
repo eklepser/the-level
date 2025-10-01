@@ -24,17 +24,17 @@ public class Executor implements TimeController {
     private Map<CodeLine, Command> codeMap;
 
     private final List<Entity> targets;
-    private final List<Collidable> zones;
 
     private float executionDelay = 0.5f;
     private int currentLineNum;
 
     public Executor(Level level, EditorLayout editorLayout) {
         this.editorLayout = editorLayout;
+
         targets = level.getEntities();
-        zones = new ArrayList<>();
+
         codeLines = editorLayout.getCodeLayout().getCodeLines();
-        LevelConfiguration config = (LevelConfiguration) level.getConfig();
+        LevelConfiguration config = level.getConfig();
         translator = new Translator(config.allowedInstructions, codeLines, this);
     }
 
@@ -99,8 +99,6 @@ public class Executor implements TimeController {
     public Map<CodeLine, Command> getCodeMap() { return codeMap; }
 
     public EditorLayout getEditor() { return editorLayout; }
-
-    public List<Collidable> getZones() { return zones; }
 
     public int getCurrentLineNum() { return currentLineNum; }
 }

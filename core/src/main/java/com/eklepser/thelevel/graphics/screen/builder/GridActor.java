@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.eklepser.thelevel.graphics.render.TileDefinition;
 import com.eklepser.thelevel.graphics.render.TileMap;
-import com.eklepser.thelevel.graphics.render.Zone;
+import com.eklepser.thelevel.graphics.render.ZoneTile;
 
 import static com.eklepser.thelevel.graphics.screen.TableLayout.TILE_SIZE;
 
@@ -74,8 +74,8 @@ class GridListener extends InputListener {
                 map.collision[mapY][mapX] = 1;
                 break;
             case "zone":
-                Zone zone = new Zone(def.id, mapX, mapY, def.zoneType);
-                map.zones.add(zone);
+                ZoneTile zoneTile = new ZoneTile(def.id, mapX, mapY, def.zoneType, def.zoneProperties);
+                map.zones.add(zoneTile);
                 break;
         }
 

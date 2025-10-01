@@ -2,9 +2,12 @@ package com.eklepser.thelevel.logic.world.level;
 
 import com.badlogic.gdx.math.Vector2;
 import com.eklepser.thelevel.graphics.render.TileMap;
+import com.eklepser.thelevel.graphics.render.ZoneTile;
+import com.eklepser.thelevel.graphics.screen.level.LevelLayout;
 import com.eklepser.thelevel.graphics.screen.level.LevelScreen;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.collision.CollisionManager;
+import com.eklepser.thelevel.logic.world.collision.zone.Zone;
 import com.eklepser.thelevel.logic.world.entity.Entity;
 
 import java.util.ArrayList;
@@ -15,6 +18,8 @@ public class Level {
     private final LevelScreen screen;
     private final TileMap map;
     private final Vector2 startPos;
+
+    private final List<Zone> zones;
     private final List<Entity> entities;
     private final List<Entity> entitiesToAdd;
     private final CollisionManager collisionManager;
@@ -25,9 +30,11 @@ public class Level {
         map = screen.getMap();
 
         startPos = map.getStartPos();
+        zones = new ArrayList<>();
         entities = new ArrayList<>();
         entitiesToAdd = new ArrayList<>();
-        collisionManager = new CollisionManager(map, entities);
+
+        collisionManager = new CollisionManager(map, zones, entities);
 
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
@@ -53,6 +60,13 @@ public class Level {
         entities.add(entity);
     }
 
+    public void loadZones(TileMap map, LevelLayout layout) {
+        for (ZoneTile tile : map.zones) {
+            if (tile.type.equals("start")) continue;
+            zones.add(Zone.from(tile, layout));
+        }
+    }
+
     // Getters:
     public LevelScreen getScreen() { return screen; }
 
@@ -66,5 +80,13 @@ public class Level {
 
     public LevelConfiguration getConfig() {
         return config;
+    }
+
+    public TileMap getMap() {
+        return map;
+    }
+
+    public List<Zone> getZones() {
+        return zones;
     }
 }

@@ -38,9 +38,9 @@ public class SelectionLayout extends TableLayout {
         add(new TextLabel("Edit level:")).padTop(20).row();
 
         for (LevelMetadata data : levels) {
-            String text = String.format("%s_%s", data.tag(), data.id());
+            String text = String.format(data.tag());
             TextButton button = new TextButton(text, Resources.getSkin());
-            String path = String.format("builder/level_%s_%s.json" , data.tag(), data.id());
+            String path = String.format("builder/level_%s.json" , data.tag());
             button.addListener(new ButtonListener(game, path));
 
             add(button).padTop(10).width(Layout.VIEWPORT_WIDTH / 4.0f).row();

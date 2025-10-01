@@ -18,7 +18,7 @@ public class StartButton extends TextButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 LevelConfiguration config = Configuration.from(
-                    LevelConfiguration.class, "builder/level_test_0.json");
+                    LevelConfiguration.class, "builder/level_test.json");
                 game.setScreen(new LevelScreen(game, config));
             }
         });
