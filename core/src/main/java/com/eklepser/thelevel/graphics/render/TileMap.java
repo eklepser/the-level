@@ -40,6 +40,19 @@ public class TileMap {
         }
     }
 
+    private void drawZones(Batch batch) {
+        if (zones == null) return;
+        for (Zone zone : zones) {
+            TextureRegion region = Resources.getTileset().getTile(zone.id);
+            if (region == null) continue;
+
+            float screenX = zone.x * TILE_SIZE;
+            float screenY = zone.y * TILE_SIZE;
+
+            batch.draw(region, screenX, screenY);
+        }
+    }
+
     public Vector2 getStartPos() {
         for (Zone zone : zones) {
             if (zone.type.equals("start"))

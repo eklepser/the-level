@@ -30,7 +30,7 @@ public abstract class GameScreen extends ScreenAdapter {
         tileset = Resources.getTileset();
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(true);
+        camera.setToOrtho(false, TableLayout.VIEWPORT_WIDTH, TableLayout.VIEWPORT_HEIGHT);
         setupCamera();
 
         inputMultiplexer = new InputMultiplexer();

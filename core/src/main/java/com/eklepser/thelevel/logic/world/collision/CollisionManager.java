@@ -29,9 +29,13 @@ public class CollisionManager {
         int targetX = (int) entity.getTargetWorldPos().x;
         int targetY = (int) entity.getTargetWorldPos().y;
 
-        if (collisionMap[targetY][targetX] == 1) {
-            entity.resetTargetWorldPos();
-            if (hittingWalls) entity.hit();
+        try {
+            if (collisionMap[targetY][targetX] == 1) {
+                entity.resetTargetWorldPos();
+                if (hittingWalls) entity.hit();
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
         }
     }
 

@@ -63,19 +63,18 @@ class GridListener extends InputListener {
         int mapX = x / TILE_SIZE;
         int mapY = y / TILE_SIZE;
 
-        map.tiles[mapY][mapX] = builder.getSelectedTileDef().id;
-
         TileDefinition def = builder.getSelectedTileDef();
         switch (def.type) {
             case "ground":
+                map.tiles[mapY][mapX] = builder.getSelectedTileDef().id;
                 map.collision[mapY][mapX] = 0;
                 break;
             case "wall":
+                map.tiles[mapY][mapX] = builder.getSelectedTileDef().id;
                 map.collision[mapY][mapX] = 1;
                 break;
             case "zone":
-                map.collision[mapY][mapX] = 0;
-                Zone zone = new Zone(mapX, mapY, "start");
+                Zone zone = new Zone(def.id, mapX, mapY, def.zoneType);
                 map.zones.add(zone);
                 break;
         }

@@ -12,7 +12,6 @@ public class Entity extends TiledActor {
         setPosition(worldPosX * size, worldPosY * size);
 
         facingDirection = Direction.UP;
-        sprite.setRotation(Direction.getDegrees(facingDirection));
     }
 
     // Class logic:
