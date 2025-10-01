@@ -1,12 +1,9 @@
 package com.eklepser.thelevel.logic.world.collision;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.eklepser.thelevel.graphics.render.TileMap;
 import com.eklepser.thelevel.graphics.render.Zone;
 import com.eklepser.thelevel.logic.world.entity.Entity;
-import com.eklepser.thelevel.logic.world.collision.zone.ZoneOld;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CollisionManager {

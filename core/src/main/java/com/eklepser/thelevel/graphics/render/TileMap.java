@@ -29,7 +29,7 @@ public class TileMap {
                 int tileId = tiles[y][x];
                 if (tileId < 0) continue;
 
-                TextureRegion region = Resources.getGroundTileSet().getTile(tileId);
+                TextureRegion region = Resources.getTileset().getTile(tileId);
                 if (region == null) continue;
 
                 float screenX = x * TILE_SIZE;
@@ -37,19 +37,6 @@ public class TileMap {
 
                 batch.draw(region, screenX, screenY);
             }
-        }
-    }
-
-    private void drawZones(Batch batch) {
-        if (zones == null) return;
-        for (Zone zone : zones) {
-            TextureRegion region = Zone.getTextureRegion(zone.type);
-            if (region == null) continue;
-
-            float screenX = zone.x * TILE_SIZE;
-            float screenY = zone.y * TILE_SIZE;
-
-            batch.draw(region, screenX, screenY);
         }
     }
 

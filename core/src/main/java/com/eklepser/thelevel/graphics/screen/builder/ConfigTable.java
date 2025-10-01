@@ -110,7 +110,7 @@ public class ConfigTable extends TableLayout {
 
         Gdx.app.log("Save", "Level saved to: " + file.path());
 
-        String status = String.format("Level %s saved", config.tag);
+        String status = String.format("Level %s saved", newConfig.tag);
         root.getStatusBar().setActionText(status);
     }
 

@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.eklepser.thelevel.graphics.render.TileDefinition;
 import com.eklepser.thelevel.graphics.screen.Layout;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.utils.TextLabel;
@@ -26,7 +27,9 @@ public class StatusBar extends TableLayout {
 
         selectedTileImage = new Image();
         selectedTileLabel = new TextLabel();
-        actionLabel = new TextLabel("ACTION blablabla");
+
+        actionLabel = new TextLabel("");
+
         cursorPositionLabel = new TextLabel();
         cameraPositionLabel = new TextLabel();
 
@@ -56,7 +59,8 @@ public class StatusBar extends TableLayout {
         Image image = new Image(icon);
         selectedTileImage.setDrawable(new TextureRegionDrawable(icon));
 
-        String selectedText = String.format("%s (%s)", builder.getMode(), builder.getSelectedTileId());
+        TileDefinition def = builder.getSelectedTileDef();
+        String selectedText = String.format("%s (%s)", def.type, def.id );
         selectedTileLabel.setText(selectedText);
 
         Vector2 screenPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());

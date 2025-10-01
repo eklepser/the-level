@@ -6,18 +6,17 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.render.TileMap;
-import com.eklepser.thelevel.graphics.render.TileSet;
+import com.eklepser.thelevel.graphics.render.Tileset;
 import com.eklepser.thelevel.util.Resources;
 
 public abstract class GameScreen extends ScreenAdapter {
     protected final Stage stage;
     protected final TileMap map;
     protected final SpriteBatch batch;
-    protected final TileSet tileset;
+    protected final Tileset tileset;
     protected final OrthographicCamera camera;
     protected final InputMultiplexer inputMultiplexer;
     public static final int TILE_SIZE = 32;
@@ -28,7 +27,7 @@ public abstract class GameScreen extends ScreenAdapter {
         this.map = map;
 
         batch = new SpriteBatch();
-        tileset = Resources.getZoneTileSet();
+        tileset = Resources.getTileset();
 
         camera = new OrthographicCamera();
         camera.setToOrtho(true);
@@ -78,7 +77,7 @@ public abstract class GameScreen extends ScreenAdapter {
         return batch;
     }
 
-    public TileSet getTileset() {
+    public Tileset getTileset() {
         return tileset;
     }
 

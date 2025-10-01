@@ -1,6 +1,7 @@
 package com.eklepser.thelevel.graphics.screen.builder;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.eklepser.thelevel.graphics.render.TileDefinition;
 import com.eklepser.thelevel.graphics.render.TileMap;
 import com.eklepser.thelevel.graphics.screen.GameScreen;
 import com.eklepser.thelevel.util.Resources;
@@ -10,11 +11,13 @@ public class Builder {
     private final TileMap map;
 
     private EditMode mode = EditMode.INSERT_GROUND;
-    private int selectedTileId;
+    private TileDefinition selectedTileDef;
 
     public Builder(BuilderScreen screen) {
         this.screen = screen;
         map = screen.getMap();
+
+        selectedTileDef = Resources.getTileset().getDefinitions().get(0);
     }
 
     // Getters & setters:
@@ -30,15 +33,13 @@ public class Builder {
         this.mode = mode;
     }
 
-    public int getSelectedTileId() { return selectedTileId; }
+    public TileDefinition getSelectedTileDef() { return selectedTileDef; }
 
-    public void setSelectedTileId(int selectedTileId) {
-        this.selectedTileId = selectedTileId;
+    public void setSelectedTileDef(TileDefinition selectedTileDef) {
+        this.selectedTileDef = selectedTileDef;
     }
 
     public TextureRegion getSelectedTile() {
-        if (mode.equals(EditMode.INSERT_ZONE)) return Resources.getZoneTileSet().getTile(selectedTileId);
-        else if (mode.equals(EditMode.INSERT_WALL)) return Resources.getWallTileSet().getTile(selectedTileId);
-        return Resources.getGroundTileSet().getTile(selectedTileId);
+        return Resources.getTileset().getTile(selectedTileDef.id);
     }
 }

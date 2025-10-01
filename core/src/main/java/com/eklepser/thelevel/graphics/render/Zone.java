@@ -19,13 +19,7 @@ public class Zone {
 
     public static TextureRegion getTextureRegion(String type) {
         TextureRegion region;
-        switch (type) {
-            case "start":
-                region = Resources.getZoneTileSet().getTile(0, 0);
-                break;
-            default:
-                region = Resources.getZoneTileSet().getTile(1, 0);
-        }
+        region = Resources.getTileset().getTile(1, 0);
         return region;
     }
 }

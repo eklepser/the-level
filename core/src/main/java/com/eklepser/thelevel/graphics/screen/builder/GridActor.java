@@ -4,23 +4,17 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.eklepser.thelevel.graphics.render.TileDefinition;
 import com.eklepser.thelevel.graphics.render.TileMap;
-import com.eklepser.thelevel.graphics.render.TileSet;
 import com.eklepser.thelevel.graphics.render.Zone;
-import com.eklepser.thelevel.util.Resources;
 
 import static com.eklepser.thelevel.graphics.screen.TableLayout.TILE_SIZE;
 
 public class GridActor extends Actor {
     private final TileMap map;
-    private final TileSet blockTileSet;
-    private final TileSet zoneTileSet;
 
     public GridActor(BuilderScreen screen) {
         map = screen.getMap();
-
-        blockTileSet = Resources.getGroundTileSet();
-        zoneTileSet = Resources.getZoneTileSet();
 
         setSize(map.width * TILE_SIZE,
             map.height * TILE_SIZE);
@@ -69,24 +63,24 @@ class GridListener extends InputListener {
         int mapX = x / TILE_SIZE;
         int mapY = y / TILE_SIZE;
 
-        if (builder.getMode().equals(EditMode.INSERT_GROUND)) {
-            map.tiles[mapY][mapX] = builder.getSelectedTileId();
+        map.tiles[mapY][mapX] = builder.getSelectedTileDef().id;
 
-            String message = String.format("Ground placed (%s, %s)", mapX, mapY);
-            screen.getLayout().getStatusBar().setActionText(message);
+        TileDefinition def = builder.getSelectedTileDef();
+        switch (def.type) {
+            case "ground":
+                map.collision[mapY][mapX] = 0;
+                break;
+            case "wall":
+                map.collision[mapY][mapX] = 1;
+                break;
+            case "zone":
+                map.collision[mapY][mapX] = 0;
+                Zone zone = new Zone(mapX, mapY, "start");
+                map.zones.add(zone);
+                break;
         }
-        else if (builder.getMode().equals(EditMode.INSERT_WALL)) {
-            map.tiles[mapY][mapX] = builder.getSelectedTileId();
 
-            String message = String.format("Wall placed (%s, %s)", mapX, mapY);
-            screen.getLayout().getStatusBar().setActionText(message);
-        }
-        else if (builder.getMode().equals(EditMode.INSERT_ZONE)) {
-            Zone zone = new Zone(mapX, mapY, "start");
-            map.zones.add(zone);
-
-            String message = String.format("Zone placed (%s, %s)", mapX, mapY);
-            screen.getLayout().getStatusBar().setActionText(message);
-        }
+        String message = String.format("%s (%s) placed on (%s, %s)", def.type, def.id, mapX, mapY);
+        screen.getLayout().getStatusBar().setActionText(message);
     }
 }

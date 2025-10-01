@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.eklepser.thelevel.graphics.render.TileSet;
+import com.eklepser.thelevel.graphics.render.Tileset;
 
 import static com.eklepser.thelevel.graphics.screen.TableLayout.TILE_SIZE;
 
@@ -16,16 +16,14 @@ public class Resources {
     public static final String LEVEL_CONFIG = "world/level.json";
 
     private static Skin skin;
-    private static TileSet groundTileSet;
-    private static TileSet wallTileSet;
-    private static TileSet zoneTileSet;
+    private static Tileset tileset;
+    private static Tileset wallTileset;
+    private static Tileset zoneTileset;
 
     public static void load() {
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("ui/skin/ui.atlas"));
         skin = new Skin(Gdx.files.internal("ui/skin/skin.json"), atlas);
-        groundTileSet = new TileSet("world/ground_tileset.png", "block" , TILE_SIZE, TILE_SIZE);
-        wallTileSet = new TileSet("world/wall_tileset.png", "wall" , TILE_SIZE, TILE_SIZE);
-        zoneTileSet = new TileSet("world/zone_tileset.png", "zone", TILE_SIZE, TILE_SIZE);
+        tileset = new Tileset("tileset/tileset" , TILE_SIZE, TILE_SIZE);
     }
 
     // Getters:
@@ -33,16 +31,8 @@ public class Resources {
         return skin;
     }
 
-    public static TileSet getGroundTileSet() {
-        return groundTileSet;
-    }
-
-    public static TileSet getWallTileSet() {
-        return wallTileSet;
-    }
-
-    public static TileSet getZoneTileSet() {
-        return zoneTileSet;
+    public static Tileset getTileset() {
+        return tileset;
     }
 
     public static Image getImage(String texturePath) {
