@@ -11,6 +11,8 @@ import com.eklepser.thelevel.graphics.screen.level.editor.buttons.RunButton;
 import com.eklepser.thelevel.graphics.screen.level.editor.buttons.ShowCommandsButton;
 import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
+import com.eklepser.thelevel.logic.world.collision.zone.WinZone;
+import com.eklepser.thelevel.logic.world.collision.zone.Zone;
 import com.eklepser.thelevel.logic.world.level.Level;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Resources;
@@ -31,7 +33,7 @@ public class EditorLayout extends TableLayout {
     public EditorLayout(LevelLayout root, Level level) {
         this.root = root;
         this.level = level;
-        conf = (LevelConfiguration) level.getConfig();
+        conf = level.getConfig();
         codeLayout = new CodeLayout(this, conf);
         codeScrollPane = new ScrollPane(codeLayout, Resources.getSkin());
         codeLayout.setCodeScrollPane(codeScrollPane);
@@ -112,11 +114,11 @@ public class EditorLayout extends TableLayout {
     }
 
     private void resetWin() {
-//        for (Collidable zone : level.getCollidables()) {
-//            if (zone instanceof WinZone winZone) {
-//                winZone.setActivated(false);
-//            }
-//        }
+        for (Zone zone : level.getZones()) {
+            if (zone instanceof WinZone winZone) {
+                winZone.setActivated(false);
+            }
+        }
     }
 
     // Getters:

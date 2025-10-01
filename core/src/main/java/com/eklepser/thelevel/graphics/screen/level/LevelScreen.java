@@ -28,7 +28,7 @@ public class LevelScreen extends GameScreen {
 
     @Override
     protected void setupCamera() {
-        centerCamera();
+        adaptCamera();
     }
 
     @Override

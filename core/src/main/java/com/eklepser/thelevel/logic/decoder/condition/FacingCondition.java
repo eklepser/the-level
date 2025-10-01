@@ -28,12 +28,11 @@ public class FacingCondition extends Condition {
         if (targetObject.equals("wall")) {
             return level.getMap().collision[targetY][targetX] == 1;
         }
-        else if (targetObject.equals("red")) {
-            for (Zone zone : level.getZones()) {
-                if (!(zone instanceof ColoredZone colored)) continue;
-                if (!colored.getColorName().equals("red")) continue;
-                return (targetX == zone.getX() && targetY == zone.getY());
-            }
+
+        for (Zone zone : level.getZones()) {
+            if (!(zone instanceof ColoredZone colored)) continue;
+            if (!colored.getColorName().equals(targetObject)) continue;
+            return (targetX == zone.getX() && targetY == zone.getY());
         }
         return false;
     }

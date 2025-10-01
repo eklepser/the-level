@@ -1,7 +1,5 @@
 package com.eklepser.thelevel.logic.world.collision.zone;
 
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.math.Rectangle;
 import com.eklepser.thelevel.graphics.screen.level.window.WinWindow;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.entity.Entity;

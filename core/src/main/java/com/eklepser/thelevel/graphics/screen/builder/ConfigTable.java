@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
-import com.eklepser.thelevel.graphics.render.TileMap;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.utils.TextLabel;
 import com.eklepser.thelevel.logic.decoder.command.Instruction;
@@ -98,7 +97,7 @@ public class ConfigTable extends TableLayout {
         newConfig.cameraZoom = 1.0f;
         newConfig.title = titleField.getText();
         newConfig.codeLinesNum = 10;
-        newConfig.allowedInstructions = new ArrayList<>(List.of(Instruction.MOVE));
+        newConfig.allowedInstructions = new ArrayList<>(List.of(Instruction.MOVE, Instruction.GOTO, Instruction.IF));
 
         Json json = new Json();
         json.setOutputType(JsonWriter.OutputType.json);
