@@ -52,4 +52,12 @@ public enum Instruction {
         }
         return NONE;
     }
+
+    public static List<Instruction> listFrom(String[] names) {
+        List<Instruction> instructions = new ArrayList<>();
+        for (String name : names) {
+            instructions.add(from(name));
+        }
+        return  instructions;
+    }
 }

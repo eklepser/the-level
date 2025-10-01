@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.screen.menu.buttons.BuilderButton;
 import com.eklepser.thelevel.graphics.screen.menu.buttons.ExitButton;
+import com.eklepser.thelevel.graphics.screen.menu.buttons.LevelsButton;
 import com.eklepser.thelevel.graphics.screen.menu.buttons.StartButton;
 import com.eklepser.thelevel.graphics.utils.ColoredString;
 
@@ -36,15 +37,20 @@ public class MenuScreen extends ScreenAdapter {
         rootTable.setFillParent(true);
 
         ColoredString name = new ColoredString("/blue_4 The LEVEL");
-        rootTable.add(name).padBottom(20);
+        rootTable.add(name).padBottom(20).row();;
 
-        rootTable.row();
         rootTable.add(new StartButton(game)).width(TableLayout.VIEWPORT_WIDTH / 4.0f)
             .height(TableLayout.VIEWPORT_HEIGHT / 16.0f);
         rootTable.row();
+
+        rootTable.add(new LevelsButton(game)).width(TableLayout.VIEWPORT_WIDTH / 4.0f)
+            .height(TableLayout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
+        rootTable.row();
+
         rootTable.add(new BuilderButton(game)).width(TableLayout.VIEWPORT_WIDTH / 4.0f)
             .height(TableLayout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         rootTable.row();
+
         rootTable.add(new ExitButton()).width(TableLayout.VIEWPORT_WIDTH / 8.0f)
             .height(TableLayout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         stage.addActor(rootTable);

@@ -7,9 +7,10 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.eklepser.thelevel.graphics.screen.Layout;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
+import com.eklepser.thelevel.graphics.screen.builder.BuilderScreen;
 import com.eklepser.thelevel.graphics.utils.Loader;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class SelectionScreen extends ScreenAdapter {
     private final List<LevelMetadata> levels;
     private final TableLayout layout;
 
-    public SelectionScreen(Game game) {
+    public SelectionScreen(Game game, Class<? extends Layout> layoutClass) {
         this.game = game;
         stage = new Stage(new FitViewport(
             TableLayout.VIEWPORT_WIDTH, TableLayout.VIEWPORT_HEIGHT, new OrthographicCamera()));
@@ -30,7 +31,11 @@ public class SelectionScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(multiplexer);
 
         levels = Loader.loadMetadata("builder");
-        layout = new SelectionLayout(game, levels);
+
+        if (BuilderSelectionLayout.class.equals(layoutClass)) {
+            layout = new BuilderSelectionLayout(game, levels);
+        }
+        else layout = new PlaySelectionLayout(game, levels);
     }
 
     @Override

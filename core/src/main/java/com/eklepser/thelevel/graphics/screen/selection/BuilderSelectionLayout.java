@@ -14,11 +14,11 @@ import com.eklepser.thelevel.util.Resources;
 
 import java.util.List;
 
-public class SelectionLayout extends TableLayout {
+public class BuilderSelectionLayout extends TableLayout {
     private final Game game;
     private final List<LevelMetadata> levels;
 
-    public SelectionLayout(Game game, List<LevelMetadata> levels) {
+    public BuilderSelectionLayout(Game game, List<LevelMetadata> levels) {
         this.game = game;
         this.levels = levels;
 

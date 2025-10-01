@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.eklepser.thelevel.graphics.render.TileMap;
+import com.eklepser.thelevel.graphics.screen.selection.BuilderSelectionLayout;
 import com.eklepser.thelevel.graphics.screen.selection.SelectionScreen;
 import com.eklepser.thelevel.util.Direction;
 
@@ -36,7 +37,7 @@ public class BuilderProcessor extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.ESCAPE) {
-            game.setScreen(new SelectionScreen(game));
+            game.setScreen(new SelectionScreen(game, BuilderSelectionLayout.class));
         }
         if (keycode != previousKey) previousKey = keycode;
         return false;

@@ -16,9 +16,6 @@ import com.eklepser.thelevel.logic.decoder.command.Instruction;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Resources;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ConfigTable extends TableLayout {
     private final BuilderLayout root;
     private final LevelConfiguration config;
@@ -94,10 +91,9 @@ public class ConfigTable extends TableLayout {
         newConfig.id = 0;
         newConfig.tag = tagField.getText();
         newConfig.tileMap = config.tileMap;
-        newConfig.cameraZoom = 1.0f;
         newConfig.title = titleField.getText();
-        newConfig.codeLinesNum = 10;
-        newConfig.allowedInstructions = new ArrayList<>(List.of(Instruction.MOVE, Instruction.GOTO, Instruction.IF));
+        newConfig.codeLinesNum = Integer.parseInt(codeLinesNum.getText());
+        newConfig.allowedInstructions = Instruction.listFrom(allowedCommands.getText().split("\\s++"));
 
         Json json = new Json();
         json.setOutputType(JsonWriter.OutputType.json);

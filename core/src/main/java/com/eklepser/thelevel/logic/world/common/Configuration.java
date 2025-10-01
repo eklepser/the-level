@@ -11,7 +11,6 @@ public abstract class Configuration {
     public int id;
     public String tag;
     public TileMap tileMap;
-    public float cameraZoom;
 
     public static <T extends Configuration> T from(Class<T> configClass, String configPath) {
         Json json = new Json();

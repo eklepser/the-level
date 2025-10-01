@@ -81,10 +81,10 @@ public class BuilderScreen extends GameScreen {
             camera.position.x += moveDistance;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
-            camera.position.y -= moveDistance;
+            camera.position.y += moveDistance;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN) || Gdx.input.isKeyPressed(Input.Keys.S)) {
-            camera.position.y += moveDistance;
+            camera.position.y -= moveDistance;
         }
         camera.update();
     }
