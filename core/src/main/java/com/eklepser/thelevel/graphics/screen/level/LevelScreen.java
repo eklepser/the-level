@@ -45,6 +45,7 @@ public class LevelScreen extends GameScreen {
         super.render(delta);
 
         level.update(delta);
+        stage.act(delta);
 
         batch.begin();
         level.getEntities().forEach(entity -> entity.draw(batch, 1.0f));

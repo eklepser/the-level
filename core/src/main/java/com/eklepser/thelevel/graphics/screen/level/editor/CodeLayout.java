@@ -31,6 +31,7 @@ public class CodeLayout extends TableLayout {
     }
 
     private void createCodeLines(int linesAmount) {
+        clear();
         for (int i = 0; i < linesAmount; i++) {
             row();
             CodeLine codeline = new CodeLine();

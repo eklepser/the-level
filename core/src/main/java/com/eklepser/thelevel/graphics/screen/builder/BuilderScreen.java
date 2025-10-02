@@ -45,6 +45,7 @@ public class BuilderScreen extends GameScreen {
     @Override
     public void render(float delta) {
         layout.update();
+        stage.act(delta);
 
         updateCamera(delta);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
