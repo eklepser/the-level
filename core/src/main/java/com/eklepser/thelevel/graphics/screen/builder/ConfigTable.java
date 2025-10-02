@@ -14,6 +14,7 @@ import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.util.InputField;
 import com.eklepser.thelevel.graphics.util.TextLabel;
 import com.eklepser.thelevel.logic.decoder.command.Instruction;
+import com.eklepser.thelevel.logic.world.collision.zone.WinZone;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Resources;
 
@@ -38,8 +39,9 @@ public class ConfigTable extends TableLayout {
         titleField = new InputField(config.title, 20);
         codeLinesNum = new InputField(String.valueOf(
             config.codeLinesNum), 3);
-        allowedCommands = new InputField(String.valueOf(
-            config.allowedInstructions), 30);
+
+        allowedCommands = new InputField(String.join(
+            " ", config.getAllowedInstructionsAsStrings()), 30);
 
         saveButton = new TextButton("Save level", Resources.getSkin());
         saveButton.addListener(new ChangeListener() {
@@ -85,16 +87,45 @@ public class ConfigTable extends TableLayout {
 
         Gdx.app.log("Save", "Level saved to: " + file.path());
 
-        String status = String.format("Level %s saved", newConfig.tag);
+        String status = String.format("/green Level %s saved", newConfig.tag);
         root.getStatusBar().setActionText(status);
     }
 
     private boolean isDataCorrect(LevelConfiguration newConfig) {
-        newConfig.id = 0;
+        // Tag parse:
         newConfig.tag = tagField.getText();
+        if (newConfig.tag.isBlank()) {
+            String status = "/red Level not saved\nTag cannot be empty";
+            root.getStatusBar().setActionText(status);
+            return false;
+        }
+
+        // TileMap parse:
         newConfig.tileMap = config.tileMap;
+        boolean hasStartZone = newConfig.tileMap.zones.stream().anyMatch(obj -> obj.type.equals("start"));
+        boolean hasWinZone = newConfig.tileMap.zones.stream().anyMatch(obj -> obj.type.equals("win"));
+        if (!hasStartZone) {
+            String status = "/red Level not saved\nThere must be at least one start zone";
+            root.getStatusBar().setActionText(status);
+            return false;
+        }
+        if (!hasWinZone) {
+            String status = "/red Level not saved\nThere must be at least one win zone";
+            root.getStatusBar().setActionText(status);
+            return false;
+        }
+
+        // Title parse:
         newConfig.title = titleField.getText();
-        newConfig.codeLinesNum = Integer.parseInt(codeLinesNum.getText());
+
+        // CodeLinesNum Instructions parse:
+        try {
+            newConfig.codeLinesNum = Integer.parseInt(codeLinesNum.getText());
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        // AllowedInstructions parse:
         newConfig.allowedInstructions = Instruction.listFrom(allowedCommands.getText().split("\\s++"));
 
         return true;

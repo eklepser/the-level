@@ -18,16 +18,16 @@ public class TileMap {
     public int[][] collision;
     public List<ZoneTile> zones = new ArrayList<>();
 
-    public void draw(Batch batch) {
-        drawBlocks(batch);
+    public void draw(Batch batch, int startId) {
+        drawBlocks(batch, startId);
         drawZones(batch);
     }
 
-    private void drawBlocks(Batch batch) {
+    private void drawBlocks(Batch batch, int startId) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int tileId = tiles[y][x];
-                if (tileId < 0) continue;
+                if (tileId < startId) continue;
 
                 TextureRegion region = Resources.getTileset().getTile(tileId);
                 if (region == null) continue;
@@ -53,10 +53,18 @@ public class TileMap {
         }
     }
 
+    // Getters:
     public Vector2 getStartPos() {
         for (ZoneTile zoneTile : zones) {
             if (zoneTile.type.equals("start"))
                 return new Vector2(zoneTile.x, zoneTile.y);
+        }
+        return null;
+    }
+
+    public ZoneTile getZoneByPos(int x, int y) {
+        for (ZoneTile zoneTile : zones) {
+            if (zoneTile.x == x && zoneTile.y == y) return zoneTile;
         }
         return null;
     }

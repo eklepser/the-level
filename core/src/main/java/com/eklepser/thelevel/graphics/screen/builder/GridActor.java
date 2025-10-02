@@ -26,7 +26,7 @@ public class GridActor extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        map.draw(batch);
+        map.draw(batch, 0);
     }
 }
 
@@ -74,8 +74,16 @@ class GridListener extends InputListener {
                 map.collision[mapY][mapX] = 1;
                 break;
             case "zone":
-                ZoneTile zoneTile = new ZoneTile(def.id, mapX, mapY, def.zoneType, def.zoneProperties);
-                map.zones.add(zoneTile);
+                ZoneTile newZone = new ZoneTile(def.id, mapX, mapY, def.zoneType, def.zoneProperties);
+                map.zones.add(newZone);
+                break;
+            case "remove_tile":
+                map.tiles[mapY][mapX] = 90;
+                map.collision[mapY][mapX] = 0;
+                break;
+            case "remove_zone":
+                ZoneTile zone = map.getZoneByPos(mapX, mapY);
+                if (zone != null) map.zones.remove(zone);
                 break;
         }
 

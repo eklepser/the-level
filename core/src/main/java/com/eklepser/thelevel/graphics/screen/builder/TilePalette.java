@@ -15,12 +15,17 @@ import java.util.*;
 public class TilePalette extends TableLayout {
     private final Tileset tileSet;
     private final Builder builder;
+    private final int idStart;
+    private final int idEnd;
 
     private final int colsNum = 4;
 
-    public TilePalette(BuilderScreen screen, Tileset tileSet) {
+    public TilePalette(BuilderScreen screen, Tileset tileSet, int idStart, int idEnd) {
         this.tileSet = tileSet;
         builder = screen.getBuilder();
+
+        this.idStart = idStart;
+        this.idEnd = idEnd;
 
         setup();
     }
@@ -31,7 +36,9 @@ public class TilePalette extends TableLayout {
 
         int count = 1;
         for (int id : defs.keySet()) {
-            System.out.println(id);
+
+            if (id < idStart || id > idEnd) continue;
+
             TextureRegion icon = tileSet.getTile(id);
             if (icon == null || icon.getTexture() == null) {
                 continue;

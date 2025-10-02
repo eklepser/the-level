@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Configuration {
-    public int id;
     public String tag;
     public TileMap tileMap;
 

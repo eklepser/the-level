@@ -65,7 +65,7 @@ public abstract class GameScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        map.draw(batch);
+        map.draw(batch, 10);
         batch.end();
     }
 

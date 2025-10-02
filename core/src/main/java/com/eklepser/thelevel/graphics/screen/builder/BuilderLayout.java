@@ -9,19 +9,19 @@ public class BuilderLayout extends TableLayout {
 
     private final ConfigTable configTable;
     private final TilePalette groundPalette;
-//    private final TilePalette wallPalette;
-//    private final TilePalette zonePalette;
+    private final TilePalette wallPalette;
+    private final TilePalette zonePalette;
+    private final TilePalette utilPalette;
     private final StatusBar statusBar;
-
-    private boolean isTextFieldFocus = false;
 
     public BuilderLayout(BuilderScreen screen) {
         this.screen = screen;
 
         configTable = new ConfigTable(this, screen);
-        groundPalette = new TilePalette(screen, Resources.getTileset());
-        //wallPalette = new TilePalette(screen, Resources.getWallTileSet(), EditMode.INSERT_WALL);
-        //zonePalette = new TilePalette(screen, Resources.getZoneTileSet(), EditMode.INSERT_ZONE);
+        groundPalette = new TilePalette(screen, Resources.getTileset(), 10, 19);
+        wallPalette = new TilePalette(screen, Resources.getTileset(), 20, 29);
+        zonePalette = new TilePalette(screen, Resources.getTileset(), 30, 59);
+        utilPalette = new TilePalette(screen, Resources.getTileset(), 90, 99);
         statusBar = new StatusBar(screen);
 
         setup();
@@ -33,16 +33,20 @@ public class BuilderLayout extends TableLayout {
 
         add(configTable).left().padBottom(20).row();
 
-        add(new TextLabel("Tiles:")).left().row();
+        add(new TextLabel("Ground:")).left().row();
         add(groundPalette).left();
         add().expandX().row();
 
         add(new TextLabel("Walls:")).left().row();
-        //add(wallPalette).left();
+        add(wallPalette).left();
         add().expandX().row();
 
         add(new TextLabel("Zones:")).left().row();
-        //add(zonePalette).left();
+        add(zonePalette).left();
+        add().expandX().row();
+
+        add(new TextLabel("Action:")).left().row();
+        add(utilPalette).left();
         add().expandX().row();
 
         add().expandY().row();

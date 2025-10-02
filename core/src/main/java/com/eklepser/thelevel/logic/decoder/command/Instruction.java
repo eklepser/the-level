@@ -46,7 +46,7 @@ public enum Instruction {
 
     public static Instruction from(String name) {
         for (Instruction instruction : values()) {
-            if (instruction.name.equals(name)) {
+            if (instruction.name.equals(name.toLowerCase())) {
                 return instruction;
             }
         }
@@ -59,5 +59,10 @@ public enum Instruction {
             instructions.add(from(name));
         }
         return  instructions;
+    }
+
+    // Getters:
+    public String getName() {
+        return name;
     }
 }

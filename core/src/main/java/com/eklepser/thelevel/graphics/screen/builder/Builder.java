@@ -10,7 +10,7 @@ public class Builder {
     private final BuilderScreen screen;
     private final TileMap map;
 
-    private EditMode mode = EditMode.INSERT_GROUND;
+    private EditMode mode = EditMode.PLACE;
     private TileDefinition selectedTileDef;
 
     public Builder(BuilderScreen screen) {

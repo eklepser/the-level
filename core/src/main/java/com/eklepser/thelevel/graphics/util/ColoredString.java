@@ -3,6 +3,7 @@ package com.eklepser.thelevel.graphics.util;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
+import com.badlogic.gdx.utils.Align;
 import com.eklepser.thelevel.util.Resources;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class ColoredString extends HorizontalGroup {
     }
 
     private List<TextLabel> parseText(String text) {
+        if (!text.startsWith("/ ")) text = "/ " + text;
         String[] parts = text.split("/");
         List<TextLabel> labels = new ArrayList<>();
         for (String part : parts) {
@@ -45,6 +47,7 @@ public class ColoredString extends HorizontalGroup {
             TextLabel textLabel = new TextLabel(part.replaceFirst(cmd + " ", ""));
             textLabel.setColor(color);
             textLabel.setFontScale(scale);
+            textLabel.setAlignment(Align.center);
             labels.add(textLabel);
         }
         return labels;
