@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.eklepser.thelevel.graphics.render.TileDefinition;
 import com.eklepser.thelevel.graphics.screen.Layout;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
-import com.eklepser.thelevel.graphics.utils.TextLabel;
+import com.eklepser.thelevel.graphics.util.TextLabel;
 
 public class StatusBar extends TableLayout {
     private final BuilderScreen screen;

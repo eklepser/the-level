@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Json;
 import com.eklepser.thelevel.graphics.screen.level.ExitLevelButton;
-import com.eklepser.thelevel.graphics.utils.ColoredString;
-import com.eklepser.thelevel.graphics.utils.TextLabel;
+import com.eklepser.thelevel.graphics.util.ColoredString;
+import com.eklepser.thelevel.graphics.util.TextLabel;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.util.Resources;
 

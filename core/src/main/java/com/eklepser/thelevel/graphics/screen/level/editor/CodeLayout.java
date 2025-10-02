@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
-import com.eklepser.thelevel.graphics.utils.TextLabel;
+import com.eklepser.thelevel.graphics.util.TextLabel;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Direction;
 
@@ -21,6 +21,8 @@ public class CodeLayout extends TableLayout {
     public CodeLayout(EditorLayout root, LevelConfiguration conf) {
         this.root = root;
         this.conf = conf;
+
+        setup();
     }
 
     @Override

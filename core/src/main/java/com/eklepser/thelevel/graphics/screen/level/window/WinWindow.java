@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
 import com.eklepser.thelevel.graphics.screen.level.ExitLevelButton;
-import com.eklepser.thelevel.graphics.utils.TextLabel;
+import com.eklepser.thelevel.graphics.util.TextLabel;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.util.Resources;
 

@@ -14,7 +14,7 @@ import com.eklepser.thelevel.graphics.screen.menu.buttons.BuilderButton;
 import com.eklepser.thelevel.graphics.screen.menu.buttons.ExitButton;
 import com.eklepser.thelevel.graphics.screen.menu.buttons.LevelsButton;
 import com.eklepser.thelevel.graphics.screen.menu.buttons.StartButton;
-import com.eklepser.thelevel.graphics.utils.ColoredString;
+import com.eklepser.thelevel.graphics.util.ColoredString;
 
 public class MenuScreen extends ScreenAdapter {
     private final Game game;

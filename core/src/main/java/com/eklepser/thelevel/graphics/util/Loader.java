@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.utils;
+package com.eklepser.thelevel.graphics.util;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

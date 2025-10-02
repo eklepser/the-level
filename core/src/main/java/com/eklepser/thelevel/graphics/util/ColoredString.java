@@ -1,4 +1,4 @@
-package com.eklepser.thelevel.graphics.utils;
+package com.eklepser.thelevel.graphics.util;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

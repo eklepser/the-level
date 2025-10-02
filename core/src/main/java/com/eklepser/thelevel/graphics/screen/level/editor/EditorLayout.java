@@ -9,7 +9,7 @@ import com.eklepser.thelevel.graphics.screen.level.editor.buttons.ClearButton;
 import com.eklepser.thelevel.graphics.screen.level.editor.buttons.ResetButton;
 import com.eklepser.thelevel.graphics.screen.level.editor.buttons.RunButton;
 import com.eklepser.thelevel.graphics.screen.level.editor.buttons.ShowCommandsButton;
-import com.eklepser.thelevel.graphics.utils.TextLabel;
+import com.eklepser.thelevel.graphics.util.TextLabel;
 import com.eklepser.thelevel.logic.decoder.execution.Executor;
 import com.eklepser.thelevel.logic.world.collision.zone.WinZone;
 import com.eklepser.thelevel.logic.world.collision.zone.Zone;
@@ -33,10 +33,13 @@ public class EditorLayout extends TableLayout {
     public EditorLayout(LevelLayout root, Level level) {
         this.root = root;
         this.level = level;
+
         conf = level.getConfig();
+
         codeLayout = new CodeLayout(this, conf);
         codeScrollPane = new ScrollPane(codeLayout, Resources.getSkin());
         codeLayout.setCodeScrollPane(codeScrollPane);
+
         // Init executor after codeLayout creating!
         executor = new Executor(level, this);
 

@@ -2,7 +2,7 @@ package com.eklepser.thelevel.graphics.screen.world;
 
 import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.screen.GameScreen;
-import com.eklepser.thelevel.graphics.utils.ColoredString;
+import com.eklepser.thelevel.graphics.util.ColoredString;
 import com.eklepser.thelevel.logic.world.world.World;
 
 public class WorldLayout extends TableLayout {

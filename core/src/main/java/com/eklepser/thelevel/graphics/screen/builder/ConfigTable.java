@@ -11,7 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
-import com.eklepser.thelevel.graphics.utils.TextLabel;
+import com.eklepser.thelevel.graphics.util.InputField;
+import com.eklepser.thelevel.graphics.util.TextLabel;
 import com.eklepser.thelevel.logic.decoder.command.Instruction;
 import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Resources;
@@ -33,29 +34,12 @@ public class ConfigTable extends TableLayout {
         config = screen.getConfig();
         builder = screen.getBuilder();
 
-        tagField = new TextField(config.tag,
-            Resources.getSkin().get("code-field", TextField.TextFieldStyle.class));
-        tagField.setMaxLength(10);
-        tagField.getStyle().cursor = new TextureRegionDrawable(
-            new Texture(Gdx.files.internal("ui/component/code-field-cursor.png")));
-
-        titleField = new TextField(config.title,
-            Resources.getSkin().get("code-field", TextField.TextFieldStyle.class));
-        titleField.setMaxLength(20);
-        titleField.getStyle().cursor = new TextureRegionDrawable(
-            new Texture(Gdx.files.internal("ui/component/code-field-cursor.png")));
-
-        codeLinesNum = new TextField(String.valueOf(config.codeLinesNum),
-            Resources.getSkin().get("code-field", TextField.TextFieldStyle.class));
-        codeLinesNum.setMaxLength(20);
-        codeLinesNum.getStyle().cursor = new TextureRegionDrawable(
-            new Texture(Gdx.files.internal("ui/component/code-field-cursor.png")));
-
-        allowedCommands = new TextField(String.valueOf(config.allowedInstructions),
-            Resources.getSkin().get("code-field", TextField.TextFieldStyle.class));
-        allowedCommands.setMaxLength(40);
-        allowedCommands.getStyle().cursor = new TextureRegionDrawable(
-            new Texture(Gdx.files.internal("ui/component/code-field-cursor.png")));
+        tagField = new InputField(config.tag, 20);
+        titleField = new InputField(config.title, 20);
+        codeLinesNum = new InputField(String.valueOf(
+            config.codeLinesNum), 3);
+        allowedCommands = new InputField(String.valueOf(
+            config.allowedInstructions), 30);
 
         saveButton = new TextButton("Save level", Resources.getSkin());
         saveButton.addListener(new ChangeListener() {
@@ -88,12 +72,8 @@ public class ConfigTable extends TableLayout {
     // Class logic:
     private void saveLevel() {
         LevelConfiguration newConfig = new LevelConfiguration();
-        newConfig.id = 0;
-        newConfig.tag = tagField.getText();
-        newConfig.tileMap = config.tileMap;
-        newConfig.title = titleField.getText();
-        newConfig.codeLinesNum = Integer.parseInt(codeLinesNum.getText());
-        newConfig.allowedInstructions = Instruction.listFrom(allowedCommands.getText().split("\\s++"));
+
+        if (!isDataCorrect(newConfig)) return;
 
         Json json = new Json();
         json.setOutputType(JsonWriter.OutputType.json);
@@ -109,6 +89,18 @@ public class ConfigTable extends TableLayout {
         root.getStatusBar().setActionText(status);
     }
 
+    private boolean isDataCorrect(LevelConfiguration newConfig) {
+        newConfig.id = 0;
+        newConfig.tag = tagField.getText();
+        newConfig.tileMap = config.tileMap;
+        newConfig.title = titleField.getText();
+        newConfig.codeLinesNum = Integer.parseInt(codeLinesNum.getText());
+        newConfig.allowedInstructions = Instruction.listFrom(allowedCommands.getText().split("\\s++"));
+
+        return true;
+    }
+
+    // Getters:
     public boolean hasTextFieldFocus() {
         return tagField.hasKeyboardFocus() ||
             titleField.hasKeyboardFocus() ||

@@ -10,8 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.screen.Layout;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
-import com.eklepser.thelevel.graphics.screen.builder.BuilderScreen;
-import com.eklepser.thelevel.graphics.utils.Loader;
+import com.eklepser.thelevel.graphics.util.Loader;
 
 import java.util.List;
 

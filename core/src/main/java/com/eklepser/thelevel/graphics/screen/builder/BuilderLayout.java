@@ -1,7 +1,7 @@
 package com.eklepser.thelevel.graphics.screen.builder;
 
 import com.eklepser.thelevel.graphics.screen.TableLayout;
-import com.eklepser.thelevel.graphics.utils.TextLabel;
+import com.eklepser.thelevel.graphics.util.TextLabel;
 import com.eklepser.thelevel.util.Resources;
 
 public class BuilderLayout extends TableLayout {

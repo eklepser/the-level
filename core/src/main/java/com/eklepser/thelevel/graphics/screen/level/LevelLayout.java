@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.eklepser.thelevel.graphics.screen.TableLayout;
 import com.eklepser.thelevel.graphics.screen.level.bar.StatusBar;
 import com.eklepser.thelevel.graphics.screen.level.bar.ToolBar;
-import com.eklepser.thelevel.graphics.utils.ColoredString;
+import com.eklepser.thelevel.graphics.util.ColoredString;
 import com.eklepser.thelevel.graphics.screen.level.editor.EditorLayout;
 import com.eklepser.thelevel.logic.world.level.Level;
 
@@ -21,6 +21,7 @@ public class LevelLayout extends TableLayout {
         toolBar = new ToolBar(this);
         infoString = new ColoredString();
         statusBar = new StatusBar();
+
         // Init editor after all others!
         editorLayout = new EditorLayout(this, level);
         setup();
@@ -29,6 +30,7 @@ public class LevelLayout extends TableLayout {
     @Override
     public void setup() {
         setFillParent(true);
+
         // Setup elements:
         infoString.setText(editorLayout.getLevel().getConfig().title);
 
