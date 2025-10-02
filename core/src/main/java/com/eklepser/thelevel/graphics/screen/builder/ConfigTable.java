@@ -19,9 +19,9 @@ import com.eklepser.thelevel.logic.world.level.LevelConfiguration;
 import com.eklepser.thelevel.util.Resources;
 
 public class ConfigTable extends TableLayout {
+    private final BuilderScreen screen;
     private final BuilderLayout root;
     private final LevelConfiguration config;
-    private final Builder builder;
 
     private final TextField tagField;
     private final TextField titleField;
@@ -32,8 +32,8 @@ public class ConfigTable extends TableLayout {
 
     public ConfigTable(BuilderLayout root, BuilderScreen screen) {
         this.root = root;
+        this.screen = screen;
         config = screen.getConfig();
-        builder = screen.getBuilder();
 
         tagField = new InputField(config.tag, 20);
         titleField = new InputField(config.title, 20);
@@ -56,19 +56,20 @@ public class ConfigTable extends TableLayout {
 
     @Override
     public void setup() {
-        add(saveButton).row();
+        add(new TextLabel("Tag (file name):")).padRight(4).left();
+        add(tagField).padTop(4).row();
 
-        add(new TextLabel("Tag (file name):")).padRight(5).left();
-        add(tagField).padTop(5).row();
+        add(new TextLabel("Level title:")).padRight(4).left();
+        add(titleField).padTop(4).row();
 
-        add(new TextLabel("Level title:")).padRight(5).left();
-        add(titleField).padTop(5).row();
+        add(new TextLabel("Codelines amount:")).padRight(4).left();
+        add(codeLinesNum).padTop(4).row();
 
-        add(new TextLabel("Codelines amount:")).padRight(5).left();
-        add(codeLinesNum).padTop(5).row();
+        add(new TextLabel("Allowed commands:")).padRight(4).left();
+        add(allowedCommands).padTop(4).row();
 
-        add(new TextLabel("Allowed commands:")).padRight(5).left();
-        add(allowedCommands).padTop(5);
+        add();
+        add(saveButton).padTop(4).center().fillX();
     }
 
     // Class logic:
@@ -101,7 +102,7 @@ public class ConfigTable extends TableLayout {
         }
 
         // TileMap parse:
-        newConfig.tileMap = config.tileMap;
+        newConfig.tileMap = screen.getMap();
         boolean hasStartZone = newConfig.tileMap.zones.stream().anyMatch(obj -> obj.type.equals("start"));
         boolean hasWinZone = newConfig.tileMap.zones.stream().anyMatch(obj -> obj.type.equals("win"));
         if (!hasStartZone) {

@@ -28,8 +28,14 @@ public class GridActor extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         map.draw(batch, 0);
     }
-}
 
+    public void update() {
+        setSize(map.width * TILE_SIZE,
+            map.height * TILE_SIZE);
+
+        setDebug(true);
+    }
+}
 
 // Input listener class for GridActor:
 class GridListener extends InputListener {
@@ -75,15 +81,15 @@ class GridListener extends InputListener {
                 break;
             case "zone":
                 ZoneTile newZone = new ZoneTile(def.id, mapX, mapY, def.zoneType, def.zoneProperties);
+                map.removeZoneByPos(mapX, mapY);
                 map.zones.add(newZone);
                 break;
             case "remove_tile":
-                map.tiles[mapY][mapX] = 90;
+                map.tiles[mapY][mapX] = 0;
                 map.collision[mapY][mapX] = 0;
                 break;
             case "remove_zone":
-                ZoneTile zone = map.getZoneByPos(mapX, mapY);
-                if (zone != null) map.zones.remove(zone);
+                map.removeZoneByPos(mapX, mapY);
                 break;
         }
 

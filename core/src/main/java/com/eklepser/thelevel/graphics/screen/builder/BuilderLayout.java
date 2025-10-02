@@ -5,9 +5,8 @@ import com.eklepser.thelevel.graphics.util.TextLabel;
 import com.eklepser.thelevel.util.Resources;
 
 public class BuilderLayout extends TableLayout {
-    private final BuilderScreen screen;
-
     private final ConfigTable configTable;
+    private final ResizeTable resizeTable;
     private final TilePalette groundPalette;
     private final TilePalette wallPalette;
     private final TilePalette zonePalette;
@@ -15,13 +14,14 @@ public class BuilderLayout extends TableLayout {
     private final StatusBar statusBar;
 
     public BuilderLayout(BuilderScreen screen) {
-        this.screen = screen;
-
         configTable = new ConfigTable(this, screen);
+        resizeTable = new ResizeTable(screen);
+
         groundPalette = new TilePalette(screen, Resources.getTileset(), 10, 19);
         wallPalette = new TilePalette(screen, Resources.getTileset(), 20, 29);
         zonePalette = new TilePalette(screen, Resources.getTileset(), 30, 59);
         utilPalette = new TilePalette(screen, Resources.getTileset(), 90, 99);
+
         statusBar = new StatusBar(screen);
 
         setup();
@@ -31,7 +31,11 @@ public class BuilderLayout extends TableLayout {
     public void setup() {
         setFillParent(true);
 
+        add(new TextLabel("Level info:")).left().row();
         add(configTable).left().padBottom(20).row();
+
+        add(new TextLabel("Resize:")).left().row();
+        add(resizeTable).left().padBottom(20).row();
 
         add(new TextLabel("Ground:")).left().row();
         add(groundPalette).left();

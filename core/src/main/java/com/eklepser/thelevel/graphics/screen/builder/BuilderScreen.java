@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.eklepser.thelevel.graphics.screen.GameScreen;
@@ -17,6 +18,7 @@ public class BuilderScreen extends GameScreen {
     private final Builder builder;
     private final BuilderLayout layout;
     private final Stage gridStage;
+    private final GridActor gridActor;
 
     public BuilderScreen(Game game, LevelConfiguration config) {
         super(config.tileMap);
@@ -25,9 +27,10 @@ public class BuilderScreen extends GameScreen {
 
         // Order is important! Builder -> gridStage -> layout.
         builder = new Builder(this);
+        gridActor = new GridActor(this);
         gridStage = new Stage(new FitViewport(
             TableLayout.VIEWPORT_WIDTH, TableLayout.VIEWPORT_HEIGHT, camera));
-        gridStage.addActor(new GridActor(this));
+        gridStage.addActor(gridActor);
         layout = new BuilderLayout(this);
     }
 
@@ -105,5 +108,9 @@ public class BuilderScreen extends GameScreen {
 
     public Stage getGridStage() {
         return gridStage;
+    }
+
+    public GridActor getGridActor() {
+        return gridActor;
     }
 }

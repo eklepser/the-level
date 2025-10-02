@@ -53,6 +53,17 @@ public class TileMap {
         }
     }
 
+    public void resize(int width, int height) {
+        this.width = width;
+        this.height = height;
+
+        int[][] tiles = new int[height][width];
+        int[][] collision = new int[height][width];
+
+        this.tiles = tiles;
+        this.collision = collision;
+    }
+
     // Getters:
     public Vector2 getStartPos() {
         for (ZoneTile zoneTile : zones) {
@@ -67,5 +78,10 @@ public class TileMap {
             if (zoneTile.x == x && zoneTile.y == y) return zoneTile;
         }
         return null;
+    }
+
+    public void removeZoneByPos(int x, int y) {
+        ZoneTile zoneTile = getZoneByPos(x, y);
+        if (zoneTile != null) zones.remove(zoneTile);
     }
 }

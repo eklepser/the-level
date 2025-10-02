@@ -51,7 +51,7 @@ public abstract class GameScreen extends ScreenAdapter {
     }
 
     protected void adaptCamera() {
-        float zoom = map.width * 1.5f / 10.0f;
+        float zoom =  20.0f / map.width;
         float cameraX = (map.width * Layout.TILE_SIZE - Layout.EDITOR_MENU_SCALE * Layout.VIEWPORT_WIDTH / zoom) / 2.0f;
         float cameraY = map.height * Layout.TILE_SIZE / 2.0f;
         camera.setToOrtho(false, Layout.VIEWPORT_WIDTH / zoom,

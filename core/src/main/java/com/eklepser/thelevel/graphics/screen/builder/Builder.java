@@ -8,16 +8,14 @@ import com.eklepser.thelevel.util.Resources;
 
 public class Builder {
     private final BuilderScreen screen;
-    private final TileMap map;
 
     private EditMode mode = EditMode.PLACE;
     private TileDefinition selectedTileDef;
 
     public Builder(BuilderScreen screen) {
         this.screen = screen;
-        map = screen.getMap();
 
-        selectedTileDef = Resources.getTileset().getDefinitions().get(0);
+        selectedTileDef = Resources.getTileset().getDefinitions().get(10);
     }
 
     // Getters & setters:
