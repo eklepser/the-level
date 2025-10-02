@@ -53,15 +53,52 @@ public class TileMap {
         }
     }
 
-    public void resize(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public void resize(int newWidth, int newHeight) {
+        int[][] newTiles = new int[newHeight][newWidth];
+        int[][] newCollision = new int[newHeight][newWidth];
 
-        int[][] tiles = new int[height][width];
-        int[][] collision = new int[height][width];
+        for (int y = 0; y < Math.min(height, newHeight); y++) {
+            for (int x = 0; x < Math.min(width, newWidth); x++) {
+                newTiles[y][x] = this.tiles[y][x];
+                newCollision[y][x] = this.collision[y][x];
+            }
+        }
 
-        this.tiles = tiles;
-        this.collision = collision;
+        zones.removeIf(zoneTile -> zoneTile.x >= newWidth || zoneTile.y >= newHeight);
+
+        this.width = newWidth;
+        this.height = newHeight;
+        this.tiles = newTiles;
+        this.collision = newCollision;
+    }
+
+    public void offset(int offsetX, int offsetY) {
+        int[][] newTiles = new int[height][width];
+        int[][] newCollision = new int[height][width];
+
+        for (int y = 0; y < height; y++) {
+            int newY = y + offsetY;
+            if (newY >= height || newY < 0) continue;
+
+            for (int x = 0; x < width; x++) {
+                int newX = x + offsetX;
+                if (newX >= width || newX < 0) continue;
+
+                newTiles[newY][newX] = this.tiles[y][x];
+                newCollision[newY][newX] = this.collision[y][x];
+            }
+        }
+
+        for (ZoneTile zoneTile : zones) {
+            zoneTile.x = zoneTile.x + offsetX;;
+            zoneTile.y = zoneTile.y + offsetY;;
+        }
+
+        zones.removeIf(zoneTile -> zoneTile.x >= width || zoneTile.x < 0
+            || zoneTile.y >= height || zoneTile.y < 0);
+
+        this.tiles = newTiles;
+        this.collision = newCollision;
     }
 
     // Getters:

@@ -34,7 +34,6 @@ public class BuilderLayout extends TableLayout {
         add(new TextLabel("Level info:")).left().row();
         add(configTable).left().padBottom(20).row();
 
-        add(new TextLabel("Resize:")).left().row();
         add(resizeTable).left().padBottom(20).row();
 
         add(new TextLabel("Ground:")).left().row();

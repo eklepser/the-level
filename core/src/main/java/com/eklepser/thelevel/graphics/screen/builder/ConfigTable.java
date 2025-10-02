@@ -56,16 +56,16 @@ public class ConfigTable extends TableLayout {
 
     @Override
     public void setup() {
-        add(new TextLabel("Tag (file name):")).padRight(4).left();
+        add(new TextLabel("tag (file name)")).padRight(6).left();
         add(tagField).padTop(4).row();
 
-        add(new TextLabel("Level title:")).padRight(4).left();
+        add(new TextLabel("title")).padRight(4).left();
         add(titleField).padTop(4).row();
 
-        add(new TextLabel("Codelines amount:")).padRight(4).left();
+        add(new TextLabel("codelines amount")).padRight(6).left();
         add(codeLinesNum).padTop(4).row();
 
-        add(new TextLabel("Allowed commands:")).padRight(4).left();
+        add(new TextLabel("allowed commands")).padRight(6).left();
         add(allowedCommands).padTop(4).row();
 
         add();
