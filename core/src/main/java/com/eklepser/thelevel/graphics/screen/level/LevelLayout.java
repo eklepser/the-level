@@ -24,6 +24,7 @@ public class LevelLayout extends TableLayout {
 
         // Init editor after all others!
         editorLayout = new EditorLayout(this, level);
+
         setup();
     }
 
@@ -32,7 +33,7 @@ public class LevelLayout extends TableLayout {
         setFillParent(true);
 
         // Setup elements:
-        infoString.setText(editorLayout.getLevel().getConfig().title);
+        infoString.setText("/_2 " + editorLayout.getLevel().getConfig().title);
 
         statusBar.left();
         ScrollPane scrollPane = new ScrollPane(statusBar);

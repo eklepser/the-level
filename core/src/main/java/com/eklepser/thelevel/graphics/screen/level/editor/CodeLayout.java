@@ -21,8 +21,6 @@ public class CodeLayout extends TableLayout {
     public CodeLayout(EditorLayout root, LevelConfiguration conf) {
         this.root = root;
         this.conf = conf;
-
-        setup();
     }
 
     @Override
