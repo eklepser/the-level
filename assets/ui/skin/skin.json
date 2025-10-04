@@ -22,7 +22,7 @@
   "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
     "text-label": {
       "font": "default",
-      "fontColor": "gray"
+      "fontColor": "white"
     }
   },
 

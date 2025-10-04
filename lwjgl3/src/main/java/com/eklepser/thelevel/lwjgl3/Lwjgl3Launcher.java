@@ -2,8 +2,8 @@ package com.eklepser.thelevel.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.eklepser.thelevel.MyGame;
-import com.eklepser.thelevel.graphics.screen.TableLayout;
+import game.MyGame;
+import game.scene.common.rendering.TableLayout;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
