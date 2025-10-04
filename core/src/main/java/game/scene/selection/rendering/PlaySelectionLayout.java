@@ -35,7 +35,7 @@ public class PlaySelectionLayout extends TableLayout {
         for (LevelMetadata data : levels) {
             String text = String.format(data.tag());
             TextButton button = new TextButton(text, Assets.getSkin());
-            String path = String.format("builder/level_%s.json" , data.tag());
+            String path = String.format("data/builder/level_%s.json" , data.tag());
             button.addListener(new ButtonListener(game, path));
 
             add(button).padTop(10).width(Layout.VIEWPORT_WIDTH / 4.0f).row();

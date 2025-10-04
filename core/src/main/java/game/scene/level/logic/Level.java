@@ -56,7 +56,7 @@ public class Level {
     }
 
     public void spawnEntity(int worldPosX, int worldPosY) {
-        Entity entity = new Entity(worldPosX, worldPosY, "world/entity/target.png");
+        Entity entity = new Entity(worldPosX, worldPosY, "tileset/target.png");
         entities.add(entity);
     }
 
