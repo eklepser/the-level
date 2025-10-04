@@ -28,7 +28,7 @@ public class LevelScreen extends GameScreen {
 
     @Override
     protected void setupCamera() {
-        adaptCamera();
+        camera.adapt(map.width, map.height);
     }
 
     @Override

@@ -3,12 +3,13 @@ package game.scene.common.rendering.tile;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import game.config.GraphicsConstants;
 import game.resources.Assets;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static game.scene.common.rendering.TableLayout.TILE_SIZE;
+import static game.config.GraphicsConstants.TILE_SIZE;
 
 public class TileMap {
     public String name;

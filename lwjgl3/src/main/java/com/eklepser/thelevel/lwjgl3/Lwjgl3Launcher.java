@@ -3,6 +3,7 @@ package com.eklepser.thelevel.lwjgl3;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import game.MyGame;
+import game.config.GraphicsConstants;
 import game.scene.common.rendering.TableLayout;
 
 /** Launches the desktop (LWJGL3) application. */
@@ -21,7 +22,7 @@ public class Lwjgl3Launcher {
         configuration.setTitle("The Level");
         configuration.useVsync(true);
         configuration.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate + 1);
-        configuration.setWindowedMode(TableLayout.WINDOW_WIDTH, TableLayout.WINDOW_HEIGHT);
+        configuration.setWindowedMode(GraphicsConstants.WINDOW_WIDTH, GraphicsConstants.WINDOW_HEIGHT);
         configuration.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png", "libgdx16.png");
         return configuration;
     }

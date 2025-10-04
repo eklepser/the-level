@@ -5,9 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import game.config.GraphicsConstants;
 import game.scene.common.rendering.tile.Tileset;
-
-import static game.scene.common.rendering.TableLayout.TILE_SIZE;
 
 public class Assets {
     public static final String COMMANDS_INFO = "text/commands-info.json";
@@ -23,7 +22,7 @@ public class Assets {
     public static void load() {
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("ui/skin/ui.atlas"));
         skin = new Skin(Gdx.files.internal("ui/skin/skin.json"), atlas);
-        tileset = new Tileset("tileset/tileset" , TILE_SIZE, TILE_SIZE);
+        tileset = new Tileset("tileset/tileset" , GraphicsConstants.TILE_SIZE, GraphicsConstants.TILE_SIZE);
     }
 
     // Getters:

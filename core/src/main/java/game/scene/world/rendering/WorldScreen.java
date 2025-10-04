@@ -1,6 +1,7 @@
 package game.scene.world.rendering;
 
 import com.badlogic.gdx.Game;
+import game.config.GraphicsConstants;
 import game.scene.common.rendering.GameScreen;
 import game.scene.world.logic.World;
 import game.scene.world.logic.WorldConfiguration;
@@ -19,8 +20,8 @@ public class WorldScreen extends GameScreen {
 
     @Override
     protected void setupCamera() {
-        float levelWidth = map.width * TILE_SIZE;
-        float levelHeight = map.height * TILE_SIZE;
+        float levelWidth = map.width * GraphicsConstants.TILE_SIZE;
+        float levelHeight = map.height * GraphicsConstants.TILE_SIZE;
 
         float levelCenterX = levelWidth / 2f;
         float levelCenterY = levelHeight / 2f;

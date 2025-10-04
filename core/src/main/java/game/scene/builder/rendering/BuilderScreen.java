@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import game.config.GraphicsConstants;
 import game.scene.common.rendering.GameScreen;
 import game.scene.common.rendering.TableLayout;
 import game.scene.level.logic.LevelConfiguration;
@@ -31,13 +32,16 @@ public class BuilderScreen extends GameScreen {
         builder = new Builder(this);
         gridActor = new GridActor(this);
         gridStage = new Stage(new FitViewport(
-            TableLayout.VIEWPORT_WIDTH, TableLayout.VIEWPORT_HEIGHT, camera));
+            GraphicsConstants.VIEWPORT_WIDTH, GraphicsConstants.VIEWPORT_HEIGHT, camera));
         gridStage.addActor(gridActor);
         layout = new BuilderLayout(this);
     }
 
     @Override
-    protected void setupCamera() { centerCamera(); }
+    protected void setupCamera() {
+        camera.center(map.width * GraphicsConstants.TILE_SIZE,
+            map.height * GraphicsConstants.TILE_SIZE);
+    }
 
     @Override
     public void show() {
@@ -64,7 +68,8 @@ public class BuilderScreen extends GameScreen {
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
         gridStage.getViewport().update(width, height, true);
-        centerCamera();
+        camera.center(map.width * GraphicsConstants.TILE_SIZE,
+            map.height * GraphicsConstants.TILE_SIZE);
     }
 
     public void moveCamera(Vector2 direction) {

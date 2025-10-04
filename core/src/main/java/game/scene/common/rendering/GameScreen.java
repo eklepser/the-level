@@ -8,7 +8,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import game.config.GraphicsConstants;
 import game.resources.Assets;
+import game.scene.common.rendering.tile.GameCamera;
 import game.scene.common.rendering.tile.TileMap;
 import game.scene.common.rendering.tile.Tileset;
 
@@ -17,20 +19,18 @@ public abstract class GameScreen extends ScreenAdapter {
     protected final TileMap map;
     protected final SpriteBatch batch;
     protected final Tileset tileset;
-    protected final OrthographicCamera camera;
+    protected final GameCamera camera;
     protected final InputMultiplexer inputMultiplexer;
-    public static final int TILE_SIZE = 32;
 
     public GameScreen(TileMap map) {
         stage = new Stage(new FitViewport(
-            TableLayout.VIEWPORT_WIDTH, TableLayout.VIEWPORT_HEIGHT, new OrthographicCamera()));
+            GraphicsConstants.VIEWPORT_WIDTH, GraphicsConstants.VIEWPORT_HEIGHT, new OrthographicCamera()));
         this.map = map;
 
         batch = new SpriteBatch();
         tileset = Assets.getTileset();
 
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, TableLayout.VIEWPORT_WIDTH, TableLayout.VIEWPORT_HEIGHT);
+        camera = new GameCamera(GraphicsConstants.VIEWPORT_WIDTH, GraphicsConstants.VIEWPORT_HEIGHT);
         setupCamera();
 
         inputMultiplexer = new InputMultiplexer();
@@ -38,27 +38,6 @@ public abstract class GameScreen extends ScreenAdapter {
     }
 
     protected abstract void setupCamera();
-
-    protected void centerCamera() {
-        float levelWidth = map.width * TILE_SIZE;
-        float levelHeight = map.height * TILE_SIZE;
-
-        float levelCenterX = levelWidth / 2f;
-        float levelCenterY = levelHeight / 2f;
-
-        camera.position.set(levelCenterX, levelCenterY, 0);
-        camera.update();
-    }
-
-    protected void adaptCamera() {
-        float zoom = 16.0f / map.width;
-        float cameraX = (map.width * Layout.TILE_SIZE - Layout.EDITOR_MENU_SCALE * Layout.VIEWPORT_WIDTH / zoom) / 2.0f;
-        float cameraY = map.height * Layout.TILE_SIZE / 2.0f;
-        camera.setToOrtho(false, Layout.VIEWPORT_WIDTH / zoom,
-            Layout.VIEWPORT_HEIGHT / zoom);
-        camera.position.set(cameraX, cameraY, 0);
-        camera.update();
-    }
 
     @Override
     public void render(float delta) {

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import game.config.GraphicsConstants;
 import game.resources.LevelLoader;
 import game.scene.common.rendering.Layout;
 import game.scene.common.rendering.TableLayout;
@@ -27,7 +28,7 @@ public class SelectionScreen extends ScreenAdapter {
     public SelectionScreen(Game game, Class<? extends Layout> layoutClass) {
         this.game = game;
         stage = new Stage(new FitViewport(
-            TableLayout.VIEWPORT_WIDTH, TableLayout.VIEWPORT_HEIGHT, new OrthographicCamera()));
+            GraphicsConstants.VIEWPORT_WIDTH, GraphicsConstants.VIEWPORT_HEIGHT, new OrthographicCamera()));
         multiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(multiplexer);
 

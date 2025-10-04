@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import game.config.GraphicsConstants;
 import game.scene.common.rendering.TableLayout;
 import game.scene.menu.rendering.component.BuilderButton;
 import game.scene.menu.rendering.component.ExitButton;
@@ -23,7 +24,7 @@ public class MenuScreen extends ScreenAdapter {
     public MenuScreen(Game game) {
         this.game = game;
         stage = new Stage(new FitViewport(
-            TableLayout.VIEWPORT_WIDTH, TableLayout.VIEWPORT_HEIGHT, new OrthographicCamera()));
+            GraphicsConstants.VIEWPORT_WIDTH, GraphicsConstants.VIEWPORT_HEIGHT, new OrthographicCamera()));
     }
 
     @Override
@@ -39,20 +40,20 @@ public class MenuScreen extends ScreenAdapter {
         ColoredString name = new ColoredString("/blue_4 The LEVEL");
         rootTable.add(name).padBottom(20).row();;
 
-        rootTable.add(new StartButton(game)).width(TableLayout.VIEWPORT_WIDTH / 4.0f)
-            .height(TableLayout.VIEWPORT_HEIGHT / 16.0f);
+        rootTable.add(new StartButton(game)).width(GraphicsConstants.VIEWPORT_WIDTH / 4.0f)
+            .height(GraphicsConstants.VIEWPORT_HEIGHT / 16.0f);
         rootTable.row();
 
-        rootTable.add(new LevelsButton(game)).width(TableLayout.VIEWPORT_WIDTH / 4.0f)
-            .height(TableLayout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
+        rootTable.add(new LevelsButton(game)).width(GraphicsConstants.VIEWPORT_WIDTH / 4.0f)
+            .height(GraphicsConstants.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         rootTable.row();
 
-        rootTable.add(new BuilderButton(game)).width(TableLayout.VIEWPORT_WIDTH / 4.0f)
-            .height(TableLayout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
+        rootTable.add(new BuilderButton(game)).width(GraphicsConstants.VIEWPORT_WIDTH / 4.0f)
+            .height(GraphicsConstants.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         rootTable.row();
 
-        rootTable.add(new ExitButton()).width(TableLayout.VIEWPORT_WIDTH / 8.0f)
-            .height(TableLayout.VIEWPORT_HEIGHT / 16.0f).padTop(20);
+        rootTable.add(new ExitButton()).width(GraphicsConstants.VIEWPORT_WIDTH / 8.0f)
+            .height(GraphicsConstants.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         stage.addActor(rootTable);
     }
 

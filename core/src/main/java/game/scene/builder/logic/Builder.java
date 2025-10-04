@@ -9,7 +9,6 @@ import game.resources.Assets;
 public class Builder {
     private final BuilderScreen screen;
 
-    private EditMode mode = EditMode.PLACE;
     private TileDefinition selectedTileDef;
 
     public Builder(BuilderScreen screen) {
@@ -21,14 +20,6 @@ public class Builder {
     // Getters & setters:
     public GameScreen getScreen() {
         return screen;
-    }
-
-    public EditMode getMode() {
-        return mode;
-    }
-
-    public void setMode(EditMode mode) {
-        this.mode = mode;
     }
 
     public TileDefinition getSelectedTileDef() { return selectedTileDef; }

@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import game.config.GraphicsConstants;
+import game.config.Paths;
 import game.scene.common.rendering.Layout;
 import game.scene.common.rendering.TableLayout;
 import game.scene.level.rendering.LevelScreen;
@@ -35,10 +37,10 @@ public class PlaySelectionLayout extends TableLayout {
         for (LevelMetadata data : levels) {
             String text = String.format(data.tag());
             TextButton button = new TextButton(text, Assets.getSkin());
-            String path = String.format("data/builder/level_%s.json" , data.tag());
+            String path = String.format("%slevel_%s.json" , Paths.BUILDER_DATA, data.tag());
             button.addListener(new ButtonListener(game, path));
 
-            add(button).padTop(10).width(Layout.VIEWPORT_WIDTH / 4.0f).row();
+            add(button).padTop(10).width(GraphicsConstants.VIEWPORT_WIDTH / 4.0f).row();
         }
     }
 
