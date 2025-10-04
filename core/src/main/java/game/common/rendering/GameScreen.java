@@ -3,7 +3,6 @@ package game.common.rendering;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import game.common.rendering.tile.GameCamera;
 import game.common.rendering.tile.TileMap;
 import game.common.rendering.tile.Tileset;
 import game.config.GraphicsConstants;
@@ -13,7 +12,6 @@ public abstract class GameScreen extends BaseScreen {
     protected final TileMap map;
     protected final SpriteBatch batch;
     protected final Tileset tileset;
-    protected final GameCamera camera;
 
     public GameScreen(Game game, TileMap map) {
         super(game);
@@ -22,8 +20,6 @@ public abstract class GameScreen extends BaseScreen {
         batch = new SpriteBatch();
 
         tileset = Assets.getTileset();
-
-        camera = new GameCamera(GraphicsConstants.VIEWPORT_WIDTH, GraphicsConstants.VIEWPORT_HEIGHT);
     }
 
     @Override
@@ -34,7 +30,6 @@ public abstract class GameScreen extends BaseScreen {
     }
 
     protected final void renderMap() {
-        batch.setProjectionMatrix(camera.combined);
         batch.begin();
         map.draw(batch, 10);
         batch.end();
@@ -55,9 +50,5 @@ public abstract class GameScreen extends BaseScreen {
 
     public Tileset getTileset() {
         return tileset;
-    }
-
-    public GameCamera getCamera() {
-        return camera;
     }
 }

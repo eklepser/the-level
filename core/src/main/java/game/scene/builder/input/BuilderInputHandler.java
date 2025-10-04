@@ -20,9 +20,11 @@ public class BuilderInputHandler extends InputAdapter {
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.ESCAPE) {
             listener.onEscapePressed();
+            return true;
         }
         if (keycode == Input.Keys.ENTER) {
             listener.onEnterPressed();
+            return true;
         }
         return false;
     }
@@ -32,4 +34,6 @@ public class BuilderInputHandler extends InputAdapter {
         listener.onScreenTapped();
         return false;
     }
+
+
 }

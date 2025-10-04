@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import game.common.rendering.DynamicGameCamera;
 import game.config.GraphicsConstants;
 import game.common.rendering.GameScreen;
 import game.scene.builder.input.BuilderInputListener;
@@ -19,6 +20,7 @@ import game.scene.selection.rendering.SelectionScreen;
 public class BuilderScreen extends GameScreen implements BuilderInputListener {
     private final LevelConfiguration config;
     private final Game game;
+    private final DynamicGameCamera camera;
     private final Builder builder;
     private final BuilderLayout layout;
     private final Stage gridStage;
@@ -28,6 +30,8 @@ public class BuilderScreen extends GameScreen implements BuilderInputListener {
         super(game, config.tileMap);
         this.config = config;
         this.game = game;
+
+        camera = new DynamicGameCamera();
 
         // Order is important! Builder -> gridStage -> layout.
         builder = new Builder(this);
@@ -55,11 +59,15 @@ public class BuilderScreen extends GameScreen implements BuilderInputListener {
     @Override
     public void render(float delta) {
         layout.update();
-        updateCamera(delta);
+        if (!layout.getConfigTable().hasTextFieldFocus()) {
+            camera.update(delta);
+            batch.setProjectionMatrix(camera.combined);
+        }
 
         renderClear();
         renderMap();
 
+        gridStage.act();
         gridStage.draw();
         renderStage(delta);
     }
@@ -92,27 +100,6 @@ public class BuilderScreen extends GameScreen implements BuilderInputListener {
         camera.zoom(amountY);
     }
 
-    private void updateCamera(float delta) {
-
-        if (layout.getConfigTable().hasTextFieldFocus()) return;
-
-        float moveDistance = 200 * delta;
-
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
-            camera.position.x -= moveDistance;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
-            camera.position.x += moveDistance;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
-            camera.position.y += moveDistance;
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN) || Gdx.input.isKeyPressed(Input.Keys.S)) {
-            camera.position.y -= moveDistance;
-        }
-        camera.update();
-    }
-
     // Getters:
     public LevelConfiguration getConfig() {
         return config;
@@ -132,5 +119,9 @@ public class BuilderScreen extends GameScreen implements BuilderInputListener {
 
     public GridActor getGridActor() {
         return gridActor;
+    }
+
+    public DynamicGameCamera getCamera() {
+        return camera;
     }
 }

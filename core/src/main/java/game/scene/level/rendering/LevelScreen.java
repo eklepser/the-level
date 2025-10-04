@@ -1,6 +1,7 @@
 package game.scene.level.rendering;
 
 import com.badlogic.gdx.Game;
+import game.common.rendering.GameCamera;
 import game.common.rendering.GameScreen;
 import game.common.rendering.TableLayout;
 import game.config.GraphicsConstants;
@@ -13,11 +14,14 @@ import game.scene.level.logic.LevelConfiguration;
 public class LevelScreen extends GameScreen {
     private final Level level;
     private final LevelLayout layout;
+    private final GameCamera camera;
+
     private final HelpWindow helpWindow;
     private final WinWindow winWindow;
 
     public LevelScreen(Game game, LevelConfiguration config) {
         super(game, config.tileMap);
+        camera = new GameCamera();
 
         helpWindow = new HelpWindow(game);
         winWindow = new WinWindow(game);
