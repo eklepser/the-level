@@ -3,19 +3,20 @@ package game.scene.builder.rendering;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import game.common.rendering.TableLayout;
 import game.config.GraphicsConstants;
 import game.common.rendering.GameScreen;
+import game.scene.builder.input.BuilderInputListener;
 import game.scene.level.logic.LevelConfiguration;
 import game.scene.builder.rendering.component.GridActor;
 import game.scene.builder.logic.Builder;
-import game.scene.builder.logic.BuilderProcessor;
+import game.scene.builder.input.BuilderInputHandler;
+import game.scene.selection.rendering.BuilderSelectionLayout;
+import game.scene.selection.rendering.SelectionScreen;
 
-public class BuilderScreen extends GameScreen {
+public class BuilderScreen extends GameScreen implements BuilderInputListener {
     private final LevelConfiguration config;
     private final Game game;
     private final Builder builder;
@@ -27,6 +28,7 @@ public class BuilderScreen extends GameScreen {
         super(game, config.tileMap);
         this.config = config;
         this.game = game;
+
         // Order is important! Builder -> gridStage -> layout.
         builder = new Builder(this);
 
@@ -45,7 +47,7 @@ public class BuilderScreen extends GameScreen {
 
         stage.addActor(layout);
 
-        multiplexer.addProcessor(new BuilderProcessor(game, this));
+        multiplexer.addProcessor(new BuilderInputHandler(this));
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(gridStage);
     }
@@ -70,14 +72,27 @@ public class BuilderScreen extends GameScreen {
             map.height * GraphicsConstants.TILE_SIZE);
     }
 
-    public void moveCamera(Vector2 direction) {
-        camera.position.add(direction.x, direction.y, 0);
+    @Override
+    public void onEscapePressed() {
+        game.setScreen(new SelectionScreen(game, BuilderSelectionLayout.class));
+    }
+
+    @Override
+    public void onEnterPressed() {
+        stage.setKeyboardFocus(null);
+    }
+
+    @Override
+    public void onScreenTapped() {
+        stage.setKeyboardFocus(null);
+    }
+
+    @Override
+    public void onZoom(float amountY) {
+        camera.zoom(amountY);
     }
 
     private void updateCamera(float delta) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            stage.setKeyboardFocus(null);
-        }
 
         if (layout.getConfigTable().hasTextFieldFocus()) return;
 
