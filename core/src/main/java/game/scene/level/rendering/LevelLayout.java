@@ -3,22 +3,20 @@ package game.scene.level.rendering;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.config.GraphicsConstants;
-import game.scene.common.rendering.TableLayout;
-import game.scene.common.rendering.component.ColoredString;
+import game.common.rendering.TableLayout;
+import game.common.rendering.component.ColoredString;
 import game.scene.level.rendering.component.StatusBar;
 import game.scene.level.rendering.component.ToolBar;
 import game.scene.level.rendering.component.editor.EditorLayout;
 import game.scene.level.logic.Level;
 
 public class LevelLayout extends TableLayout {
-    private final LevelScreen screen;
     private final EditorLayout editorLayout;
     private final ToolBar toolBar;
     private final ColoredString infoString;
     private final StatusBar statusBar;
 
-    public LevelLayout(LevelScreen screen, Level level) {
-        this.screen = screen;
+    public LevelLayout(Level level) {
         toolBar = new ToolBar(this);
         infoString = new ColoredString();
         statusBar = new StatusBar();
@@ -59,8 +57,6 @@ public class LevelLayout extends TableLayout {
     }
 
     // Getters:
-    public LevelScreen getScreen() { return screen; }
-
     public EditorLayout getEditor() {
         return editorLayout;
     }

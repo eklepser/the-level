@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import game.scene.common.rendering.TableLayout;
+import game.common.rendering.TableLayout;
 import game.scene.level.logic.editor.command.Command;
-import game.scene.common.logic.entity.Entity;
+import game.common.logic.entity.Entity;
 import game.resources.Assets;
 
 import java.util.LinkedList;

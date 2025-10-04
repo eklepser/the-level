@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import game.scene.level.logic.editor.execution.Executor;
-import game.scene.common.logic.entity.Entity;
+import game.common.logic.entity.Entity;
 
 public class GotoCommand extends Command {
     private final int lineNum;

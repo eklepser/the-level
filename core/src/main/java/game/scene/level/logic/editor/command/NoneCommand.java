@@ -6,9 +6,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import game.scene.common.rendering.component.TextLabel;
+import game.common.rendering.component.TextLabel;
 import game.scene.level.logic.editor.execution.Executor;
-import game.scene.common.logic.entity.Entity;
+import game.common.logic.entity.Entity;
 
 public class NoneCommand extends Command {
     private final TextLabel toolTip;

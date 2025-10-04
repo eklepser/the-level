@@ -9,7 +9,11 @@ import game.scene.selection.logic.LevelMetadata;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LevelLoader {
+public final class LevelLoader {
+    private LevelLoader() {
+        throw new UnsupportedOperationException();
+    }
+
     public static List<LevelMetadata> loadMetadata(String directoryPath) {
         List<LevelMetadata> levels = new ArrayList<>();
         FileHandle dir = Gdx.files.local(directoryPath);

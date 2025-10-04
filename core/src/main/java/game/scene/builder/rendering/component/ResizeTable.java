@@ -4,10 +4,10 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import game.scene.builder.rendering.BuilderScreen;
-import game.scene.common.rendering.tile.TileMap;
-import game.scene.common.rendering.TableLayout;
-import game.scene.common.rendering.component.InputField;
-import game.scene.common.rendering.component.TextLabel;
+import game.common.rendering.tile.TileMap;
+import game.common.rendering.TableLayout;
+import game.common.rendering.component.InputField;
+import game.common.rendering.component.TextLabel;
 import game.resources.Assets;
 
 import static game.utils.NumberUtils.tryParseInt;

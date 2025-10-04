@@ -8,7 +8,7 @@ import game.scene.level.rendering.component.editor.EditorLayout;
 import game.scene.level.logic.editor.command.Command;
 import game.scene.level.logic.editor.util.TimeController;
 import game.scene.level.logic.editor.util.TimedAction;
-import game.scene.common.logic.entity.Entity;
+import game.common.logic.entity.Entity;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
 

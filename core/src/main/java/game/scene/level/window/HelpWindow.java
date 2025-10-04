@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Json;
 import game.config.GraphicsConstants;
+import game.config.Paths;
 import game.scene.level.rendering.component.ExitLevelButton;
-import game.scene.common.rendering.component.ColoredString;
-import game.scene.common.rendering.component.TextLabel;
-import game.scene.common.rendering.TableLayout;
+import game.common.rendering.component.ColoredString;
+import game.common.rendering.component.TextLabel;
 import game.resources.Assets;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class HelpWindow extends Window {
 
         Json json = new Json();
         commandInfos = json.fromJson(ArrayList.class, CommandInfo.class,
-            Gdx.files.internal(Assets.COMMANDS_INFO));
+            Gdx.files.internal(Paths.COMMANDS_INFO));
 
         setupLayout();
     }

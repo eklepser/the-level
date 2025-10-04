@@ -10,8 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import game.config.GraphicsConstants;
 import game.resources.LevelLoader;
-import game.scene.common.rendering.Layout;
-import game.scene.common.rendering.TableLayout;
+import game.common.rendering.TableLayout;
 import game.scene.selection.logic.LevelMetadata;
 import game.scene.selection.logic.SelectionProcessor;
 
@@ -25,7 +24,7 @@ public class SelectionScreen extends ScreenAdapter {
     private final List<LevelMetadata> levels;
     private final TableLayout layout;
 
-    public SelectionScreen(Game game, Class<? extends Layout> layoutClass) {
+    public SelectionScreen(Game game, Class<? extends TableLayout> layoutClass) {
         this.game = game;
         stage = new Stage(new FitViewport(
             GraphicsConstants.VIEWPORT_WIDTH, GraphicsConstants.VIEWPORT_HEIGHT, new OrthographicCamera()));

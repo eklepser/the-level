@@ -4,16 +4,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.config.GraphicsConstants;
-import game.scene.common.rendering.TableLayout;
+import game.common.rendering.TableLayout;
 import game.scene.level.rendering.LevelLayout;
 import game.scene.level.rendering.component.editor.buttons.ClearButton;
 import game.scene.level.rendering.component.editor.buttons.ResetButton;
 import game.scene.level.rendering.component.editor.buttons.RunButton;
 import game.scene.level.rendering.component.editor.buttons.ShowCommandsButton;
-import game.scene.common.rendering.component.TextLabel;
+import game.common.rendering.component.TextLabel;
 import game.scene.level.logic.editor.execution.Executor;
-import game.scene.common.logic.collision.zone.WinZone;
-import game.scene.common.logic.collision.zone.Zone;
+import game.common.logic.collision.zone.WinZone;
+import game.common.logic.collision.zone.Zone;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
@@ -33,10 +33,9 @@ public class EditorLayout extends TableLayout {
 
     public EditorLayout(LevelLayout root, Level level) {
         this.root = root;
+
         this.level = level;
-
         conf = level.getConfig();
-
         codeLayout = new CodeLayout(this, conf);
         codeScrollPane = new ScrollPane(codeLayout, Assets.getSkin());
         codeLayout.setCodeScrollPane(codeScrollPane);

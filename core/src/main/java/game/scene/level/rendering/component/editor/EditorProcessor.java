@@ -3,7 +3,7 @@ package game.scene.level.rendering.component.editor;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import game.scene.level.rendering.LevelScreen;
-import game.scene.common.logic.Direction;
+import game.common.logic.Direction;
 
 public class EditorProcessor extends InputAdapter {
     private final LevelScreen screen;

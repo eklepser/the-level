@@ -3,8 +3,8 @@ package game.scene.level.logic.editor.command;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import game.scene.common.logic.entity.Entity;
-import game.scene.common.logic.Direction;
+import game.common.logic.entity.Entity;
+import game.common.logic.Direction;
 
 public class MoveCommand extends Command {
     private final Direction direction;

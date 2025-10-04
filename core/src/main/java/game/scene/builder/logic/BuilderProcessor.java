@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.MathUtils;
 import game.scene.builder.rendering.BuilderScreen;
-import game.scene.common.rendering.tile.TileMap;
+import game.common.rendering.tile.TileMap;
 import game.scene.selection.rendering.BuilderSelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
 
@@ -23,13 +23,7 @@ public class BuilderProcessor extends InputAdapter {
 
     @Override
     public boolean scrolled(float amountX, float amountY) {
-        float zoomChange = amountY * 0.05f;
-        float newZoom = screen.getCamera().zoom + zoomChange;
-        newZoom = MathUtils.clamp(newZoom, 0.1f, 2.0f);
-
-        screen.getCamera().zoom = newZoom;
-        screen.getCamera().update();
-
+        screen.getCamera().zoom(amountY);
         return true;
     }
 

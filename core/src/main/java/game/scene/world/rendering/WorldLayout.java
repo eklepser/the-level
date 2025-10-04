@@ -1,21 +1,17 @@
 package game.scene.world.rendering;
 
-import game.scene.common.rendering.TableLayout;
-import game.scene.common.rendering.GameScreen;
-import game.scene.common.rendering.component.ColoredString;
+import game.common.rendering.TableLayout;
+import game.common.rendering.GameScreen;
+import game.common.rendering.component.ColoredString;
 import game.scene.world.rendering.component.SelectingLayout;
 import game.scene.world.logic.World;
 
 public class WorldLayout extends TableLayout {
-    private final GameScreen screen;
-    private final World world;
     private final SelectingLayout selectingLayout;
     private final ColoredString levelIdString;
 
-    public WorldLayout(GameScreen screen, World world) {
-        this.screen = screen;
-        this.world = world;
-        selectingLayout = new SelectingLayout(world);
+    public WorldLayout() {
+        selectingLayout = new SelectingLayout();
         levelIdString = new ColoredString();
 
         setup();

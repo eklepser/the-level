@@ -1,7 +1,7 @@
 package game.scene.level.logic.editor.condition;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import game.scene.common.logic.entity.Entity;
+import game.common.logic.entity.Entity;
 import game.scene.level.logic.Level;
 
 import java.lang.reflect.Constructor;

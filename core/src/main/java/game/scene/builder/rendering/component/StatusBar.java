@@ -9,11 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import game.config.GraphicsConstants;
 import game.scene.builder.logic.Builder;
 import game.scene.builder.rendering.BuilderScreen;
-import game.scene.common.rendering.tile.TileDefinition;
-import game.scene.common.rendering.Layout;
-import game.scene.common.rendering.TableLayout;
-import game.scene.common.rendering.component.ColoredString;
-import game.scene.common.rendering.component.TextLabel;
+import game.common.rendering.tile.TileDefinition;
+import game.common.rendering.TableLayout;
+import game.common.rendering.component.ColoredString;
+import game.common.rendering.component.TextLabel;
 
 public class StatusBar extends TableLayout {
     private final BuilderScreen screen;

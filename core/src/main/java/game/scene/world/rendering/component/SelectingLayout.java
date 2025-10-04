@@ -4,23 +4,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import game.scene.common.rendering.TableLayout;
-import game.scene.common.rendering.component.ColoredString;
-import game.scene.common.rendering.component.TextLabel;
+import game.common.rendering.TableLayout;
+import game.common.rendering.component.ColoredString;
+import game.common.rendering.component.TextLabel;
 import game.scene.level.logic.editor.command.Instruction;
 import game.scene.level.logic.LevelConfiguration;
 import game.scene.world.logic.World;
 
 public class SelectingLayout extends TableLayout {
-    private final World world;
     private final ColoredString levelString;
     private final ColoredString limitString;
     private final ColoredString commandsString;
     private final Table commandsTable;
     private final int itemsPerRow = 2;
 
-    public SelectingLayout(World world) {
-        this.world = world;
+    public SelectingLayout() {
         levelString = new ColoredString();
         limitString = new ColoredString();
         commandsString = new ColoredString();
@@ -42,7 +40,6 @@ public class SelectingLayout extends TableLayout {
 
     //Class logic:
     public void update() {
-        //LevelConfiguration config = world.getSelectedLevelConfig();
         LevelConfiguration config = new LevelConfiguration();
 
         levelString.setText(config.tag);

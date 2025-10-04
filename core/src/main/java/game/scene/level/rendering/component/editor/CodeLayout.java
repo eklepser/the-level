@@ -3,10 +3,10 @@ package game.scene.level.rendering.component.editor;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
-import game.scene.common.rendering.TableLayout;
-import game.scene.common.rendering.component.TextLabel;
+import game.common.rendering.TableLayout;
+import game.common.rendering.component.TextLabel;
 import game.scene.level.logic.LevelConfiguration;
-import game.scene.common.logic.Direction;
+import game.common.logic.Direction;
 
 import java.util.ArrayList;
 import java.util.List;

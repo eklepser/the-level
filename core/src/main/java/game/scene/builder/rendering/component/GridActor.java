@@ -7,9 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import game.config.GraphicsConstants;
 import game.scene.builder.logic.Builder;
 import game.scene.builder.rendering.BuilderScreen;
-import game.scene.common.rendering.tile.TileDefinition;
-import game.scene.common.rendering.tile.TileMap;
-import game.scene.common.rendering.tile.ZoneTile;
+import game.common.rendering.tile.TileDefinition;
+import game.common.rendering.tile.TileMap;
+import game.common.rendering.tile.ZoneTile;
 
 public class GridActor extends Actor {
     private final TileMap map;

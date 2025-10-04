@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import game.common.rendering.TableLayout;
 import game.config.GraphicsConstants;
-import game.scene.common.rendering.GameScreen;
-import game.scene.common.rendering.TableLayout;
+import game.common.rendering.GameScreen;
 import game.scene.level.logic.LevelConfiguration;
 import game.scene.builder.rendering.component.GridActor;
 import game.scene.builder.logic.Builder;
@@ -24,44 +24,42 @@ public class BuilderScreen extends GameScreen {
     private final GridActor gridActor;
 
     public BuilderScreen(Game game, LevelConfiguration config) {
-        super(config.tileMap);
+        super(game, config.tileMap);
         this.config = config;
         this.game = game;
-
         // Order is important! Builder -> gridStage -> layout.
         builder = new Builder(this);
+
         gridActor = new GridActor(this);
         gridStage = new Stage(new FitViewport(
             GraphicsConstants.VIEWPORT_WIDTH, GraphicsConstants.VIEWPORT_HEIGHT, camera));
         gridStage.addActor(gridActor);
+
         layout = new BuilderLayout(this);
     }
 
     @Override
-    protected void setupCamera() {
+    public void show() {
         camera.center(map.width * GraphicsConstants.TILE_SIZE,
             map.height * GraphicsConstants.TILE_SIZE);
-    }
 
-    @Override
-    public void show() {
         stage.addActor(layout);
-        inputMultiplexer.addProcessor(new BuilderProcessor(game, this));
-        inputMultiplexer.addProcessor(stage);
-        inputMultiplexer.addProcessor(gridStage);
+
+        multiplexer.addProcessor(new BuilderProcessor(game, this));
+        multiplexer.addProcessor(stage);
+        multiplexer.addProcessor(gridStage);
     }
 
     @Override
     public void render(float delta) {
         layout.update();
-        stage.act(delta);
-
         updateCamera(delta);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.setProjectionMatrix(camera.combined);
+
+        renderClear();
+        renderMap();
 
         gridStage.draw();
-        stage.draw();
+        renderStage(delta);
     }
 
     @Override

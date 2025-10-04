@@ -1,7 +1,7 @@
 package game.scene.level.logic;
 
 import game.scene.level.logic.editor.command.Instruction;
-import game.scene.common.logic.Configuration;
+import game.common.logic.Configuration;
 
 import java.util.List;
 

@@ -2,8 +2,8 @@ package game.scene.level.logic.editor.command;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import game.scene.level.logic.editor.execution.Executor;
-import game.scene.common.logic.entity.Entity;
-import game.scene.common.logic.Direction;
+import game.common.logic.entity.Entity;
+import game.common.logic.Direction;
 
 import java.util.List;
 

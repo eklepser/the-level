@@ -5,8 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
 import game.config.GraphicsConstants;
 import game.scene.level.rendering.component.ExitLevelButton;
-import game.scene.common.rendering.component.TextLabel;
-import game.scene.common.rendering.TableLayout;
+import game.common.rendering.component.TextLabel;
 import game.resources.Assets;
 
 public class WinWindow extends Window {

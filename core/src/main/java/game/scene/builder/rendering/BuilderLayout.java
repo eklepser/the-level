@@ -1,7 +1,7 @@
 package game.scene.builder.rendering;
 
-import game.scene.common.rendering.TableLayout;
-import game.scene.common.rendering.component.TextLabel;
+import game.common.rendering.TableLayout;
+import game.common.rendering.component.TextLabel;
 import game.resources.Assets;
 import game.scene.builder.rendering.component.ConfigTable;
 import game.scene.builder.rendering.component.ResizeTable;
