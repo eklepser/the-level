@@ -25,19 +25,19 @@ public final class MenuLayout extends TableLayout {
         add(new ColoredString("/blue_4 The LEVEL")).padBottom(20);
         row();
 
-        add(new StartButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
+        add(MenuButtonFactory.createStartButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
             height(Display.VIEWPORT_HEIGHT / 16.0f);
         row();
 
-        add(new LevelsButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
+        add(MenuButtonFactory.createStartButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
             height(Display.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         row();
 
-        add(new BuilderButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
+        add(MenuButtonFactory.createStartButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
             height(Display.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         row();
 
-        add(new ExitButton()).width(Display.VIEWPORT_WIDTH / 8.0f).
+        add(MenuButtonFactory.createStartButton(game)).width(Display.VIEWPORT_WIDTH / 8.0f).
             height(Display.VIEWPORT_HEIGHT / 16.0f).padTop(20);
     }
 }
