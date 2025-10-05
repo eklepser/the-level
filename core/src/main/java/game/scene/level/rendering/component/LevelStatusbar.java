@@ -11,13 +11,13 @@ import game.resources.Assets;
 
 import java.util.LinkedList;
 
-public class StatusBar extends TableLayout {
+public final class LevelStatusbar extends TableLayout {
     private final LinkedList<Actor[]> itemGroups;
     private final int itemsLimit = 999;
     private final Image startImage;
     private final Image winImage;
 
-    public StatusBar() {
+    public LevelStatusbar() {
         itemGroups = new LinkedList<>();
         startImage = Assets.getImage("ui/icon/start.png");
         winImage = Assets.getImage("ui/icon/win.png");

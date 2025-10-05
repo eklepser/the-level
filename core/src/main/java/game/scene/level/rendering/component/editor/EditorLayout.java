@@ -6,10 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.config.Display;
 import game.common.rendering.TableLayout;
 import game.scene.level.rendering.LevelLayout;
-import game.scene.level.rendering.component.editor.buttons.ClearButton;
-import game.scene.level.rendering.component.editor.buttons.ResetButton;
-import game.scene.level.rendering.component.editor.buttons.RunButton;
-import game.scene.level.rendering.component.editor.buttons.ShowCommandsButton;
 import game.common.rendering.component.TextLabel;
 import game.scene.level.logic.editor.execution.Executor;
 import game.common.logic.collision.zone.WinZone;
@@ -18,14 +14,13 @@ import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
 
-public class EditorLayout extends TableLayout {
+public final class EditorLayout extends TableLayout {
     private final LevelLayout root;
     private final Level level;
     private final LevelConfiguration conf;
     private final CodeLayout codeLayout;
     private final Executor executor;
     private final TextLabel statusLabel;
-    private final RunButton runButton;
     private final ShowCommandsButton showCommandsButton;
     private final ParametersLayout parametersLayout;
     private final CommandsLayout commandsLayout;
@@ -44,7 +39,6 @@ public class EditorLayout extends TableLayout {
         executor = new Executor(level, this);
 
         statusLabel = new TextLabel("Status:\nNo status", true);
-        runButton = new RunButton(this);
         parametersLayout = new ParametersLayout(executor);
         commandsLayout = new CommandsLayout(conf);
         showCommandsButton = new ShowCommandsButton(commandsLayout);
@@ -63,9 +57,9 @@ public class EditorLayout extends TableLayout {
 
         // execution buttons
         row().padTop(10);
-        add(runButton).fillX().padRight(10).padLeft(10);
-        add(new ResetButton(this)).fillX().padRight(10).padLeft(10);
-        add(new ClearButton(this)).fillX().padRight(10).padLeft(10);
+        add(EditorButtonFactory.createRunButton(this)).fillX().padRight(10).padLeft(10);
+        add(EditorButtonFactory.createResetButton(this)).fillX().padRight(10).padLeft(10);
+        add(EditorButtonFactory.createClearButton(this)).fillX().padRight(10).padLeft(10);
 
         // commands panel
         Table commandsTable = new Table().left();
@@ -134,8 +128,6 @@ public class EditorLayout extends TableLayout {
     public CodeLayout getCodeLayout() { return codeLayout; }
 
     public TextLabel getStatusLabel() { return statusLabel; }
-
-    public RunButton getRunButton() { return runButton; }
 
     public ParametersLayout getParametersTable() { return parametersLayout; }
 }

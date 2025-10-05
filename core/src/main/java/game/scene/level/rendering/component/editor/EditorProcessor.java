@@ -5,7 +5,7 @@ import com.badlogic.gdx.InputAdapter;
 import game.scene.level.rendering.LevelScreen;
 import game.common.logic.Direction;
 
-public class EditorProcessor extends InputAdapter {
+public final class EditorProcessor extends InputAdapter {
     private final LevelScreen screen;
     private final EditorLayout editorLayout;
     private int previousKey;

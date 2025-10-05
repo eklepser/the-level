@@ -13,7 +13,7 @@ import game.scene.level.logic.LevelConfiguration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class World {
+public final class World {
     private final GameScreen screen;
     private final TileMap map;
     //private final CollisionManager collisionManager;

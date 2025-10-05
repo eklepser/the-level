@@ -13,7 +13,7 @@ import game.common.rendering.TableLayout;
 
 import java.util.*;
 
-public class TilePalette extends TableLayout {
+public final class TilePalette extends TableLayout {
     private final Tileset tileSet;
     private final Builder builder;
     private final int idStart;

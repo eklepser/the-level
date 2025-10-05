@@ -17,7 +17,7 @@ import game.resources.Assets;
 import game.scene.builder.rendering.BuilderLayout;
 import game.scene.builder.rendering.BuilderScreen;
 
-public class ConfigTable extends TableLayout {
+public final class ConfigTable extends TableLayout {
     private final BuilderScreen screen;
     private final BuilderLayout root;
     private final LevelConfiguration config;

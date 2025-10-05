@@ -10,7 +10,7 @@ import game.scene.level.logic.LevelConfiguration;
 
 import java.util.List;
 
-public class CommandsLayout extends TableLayout {
+public final class CommandsLayout extends TableLayout {
     private final List<Instruction> allowedInstructions;
     private final int itemsPerRow = 4;
     private boolean showLabels = false;

@@ -10,14 +10,14 @@ import game.common.rendering.component.TextLabel;
 import game.scene.level.logic.editor.command.Instruction;
 import game.scene.level.logic.LevelConfiguration;
 
-public class SelectingLayout extends TableLayout {
+public final class LevelStatusLayout extends TableLayout {
     private final ColoredString levelString;
     private final ColoredString limitString;
     private final ColoredString commandsString;
     private final Table commandsTable;
     private final int itemsPerRow = 2;
 
-    public SelectingLayout() {
+    public LevelStatusLayout() {
         levelString = new ColoredString();
         limitString = new ColoredString();
         commandsString = new ColoredString();

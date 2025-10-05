@@ -12,7 +12,7 @@ import game.resources.Assets;
 
 import static game.utils.NumberUtils.tryParseInt;
 
-public class ResizeTable extends TableLayout {
+public final class ResizingLayout extends TableLayout {
     private final BuilderScreen screen;
     private final TileMap map;
 
@@ -27,7 +27,7 @@ public class ResizeTable extends TableLayout {
 
     private final TextButton applyButton;
 
-    public ResizeTable(BuilderScreen screen) {
+    public ResizingLayout(BuilderScreen screen) {
         this.screen = screen;
         map = screen.getMap();
 

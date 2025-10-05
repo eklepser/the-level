@@ -6,6 +6,4 @@ public final class CommandInfo {
     public String argsText;
     public String descriptionText;
     public String exampleText;
-
-    public CommandInfo() { }
 }

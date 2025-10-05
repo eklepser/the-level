@@ -6,8 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import game.scene.level.rendering.component.editor.CodeLine;
 import game.scene.level.rendering.component.editor.EditorLayout;
 import game.scene.level.logic.editor.command.Command;
-import game.scene.level.logic.editor.util.TimeController;
-import game.scene.level.logic.editor.util.TimedAction;
 import game.common.logic.entity.Entity;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
@@ -15,7 +13,7 @@ import game.scene.level.logic.LevelConfiguration;
 import java.util.List;
 import java.util.Map;
 
-public class Executor implements TimeController {
+public final class Executor implements TimeController {
     private final Translator translator;
     private final List<CodeLine> codeLines;
     private final EditorLayout editorLayout;

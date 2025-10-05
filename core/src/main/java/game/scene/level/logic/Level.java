@@ -13,7 +13,7 @@ import game.common.logic.entity.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Level {
+public final class Level {
     private final LevelConfiguration config;
     private final LevelScreen screen;
     private final TileMap map;

@@ -4,29 +4,29 @@ import game.common.rendering.TableLayout;
 import game.common.rendering.component.TextLabel;
 import game.resources.Assets;
 import game.scene.builder.rendering.component.ConfigTable;
-import game.scene.builder.rendering.component.ResizeTable;
-import game.scene.builder.rendering.component.StatusBar;
+import game.scene.builder.rendering.component.ResizingLayout;
+import game.scene.builder.rendering.component.Statusbar;
 import game.scene.builder.rendering.component.TilePalette;
 
 public final class BuilderLayout extends TableLayout {
     private final ConfigTable configTable;
-    private final ResizeTable resizeTable;
+    private final ResizingLayout resizingLayout;
     private final TilePalette groundPalette;
     private final TilePalette wallPalette;
     private final TilePalette zonePalette;
     private final TilePalette utilPalette;
-    private final StatusBar statusBar;
+    private final Statusbar statusbar;
 
     public BuilderLayout(BuilderScreen screen) {
         configTable = new ConfigTable(this, screen);
-        resizeTable = new ResizeTable(screen);
+        resizingLayout = new ResizingLayout(screen);
 
         groundPalette = new TilePalette(screen, Assets.getTileset(), 10, 19);
         wallPalette = new TilePalette(screen, Assets.getTileset(), 20, 29);
         zonePalette = new TilePalette(screen, Assets.getTileset(), 30, 59);
         utilPalette = new TilePalette(screen, Assets.getTileset(), 90, 99);
 
-        statusBar = new StatusBar(screen);
+        statusbar = new Statusbar(screen);
 
         setup();
     }
@@ -38,7 +38,7 @@ public final class BuilderLayout extends TableLayout {
         add(new TextLabel("Level info:")).left().row();
         add(configTable).left().padBottom(20).row();
 
-        add(resizeTable).left().padBottom(20).row();
+        add(resizingLayout).left().padBottom(20).row();
 
         add(new TextLabel("Ground:")).left().row();
         add(groundPalette).left();
@@ -58,17 +58,17 @@ public final class BuilderLayout extends TableLayout {
 
         add().expandY().row();
 
-        add(statusBar).colspan(2).padBottom(10).fillX();
+        add(statusbar).colspan(2).padBottom(10).fillX();
     }
 
     public void update() {
-        statusBar.update();
+        statusbar.update();
     }
 
     //Getters:
     public ConfigTable getConfigTable() { return configTable; }
 
-    public StatusBar getStatusBar() {
-        return statusBar;
+    public Statusbar getStatusBar() {
+        return statusbar;
     }
 }

@@ -11,7 +11,7 @@ import game.common.rendering.tilemap.TileDefinition;
 import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.tilemap.ZoneTile;
 
-public class GridActor extends Actor {
+public final class GridActor extends Actor {
     private final TileMap map;
 
     public GridActor(BuilderScreen screen) {
@@ -39,7 +39,7 @@ public class GridActor extends Actor {
 }
 
 // Input listener class for GridActor:
-class GridListener extends InputListener {
+final class GridListener extends InputListener {
     private final BuilderScreen screen;
     private final TileMap map;
     private final Builder builder;

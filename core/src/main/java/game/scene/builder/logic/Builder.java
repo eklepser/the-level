@@ -6,7 +6,7 @@ import game.common.rendering.tilemap.TileDefinition;
 import game.common.rendering.GameScreen;
 import game.resources.Assets;
 
-public class Builder {
+public final class Builder {
     private final BuilderScreen screen;
 
     private TileDefinition selectedTileDef;

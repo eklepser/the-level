@@ -7,7 +7,7 @@ import game.scene.level.logic.editor.condition.ConditionPattern;
 
 import java.util.*;
 
-public class Translator {
+public final class Translator {
     private final Executor executor;
     private final List<CodeLine> codeLines;
     private final Map<CodeLine, Command> codeMap;

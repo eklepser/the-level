@@ -9,7 +9,7 @@ import game.common.rendering.component.TextLabel;
 import game.scene.level.logic.editor.execution.Executor;
 import game.resources.Assets;
 
-public class ParametersLayout extends TableLayout {
+public final class ParametersLayout extends TableLayout {
     private final Executor executor;
     private final TextLabel label;
     private final Slider slider;

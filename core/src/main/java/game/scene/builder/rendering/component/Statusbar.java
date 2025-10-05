@@ -14,7 +14,7 @@ import game.common.rendering.TableLayout;
 import game.common.rendering.component.ColoredString;
 import game.common.rendering.component.TextLabel;
 
-public class StatusBar extends TableLayout {
+public final class Statusbar extends TableLayout {
     private final BuilderScreen screen;
     private final Builder builder;
 
@@ -24,7 +24,7 @@ public class StatusBar extends TableLayout {
     private final TextLabel cursorPositionLabel;
     private final TextLabel cameraPositionLabel;
 
-    public StatusBar(BuilderScreen screen) {
+    public Statusbar(BuilderScreen screen) {
         this.screen = screen;
         builder = screen.getBuilder();
 
