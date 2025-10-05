@@ -4,12 +4,12 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import game.config.GraphicsConstants;
+import game.config.Display;
 import game.config.Paths;
 import game.common.rendering.TableLayout;
 import game.scene.level.rendering.LevelScreen;
 import game.common.rendering.component.TextLabel;
-import game.common.logic.Configuration;
+import game.common.logic.MapConfiguration;
 import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
 import game.scene.selection.logic.LevelMetadata;
@@ -39,7 +39,7 @@ public class PlaySelectionLayout extends TableLayout {
             String path = String.format("%slevel_%s.json" , Paths.BUILDER_DATA, data.tag());
             button.addListener(new ButtonListener(game, path));
 
-            add(button).padTop(10).width(GraphicsConstants.VIEWPORT_WIDTH / 4.0f).row();
+            add(button).padTop(10).width(Display.VIEWPORT_WIDTH / 4.0f).row();
         }
     }
 
@@ -55,7 +55,7 @@ public class PlaySelectionLayout extends TableLayout {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            LevelConfiguration config = Configuration.from(
+            LevelConfiguration config = MapConfiguration.from(
                 LevelConfiguration.class, path);
             game.setScreen(new LevelScreen(game, config));
         }

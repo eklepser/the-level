@@ -1,12 +1,12 @@
 package game.scene.level.logic;
 
 import com.badlogic.gdx.math.Vector2;
-import game.common.rendering.tile.TileMap;
-import game.common.rendering.tile.ZoneTile;
+import game.common.rendering.tilemap.TileMap;
+import game.common.rendering.tilemap.ZoneTile;
 import game.scene.level.rendering.LevelLayout;
 import game.scene.level.rendering.LevelScreen;
 import game.scene.level.logic.editor.execution.Executor;
-import game.common.logic.collision.CollisionManager;
+import game.common.logic.collision.CollisionHandler;
 import game.common.logic.collision.zone.Zone;
 import game.common.logic.entity.Entity;
 
@@ -22,7 +22,7 @@ public class Level {
     private final List<Zone> zones;
     private final List<Entity> entities;
     private final List<Entity> entitiesToAdd;
-    private final CollisionManager collisionManager;
+    private final CollisionHandler collisionHandler;
 
     public Level(LevelConfiguration config, LevelScreen screen) {
         this.config = config;
@@ -34,13 +34,13 @@ public class Level {
         entities = new ArrayList<>();
         entitiesToAdd = new ArrayList<>();
 
-        collisionManager = new CollisionManager(map, zones, entities);
+        collisionHandler = new CollisionHandler(map, zones, entities);
 
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
 
     public void update(float delta) {
-        collisionManager.update();
+        collisionHandler.update();
         if (!entitiesToAdd.isEmpty()) {
             entities.addAll(entitiesToAdd);
             entitiesToAdd.clear();

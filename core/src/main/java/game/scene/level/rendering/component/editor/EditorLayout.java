@@ -3,7 +3,7 @@ package game.scene.level.rendering.component.editor;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import game.config.GraphicsConstants;
+import game.config.Display;
 import game.common.rendering.TableLayout;
 import game.scene.level.rendering.LevelLayout;
 import game.scene.level.rendering.component.editor.buttons.ClearButton;
@@ -59,7 +59,7 @@ public class EditorLayout extends TableLayout {
 
         // code panel
         row().colspan(3).fillX().expandX();
-        add(codeScrollPane).maxHeight(GraphicsConstants.VIEWPORT_HEIGHT / 2.0f);
+        add(codeScrollPane).maxHeight(Display.VIEWPORT_HEIGHT / 2.0f);
 
         // execution buttons
         row().padTop(10);

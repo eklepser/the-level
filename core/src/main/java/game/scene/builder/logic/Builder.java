@@ -2,7 +2,7 @@ package game.scene.builder.logic;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import game.scene.builder.rendering.BuilderScreen;
-import game.common.rendering.tile.TileDefinition;
+import game.common.rendering.tilemap.TileDefinition;
 import game.common.rendering.GameScreen;
 import game.resources.Assets;
 

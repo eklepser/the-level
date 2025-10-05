@@ -4,12 +4,12 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import game.config.GraphicsConstants;
+import game.config.Display;
 import game.scene.builder.logic.Builder;
 import game.scene.builder.rendering.BuilderScreen;
-import game.common.rendering.tile.TileDefinition;
-import game.common.rendering.tile.TileMap;
-import game.common.rendering.tile.ZoneTile;
+import game.common.rendering.tilemap.TileDefinition;
+import game.common.rendering.tilemap.TileMap;
+import game.common.rendering.tilemap.ZoneTile;
 
 public class GridActor extends Actor {
     private final TileMap map;
@@ -17,8 +17,8 @@ public class GridActor extends Actor {
     public GridActor(BuilderScreen screen) {
         map = screen.getMap();
 
-        setSize(map.width * GraphicsConstants.TILE_SIZE,
-            map.height * GraphicsConstants.TILE_SIZE);
+        setSize(map.width * Display.TILE_SIZE,
+            map.height * Display.TILE_SIZE);
 
         addListener(new GridListener(screen));
 
@@ -31,8 +31,8 @@ public class GridActor extends Actor {
     }
 
     public void update() {
-        setSize(map.width * GraphicsConstants.TILE_SIZE,
-            map.height * GraphicsConstants.TILE_SIZE);
+        setSize(map.width * Display.TILE_SIZE,
+            map.height * Display.TILE_SIZE);
 
         setDebug(true);
     }
@@ -67,8 +67,8 @@ class GridListener extends InputListener {
     }
 
     private void drawTile(int x, int y) {
-        int mapX = x / GraphicsConstants.TILE_SIZE;
-        int mapY = y / GraphicsConstants.TILE_SIZE;
+        int mapX = x / Display.TILE_SIZE;
+        int mapY = y / Display.TILE_SIZE;
 
         TileDefinition def = builder.getSelectedTileDef();
         switch (def.type) {

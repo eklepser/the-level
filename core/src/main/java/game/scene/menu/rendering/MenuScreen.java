@@ -3,7 +3,7 @@ package game.scene.menu.rendering;
 import com.badlogic.gdx.Game;
 import game.common.rendering.BaseScreen;
 
-public class MenuScreen extends BaseScreen {
+public final class MenuScreen extends BaseScreen {
     public MenuScreen(Game game) {
         super(game);
         layout = new MenuLayout(game);

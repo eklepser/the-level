@@ -1,6 +1,6 @@
 package game.common.logic.collision.zone;
 
-import game.common.rendering.tile.ZoneTile;
+import game.common.rendering.tilemap.ZoneTile;
 import game.scene.level.rendering.LevelLayout;
 import game.scene.level.window.WinWindow;
 import game.scene.level.logic.editor.execution.Executor;

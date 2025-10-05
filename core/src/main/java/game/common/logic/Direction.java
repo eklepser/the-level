@@ -12,10 +12,12 @@ public enum Direction {
     RIGHT(1, 0, "right"),
     FORWARD(0, 0, "forward");
 
-    public final Vector2 vector;
-    public final String name;
     public static final List<Direction> orderedDirections = new ArrayList<>(List.of(
         UP, RIGHT, DOWN, LEFT));
+
+    public final Vector2 vector;
+    public final String name;
+
 
     Direction(float x, float y, String name) {
         this.vector = new Vector2(x, y);

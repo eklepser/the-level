@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import game.scene.builder.rendering.BuilderScreen;
-import game.common.rendering.tile.TileMap;
+import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.InputField;
 import game.common.rendering.component.TextLabel;

@@ -3,9 +3,8 @@ package game.common.rendering;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import game.common.rendering.tile.TileMap;
-import game.common.rendering.tile.Tileset;
-import game.config.GraphicsConstants;
+import game.common.rendering.tilemap.TileMap;
+import game.common.rendering.tilemap.Tileset;
 import game.resources.Assets;
 
 public abstract class GameScreen extends BaseScreen {

@@ -4,11 +4,11 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import game.config.GraphicsConstants;
+import game.config.Display;
 import game.common.rendering.TableLayout;
 import game.scene.builder.rendering.BuilderScreen;
 import game.common.rendering.component.TextLabel;
-import game.common.logic.Configuration;
+import game.common.logic.MapConfiguration;
 import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
 import game.scene.selection.logic.LevelMetadata;
@@ -34,7 +34,7 @@ public class BuilderSelectionLayout extends TableLayout {
 
         TextButton createButton = new TextButton("Create", Assets.getSkin());
         createButton.addListener(new ButtonListener(game, "data/builder/builder_template.json"));
-        add(createButton).padTop(10).width(GraphicsConstants.VIEWPORT_WIDTH / 4.0f).row();
+        add(createButton).padTop(10).width(Display.VIEWPORT_WIDTH / 4.0f).row();
 
         add(new TextLabel("Edit level:")).padTop(20).row();
 
@@ -44,7 +44,7 @@ public class BuilderSelectionLayout extends TableLayout {
             String path = String.format("data/builder/level_%s.json" , data.tag());
             button.addListener(new ButtonListener(game, path));
 
-            add(button).padTop(10).width(GraphicsConstants.VIEWPORT_WIDTH / 4.0f).row();
+            add(button).padTop(10).width(Display.VIEWPORT_WIDTH / 4.0f).row();
         }
     }
 
@@ -60,7 +60,7 @@ public class BuilderSelectionLayout extends TableLayout {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            LevelConfiguration config = Configuration.from(
+            LevelConfiguration config = MapConfiguration.from(
                 LevelConfiguration.class, path);
             game.setScreen(new BuilderScreen(game, config));
         }

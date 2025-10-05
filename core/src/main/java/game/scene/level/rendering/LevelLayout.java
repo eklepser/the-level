@@ -2,7 +2,7 @@ package game.scene.level.rendering;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import game.config.GraphicsConstants;
+import game.config.Display;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.ColoredString;
 import game.scene.level.rendering.component.StatusBar;
@@ -45,11 +45,11 @@ public class LevelLayout extends TableLayout {
 
         // Adding elements:
         row().colspan(2);
-        add(toolBar).width(GraphicsConstants.VIEWPORT_WIDTH * GraphicsConstants.EDITOR_MENU_SCALE).left().top().fillX();
+        add(toolBar).width(Display.VIEWPORT_WIDTH * Display.EDITOR_MENU_SCALE).left().top().fillX();
         add().fillX();
 
         row();
-        add(editorLayout).width(GraphicsConstants.VIEWPORT_WIDTH * GraphicsConstants.EDITOR_MENU_SCALE).top().expandY();
+        add(editorLayout).width(Display.VIEWPORT_WIDTH * Display.EDITOR_MENU_SCALE).top().expandY();
         add(infoString).expand().top();
 
         row().colspan(2);

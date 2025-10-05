@@ -2,11 +2,11 @@ package game.scene.world.logic;
 
 import com.badlogic.gdx.math.Vector2;
 import game.config.Paths;
-import game.common.rendering.tile.TileMap;
+import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.GameScreen;
 import game.scene.world.rendering.WorldScreen;
 import game.common.logic.collision.Collidable;
-import game.common.logic.Configuration;
+import game.common.logic.MapConfiguration;
 import game.common.logic.entity.Entity;
 import game.scene.level.logic.LevelConfiguration;
 
@@ -30,7 +30,7 @@ public class World {
         player = new Entity((int) startPos.x, (int) startPos.y,
             "world/entity/target.png");
         collidables = new ArrayList<>();
-        levelConfigs = Configuration.listFrom(LevelConfiguration.class, Paths.LEVEL_CONFIG);
+        levelConfigs = MapConfiguration.listFrom(LevelConfiguration.class, Paths.LEVEL_CONFIG);
         // Order is important! Screen -> map loader -> collision manager -> processors.
         this.screen = screen;
 //        MapLoader.loadCollidables(this, collidables);

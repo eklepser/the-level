@@ -2,11 +2,11 @@ package game.common.rendering;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
-import game.config.GraphicsConstants;
+import game.config.Display;
 
 public class GameCamera extends OrthographicCamera {
     public GameCamera() {
-        setToOrtho(false, GraphicsConstants.VIEWPORT_WIDTH, GraphicsConstants.VIEWPORT_HEIGHT);
+        setToOrtho(false, Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT);
     }
 
     public GameCamera(float viewportWidth, float viewportHeight) {

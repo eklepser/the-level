@@ -6,10 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import game.config.GraphicsConstants;
+import game.config.Display;
 import game.scene.builder.logic.Builder;
 import game.scene.builder.rendering.BuilderScreen;
-import game.common.rendering.tile.TileDefinition;
+import game.common.rendering.tilemap.TileDefinition;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.ColoredString;
 import game.common.rendering.component.TextLabel;
@@ -41,11 +41,11 @@ public class StatusBar extends TableLayout {
 
     @Override
     public void setup() {
-        int zoneWidth = GraphicsConstants.VIEWPORT_WIDTH / 3;
+        int zoneWidth = Display.VIEWPORT_WIDTH / 3;
 
         add(new TextLabel("Selected:")).width(zoneWidth / 4.0f).bottom();
-        add(selectedTileImage).width(GraphicsConstants.TILE_SIZE).padRight(10).bottom();
-        add(selectedTileLabel).width(3 * zoneWidth / 4.0f - GraphicsConstants.TILE_SIZE - 10).bottom();
+        add(selectedTileImage).width(Display.TILE_SIZE).padRight(10).bottom();
+        add(selectedTileLabel).width(3 * zoneWidth / 4.0f - Display.TILE_SIZE - 10).bottom();
         add().expandX();
 
         add(actionLabel).center();

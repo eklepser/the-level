@@ -1,8 +1,6 @@
 package game.scene.world.rendering;
 
 import com.badlogic.gdx.Game;
-import game.common.rendering.TableLayout;
-import game.config.GraphicsConstants;
 import game.common.rendering.GameScreen;
 import game.scene.world.logic.World;
 import game.scene.world.logic.WorldConfiguration;

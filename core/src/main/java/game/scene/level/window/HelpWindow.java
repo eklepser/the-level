@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Json;
-import game.config.GraphicsConstants;
+import game.config.Display;
 import game.config.Paths;
 import game.scene.level.rendering.component.ExitLevelButton;
 import game.common.rendering.component.ColoredString;
@@ -34,8 +34,8 @@ public class HelpWindow extends Window {
     }
 
     private void setupLayout() {
-        float editorWidth = GraphicsConstants.VIEWPORT_WIDTH * GraphicsConstants.EDITOR_MENU_SCALE;
-        setSize(GraphicsConstants.VIEWPORT_WIDTH - editorWidth, GraphicsConstants.VIEWPORT_HEIGHT);
+        float editorWidth = Display.VIEWPORT_WIDTH * Display.EDITOR_MENU_SCALE;
+        setSize(Display.VIEWPORT_WIDTH - editorWidth, Display.VIEWPORT_HEIGHT);
         setPosition(editorWidth, 0);
 
         for (CommandInfo info : commandInfos) {
@@ -45,8 +45,8 @@ public class HelpWindow extends Window {
         add(scrollPane).left();
 
         row();
-        add(exitLevelButton).width(GraphicsConstants.VIEWPORT_WIDTH / 4.0f)
-            .height(GraphicsConstants.VIEWPORT_HEIGHT / 16.0f).pad(30, 10, 30, 10);
+        add(exitLevelButton).width(Display.VIEWPORT_WIDTH / 4.0f)
+            .height(Display.VIEWPORT_HEIGHT / 16.0f).pad(30, 10, 30, 10);
         setVisible(false);
         setColor(0.5f, 0, 0.75f, 0.9f);
     }

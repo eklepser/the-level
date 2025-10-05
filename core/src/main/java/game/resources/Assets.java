@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import game.config.GraphicsConstants;
+import game.config.Display;
 import game.config.Paths;
-import game.common.rendering.tile.Tileset;
+import game.common.rendering.tilemap.Tileset;
 
 public final class Assets {
     private Assets() {
@@ -23,7 +23,7 @@ public final class Assets {
         FileHandle skinFile = Gdx.files.internal(Paths.SKIN);
         skin = new Skin(skinFile, atlas);
 
-        tileset = new Tileset(Paths.TILESET , GraphicsConstants.TILE_SIZE, GraphicsConstants.TILE_SIZE);
+        tileset = new Tileset(Paths.TILESET , Display.TILE_SIZE, Display.TILE_SIZE);
     }
 
     // Getters:

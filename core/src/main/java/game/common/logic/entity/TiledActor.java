@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Align;
-import game.config.GraphicsConstants;
+import game.config.Display;
 import game.common.logic.Direction;
 
 public abstract class TiledActor extends Actor {
@@ -23,7 +23,7 @@ public abstract class TiledActor extends Actor {
     public TiledActor(Vector2 worldPos, String textureName) {
         this.worldPos = new Vector2(worldPos);
         this.targetWorldPos.set(worldPos);
-        size = GraphicsConstants.TILE_SIZE;
+        size = Display.TILE_SIZE;
 
         Texture texture = new Texture(Gdx.files.internal(textureName));
         sprite = new Sprite(texture);

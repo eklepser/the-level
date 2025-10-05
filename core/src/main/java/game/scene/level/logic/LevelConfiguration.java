@@ -1,11 +1,11 @@
 package game.scene.level.logic;
 
 import game.scene.level.logic.editor.command.Instruction;
-import game.common.logic.Configuration;
+import game.common.logic.MapConfiguration;
 
 import java.util.List;
 
-public final class LevelConfiguration extends Configuration {
+public final class LevelConfiguration extends MapConfiguration {
     public String title;
     public int codeLinesNum;
     public List<Instruction> allowedInstructions;

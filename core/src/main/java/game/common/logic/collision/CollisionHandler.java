@@ -1,18 +1,18 @@
 package game.common.logic.collision;
 
-import game.common.rendering.tile.TileMap;
+import game.common.rendering.tilemap.TileMap;
 import game.common.logic.collision.zone.Zone;
 import game.common.logic.entity.Entity;
 
 import java.util.List;
 
-public class CollisionManager {
+public final class CollisionHandler {
     private final int[][] collisionMap;
     private final List<Zone> zones;
     private final List<Entity> entities;
     private final boolean hittingWalls = true;
 
-    public CollisionManager(TileMap map, List<Zone> zones, List<Entity> entities) {
+    public CollisionHandler(TileMap map, List<Zone> zones, List<Entity> entities) {
         collisionMap = map.collision;
         this.zones = zones;
         this.entities = entities;

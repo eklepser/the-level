@@ -1,7 +1,7 @@
 package game.config;
 
-public final class GraphicsConstants {
-    private GraphicsConstants() {
+public final class Display {
+    private Display() {
         throw new UnsupportedOperationException();
     }
 

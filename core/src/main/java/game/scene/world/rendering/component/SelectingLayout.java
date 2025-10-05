@@ -9,7 +9,6 @@ import game.common.rendering.component.ColoredString;
 import game.common.rendering.component.TextLabel;
 import game.scene.level.logic.editor.command.Instruction;
 import game.scene.level.logic.LevelConfiguration;
-import game.scene.world.logic.World;
 
 public class SelectingLayout extends TableLayout {
     private final ColoredString levelString;

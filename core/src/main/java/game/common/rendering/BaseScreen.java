@@ -4,7 +4,7 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import game.config.GraphicsConstants;
+import game.config.Display;
 
 public abstract class BaseScreen extends ScreenAdapter {
     protected TableLayout layout;
@@ -15,7 +15,7 @@ public abstract class BaseScreen extends ScreenAdapter {
     public BaseScreen(Game game) {
         this.game = game;
 
-        stage = new Stage(new FitViewport(GraphicsConstants.VIEWPORT_WIDTH, GraphicsConstants.VIEWPORT_HEIGHT));
+        stage = new Stage(new FitViewport(Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT));
         multiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(multiplexer);
     }

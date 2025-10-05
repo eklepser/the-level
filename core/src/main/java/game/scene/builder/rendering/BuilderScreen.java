@@ -1,13 +1,10 @@
 package game.scene.builder.rendering;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import game.common.rendering.DynamicGameCamera;
-import game.config.GraphicsConstants;
+import game.config.Display;
 import game.common.rendering.GameScreen;
 import game.scene.builder.input.BuilderInputListener;
 import game.scene.level.logic.LevelConfiguration;
@@ -38,7 +35,7 @@ public class BuilderScreen extends GameScreen implements BuilderInputListener {
 
         gridActor = new GridActor(this);
         gridStage = new Stage(new FitViewport(
-            GraphicsConstants.VIEWPORT_WIDTH, GraphicsConstants.VIEWPORT_HEIGHT, camera));
+            Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT, camera));
         gridStage.addActor(gridActor);
 
         layout = new BuilderLayout(this);
@@ -46,8 +43,8 @@ public class BuilderScreen extends GameScreen implements BuilderInputListener {
 
     @Override
     public void show() {
-        camera.center(map.width * GraphicsConstants.TILE_SIZE,
-            map.height * GraphicsConstants.TILE_SIZE);
+        camera.center(map.width * Display.TILE_SIZE,
+            map.height * Display.TILE_SIZE);
 
         stage.addActor(layout);
 
@@ -76,8 +73,8 @@ public class BuilderScreen extends GameScreen implements BuilderInputListener {
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
         gridStage.getViewport().update(width, height, true);
-        camera.center(map.width * GraphicsConstants.TILE_SIZE,
-            map.height * GraphicsConstants.TILE_SIZE);
+        camera.center(map.width * Display.TILE_SIZE,
+            map.height * Display.TILE_SIZE);
     }
 
     @Override

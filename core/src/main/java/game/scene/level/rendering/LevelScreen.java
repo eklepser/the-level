@@ -3,8 +3,7 @@ package game.scene.level.rendering;
 import com.badlogic.gdx.Game;
 import game.common.rendering.GameCamera;
 import game.common.rendering.GameScreen;
-import game.common.rendering.TableLayout;
-import game.config.GraphicsConstants;
+import game.config.Display;
 import game.scene.level.rendering.component.editor.EditorProcessor;
 import game.scene.level.window.HelpWindow;
 import game.scene.level.window.WinWindow;
@@ -34,8 +33,9 @@ public class LevelScreen extends GameScreen {
 
     @Override
     public void show() {
-        camera.center(map.width * GraphicsConstants.TILE_SIZE, map.height * GraphicsConstants.TILE_SIZE);
-        camera.offset(-GraphicsConstants.EDITOR_MENU_SCALE * GraphicsConstants.VIEWPORT_WIDTH / 2.0f, 0);
+        camera.center(map.width * Display.TILE_SIZE, map.height * Display.TILE_SIZE);
+        camera.offset(-Display.EDITOR_MENU_SCALE * Display.VIEWPORT_WIDTH / 2.0f, 0);
+        batch.setProjectionMatrix(camera.combined);
 
         stage.addActor(layout);
         stage.addActor(helpWindow);
@@ -50,13 +50,10 @@ public class LevelScreen extends GameScreen {
         super.render(delta);
 
         level.update(delta);
-        stage.act(delta);
 
         batch.begin();
         level.getEntities().forEach(entity -> entity.draw(batch, 1.0f));
         batch.end();
-
-        stage.draw();
     }
 
     // Getters:

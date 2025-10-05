@@ -1,4 +1,4 @@
-package game.common.rendering.tile;
+package game.common.rendering.tilemap;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -8,7 +8,7 @@ import game.resources.Assets;
 import java.util.ArrayList;
 import java.util.List;
 
-import static game.config.GraphicsConstants.TILE_SIZE;
+import static game.config.Display.TILE_SIZE;
 
 public class TileMap {
     public String name;
