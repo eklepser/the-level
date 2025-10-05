@@ -16,7 +16,7 @@ import game.scene.selection.logic.LevelMetadata;
 
 import java.util.List;
 
-public class PlaySelectionLayout extends TableLayout {
+public final class PlaySelectionLayout extends TableLayout {
     private final Game game;
     private final List<LevelMetadata> levels;
 

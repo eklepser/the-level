@@ -14,7 +14,7 @@ import game.scene.builder.input.BuilderInputHandler;
 import game.scene.selection.rendering.BuilderSelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
 
-public class BuilderScreen extends GameScreen implements BuilderInputListener {
+public final class BuilderScreen extends GameScreen implements BuilderInputListener {
     private final LevelConfiguration config;
     private final Game game;
     private final DynamicGameCamera camera;

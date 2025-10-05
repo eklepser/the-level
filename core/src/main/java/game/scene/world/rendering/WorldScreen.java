@@ -6,7 +6,7 @@ import game.scene.world.logic.World;
 import game.scene.world.logic.WorldConfiguration;
 import game.scene.world.logic.WorldProcessor;
 
-public class WorldScreen extends GameScreen {
+public final class WorldScreen extends GameScreen {
     private final World world;
     private final WorldLayout layout;
 

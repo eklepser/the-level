@@ -10,7 +10,7 @@ import game.scene.level.rendering.component.ToolBar;
 import game.scene.level.rendering.component.editor.EditorLayout;
 import game.scene.level.logic.Level;
 
-public class LevelLayout extends TableLayout {
+public final class LevelLayout extends TableLayout {
     private final EditorLayout editorLayout;
     private final ToolBar toolBar;
     private final ColoredString infoString;

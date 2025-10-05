@@ -4,10 +4,6 @@ import com.badlogic.gdx.Game;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.ColoredString;
 import game.config.Display;
-import game.scene.menu.rendering.component.BuilderButton;
-import game.scene.menu.rendering.component.ExitButton;
-import game.scene.menu.rendering.component.LevelsButton;
-import game.scene.menu.rendering.component.StartButton;
 
 public final class MenuLayout extends TableLayout {
     private final Game game;

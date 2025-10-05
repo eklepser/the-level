@@ -10,7 +10,7 @@ import game.scene.level.window.WinWindow;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
 
-public class LevelScreen extends GameScreen {
+public final class LevelScreen extends GameScreen {
     private final Level level;
     private final LevelLayout layout;
     private final GameCamera camera;

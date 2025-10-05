@@ -16,7 +16,7 @@ import game.scene.selection.logic.SelectionProcessor;
 
 import java.util.List;
 
-public class SelectionScreen extends ScreenAdapter {
+public final class SelectionScreen extends ScreenAdapter {
     private final Game game;
     private final Stage stage;
     private final InputMultiplexer multiplexer;

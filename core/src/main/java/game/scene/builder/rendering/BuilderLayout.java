@@ -8,7 +8,7 @@ import game.scene.builder.rendering.component.ResizeTable;
 import game.scene.builder.rendering.component.StatusBar;
 import game.scene.builder.rendering.component.TilePalette;
 
-public class BuilderLayout extends TableLayout {
+public final class BuilderLayout extends TableLayout {
     private final ConfigTable configTable;
     private final ResizeTable resizeTable;
     private final TilePalette groundPalette;

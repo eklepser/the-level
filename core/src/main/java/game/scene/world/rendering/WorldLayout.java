@@ -6,7 +6,7 @@ import game.common.rendering.component.ColoredString;
 import game.scene.world.rendering.component.SelectingLayout;
 import game.scene.world.logic.World;
 
-public class WorldLayout extends TableLayout {
+public final class WorldLayout extends TableLayout {
     private final SelectingLayout selectingLayout;
     private final ColoredString levelIdString;
 
