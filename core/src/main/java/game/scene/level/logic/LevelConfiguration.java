@@ -1,7 +1,7 @@
 package game.scene.level.logic;
 
 import game.scene.level.logic.editor.command.Instruction;
-import game.common.logic.MapConfiguration;
+import game.common.tilemap.MapConfiguration;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package game.common.logic.collision.zone;
+package game.common.logic.zone;
 
 import game.scene.level.window.WinWindow;
 import game.scene.level.logic.editor.execution.Executor;

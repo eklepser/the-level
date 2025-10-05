@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import game.config.Display;
 import game.scene.builder.logic.Builder;
 import game.scene.builder.rendering.BuilderScreen;
-import game.common.rendering.tilemap.TileDefinition;
+import game.common.tilemap.TileDefinition;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.ColoredString;
 import game.common.rendering.component.TextLabel;

@@ -1,13 +1,13 @@
 package game.scene.level.logic;
 
 import com.badlogic.gdx.math.Vector2;
-import game.common.rendering.tilemap.TileMap;
-import game.common.rendering.tilemap.ZoneTile;
+import game.common.tilemap.TileMap;
+import game.common.tilemap.ZoneTile;
 import game.scene.level.rendering.LevelLayout;
 import game.scene.level.rendering.LevelScreen;
 import game.scene.level.logic.editor.execution.Executor;
 import game.common.logic.collision.CollisionHandler;
-import game.common.logic.collision.zone.Zone;
+import game.common.logic.zone.Zone;
 import game.common.logic.entity.Entity;
 
 import java.util.ArrayList;

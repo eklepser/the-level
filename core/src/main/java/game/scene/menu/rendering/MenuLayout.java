@@ -25,15 +25,15 @@ public final class MenuLayout extends TableLayout {
             height(Display.VIEWPORT_HEIGHT / 16.0f);
         row();
 
-        add(MenuButtonFactory.createStartButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
+        add(MenuButtonFactory.createLevelsButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
             height(Display.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         row();
 
-        add(MenuButtonFactory.createStartButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
+        add(MenuButtonFactory.createBuilderButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
             height(Display.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         row();
 
-        add(MenuButtonFactory.createStartButton(game)).width(Display.VIEWPORT_WIDTH / 8.0f).
+        add(MenuButtonFactory.createExitButton()).width(Display.VIEWPORT_WIDTH / 8.0f).
             height(Display.VIEWPORT_HEIGHT / 16.0f).padTop(20);
     }
 }

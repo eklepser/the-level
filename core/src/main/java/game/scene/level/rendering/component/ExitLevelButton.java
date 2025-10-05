@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import game.scene.world.rendering.WorldScreen;
-import game.common.logic.MapConfiguration;
+import game.common.tilemap.MapConfiguration;
 import game.scene.world.logic.WorldConfiguration;
 import game.resources.Assets;
 

@@ -1,7 +1,7 @@
 package game.common.logic.collision;
 
-import game.common.rendering.tilemap.TileMap;
-import game.common.logic.collision.zone.Zone;
+import game.common.tilemap.TileMap;
+import game.common.logic.zone.Zone;
 import game.common.logic.entity.Entity;
 
 import java.util.List;

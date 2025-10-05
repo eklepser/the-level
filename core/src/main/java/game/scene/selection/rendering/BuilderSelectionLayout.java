@@ -8,7 +8,7 @@ import game.config.Display;
 import game.common.rendering.TableLayout;
 import game.scene.builder.rendering.BuilderScreen;
 import game.common.rendering.component.TextLabel;
-import game.common.logic.MapConfiguration;
+import game.common.tilemap.MapConfiguration;
 import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
 import game.scene.selection.logic.LevelMetadata;

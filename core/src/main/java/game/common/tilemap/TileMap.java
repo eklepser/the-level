@@ -1,4 +1,4 @@
-package game.common.rendering.tilemap;
+package game.common.tilemap;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -90,8 +90,8 @@ public class TileMap {
         }
 
         for (ZoneTile zoneTile : zones) {
-            zoneTile.x = zoneTile.x + offsetX;;
-            zoneTile.y = zoneTile.y + offsetY;;
+            zoneTile.x = zoneTile.x + offsetX;
+            zoneTile.y = zoneTile.y + offsetY;
         }
 
         zones.removeIf(zoneTile -> zoneTile.x >= width || zoneTile.x < 0

@@ -6,7 +6,7 @@ import com.badlogic.gdx.InputAdapter;
 import game.config.Paths;
 import game.scene.level.rendering.LevelScreen;
 import game.scene.menu.rendering.MenuScreen;
-import game.common.logic.MapConfiguration;
+import game.common.tilemap.MapConfiguration;
 import game.common.logic.entity.Entity;
 import game.scene.level.logic.LevelConfiguration;
 import game.common.logic.Direction;

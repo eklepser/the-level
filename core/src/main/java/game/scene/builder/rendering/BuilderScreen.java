@@ -3,18 +3,18 @@ package game.scene.builder.rendering;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import game.common.input.BaseInputHandler;
+import game.common.input.BaseInputListener;
 import game.common.rendering.DynamicGameCamera;
-import game.config.Display;
 import game.common.rendering.GameScreen;
-import game.scene.builder.input.BuilderInputListener;
-import game.scene.level.logic.LevelConfiguration;
-import game.scene.builder.rendering.component.GridActor;
+import game.config.Display;
 import game.scene.builder.logic.Builder;
-import game.scene.builder.input.BuilderInputHandler;
+import game.scene.builder.rendering.component.GridActor;
+import game.scene.level.logic.LevelConfiguration;
 import game.scene.selection.rendering.BuilderSelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
 
-public final class BuilderScreen extends GameScreen implements BuilderInputListener {
+public final class BuilderScreen extends GameScreen implements BaseInputListener {
     private final LevelConfiguration config;
     private final Game game;
     private final DynamicGameCamera camera;
@@ -48,7 +48,7 @@ public final class BuilderScreen extends GameScreen implements BuilderInputListe
 
         stage.addActor(layout);
 
-        multiplexer.addProcessor(new BuilderInputHandler(this));
+        multiplexer.addProcessor(new BaseInputHandler(this));
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(gridStage);
     }
@@ -77,6 +77,7 @@ public final class BuilderScreen extends GameScreen implements BuilderInputListe
             map.height * Display.TILE_SIZE);
     }
 
+    // Listener methods:
     @Override
     public void onEscapePressed() {
         game.setScreen(new SelectionScreen(game, BuilderSelectionLayout.class));

@@ -2,11 +2,11 @@ package game.scene.world.logic;
 
 import com.badlogic.gdx.math.Vector2;
 import game.config.Paths;
-import game.common.rendering.tilemap.TileMap;
+import game.common.tilemap.TileMap;
 import game.common.rendering.GameScreen;
 import game.scene.world.rendering.WorldScreen;
 import game.common.logic.collision.Collidable;
-import game.common.logic.MapConfiguration;
+import game.common.tilemap.MapConfiguration;
 import game.common.logic.entity.Entity;
 import game.scene.level.logic.LevelConfiguration;
 

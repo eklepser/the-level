@@ -1,4 +1,4 @@
-package game.common.rendering.tilemap;
+package game.common.tilemap;
 
 public class ZoneTile {
     public int id;

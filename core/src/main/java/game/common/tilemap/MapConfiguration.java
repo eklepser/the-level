@@ -1,8 +1,7 @@
-package game.common.logic;
+package game.common.tilemap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Json;
-import game.common.rendering.tilemap.TileMap;
 
 import java.util.ArrayList;
 import java.util.List;

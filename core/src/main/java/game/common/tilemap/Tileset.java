@@ -1,4 +1,4 @@
-package game.common.rendering.tilemap;
+package game.common.tilemap;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
