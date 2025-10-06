@@ -8,7 +8,7 @@ import game.config.Display;
 import game.common.rendering.TableLayout;
 import game.scene.builder.rendering.BuilderScreen;
 import game.common.rendering.component.TextLabel;
-import game.common.tilemap.MapConfiguration;
+import game.common.tilemap.BaseConfiguration;
 import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
 import game.scene.selection.logic.LevelMetadata;
@@ -60,7 +60,7 @@ public final class BuilderSelectionLayout extends TableLayout {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            LevelConfiguration config = MapConfiguration.from(
+            LevelConfiguration config = BaseConfiguration.from(
                 LevelConfiguration.class, path);
             game.setScreen(new BuilderScreen(game, config));
         }

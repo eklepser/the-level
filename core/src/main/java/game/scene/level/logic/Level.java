@@ -1,40 +1,28 @@
 package game.scene.level.logic;
 
-import com.badlogic.gdx.math.Vector2;
+import game.common.logic.AbstractLevel;
+import game.common.logic.collision.CollisionHandler;
+import game.common.logic.entity.Entity;
+import game.common.logic.zone.Zone;
 import game.common.tilemap.TileMap;
 import game.common.tilemap.ZoneTile;
+import game.scene.level.logic.editor.execution.Executor;
 import game.scene.level.rendering.LevelLayout;
 import game.scene.level.rendering.LevelScreen;
-import game.scene.level.logic.editor.execution.Executor;
-import game.common.logic.collision.CollisionHandler;
-import game.common.logic.zone.Zone;
-import game.common.logic.entity.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Level {
-    private final LevelConfiguration config;
-    private final LevelScreen screen;
-    private final TileMap map;
-    private final Vector2 startPos;
-
-    private final List<Zone> zones;
-    private final List<Entity> entities;
+public final class Level extends AbstractLevel {
     private final List<Entity> entitiesToAdd;
     private final CollisionHandler collisionHandler;
 
     public Level(LevelConfiguration config, LevelScreen screen) {
-        this.config = config;
-        this.screen = screen;
-        map = screen.getMap();
-
-        startPos = map.getStartPos();
-        zones = new ArrayList<>();
-        entities = new ArrayList<>();
+        super(config, screen);
         entitiesToAdd = new ArrayList<>();
-
         collisionHandler = new CollisionHandler(map, zones, entities);
+
+        loadZones(map);
 
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
@@ -60,27 +48,12 @@ public final class Level {
         entities.add(entity);
     }
 
-    public void loadZones(TileMap map, LevelLayout layout) {
-        for (ZoneTile tile : map.zones) {
-            if (tile.type.equals("start")) continue;
-            zones.add(Zone.from(tile, layout));
-        }
-    }
-
     // Getters:
-    public LevelScreen getScreen() { return screen; }
-
     public List<Entity> getEntities() { return entities; }
 
     public List<Entity> getEntitiesToAdd() { return entitiesToAdd; }
 
-    public Executor getExecutor() {
-        return screen.getLayout().getEditor().getExecutor();
-    }
-
-    public LevelConfiguration getConfig() {
-        return config;
-    }
+    public LevelConfiguration getConfig() { return (LevelConfiguration) config;}
 
     public TileMap getMap() {
         return map;

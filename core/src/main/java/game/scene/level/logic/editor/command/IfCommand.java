@@ -23,7 +23,7 @@ public class IfCommand extends Command {
         String[] newArgs = Arrays.copyOfRange(args, 3, args.length);
         command = Command.from(newInstruction, newArgs, executor);
 
-        level = executor.getEditor().getLevel();
+        level = executor.getEditor().getRoot().getScreen().getLevel();
     }
 
     @Override

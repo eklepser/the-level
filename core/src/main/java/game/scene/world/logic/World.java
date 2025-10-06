@@ -1,63 +1,54 @@
 package game.scene.world.logic;
 
 import com.badlogic.gdx.math.Vector2;
-import game.config.Paths;
+import game.common.logic.collision.CollisionHandler;
+import game.common.logic.zone.Zone;
+import game.common.tilemap.ZoneTile;
 import game.common.tilemap.TileMap;
 import game.common.rendering.GameScreen;
+import game.resources.LevelLoader;
+import game.scene.level.rendering.LevelLayout;
+import game.scene.selection.logic.LevelMetadata;
 import game.scene.world.rendering.WorldScreen;
-import game.common.logic.collision.Collidable;
-import game.common.tilemap.MapConfiguration;
 import game.common.logic.entity.Entity;
-import game.scene.level.logic.LevelConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class World {
     private final GameScreen screen;
+
     private final TileMap map;
-    //private final CollisionManager collisionManager;
     private final Vector2 startPos;
-    private final Entity player;
-    private final List<Collidable> collidables;
+
     private int selectedLevelId;
-    private final List<LevelConfiguration> levelConfigs;
+    private final List<LevelMetadata> levels;
+
+    private final List<Zone> zones;
+    private final List<Entity> entities;
+    private final CollisionHandler collisionHandler;
 
     public World(WorldConfiguration config, WorldScreen screen) {
-        //super(config, game);
+        this.screen = screen;
+
         map = screen.getMap();
         startPos = map.getStartPos();
-        player = new Entity((int) startPos.x, (int) startPos.y,
-            "world/entity/target.png");
-        collidables = new ArrayList<>();
-        levelConfigs = MapConfiguration.listFrom(LevelConfiguration.class, Paths.LEVEL_CONFIG);
-        // Order is important! Screen -> map loader -> collision manager -> processors.
-        this.screen = screen;
-//        MapLoader.loadCollidables(this, collidables);
-//        collisionManager = new CollisionManager(this);
-//        screen.addProcessor(new WorldProcessor(game, this));
+
+        levels = LevelLoader.loadMetadata("data/builder");
+
+        zones = new ArrayList<>();
+        entities = new ArrayList<>();
+        collisionHandler = new CollisionHandler(map, zones, entities);
+
+        spawnEntity((int) startPos.x, (int) startPos.y);
     }
 
-//    @Override
-//    public void draw() {
-//        renderer.render();
-//        batch.begin();
-//        player.draw(batch, 1.0f);
-//        batch.end();
-//    }
+    public void update(float delta) {
+        collisionHandler.update();
+        entities.forEach(Entity::update);
+        entities.forEach(entity -> entity.act(delta));
+    }
 
-//    @Override
-//    public void update(float delta) {
-//        collisionManager.update();
-//        player.update();
-//        player.act(delta);
-//    }
-
-//    @Override
-//    public CollisionContext getCollisionContext() {
-//        return new CollisionContext(collidables, List.of(player), false);
-//    }
-//
 //    // Class logic:
 //    public LevelConfiguration getSelectedLevelConfig() {
 //        return levelConfigs.stream()
@@ -66,13 +57,25 @@ public final class World {
 //            .orElse(null);
 //    }
 
+    public void spawnEntity(int worldPosX, int worldPosY) {
+        Entity entity = new Entity(worldPosX, worldPosY, "tileset/target.png");
+        entities.add(entity);
+    }
+
+    public void loadZones(TileMap map, LevelLayout layout) {
+        for (ZoneTile tile : map.zones) {
+            if (tile.type.equals("start")) continue;
+            zones.add(Zone.from(tile));
+        }
+    }
+
     // Getters & setters:
     public GameScreen getScreen() {
         return screen;
     }
 
-    public Entity getPlayer() {
-        return player;
+    public List<Entity> getEntities() {
+        return entities;
     }
 
     public int getSelectedLevelId() {
@@ -81,9 +84,5 @@ public final class World {
 
     public void setSelectedLevelId(int selectedLevelId) {
         this.selectedLevelId = selectedLevelId;
-    }
-
-    public List<LevelConfiguration> getLevelConfigurations() {
-        return levelConfigs;
     }
 }

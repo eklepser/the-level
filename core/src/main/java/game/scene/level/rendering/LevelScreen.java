@@ -11,9 +11,9 @@ import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
 
 public final class LevelScreen extends GameScreen {
-    private final Level level;
-    private final LevelLayout layout;
     private final GameCamera camera;
+    private final LevelConfiguration config;
+    private final Level level;
 
     private final HelpWindow helpWindow;
     private final WinWindow winWindow;
@@ -22,13 +22,13 @@ public final class LevelScreen extends GameScreen {
         super(game, config.tileMap);
         camera = new GameCamera();
 
+        this.config = config;
+        level = new Level(config, this);
+
+        layout = new LevelLayout(this);
+
         helpWindow = new HelpWindow(game);
         winWindow = new WinWindow(game);
-
-        // Order is important! Level -> layout -> loadZones.
-        level = new Level(config, this);
-        layout = new LevelLayout(level);
-        level.loadZones(config.tileMap, layout);
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class LevelScreen extends GameScreen {
         stage.addActor(helpWindow);
         stage.addActor(winWindow);
 
-        multiplexer.addProcessor(new EditorProcessor(this));
+        multiplexer.addProcessor(new EditorProcessor(((LevelLayout) layout).getEditor()));
         multiplexer.addProcessor(stage);
     }
 
@@ -57,8 +57,12 @@ public final class LevelScreen extends GameScreen {
     }
 
     // Getters:
-    public LevelLayout getLayout() {
-        return layout;
+    public LevelConfiguration getConfig() {
+        return config;
+    }
+
+    public Level getLevel() {
+        return level;
     }
 
     public HelpWindow getHelpWindow() {

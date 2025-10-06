@@ -15,18 +15,17 @@ public abstract class Zone implements Collidable {
         this.y = y;
     }
 
-    public static Zone from(ZoneTile tile, LevelLayout levelLayout) {
+    public static Zone from(ZoneTile tile) {
         int x = tile.x;
         int y = tile.y;
         String[] properties = tile.properties;
-        Executor executor = levelLayout.getEditor().getExecutor();
 
         Zone zone = switch (tile.type) {
             case "win" -> {
                 WinWindow winWindow = new WinWindow(null);
-                yield new WinZone(x, y, winWindow, executor);
+                yield new WinZone(x, y, winWindow);
             }
-            case "colored" -> new ColoredZone(x, y, executor, properties[0]);
+            case "colored" -> new ColoredZone(x, y, properties[0]);
             //case "level" -> new LevelZone(x, y, winWindow, executor);
             default -> null;
         };

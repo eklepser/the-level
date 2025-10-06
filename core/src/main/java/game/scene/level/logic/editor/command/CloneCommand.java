@@ -15,7 +15,7 @@ public class CloneCommand extends Command {
     public CloneCommand(String[] args, Executor executor) {
         direction = Direction.getByName(args[0]);
         this.executor = executor;
-        entities = executor.getEditor().getLevel().getEntitiesToAdd();
+        entities = executor.getEditor().getRoot().getScreen().getLevel().getEntitiesToAdd();
     }
 
     @Override

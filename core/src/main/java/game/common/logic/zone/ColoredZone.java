@@ -6,7 +6,7 @@ import game.common.logic.entity.Entity;
 public class ColoredZone extends Zone {
     private final String colorName;
 
-    public ColoredZone(int x, int y, Executor executor, String colorName) {
+    public ColoredZone(int x, int y, String colorName) {
         super(x, y);
         this.colorName = colorName;
     }

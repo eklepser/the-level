@@ -6,55 +6,49 @@ import game.scene.level.rendering.LevelScreen;
 import game.common.logic.Direction;
 
 public final class EditorProcessor extends InputAdapter {
-    private final LevelScreen screen;
-    private final EditorLayout editorLayout;
+    private final EditorLayout layout;
     private int previousKey;
 
-    public EditorProcessor(LevelScreen screen) {
-        this.screen = screen;
-        editorLayout = screen.getLayout().getEditor();
+    public EditorProcessor(EditorLayout layout) {
+        this.layout = layout;
     }
 
     @Override
     public boolean keyDown(int keycode) {
         if (previousKey == Input.Keys.CONTROL_LEFT) {
             if (keycode == Input.Keys.ENTER) {
-                editorLayout.run();
+                layout.run();
                 previousKey = 0;
                 return true;
             }
             if (keycode == Input.Keys.BACKSLASH) {
-                editorLayout.resetRunning();
+                layout.resetRunning();
                 previousKey = 0;
                 return true;
             }
         }
         else if (keycode == Input.Keys.F1) {
-            editorLayout.getParametersTable().setNextSliderValue();
+            layout.getParametersTable().setNextSliderValue();
             return true;
         }
         else if (keycode == Input.Keys.F2) {
-            editorLayout.getParametersTable().setPrevSliderValue();
+            layout.getParametersTable().setPrevSliderValue();
             return true;
         }
         else if (keycode == Input.Keys.F4) {
-            editorLayout.resetRunning();
+            layout.resetRunning();
             return true;
         }
         else if (keycode == Input.Keys.F5) {
-        editorLayout.run();
+        layout.run();
         return true;
         }
-        else if (keycode == Input.Keys.ESCAPE) {
-            screen.getHelpWindow().toggle();
-            return true;
-        }
         else if (keycode == Input.Keys.DOWN || keycode == Input.Keys.ENTER) {
-            editorLayout.getCodeLayout().setSelectedLine(Direction.DOWN);
+            layout.getCodeLayout().setSelectedLine(Direction.DOWN);
             return true;
         }
         else if (keycode == Input.Keys.UP || keycode == Input.Keys.TAB) {
-            editorLayout.getCodeLayout().setSelectedLine(Direction.UP);
+            layout.getCodeLayout().setSelectedLine(Direction.UP);
             return true;
         }
         if (keycode != previousKey) previousKey = keycode;

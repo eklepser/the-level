@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.JsonWriter;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.InputField;
 import game.common.rendering.component.TextLabel;
+import game.config.Paths;
 import game.scene.level.logic.editor.command.Instruction;
 import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
@@ -81,7 +82,7 @@ public final class ConfigTable extends TableLayout {
         json.setOutputType(JsonWriter.OutputType.json);
         String jsonContent = json.toJson(newConfig);
 
-        String path = String.format("builder/level_%s.json", newConfig.tag);
+        String path = String.format("%slevel_%s.json", Paths.BUILDER_DATA, newConfig.tag);
         FileHandle file = Gdx.files.local(path);
         file.writeString(jsonContent, false);
 

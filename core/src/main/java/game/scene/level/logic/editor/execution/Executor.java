@@ -3,6 +3,7 @@ package game.scene.level.logic.editor.execution;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import game.scene.level.rendering.LevelScreen;
 import game.scene.level.rendering.component.editor.CodeLine;
 import game.scene.level.rendering.component.editor.EditorLayout;
 import game.scene.level.logic.editor.command.Command;
@@ -14,24 +15,24 @@ import java.util.List;
 import java.util.Map;
 
 public final class Executor implements TimeController {
+    private final LevelScreen screen;
+
     private final Translator translator;
     private final List<CodeLine> codeLines;
     private final EditorLayout editorLayout;
     private Map<CodeLine, Command> codeMap;
 
-    private final List<Entity> targets;
-
     private float executionDelay = 0.5f;
     private int currentLineNum;
 
-    public Executor(Level level, EditorLayout editorLayout) {
+    public Executor(LevelScreen screen, EditorLayout editorLayout) {
+        this.screen = screen;
         this.editorLayout = editorLayout;
 
-        targets = level.getEntities();
 
         codeLines = editorLayout.getCodeLayout().getCodeLines();
-        LevelConfiguration config = level.getConfig();
-        translator = new Translator(config.allowedInstructions, codeLines, this);
+
+        translator = new Translator(screen.getConfig().allowedInstructions, codeLines, this);
     }
 
     @Override
@@ -51,7 +52,7 @@ public final class Executor implements TimeController {
     }
 
     public void execute(int start, Map<CodeLine, Command> codeMap) {
-        for (Entity target : targets) {
+        for (Entity target : screen.getLevel().getEntities()) {
             target.clearActions();
             target.addAction(createCommandAction(start, codeMap, target));
         }
@@ -86,7 +87,8 @@ public final class Executor implements TimeController {
     }
 
     public void stop() {
-        targets.forEach(Actor::clearActions);
+        screen.getLevel().getEntities().
+            forEach(Actor::clearActions);
     }
 
     // Getters & setters:

@@ -6,7 +6,7 @@ import com.badlogic.gdx.InputAdapter;
 import game.config.Paths;
 import game.scene.level.rendering.LevelScreen;
 import game.scene.menu.rendering.MenuScreen;
-import game.common.tilemap.MapConfiguration;
+import game.common.tilemap.BaseConfiguration;
 import game.common.logic.entity.Entity;
 import game.scene.level.logic.LevelConfiguration;
 import game.common.logic.Direction;
@@ -20,7 +20,7 @@ public class WorldProcessor extends InputAdapter {
     public WorldProcessor(Game game, World world) {
         this.game = game;
         this.world = world;
-        this.player = world.getPlayer();
+        this.player = world.getEntities().get(0);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class WorldProcessor extends InputAdapter {
         }
         else if (keycode == Input.Keys.F1) {
             world.setSelectedLevelId(0);
-            LevelConfiguration levelConfiguration = MapConfiguration.listFrom(
+            LevelConfiguration levelConfiguration = BaseConfiguration.listFrom(
                 LevelConfiguration.class, Paths.LEVEL_CONFIG).get(0);
             game.setScreen(new LevelScreen(game, levelConfiguration));
         }

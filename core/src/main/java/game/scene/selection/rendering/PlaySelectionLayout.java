@@ -9,7 +9,7 @@ import game.config.Paths;
 import game.common.rendering.TableLayout;
 import game.scene.level.rendering.LevelScreen;
 import game.common.rendering.component.TextLabel;
-import game.common.tilemap.MapConfiguration;
+import game.common.tilemap.BaseConfiguration;
 import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
 import game.scene.selection.logic.LevelMetadata;
@@ -55,7 +55,7 @@ public final class PlaySelectionLayout extends TableLayout {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            LevelConfiguration config = MapConfiguration.from(
+            LevelConfiguration config = BaseConfiguration.from(
                 LevelConfiguration.class, path);
             game.setScreen(new LevelScreen(game, config));
         }

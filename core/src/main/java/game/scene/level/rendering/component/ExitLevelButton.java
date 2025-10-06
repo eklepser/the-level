@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import game.scene.world.rendering.WorldScreen;
-import game.common.tilemap.MapConfiguration;
+import game.common.tilemap.BaseConfiguration;
 import game.scene.world.logic.WorldConfiguration;
 import game.resources.Assets;
 
@@ -16,7 +16,7 @@ public class ExitLevelButton extends TextButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Exit");
-                WorldConfiguration worldConfig = MapConfiguration.listFrom(
+                WorldConfiguration worldConfig = BaseConfiguration.listFrom(
                     WorldConfiguration.class, "world/world.json").get(0);
                 game.setScreen(new WorldScreen(game, worldConfig));
             }

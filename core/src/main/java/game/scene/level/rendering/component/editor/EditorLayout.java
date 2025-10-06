@@ -13,11 +13,12 @@ import game.common.logic.zone.Zone;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
+import game.scene.level.rendering.LevelScreen;
 
 public final class EditorLayout extends TableLayout {
     private final LevelLayout root;
-    private final Level level;
-    private final LevelConfiguration conf;
+    private final LevelScreen screen;
+
     private final CodeLayout codeLayout;
     private final Executor executor;
     private final TextLabel statusLabel;
@@ -26,21 +27,21 @@ public final class EditorLayout extends TableLayout {
     private final CommandsLayout commandsLayout;
     private final ScrollPane codeScrollPane;
 
-    public EditorLayout(LevelLayout root, Level level) {
+    public EditorLayout(LevelLayout root, LevelScreen screen) {
         this.root = root;
-
-        this.level = level;
-        conf = level.getConfig();
-        codeLayout = new CodeLayout(this, conf);
+        this.screen = screen;
+        
+        LevelConfiguration config = screen.getConfig();
+        codeLayout = new CodeLayout(this, config);
         codeScrollPane = new ScrollPane(codeLayout, Assets.getSkin());
         codeLayout.setCodeScrollPane(codeScrollPane);
 
         // Init executor after codeLayout creating!
-        executor = new Executor(level, this);
+        executor = new Executor(screen, this);
 
         statusLabel = new TextLabel("Status:\nNo status", true);
         parametersLayout = new ParametersLayout(executor);
-        commandsLayout = new CommandsLayout(conf);
+        commandsLayout = new CommandsLayout(config);
         showCommandsButton = new ShowCommandsButton(commandsLayout);
 
         setup();
@@ -102,7 +103,7 @@ public final class EditorLayout extends TableLayout {
         executor.stop();
         statusLabel.setText("Status:\nReset");
         resetWin();
-        level.reset();
+        screen.getLevel().reset();
     }
 
     public void stop() {
@@ -111,7 +112,7 @@ public final class EditorLayout extends TableLayout {
     }
 
     private void resetWin() {
-        for (Zone zone : level.getZones()) {
+        for (Zone zone : screen.getLevel().getZones()) {
             if (zone instanceof WinZone winZone) {
                 winZone.setActivated(false);
             }
@@ -120,8 +121,6 @@ public final class EditorLayout extends TableLayout {
 
     // Getters:
     public LevelLayout getRoot() { return root; }
-
-    public Level getLevel() { return level; }
 
     public Executor getExecutor() { return executor; }
 
