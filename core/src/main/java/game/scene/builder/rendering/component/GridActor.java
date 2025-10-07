@@ -95,6 +95,6 @@ final class GridListener extends InputListener {
         }
 
         String message = String.format("%s (%s) placed on (%s, %s)", def.type, def.id, mapX, mapY);
-        screen.getLayout().getStatusBar().setActionText(message);
+        //screen.getLayout().getStatusBar().setActionText(message);
     }
 }

@@ -1,13 +1,12 @@
 package game.scene.builder.rendering;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import game.common.ScreenNavigator;
 import game.common.input.BaseInputHandler;
 import game.common.input.BaseInputListener;
-import game.common.rendering.DynamicGameCamera;
-import game.common.rendering.GameScreen;
+import game.common.DynamicGameCamera;
+import game.common.GameScreen;
 import game.config.Display;
 import game.scene.builder.logic.Builder;
 import game.scene.builder.rendering.component.GridActor;
@@ -16,11 +15,10 @@ import game.scene.selection.rendering.BuilderSelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
 
 public final class BuilderScreen extends GameScreen implements BaseInputListener {
-    private final LevelConfiguration config;
     private final DynamicGameCamera camera;
-
     private final Builder builder;
-    private final BuilderLayout layout;
+
+    private final LevelConfiguration config;
     private final Stage gridStage;
     private final GridActor gridActor;
 
@@ -29,16 +27,16 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
         this.config = config;
 
         camera = new DynamicGameCamera();
+        builder = new Builder(config);
 
         // Order is important! Builder -> gridStage -> layout.
-        builder = new Builder(config);
 
         gridActor = new GridActor(this);
         gridStage = new Stage(new FitViewport(
             Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT, camera));
         gridStage.addActor(gridActor);
 
-        layout = new BuilderLayout(this);
+        stage.addActor(new BuilderLayout(this));
     }
 
     @Override
@@ -46,27 +44,19 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
         camera.center(map.width * Display.TILE_SIZE,
             map.height * Display.TILE_SIZE);
 
-        stage.addActor(layout);
-
         multiplexer.addProcessor(new BaseInputHandler(this));
-        multiplexer.addProcessor(stage);
         multiplexer.addProcessor(gridStage);
     }
 
     @Override
-    public void render(float delta) {
-        layout.update();
-        if (!layout.getConfigTable().hasTextFieldFocus()) {
-            camera.update(delta);
-            batch.setProjectionMatrix(camera.combined);
-        }
-
-        renderClear();
-        renderMap();
-
+    protected void update(float delta) {
+        camera.moveAndUpdate(delta);
         gridStage.act();
+    }
+
+    @Override
+    protected void draw() {
         gridStage.draw();
-        renderStage(delta);
     }
 
     @Override
@@ -105,10 +95,6 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
 
     public Builder getBuilder() {
         return builder;
-    }
-
-    public BuilderLayout getLayout() {
-        return layout;
     }
 
     public Stage getGridStage() {

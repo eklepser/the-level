@@ -1,8 +1,7 @@
 package game.scene.level.rendering;
 
-import com.badlogic.gdx.Game;
-import game.common.rendering.GameCamera;
-import game.common.rendering.GameScreen;
+import game.common.GameCamera;
+import game.common.GameScreen;
 import game.config.Display;
 import game.scene.level.rendering.component.editor.EditorProcessor;
 import game.scene.level.window.HelpWindow;
@@ -12,23 +11,20 @@ import game.scene.level.logic.LevelConfiguration;
 
 public final class LevelScreen extends GameScreen {
     private final GameCamera camera;
-    private final LevelConfiguration config;
     private final Level level;
 
-    private final HelpWindow helpWindow;
-    private final WinWindow winWindow;
+    private final LevelConfiguration config;
 
     public LevelScreen(LevelConfiguration config) {
         super(config.tileMap);
-        camera = new GameCamera();
-
         this.config = config;
+
+        camera = new GameCamera();
         level = new Level(config, this);
 
-        layout = new LevelLayout(this);
-
-        helpWindow = new HelpWindow();
-        winWindow = new WinWindow();
+        stage.addActor(new LevelLayout(this));
+        stage.addActor(new HelpWindow());
+        stage.addActor(new WinWindow());
     }
 
     @Override
@@ -36,22 +32,17 @@ public final class LevelScreen extends GameScreen {
         camera.center(map.width * Display.TILE_SIZE, map.height * Display.TILE_SIZE);
         camera.offset(-Display.EDITOR_MENU_SCALE * Display.VIEWPORT_WIDTH / 2.0f, 0);
         batch.setProjectionMatrix(camera.combined);
-
-        stage.addActor(layout);
-        stage.addActor(helpWindow);
-        stage.addActor(winWindow);
-
-        multiplexer.addProcessor(new EditorProcessor(((LevelLayout) layout).getEditor()));
-        multiplexer.addProcessor(stage);
     }
 
     @Override
-    public void render(float delta) {
-        super.render(delta);
-
+    protected void update(float delta) {
         level.update(delta);
+    }
 
+    @Override
+    protected void draw() {
         batch.begin();
+        map.draw(batch, 10);
         level.getEntities().forEach(entity -> entity.draw(batch, 1.0f));
         batch.end();
     }
@@ -63,14 +54,6 @@ public final class LevelScreen extends GameScreen {
 
     public Level getLevel() {
         return level;
-    }
-
-    public HelpWindow getHelpWindow() {
-        return helpWindow;
-    }
-
-    public WinWindow getWinWindow() {
-        return winWindow;
     }
 }
 

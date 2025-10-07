@@ -1,36 +1,38 @@
-package game.common.rendering;
+package game.common;
 
-import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import game.common.tilemap.TileMap;
-import game.common.tilemap.Tileset;
-import game.resources.Assets;
 
 public abstract class GameScreen extends BaseScreen {
     protected final TileMap map;
     protected final SpriteBatch batch;
-    protected final Tileset tileset;
 
     public GameScreen(TileMap map) {
+        super();
+
         this.map = map;
 
         batch = new SpriteBatch();
-
-        tileset = Assets.getTileset();
     }
+
+    protected abstract void update(float delta);
+
+    protected abstract void draw();
 
     @Override
     public void render(float delta) {
-        renderClear();
-        renderMap();
-        renderStage(delta);
-    }
+        // Clear screen
+        Gdx.gl.glClearColor(0.05f, 0.03f, 0.05f, 1.0f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-    protected final void renderMap() {
-        batch.begin();
-        map.draw(batch, 10);
-        batch.end();
+        update(delta);
+        stage.act(delta);
+
+        draw();
+        stage.draw();
     }
 
     // Getters:
@@ -44,9 +46,5 @@ public abstract class GameScreen extends BaseScreen {
 
     public SpriteBatch getBatch() {
         return batch;
-    }
-
-    public Tileset getTileset() {
-        return tileset;
     }
 }

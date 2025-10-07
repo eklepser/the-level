@@ -1,4 +1,4 @@
-package game.common.rendering;
+package game.common;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -12,12 +12,7 @@ public class DynamicGameCamera extends GameCamera {
         super(viewportWidth, viewportHeight);
     }
 
-    public void update(float delta) {
-        updateCamera(delta);
-        super.update();
-    }
-
-    private void updateCamera(float delta) {
+    public void moveAndUpdate(float delta) {
 
         float moveDistance = 200 * delta;
 
@@ -33,5 +28,6 @@ public class DynamicGameCamera extends GameCamera {
         if (Gdx.input.isKeyPressed(Input.Keys.DOWN) || Gdx.input.isKeyPressed(Input.Keys.S)) {
             position.y -= moveDistance;
         }
+        super.update();
     }
 }

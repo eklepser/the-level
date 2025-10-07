@@ -5,7 +5,7 @@ import game.common.logic.collision.CollisionHandler;
 import game.common.logic.zone.Zone;
 import game.common.tilemap.ZoneTile;
 import game.common.tilemap.TileMap;
-import game.common.rendering.GameScreen;
+import game.common.GameScreen;
 import game.resources.LevelLoader;
 import game.scene.level.rendering.LevelLayout;
 import game.scene.selection.logic.LevelMetadata;

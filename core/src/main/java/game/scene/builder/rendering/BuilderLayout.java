@@ -61,9 +61,9 @@ public final class BuilderLayout extends TableLayout {
         add(statusbar).colspan(2).padBottom(10).fillX();
     }
 
-    public void update() {
-        statusbar.update();
-    }
+//    public void update() {
+//        statusbar.update();
+//    }
 
     //Getters:
     public ConfigTable getConfigTable() { return configTable; }

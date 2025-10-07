@@ -3,7 +3,7 @@ package game.common.logic;
 import com.badlogic.gdx.math.Vector2;
 import game.common.logic.entity.Entity;
 import game.common.logic.zone.Zone;
-import game.common.rendering.GameScreen;
+import game.common.GameScreen;
 import game.common.tilemap.BaseConfiguration;
 import game.common.tilemap.TileMap;
 import game.common.tilemap.ZoneTile;
