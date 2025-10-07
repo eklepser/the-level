@@ -5,23 +5,16 @@ import game.scene.builder.rendering.BuilderScreen;
 import game.common.tilemap.TileDefinition;
 import game.common.rendering.GameScreen;
 import game.resources.Assets;
+import game.scene.level.logic.LevelConfiguration;
 
 public final class Builder {
-    private final BuilderScreen screen;
-
     private TileDefinition selectedTileDef;
 
-    public Builder(BuilderScreen screen) {
-        this.screen = screen;
-
+    public Builder(LevelConfiguration config) {
         selectedTileDef = Assets.getTileset().getDefinitions().get(10);
     }
 
     // Getters & setters:
-    public GameScreen getScreen() {
-        return screen;
-    }
-
     public TileDefinition getSelectedTileDef() { return selectedTileDef; }
 
     public void setSelectedTileDef(TileDefinition selectedTileDef) {

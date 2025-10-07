@@ -18,6 +18,7 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
     private final LevelConfiguration config;
     private final Game game;
     private final DynamicGameCamera camera;
+
     private final Builder builder;
     private final BuilderLayout layout;
     private final Stage gridStage;
@@ -31,7 +32,7 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
         camera = new DynamicGameCamera();
 
         // Order is important! Builder -> gridStage -> layout.
-        builder = new Builder(this);
+        builder = new Builder(config);
 
         gridActor = new GridActor(this);
         gridStage = new Stage(new FitViewport(

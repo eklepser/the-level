@@ -21,9 +21,9 @@ public final class TilePalette extends TableLayout {
 
     private final int colsNum = 4;
 
-    public TilePalette(BuilderScreen screen, Tileset tileSet, int idStart, int idEnd) {
+    public TilePalette(Builder builder, Tileset tileSet, int idStart, int idEnd) {
         this.tileSet = tileSet;
-        builder = screen.getBuilder();
+        this.builder = builder;
 
         this.idStart = idStart;
         this.idEnd = idEnd;
