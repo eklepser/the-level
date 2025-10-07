@@ -7,31 +7,41 @@ import game.scene.level.logic.execution.Executor;
 import game.common.logic.entity.Entity;
 
 public abstract class Command {
-    public abstract void execute(Entity target);
-    public abstract Image[] getIcons(Entity target);
+    protected int lineNum;
 
-    public static Command from(String commandName, String[] args, Executor executor) {
+    public Command(int lineNum) {
+        this.lineNum = lineNum;
+    }
+
+    public abstract void execute(Entity target);
+    public abstract Image[] getIcons();
+
+    public static Command from(int lineNum, String commandName, String[] args, Executor executor) {
         Instruction instruction = Instruction.from(commandName);
         Class<? extends Command> commandsClass = instruction.commandClass;
         try {
             try {
-                Constructor<? extends Command> constructor = commandsClass.getConstructor(String[].class, Executor.class);
-                return constructor.newInstance(args, executor);
+                Constructor<? extends Command> constructor = commandsClass.
+                    getConstructor(int.class, String[].class, Executor.class);
+                return constructor.newInstance(lineNum, args, executor);
             } catch (NoSuchMethodException ignored) { }
 
             try {
-                Constructor<? extends Command> constructor = commandsClass.getConstructor(String[].class);
-                return constructor.newInstance((Object) args);
+                Constructor<? extends Command> constructor = commandsClass.
+                    getConstructor(int.class, String[].class);
+                return constructor.newInstance(lineNum, args);
             } catch (NoSuchMethodException ignored) { }
 
             try {
-                Constructor<? extends Command> constructor = commandsClass.getConstructor(Executor.class);
-                return constructor.newInstance(executor);
+                Constructor<? extends Command> constructor = commandsClass.
+                    getConstructor(int.class, Executor.class);
+                return constructor.newInstance(lineNum, executor);
             } catch (NoSuchMethodException ignored) { }
 
             try {
-                Constructor<? extends Command> constructor = commandsClass.getConstructor();
-                return constructor.newInstance();
+                Constructor<? extends Command> constructor = commandsClass.
+                    getConstructor(int.class);
+                return constructor.newInstance(lineNum);
             } catch (NoSuchMethodException ignored) { }
 
             throw new RuntimeException("No suitable constructor found for command: " + commandName);
@@ -39,5 +49,9 @@ public abstract class Command {
         catch (ReflectiveOperationException e) {
             throw new RuntimeException("Failed to instantiate command: " + commandName, e);
         }
+    }
+
+    public int getLineNum() {
+        return lineNum;
     }
 }

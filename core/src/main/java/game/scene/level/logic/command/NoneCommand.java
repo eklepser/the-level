@@ -7,13 +7,17 @@ import game.common.logic.entity.Entity;
 
 public class NoneCommand extends Command {
 
+    public NoneCommand(int lineNum) {
+        super(lineNum);
+    }
+
     @Override
-    public void execute(Entity target) {
+    public void execute( Entity target) {
         System.out.println("NONE");
     }
 
     @Override
-    public Image[] getIcons(Entity target) {
+    public Image[] getIcons() {
         Image image = new Image(new Texture(Gdx.files.internal("ui/icon/none.png")));
         return new Image[] {image};
     }

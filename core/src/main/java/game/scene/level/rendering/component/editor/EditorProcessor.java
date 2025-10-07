@@ -2,7 +2,6 @@ package game.scene.level.rendering.component.editor;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import game.scene.level.rendering.LevelScreen;
 import game.common.logic.Direction;
 
 public final class EditorProcessor extends InputAdapter {
@@ -44,11 +43,11 @@ public final class EditorProcessor extends InputAdapter {
         return true;
         }
         else if (keycode == Input.Keys.DOWN || keycode == Input.Keys.ENTER) {
-            layout.getCodeLayout().setSelectedLine(Direction.DOWN);
+            layout.getCodeLayout().setFocusOnLine(Direction.DOWN);
             return true;
         }
         else if (keycode == Input.Keys.UP || keycode == Input.Keys.TAB) {
-            layout.getCodeLayout().setSelectedLine(Direction.UP);
+            layout.getCodeLayout().setFocusOnLine(Direction.UP);
             return true;
         }
         if (keycode != previousKey) previousKey = keycode;

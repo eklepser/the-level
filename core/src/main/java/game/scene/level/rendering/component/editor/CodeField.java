@@ -50,17 +50,26 @@ public class CodeField extends TableLayout {
         codeLines.forEach(codeLine -> codeLine.setText(""));
     }
 
-    public void setSelectedLine(Direction direction) {
+    public void setFocusOnLine(Direction direction) {
         switch (direction) {
-            case UP -> setSelectedLine(selectedLine - 1);
-            case DOWN -> setSelectedLine(selectedLine + 1);
+            case UP -> setFocusOnLine(selectedLine - 1);
+            case DOWN -> setFocusOnLine(selectedLine + 1);
         }
     }
 
-    public void setSelectedLine(int lineNum) {
+    public void setFocusOnLine(int lineNum) {
         if ((lineNum >= 0) && (lineNum < codeLines.size())) {
             root.getStage().setKeyboardFocus(codeLines.get(lineNum));
         }
+    }
+
+    public void setCompletingLine(int lineNum, boolean isCompleting) {
+        if (lineNum < 0 || lineNum >= codeLines.size()) return;
+        codeLines.get(lineNum).setCompleting(isCompleting);
+    }
+
+    public void clearCompleting() {
+        codeLines.forEach(codeline -> codeline.setCompleting(false));
     }
 
     // Getters & setters:

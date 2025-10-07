@@ -14,14 +14,16 @@ public class IfCommand extends Command {
     private final Command command;
     private final CollisionContext collisionContext;
 
-    public IfCommand(String[] args, Executor executor) {
+    public IfCommand(int lineNum, String[] args, Executor executor) {
+        super(lineNum);
+
         String conditionName = args[0].toLowerCase();
         String conditionArg = args[1].toLowerCase();
         condition = Condition.from(conditionName, conditionArg);
 
         String newInstruction = args[2];
         String[] newArgs = Arrays.copyOfRange(args, 3, args.length);
-        command = Command.from(newInstruction, newArgs, executor);
+        command = Command.from(lineNum, newInstruction, newArgs, executor);
 
         collisionContext = executor.getCollisionContext();
     }
@@ -37,13 +39,13 @@ public class IfCommand extends Command {
     }
 
     @Override
-    public Image[] getIcons(Entity target) {
+    public Image[] getIcons() {
         //Image commandImage = new Image(new Texture(Gdx.files.internal("ui/icon/if.png")));
         Image conditionImage = condition.getIcon();
-        if (condition.check(target, collisionContext)) {
-            Image conditionCommandImage = command.getIcons(target)[0];
-            return new Image[] {conditionImage, conditionCommandImage};
-        }
+//        if (condition.check(target, collisionContext)) {
+            Image conditionCommandImage = command.getIcons()[0];
+//            return new Image[] {conditionImage, conditionCommandImage};
+//        }
         //commandImage.setColor(Color.DARK_GRAY);
         conditionImage.setColor(Color.DARK_GRAY);
         return new Image[] {conditionImage};

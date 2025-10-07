@@ -9,7 +9,9 @@ import game.common.logic.Direction;
 public class MoveCommand extends Command {
     private final Direction direction;
 
-    public MoveCommand(String[] args) {
+    public MoveCommand(int lineNum, String[] args) {
+        super(lineNum);
+
         direction = Direction.getByName(args[0].toLowerCase());
     }
 
@@ -20,10 +22,10 @@ public class MoveCommand extends Command {
     }
 
     @Override
-    public Image[] getIcons(Entity target) {
+    public Image[] getIcons() {
         String iconPath;
         if (direction.name.equals("forward")) {
-            iconPath = "ui/icon/move_forward_" + target.getFacingDirection() + ".png";
+            iconPath = "ui/icon/move_forward_" + "up" + ".png";
         } else iconPath = "ui/icon/move_" + direction.name + ".png";
         Image image = new Image(new Texture(Gdx.files.internal(iconPath)));
         return new Image[] {image};

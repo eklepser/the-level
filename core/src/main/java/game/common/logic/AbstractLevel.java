@@ -4,12 +4,11 @@ import com.badlogic.gdx.math.Vector2;
 import game.common.logic.entity.Entity;
 import game.common.logic.collision.zone.Zone;
 import game.common.logic.event.EventSource;
-import game.common.rendering.screen.GameScreen;
 import game.common.rendering.tilemap.BaseConfiguration;
 import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.tilemap.ZoneTile;
 import game.scene.level.logic.Level;
-import game.scene.level.logic.LevelEvent;
+import game.scene.level.logic.event.LevelEvent;
 
 import java.util.ArrayList;
 import java.util.List;

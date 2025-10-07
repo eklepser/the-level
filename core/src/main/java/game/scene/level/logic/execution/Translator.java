@@ -23,12 +23,11 @@ public final class Translator {
 
         for (int i = 0; i < inputLines.size(); i++) {
             String currentLine = inputLines.get(i);
-            codeMap.put(i, null);
 
+            codeMap.put(i, null);
             String text = uncomment(currentLine);
             if (text.isEmpty()) continue;
 
-            System.out.println(i);
             TranslationResult transResult = translate(text, i, false, currentLine, inputLines);
             if (!transResult.success()) return transResult;
         }
@@ -102,8 +101,8 @@ public final class Translator {
             if (!result.success()) return result;
         }
 
-        Command command = Command.from(instructionName, args, executor);
-        codeMap.put(lineNum, command);
+        Command command = Command.from(lineNum, instructionName, args, executor);
+        codeMap.put(command.getLineNum(), command);
 
         return new TranslationResult(true, "Successfully translated");
     }

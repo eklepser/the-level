@@ -8,7 +8,8 @@ import game.common.logic.Direction;
 
 public class RotateCommand extends Command {
     private final Direction direction;
-    public RotateCommand(String[] args) {
+    public RotateCommand(int lineNum, String[] args) {
+        super(lineNum);
         this.direction = Direction.getByName(args[0]);
     }
 
@@ -19,7 +20,7 @@ public class RotateCommand extends Command {
     }
 
     @Override
-    public Image[] getIcons(Entity target) {
+    public Image[] getIcons() {
         String iconPath = "ui/icon/rot_" + direction.name + ".png";
         Image image = new Image(new Texture(Gdx.files.internal(iconPath)));
         return new Image[] {image};

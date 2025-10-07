@@ -5,11 +5,10 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import game.common.logic.collision.CollisionContext;
 import game.common.logic.entity.Entity;
-import game.common.logic.event.EventType;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
-import game.scene.level.logic.LevelEvent;
 import game.scene.level.logic.command.Command;
+import game.scene.level.logic.event.NewCommandEvent;
 
 import java.util.List;
 import java.util.Map;
@@ -58,10 +57,11 @@ public final class Executor implements TimeController {
         System.out.println("Running");
         SequenceAction sequence = new SequenceAction();
 
+        codeMap.values().forEach(v -> System.out.println(v));
+        codeMap.keySet().forEach(v -> System.out.println(v));
+
         for (int i = start; i < codeMap.size(); i++) {
             Command currentCmd = codeMap.get(i);
-            System.out.println(i);
-            System.out.println(currentCmd);
 
             if (currentCmd == null) continue;
 
@@ -72,7 +72,7 @@ public final class Executor implements TimeController {
 
             //sequence.addAction(Actions.run(() -> System.out.println("Executing " + currentLineNum)));
             sequence.addAction(Actions.run(() ->
-                level.fire(new LevelEvent(EventType.NEW_COMMAND, currentLineNum))));
+                level.fire(new NewCommandEvent(currentCmd))));
 
             sequence.addAction(new TimedAction(this));
             //sequence.addAction(Actions.run(() -> editorLayout.getRoot().getStatusBar().update(currentCmd, target)));

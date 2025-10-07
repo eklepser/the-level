@@ -9,7 +9,9 @@ import game.common.logic.entity.Entity;
 public class EndCommand extends Command {
     private final Executor executor;
 
-    public EndCommand(String[] args, Executor executor) {
+    public EndCommand(int lineNum, String[] args, Executor executor) {
+        super(lineNum);
+
         this.executor = executor;
     }
 
@@ -20,7 +22,7 @@ public class EndCommand extends Command {
     }
 
     @Override
-    public Image[] getIcons(Entity target) {
+    public Image[] getIcons() {
         Image image = new Image(new Texture(Gdx.files.internal("ui/icon/end.png")));
         return new Image[] {image};
     }

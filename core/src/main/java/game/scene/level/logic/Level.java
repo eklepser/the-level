@@ -7,6 +7,9 @@ import game.common.logic.entity.Entity;
 import game.common.logic.collision.zone.Zone;
 import game.common.logic.event.EventType;
 import game.common.rendering.tilemap.TileMap;
+import game.scene.level.logic.event.LevelEvent;
+import game.scene.level.logic.event.NewCommandEvent;
+import game.scene.level.logic.event.WinEvent;
 import game.scene.level.logic.execution.Executor;
 
 import java.util.ArrayList;
@@ -48,7 +51,7 @@ public final class Level extends AbstractLevel {
     // Class logic:
     public void win() {
         System.out.println("Level: win");
-        fire(new LevelEvent(EventType.WIN));
+        fire(new WinEvent());
         executor.stop();
     }
 

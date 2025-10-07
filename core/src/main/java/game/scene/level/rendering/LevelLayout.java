@@ -7,7 +7,9 @@ import game.common.logic.event.EventType;
 import game.config.Display;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.ColoredString;
-import game.scene.level.logic.LevelEvent;
+import game.scene.level.logic.event.LevelEvent;
+import game.scene.level.logic.command.Command;
+import game.scene.level.logic.event.NewCommandEvent;
 import game.scene.level.rendering.component.LevelStatusbar;
 import game.scene.level.rendering.component.LevelToolbar;
 import game.scene.level.rendering.component.editor.EditorLayout;
@@ -65,18 +67,24 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
         add(statusTable).left().padRight(10).height(32);
     }
 
+    @Override
+    public void onEvent(LevelEvent event) {
+        if (event instanceof NewCommandEvent commandEvent) {
+            Command command = commandEvent.command;
+
+            editorLayout.getCodeLayout().clearCompleting();
+            editorLayout.getCodeLayout().setCompletingLine(command.getLineNum(), true);
+
+            System.out.println(commandEvent.command + " line " + commandEvent.command.getLineNum());
+
+            levelStatusbar.update(command);
+        }
+    }
+
     // Getters:
     public EditorLayout getEditor() {
         return editorLayout;
     }
 
     public LevelStatusbar getStatusBar() { return levelStatusbar; }
-
-    @Override
-    public void onEvent(LevelEvent event) {
-        if (event.type.equals(EventType.WIN)) System.out.println("WIN");
-        if (event.type.equals(EventType.NEW_COMMAND)) {
-            System.out.println(event.value);
-        }
-    }
 }

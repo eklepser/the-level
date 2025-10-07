@@ -27,12 +27,12 @@ public final class LevelStatusbar extends TableLayout {
     public void setup() { }
 
     // Class logic:
-    public void update(Command command, Entity target) {
+    public void update(Command command) {
         int totalItems = itemGroups.stream()
             .mapToInt(arr -> arr.length).sum();
         if (totalItems >= itemsLimit) itemGroups.removeFirst();
 
-        itemGroups.add(command.getIcons(target));
+        itemGroups.add(command.getIcons());
         clearChildren();
         for (Actor[] group : itemGroups) {
             add().padLeft(4);
