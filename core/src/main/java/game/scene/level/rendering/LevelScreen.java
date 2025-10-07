@@ -1,7 +1,7 @@
 package game.scene.level.rendering;
 
-import game.common.GameCamera;
-import game.common.GameScreen;
+import game.common.rendering.screen.GameCamera;
+import game.common.rendering.screen.GameScreen;
 import game.config.Display;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;

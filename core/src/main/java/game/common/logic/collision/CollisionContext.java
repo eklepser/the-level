@@ -1,7 +1,7 @@
-package game.common;
+package game.common.logic.collision;
 
 import game.common.logic.entity.Entity;
-import game.common.logic.zone.Zone;
+import game.common.logic.collision.zone.Zone;
 
 import java.util.List;
 

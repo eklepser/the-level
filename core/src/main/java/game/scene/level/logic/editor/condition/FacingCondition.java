@@ -3,11 +3,10 @@ package game.scene.level.logic.editor.condition;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import game.common.CollisionContext;
-import game.common.logic.zone.Zone;
+import game.common.logic.collision.CollisionContext;
+import game.common.logic.collision.zone.Zone;
 import game.common.logic.entity.Entity;
-import game.common.logic.zone.ColoredZone;
-import game.scene.level.logic.Level;
+import game.common.logic.collision.zone.ColoredZone;
 
 public class FacingCondition extends Condition {
     private final String targetObject;

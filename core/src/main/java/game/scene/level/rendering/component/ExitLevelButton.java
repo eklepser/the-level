@@ -1,12 +1,11 @@
 package game.scene.level.rendering.component;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import game.common.ScreenNavigator;
+import game.common.rendering.screen.ScreenNavigator;
 import game.scene.world.rendering.WorldScreen;
-import game.common.tilemap.BaseConfiguration;
+import game.common.rendering.tilemap.BaseConfiguration;
 import game.scene.world.logic.WorldConfiguration;
 import game.resources.Assets;
 

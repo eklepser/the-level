@@ -1,4 +1,4 @@
-package game.common.tilemap;
+package game.common.rendering.tilemap;
 
 public class TileDefinition {
     public int id;

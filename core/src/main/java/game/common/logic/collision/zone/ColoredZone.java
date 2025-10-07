@@ -1,6 +1,5 @@
-package game.common.logic.zone;
+package game.common.logic.collision.zone;
 
-import game.scene.level.logic.editor.execution.Executor;
 import game.common.logic.entity.Entity;
 
 public class ColoredZone extends Zone {

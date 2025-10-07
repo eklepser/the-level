@@ -1,13 +1,12 @@
 package game.scene.world.logic;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import game.common.ScreenNavigator;
+import game.common.rendering.screen.ScreenNavigator;
 import game.config.Paths;
 import game.scene.level.rendering.LevelScreen;
 import game.scene.menu.rendering.MenuScreen;
-import game.common.tilemap.BaseConfiguration;
+import game.common.rendering.tilemap.BaseConfiguration;
 import game.common.logic.entity.Entity;
 import game.scene.level.logic.LevelConfiguration;
 import game.common.logic.Direction;

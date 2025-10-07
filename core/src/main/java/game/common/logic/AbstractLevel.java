@@ -2,11 +2,11 @@ package game.common.logic;
 
 import com.badlogic.gdx.math.Vector2;
 import game.common.logic.entity.Entity;
-import game.common.logic.zone.Zone;
-import game.common.GameScreen;
-import game.common.tilemap.BaseConfiguration;
-import game.common.tilemap.TileMap;
-import game.common.tilemap.ZoneTile;
+import game.common.logic.collision.zone.Zone;
+import game.common.rendering.screen.GameScreen;
+import game.common.rendering.tilemap.BaseConfiguration;
+import game.common.rendering.tilemap.TileMap;
+import game.common.rendering.tilemap.ZoneTile;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,19 +7,16 @@ import game.config.Display;
 import game.common.rendering.TableLayout;
 import game.scene.level.rendering.LevelLayout;
 import game.common.rendering.component.TextLabel;
-import game.scene.level.logic.editor.execution.Executor;
-import game.common.logic.zone.WinZone;
-import game.common.logic.zone.Zone;
+import game.common.logic.collision.zone.WinZone;
+import game.common.logic.collision.zone.Zone;
 import game.scene.level.logic.Level;
-import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
-import game.scene.level.rendering.LevelScreen;
 
 public final class EditorLayout extends TableLayout {
     private final LevelLayout root;
     private final Level level;
 
-    private final CodeLayout codeLayout;
+    private final CodeField codeField;
 
     private final TextLabel statusLabel;
     private final ShowCommandsButton showCommandsButton;
@@ -31,9 +28,9 @@ public final class EditorLayout extends TableLayout {
         this.root = root;
         this.level = level;
 
-        codeLayout = new CodeLayout(this, level.getConfig());
-        codeScrollPane = new ScrollPane(codeLayout, Assets.getSkin());
-        codeLayout.setCodeScrollPane(codeScrollPane);
+        codeField = new CodeField(this, level.getConfig().codeLinesNum);
+        codeScrollPane = new ScrollPane(codeField, Assets.getSkin());
+        codeField.setCodeScrollPane(codeScrollPane);
 
         statusLabel = new TextLabel("Status:\nNo status", true);
         parametersLayout = new ParametersLayout(level);
@@ -85,17 +82,18 @@ public final class EditorLayout extends TableLayout {
         root.getStatusBar().clear();
         //String status = executor.runExecution();
         //statusLabel.setText("Status:\n" + status);
+
+        level.runExecution(codeField.getCodeLinesText());
     }
 
     public void clearRunning() {
         resetRunning();
-        codeLayout.clearCode();
+        codeField.clearCode();
     }
 
     public void resetRunning() {
         System.out.println("Resetting");
-        codeLayout.getCodeLines().forEach(
-            codeLine -> codeLine.setCompleting(false));
+        codeField.getCodeLines().forEach(codeLine -> codeLine.setCompleting(false));
         //executor.stop();
         statusLabel.setText("Status:\nReset");
         resetWin();
@@ -118,7 +116,7 @@ public final class EditorLayout extends TableLayout {
     // Getters:
     public LevelLayout getRoot() { return root; }
 
-    public CodeLayout getCodeLayout() { return codeLayout; }
+    public CodeField getCodeLayout() { return codeField; }
 
     public TextLabel getStatusLabel() { return statusLabel; }
 

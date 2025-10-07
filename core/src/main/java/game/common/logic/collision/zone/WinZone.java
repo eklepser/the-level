@@ -1,7 +1,6 @@
-package game.common.logic.zone;
+package game.common.logic.collision.zone;
 
 import game.scene.level.window.WinWindow;
-import game.scene.level.logic.editor.execution.Executor;
 import game.common.logic.entity.Entity;
 
 public class WinZone extends Zone {

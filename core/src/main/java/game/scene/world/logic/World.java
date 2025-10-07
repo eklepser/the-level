@@ -1,11 +1,12 @@
 package game.scene.world.logic;
 
 import com.badlogic.gdx.math.Vector2;
+import game.common.logic.collision.CollisionContext;
 import game.common.logic.collision.CollisionHandler;
-import game.common.logic.zone.Zone;
-import game.common.tilemap.ZoneTile;
-import game.common.tilemap.TileMap;
-import game.common.GameScreen;
+import game.common.logic.collision.zone.Zone;
+import game.common.rendering.tilemap.ZoneTile;
+import game.common.rendering.tilemap.TileMap;
+import game.common.rendering.screen.GameScreen;
 import game.resources.LevelLoader;
 import game.scene.level.rendering.LevelLayout;
 import game.scene.selection.logic.LevelMetadata;
@@ -38,7 +39,9 @@ public final class World {
 
         zones = new ArrayList<>();
         entities = new ArrayList<>();
-        collisionHandler = new CollisionHandler(map, zones, entities);
+
+        CollisionContext collisionContext = new CollisionContext(map.collision, zones, entities);
+        collisionHandler = new CollisionHandler(collisionContext);
 
         spawnEntity((int) startPos.x, (int) startPos.y);
     }

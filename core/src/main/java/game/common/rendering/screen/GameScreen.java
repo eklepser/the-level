@@ -1,10 +1,10 @@
-package game.common;
+package game.common.rendering.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import game.common.tilemap.TileMap;
+import game.common.rendering.tilemap.TileMap;
 
 public abstract class GameScreen extends BaseScreen {
     protected final TileMap map;

@@ -1,9 +1,7 @@
-package game.common.logic.zone;
+package game.common.logic.collision.zone;
 
-import game.common.tilemap.ZoneTile;
-import game.scene.level.rendering.LevelLayout;
+import game.common.rendering.tilemap.ZoneTile;
 import game.scene.level.window.WinWindow;
-import game.scene.level.logic.editor.execution.Executor;
 import game.common.logic.collision.Collidable;
 
 public abstract class Zone implements Collidable {

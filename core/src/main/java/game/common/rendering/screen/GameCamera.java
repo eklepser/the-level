@@ -1,4 +1,4 @@
-package game.common;
+package game.common.rendering.screen;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;

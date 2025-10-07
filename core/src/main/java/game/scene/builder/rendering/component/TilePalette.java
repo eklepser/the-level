@@ -6,9 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import game.scene.builder.logic.Builder;
-import game.scene.builder.rendering.BuilderScreen;
-import game.common.tilemap.TileDefinition;
-import game.common.tilemap.Tileset;
+import game.common.rendering.tilemap.TileDefinition;
+import game.common.rendering.tilemap.Tileset;
 import game.common.rendering.TableLayout;
 
 import java.util.*;
