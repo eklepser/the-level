@@ -1,4 +1,4 @@
-package game.scene.level.logic.editor.condition;
+package game.scene.level.logic.condition;
 
 import java.util.ArrayList;
 import java.util.List;

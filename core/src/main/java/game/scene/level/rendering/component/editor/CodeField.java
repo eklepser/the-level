@@ -21,8 +21,6 @@ public class CodeField extends TableLayout {
     public CodeField(EditorLayout root, int linesAmount) {
         this.root = root;
         this.linesAmount = linesAmount;
-
-        setup();
     }
 
     @Override

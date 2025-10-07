@@ -1,4 +1,4 @@
-package game.scene.level.logic.editor.command;
+package game.scene.level.logic.command;
 
 import java.util.ArrayList;
 import java.util.List;

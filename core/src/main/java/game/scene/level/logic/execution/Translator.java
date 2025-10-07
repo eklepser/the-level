@@ -1,9 +1,8 @@
-package game.scene.level.logic.editor.execution;
+package game.scene.level.logic.execution;
 
-import game.scene.level.rendering.component.editor.CodeLine;
-import game.scene.level.logic.editor.command.Command;
-import game.scene.level.logic.editor.command.Instruction;
-import game.scene.level.logic.editor.condition.ConditionPattern;
+import game.scene.level.logic.command.Command;
+import game.scene.level.logic.command.Instruction;
+import game.scene.level.logic.condition.ConditionPattern;
 
 import java.util.*;
 
@@ -29,6 +28,7 @@ public final class Translator {
             String text = uncomment(currentLine);
             if (text.isEmpty()) continue;
 
+            System.out.println(i);
             TranslationResult transResult = translate(text, i, false, currentLine, inputLines);
             if (!transResult.success()) return transResult;
         }

@@ -1,11 +1,4 @@
-package game.scene.level.logic.editor.command;
-
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import game.scene.level.logic.editor.execution.Executor;
-import game.common.logic.entity.Entity;
-import game.common.logic.Direction;
-
-import java.util.List;
+package game.scene.level.logic.command;
 
 //public class CloneCommand extends Command {
 //    private final Direction direction;

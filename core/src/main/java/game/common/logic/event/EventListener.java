@@ -1,5 +1,5 @@
 package game.common.logic.event;
 
-public interface EventListener<T extends Enum<T>> {
+public interface EventListener<T extends GameEvent> {
     void onEvent(T event);
 }

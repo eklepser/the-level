@@ -5,37 +5,36 @@ import game.common.logic.AbstractLevel;
 import game.common.logic.collision.CollisionHandler;
 import game.common.logic.entity.Entity;
 import game.common.logic.collision.zone.Zone;
-import game.common.logic.event.EventListener;
-import game.common.logic.event.EventSource;
+import game.common.logic.event.EventType;
 import game.common.rendering.tilemap.TileMap;
-import game.scene.level.LevelEvent;
-import game.scene.level.LevelEventSource;
-import game.scene.level.logic.editor.execution.Executor;
-import game.scene.level.rendering.LevelScreen;
+import game.scene.level.logic.execution.Executor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public final class Level extends AbstractLevel {
+    private final CollisionContext collisionContext;
     private final CollisionHandler collisionHandler;
+
     private final Executor executor;
 
     private final List<Entity> entitiesToAdd;
 
-    public Level(LevelConfiguration config, LevelScreen screen) {
-        super(config, screen);
+    public Level(LevelConfiguration config) {
+        super(config);
+
+        collisionContext = new CollisionContext(map.collision, zones, entities);
+        collisionHandler = new CollisionHandler(collisionContext);
+
+        executor = new Executor(config, this);
 
         loadZones(map);
         entitiesToAdd = new ArrayList<>();
 
-        CollisionContext collisionContext = new CollisionContext(map.collision, zones, entities);
-        collisionHandler = new CollisionHandler(collisionContext);
-        executor = new Executor(config, collisionContext);
 
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
 
-    // Class logic:
     public void update(float delta) {
         collisionHandler.update();
         if (!entitiesToAdd.isEmpty()) {
@@ -46,17 +45,20 @@ public final class Level extends AbstractLevel {
         entities.forEach(entity -> entity.act(delta));
     }
 
+    // Class logic:
+    public void win() {
+        System.out.println("Level: win");
+        fire(new LevelEvent(EventType.WIN));
+        executor.stop();
+    }
+
     public void runExecution(List<String> inputLines) {
         executor.runExecution(inputLines);
-
-        win();
     }
 
     public void reset() {
         entities.clear();
         spawnEntity((int) startPos.x, (int) startPos.y);
-
-        newCommand();
     }
 
     public void spawnEntity(int worldPosX, int worldPosY) {
@@ -65,7 +67,9 @@ public final class Level extends AbstractLevel {
     }
 
     // Getters & setters:
-    //public void setExecutionSpeed(float executionSpeed) { this.executionDelay = executionSpeed; }
+    public CollisionContext getCollisionContext() {
+        return collisionContext;
+    }
 
     public List<Entity> getEntities() { return entities; }
 

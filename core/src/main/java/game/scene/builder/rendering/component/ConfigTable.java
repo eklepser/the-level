@@ -12,12 +12,9 @@ import game.common.rendering.TableLayout;
 import game.common.rendering.component.InputField;
 import game.common.rendering.component.TextLabel;
 import game.config.Paths;
-import game.scene.builder.logic.Builder;
-import game.scene.level.logic.editor.command.Instruction;
+import game.scene.level.logic.command.Instruction;
 import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
-import game.scene.builder.rendering.BuilderLayout;
-import game.scene.builder.rendering.BuilderScreen;
 
 public final class ConfigTable extends TableLayout {
     private final LevelConfiguration config;

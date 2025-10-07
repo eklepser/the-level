@@ -3,7 +3,7 @@ package game.common.logic.event;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class EventSource<T extends Enum<T>> {
+public abstract class EventSource<T extends GameEvent> {
     private final List<EventListener<T>> subscribers;
 
     public EventSource() {
@@ -20,7 +20,7 @@ public abstract class EventSource<T extends Enum<T>> {
         subscribers.remove(listener);
     }
 
-    public void notifySubscribers(T event) {
+    public void fire(T event) {
         for (EventListener<T> listener : new ArrayList<>(subscribers)) {
             listener.onEvent(event);
         }

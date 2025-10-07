@@ -68,7 +68,6 @@ public final class World {
     public void loadZones(TileMap map, LevelLayout layout) {
         for (ZoneTile tile : map.zones) {
             if (tile.type.equals("start")) continue;
-            zones.add(Zone.from(tile));
         }
     }
 

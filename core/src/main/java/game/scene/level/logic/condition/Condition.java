@@ -1,4 +1,4 @@
-package game.scene.level.logic.editor.condition;
+package game.scene.level.logic.condition;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import game.common.logic.collision.CollisionContext;

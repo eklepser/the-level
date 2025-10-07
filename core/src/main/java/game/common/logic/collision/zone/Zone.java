@@ -1,8 +1,8 @@
 package game.common.logic.collision.zone;
 
-import game.common.rendering.tilemap.ZoneTile;
-import game.scene.level.window.WinWindow;
 import game.common.logic.collision.Collidable;
+import game.common.rendering.tilemap.ZoneTile;
+import game.scene.level.logic.Level;
 
 public abstract class Zone implements Collidable {
     private final int x;
@@ -13,21 +13,18 @@ public abstract class Zone implements Collidable {
         this.y = y;
     }
 
-    public static Zone from(ZoneTile tile) {
+    public static Zone from(ZoneTile tile, Level level) {
         int x = tile.x;
         int y = tile.y;
         String[] properties = tile.properties;
 
-        Zone zone = switch (tile.type) {
-            case "win" -> {
-                WinWindow winWindow = new WinWindow();
-                yield new WinZone(x, y, winWindow);
-            }
+        //case "level" -> new LevelZone(x, y, winWindow, executor);
+        return switch (tile.type) {
+            case "win" -> new WinZone(x, y, level);
             case "colored" -> new ColoredZone(x, y, properties[0]);
             //case "level" -> new LevelZone(x, y, winWindow, executor);
             default -> null;
         };
-        return zone;
     }
 
     // Getters:

@@ -1,4 +1,4 @@
-package game.scene.level.logic.editor.execution;
+package game.scene.level.logic.execution;
 
 public interface TimeController {
     float getDelay();

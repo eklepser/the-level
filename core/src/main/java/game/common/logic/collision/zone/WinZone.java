@@ -1,22 +1,22 @@
 package game.common.logic.collision.zone;
 
+import game.scene.level.logic.Level;
 import game.scene.level.window.WinWindow;
 import game.common.logic.entity.Entity;
 
 public class WinZone extends Zone {
-    private final WinWindow window;
+    private final Level level;
     private boolean activated = false;
 
-    public WinZone(int x, int y, WinWindow window) {
+    public WinZone(int x, int y, Level level) {
         super(x, y);
-        this.window = window;
+        this.level = level;
     }
 
     @Override
     public void onCollision(Entity entity) {
         if (!activated) {
-            System.out.println("WIN COLLISION DETECTED");
-            //executor.win();
+            level.win();
         }
         activated = true;
     }

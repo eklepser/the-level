@@ -1,10 +1,10 @@
-package game.scene.level.logic.editor.command;
+package game.scene.level.logic.command;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import game.common.logic.collision.CollisionContext;
-import game.scene.level.logic.editor.condition.Condition;
-import game.scene.level.logic.editor.execution.Executor;
+import game.scene.level.logic.condition.Condition;
+import game.scene.level.logic.execution.Executor;
 import game.common.logic.entity.Entity;
 
 import java.util.Arrays;

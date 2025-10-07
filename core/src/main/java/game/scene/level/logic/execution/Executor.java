@@ -1,18 +1,22 @@
-package game.scene.level.logic.editor.execution;
+package game.scene.level.logic.execution;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import game.common.logic.collision.CollisionContext;
-import game.scene.level.logic.editor.command.Command;
 import game.common.logic.entity.Entity;
+import game.common.logic.event.EventType;
+import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.LevelEvent;
+import game.scene.level.logic.command.Command;
 
 import java.util.List;
 import java.util.Map;
 
 public final class Executor implements TimeController {
     private final CollisionContext collisionContext;
+    private final Level level;
 
     private final Translator translator;
     private Map<Integer, Command> codeMap;
@@ -20,9 +24,10 @@ public final class Executor implements TimeController {
     private float executionDelay = 0.5f;
     private int currentLineNum;
 
-    public Executor(LevelConfiguration config, CollisionContext collisionContext) {
+    public Executor(LevelConfiguration config, Level level) {
         translator = new Translator(config.allowedInstructions, this);
-        this.collisionContext = collisionContext;
+        this.level = level;
+        collisionContext = level.getCollisionContext();
 
         //codeLines = editorLayout.getCodeLayout().getCodeLines();
     }
@@ -33,14 +38,13 @@ public final class Executor implements TimeController {
     }
 
     // Class logic:
-    public String runExecution(List<String> inputLines) {
+    public void runExecution(List<String> inputLines) {
         TranslationResult result = translator.translateAll(inputLines);
         if (result.success()) {
             codeMap = translator.getCodeMap();
             execute(0, codeMap);
             //editorLayout.getRoot().getStatusBar().start();
         }
-        return result.message();
     }
 
     public void execute(int start, Map<Integer, Command> codeMap) {
@@ -56,6 +60,9 @@ public final class Executor implements TimeController {
 
         for (int i = start; i < codeMap.size(); i++) {
             Command currentCmd = codeMap.get(i);
+            System.out.println(i);
+            System.out.println(currentCmd);
+
             if (currentCmd == null) continue;
 
             int finalI = i;
@@ -63,7 +70,9 @@ public final class Executor implements TimeController {
             //sequence.addAction(Actions.run(() -> codeLine.setCompleting(true)));
             sequence.addAction(Actions.run(() -> currentLineNum = finalI));
 
-            sequence.addAction(Actions.run(() -> System.out.println("Executing " + currentLineNum)));
+            //sequence.addAction(Actions.run(() -> System.out.println("Executing " + currentLineNum)));
+            sequence.addAction(Actions.run(() ->
+                level.fire(new LevelEvent(EventType.NEW_COMMAND, currentLineNum))));
 
             sequence.addAction(new TimedAction(this));
             //sequence.addAction(Actions.run(() -> editorLayout.getRoot().getStatusBar().update(currentCmd, target)));
@@ -78,11 +87,6 @@ public final class Executor implements TimeController {
         sequence.addAction(new TimedAction(this));
         //sequence.addAction(Actions.run(editorLayout::stop));
         return sequence;
-    }
-
-    public void win() {
-        stop();
-        //editorLayout.getRoot().getStatusBar().win();
     }
 
     public void stop() {

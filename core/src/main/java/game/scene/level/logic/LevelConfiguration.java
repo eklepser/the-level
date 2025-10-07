@@ -1,6 +1,6 @@
 package game.scene.level.logic;
 
-import game.scene.level.logic.editor.command.Instruction;
+import game.scene.level.logic.command.Instruction;
 import game.common.rendering.tilemap.BaseConfiguration;
 
 import java.util.List;

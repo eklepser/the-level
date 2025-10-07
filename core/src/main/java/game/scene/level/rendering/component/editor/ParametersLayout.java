@@ -7,7 +7,6 @@ import com.badlogic.gdx.utils.Align;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.TextLabel;
 import game.scene.level.logic.Level;
-import game.scene.level.logic.editor.execution.Executor;
 import game.resources.Assets;
 
 public final class ParametersLayout extends TableLayout {

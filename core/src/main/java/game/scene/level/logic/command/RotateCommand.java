@@ -1,4 +1,4 @@
-package game.scene.level.logic.editor.command;
+package game.scene.level.logic.command;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

@@ -1,9 +1,9 @@
-package game.scene.level.logic.editor.command;
+package game.scene.level.logic.command;
 
 import java.lang.reflect.Constructor;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import game.scene.level.logic.editor.execution.Executor;
+import game.scene.level.logic.execution.Executor;
 import game.common.logic.entity.Entity;
 
 public abstract class Command {

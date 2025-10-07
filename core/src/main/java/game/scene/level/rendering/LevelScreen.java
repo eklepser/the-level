@@ -17,7 +17,7 @@ public final class LevelScreen extends GameScreen {
 
         camera = new GameCamera();
         this.config = config;
-        level = new Level(config, this);
+        level = new Level(config);
 
         stage.addActor(new LevelLayout(level));
         //multiplexer.addProcessor(new EditorProcessor());
