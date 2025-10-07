@@ -30,7 +30,6 @@ public abstract class AbstractLevel {
 
         zones = new ArrayList<>();
         entities = new ArrayList<>();
-        //zones = loadZones(map, );
     }
 
     public void loadZones(TileMap map) {

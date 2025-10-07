@@ -6,18 +6,17 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.TextLabel;
+import game.scene.level.logic.Level;
 import game.scene.level.logic.editor.execution.Executor;
 import game.resources.Assets;
 
 public final class ParametersLayout extends TableLayout {
-    private final Executor executor;
     private final TextLabel label;
     private final Slider slider;
     private final float[] values = {0.5f, 1.0f, 2.0f, 4.0f, 8.0f, 16.0f};
     private final int selected = 1;
 
-    public ParametersLayout(Executor executor) {
-        this.executor = executor;
+    public ParametersLayout(Level level) {
         label = new TextLabel("Execution speed: " + values[selected]);
         slider = new Slider(0, values.length - 1, 1, false, Assets.getSkin());
         slider.setValue(selected);
@@ -25,7 +24,7 @@ public final class ParametersLayout extends TableLayout {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 float duration = values[(int) slider.getValue()];
-                executor.setExecutionSpeed(1 / duration);
+                //level.setExecutionSpeed(1 / duration);
                 label.setText("Execution speed: " + duration);
             }
         });

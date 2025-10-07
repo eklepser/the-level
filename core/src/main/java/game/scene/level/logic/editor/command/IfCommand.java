@@ -2,6 +2,7 @@ package game.scene.level.logic.editor.command;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import game.common.CollisionContext;
 import game.scene.level.logic.editor.condition.Condition;
 import game.scene.level.logic.editor.execution.Executor;
 import game.common.logic.entity.Entity;
@@ -12,7 +13,7 @@ import java.util.Arrays;
 public class IfCommand extends Command {
     private final Condition condition;
     private final Command command;
-    private final Level level;
+    private final CollisionContext collisionContext;
 
     public IfCommand(String[] args, Executor executor) {
         String conditionName = args[0].toLowerCase();
@@ -23,13 +24,13 @@ public class IfCommand extends Command {
         String[] newArgs = Arrays.copyOfRange(args, 3, args.length);
         command = Command.from(newInstruction, newArgs, executor);
 
-        level = executor.getEditor().getRoot().getScreen().getLevel();
+        collisionContext = executor.getCollisionContext();
     }
 
     @Override
     public void execute(Entity target) {
         System.out.println("IF");
-        if (condition.check(target, level))
+        if (condition.check(target, collisionContext))
         {
             System.out.println("EXECUTING COND CMD");
             command.execute(target);
@@ -40,7 +41,7 @@ public class IfCommand extends Command {
     public Image[] getIcons(Entity target) {
         //Image commandImage = new Image(new Texture(Gdx.files.internal("ui/icon/if.png")));
         Image conditionImage = condition.getIcon();
-        if (condition.check(target, level)) {
+        if (condition.check(target, collisionContext)) {
             Image conditionCommandImage = command.getIcons(target)[0];
             return new Image[] {conditionImage, conditionCommandImage};
         }

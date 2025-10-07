@@ -3,9 +3,6 @@ package game.scene.level.rendering;
 import game.common.GameCamera;
 import game.common.GameScreen;
 import game.config.Display;
-import game.scene.level.rendering.component.editor.EditorProcessor;
-import game.scene.level.window.HelpWindow;
-import game.scene.level.window.WinWindow;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
 
@@ -17,14 +14,13 @@ public final class LevelScreen extends GameScreen {
 
     public LevelScreen(LevelConfiguration config) {
         super(config.tileMap);
-        this.config = config;
 
         camera = new GameCamera();
+        this.config = config;
         level = new Level(config, this);
 
-        stage.addActor(new LevelLayout(this));
-        stage.addActor(new HelpWindow());
-        stage.addActor(new WinWindow());
+        stage.addActor(new LevelLayout(level));
+        //multiplexer.addProcessor(new EditorProcessor());
     }
 
     @Override

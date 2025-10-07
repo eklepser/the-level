@@ -1,6 +1,7 @@
 package game.scene.level.logic.editor.condition;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import game.common.CollisionContext;
 import game.common.logic.entity.Entity;
 import game.scene.level.logic.Level;
 
@@ -9,7 +10,7 @@ import java.lang.reflect.Constructor;
 public abstract class Condition {
     public abstract Image getIcon();
 
-    public abstract boolean check(Entity target, Level level);
+    public abstract boolean check(Entity target, CollisionContext collisionContext);
 
     public static Condition from(String conditionName, String arg) {
         ConditionPattern pattern = ConditionPattern.from(conditionName);

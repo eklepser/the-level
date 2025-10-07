@@ -1,5 +1,6 @@
 package game.scene.level.logic;
 
+import game.common.CollisionContext;
 import game.common.logic.AbstractLevel;
 import game.common.logic.collision.CollisionHandler;
 import game.common.logic.entity.Entity;
@@ -14,19 +15,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Level extends AbstractLevel {
-    private final List<Entity> entitiesToAdd;
     private final CollisionHandler collisionHandler;
+    private final Executor executor;
+
+    private final List<Entity> entitiesToAdd;
 
     public Level(LevelConfiguration config, LevelScreen screen) {
         super(config, screen);
+
+        loadZones(map);
         entitiesToAdd = new ArrayList<>();
         collisionHandler = new CollisionHandler(map, zones, entities);
 
-        loadZones(map);
+        CollisionContext collisionContext = new CollisionContext(map.collision, zones, entities);
+
+        executor = new Executor(config, collisionContext);
 
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
 
+    // Class logic:
     public void update(float delta) {
         collisionHandler.update();
         if (!entitiesToAdd.isEmpty()) {
@@ -37,7 +45,6 @@ public final class Level extends AbstractLevel {
         entities.forEach(entity -> entity.act(delta));
     }
 
-    // Class logic:
     public void reset() {
         entities.clear();
         spawnEntity((int) startPos.x, (int) startPos.y);
@@ -48,7 +55,9 @@ public final class Level extends AbstractLevel {
         entities.add(entity);
     }
 
-    // Getters:
+    // Getters & setters:
+    //public void setExecutionSpeed(float executionSpeed) { this.executionDelay = executionSpeed; }
+
     public List<Entity> getEntities() { return entities; }
 
     public List<Entity> getEntitiesToAdd() { return entitiesToAdd; }

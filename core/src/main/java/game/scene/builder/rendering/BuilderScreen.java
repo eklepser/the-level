@@ -24,13 +24,12 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
 
     public BuilderScreen(LevelConfiguration config) {
         super(config.tileMap);
-        this.config = config;
 
         camera = new DynamicGameCamera();
+        this.config = config;
         builder = new Builder(config);
 
         // Order is important! Builder -> gridStage -> layout.
-
         gridActor = new GridActor(this);
         gridStage = new Stage(new FitViewport(
             Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT, camera));

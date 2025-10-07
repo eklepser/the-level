@@ -11,22 +11,22 @@ import game.scene.level.rendering.component.editor.EditorLayout;
 import game.scene.level.logic.Level;
 
 public final class LevelLayout extends TableLayout {
-    private final LevelScreen screen;
+    private final Level level;
 
     private final EditorLayout editorLayout;
     private final LevelToolbar levelToolbar;
     private final ColoredString infoString;
     private final LevelStatusbar levelStatusbar;
 
-    public LevelLayout(LevelScreen screen) {
-        this.screen = screen;
+    public LevelLayout(Level level) {
+        this.level = level;
 
         levelToolbar = new LevelToolbar(this);
         infoString = new ColoredString();
         levelStatusbar = new LevelStatusbar();
 
         // Init editor after all others!
-        editorLayout = new EditorLayout(this, screen);
+        editorLayout = new EditorLayout(this, level);
 
         setup();
     }
@@ -36,7 +36,7 @@ public final class LevelLayout extends TableLayout {
         setFillParent(true);
 
         // Setup elements:
-        infoString.setText("/_2 " + screen.getLevel().getConfig().title);
+        infoString.setText("/_2 " + level.getConfig().title);
 
         levelStatusbar.left();
         ScrollPane scrollPane = new ScrollPane(levelStatusbar);
@@ -61,10 +61,6 @@ public final class LevelLayout extends TableLayout {
     }
 
     // Getters:
-    public LevelScreen getScreen() {
-        return screen;
-    }
-
     public EditorLayout getEditor() {
         return editorLayout;
     }

@@ -9,36 +9,36 @@ import java.util.*;
 
 public final class Translator {
     private final Executor executor;
-    private final List<CodeLine> codeLines;
-    private final Map<CodeLine, Command> codeMap;
+    private final Map<Integer, Command> codeMap;
     private final List<String> allowedInstructionNames;
 
-    public Translator(List<Instruction> allowedInstructions, List<CodeLine> codeLines, Executor executor) {
+    public Translator(List<Instruction> allowedInstructions, Executor executor) {
         this.executor = executor;
-        this.codeLines = codeLines;
         allowedInstructionNames = allowedInstructions.stream()
             .map(instruction -> instruction.name).toList();
         codeMap = new HashMap<>();
     }
 
-    public TranslationResult translateAll() {
+    public TranslationResult translateAll(List<String> inputLines) {
         codeMap.clear();
-        for (int i = 0; i < codeLines.size(); i++) {
-            CodeLine currentLine = codeLines.get(i);
-            codeMap.put(currentLine, null);
 
-            String text = uncomment(currentLine.getText());
+        for (int i = 0; i < inputLines.size(); i++) {
+            String currentLine = inputLines.get(i);
+            codeMap.put(i, null);
+
+            String text = uncomment(currentLine);
             if (text.isEmpty()) continue;
 
-            TranslationResult transResult = translate(text, i, false, currentLine);
+            TranslationResult transResult = translate(text, i, false, currentLine, inputLines);
             if (!transResult.success()) return transResult;
         }
+
         if (codeMap.values().stream().allMatch(Objects::isNull))
             return new TranslationResult(false, "Code field is empty");
         return new TranslationResult(true, "Successfully running");
     }
 
-    public TranslationResult translate(String text, int lineNum, boolean isConditionCommand, CodeLine codeLine) {
+    public TranslationResult translate(String text, int lineNum, boolean isConditionCommand, String codeLine, List<String> inputLines) {
         // Instruction existing check:
         String[] words = text.split("\\s+");
         String instructionName = words[0].toLowerCase();
@@ -77,7 +77,7 @@ public final class Translator {
             {
                 try {
                     int num = Integer.parseInt(args[i]);
-                    if ((num < 1) || (num > codeLines.size())) {
+                    if ((num < 1) || (num > inputLines.size())) {
                         String message = String.format("Line %d: argument %d is out of range", lineNum + 1, num);
                         return new TranslationResult(false, message);
                     }
@@ -98,12 +98,12 @@ public final class Translator {
             }
             ConditionPattern cond = ConditionPattern.from(conditionName);
             String commandText = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
-            TranslationResult result = translate(commandText, lineNum, true, codeLine);
+            TranslationResult result = translate(commandText, lineNum, true, codeLine, inputLines);
             if (!result.success()) return result;
         }
 
         Command command = Command.from(instructionName, args, executor);
-        codeMap.put(codeLine, command);
+        codeMap.put(lineNum, command);
 
         return new TranslationResult(true, "Successfully translated");
     }
@@ -118,5 +118,5 @@ public final class Translator {
         else return "";
     }
 
-    public Map<CodeLine, Command> getCodeMap() { return codeMap; }
+    public Map<Integer, Command> getCodeMap() { return codeMap; }
 }

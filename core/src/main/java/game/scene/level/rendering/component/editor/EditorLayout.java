@@ -17,31 +17,27 @@ import game.scene.level.rendering.LevelScreen;
 
 public final class EditorLayout extends TableLayout {
     private final LevelLayout root;
-    private final LevelScreen screen;
+    private final Level level;
 
     private final CodeLayout codeLayout;
-    private final Executor executor;
+
     private final TextLabel statusLabel;
     private final ShowCommandsButton showCommandsButton;
     private final ParametersLayout parametersLayout;
     private final CommandsLayout commandsLayout;
     private final ScrollPane codeScrollPane;
 
-    public EditorLayout(LevelLayout root, LevelScreen screen) {
+    public EditorLayout(LevelLayout root, Level level) {
         this.root = root;
-        this.screen = screen;
-        
-        LevelConfiguration config = screen.getConfig();
-        codeLayout = new CodeLayout(this, config);
+        this.level = level;
+
+        codeLayout = new CodeLayout(this, level.getConfig());
         codeScrollPane = new ScrollPane(codeLayout, Assets.getSkin());
         codeLayout.setCodeScrollPane(codeScrollPane);
 
-        // Init executor after codeLayout creating!
-        executor = new Executor(screen, this);
-
         statusLabel = new TextLabel("Status:\nNo status", true);
-        parametersLayout = new ParametersLayout(executor);
-        commandsLayout = new CommandsLayout(config);
+        parametersLayout = new ParametersLayout(level);
+        commandsLayout = new CommandsLayout(level.getConfig());
         showCommandsButton = new ShowCommandsButton(commandsLayout);
 
         setup();
@@ -87,8 +83,8 @@ public final class EditorLayout extends TableLayout {
     public void run() {
         resetRunning();
         root.getStatusBar().clear();
-        String status = executor.runExecution();
-        statusLabel.setText("Status:\n" + status);
+        //String status = executor.runExecution();
+        //statusLabel.setText("Status:\n" + status);
     }
 
     public void clearRunning() {
@@ -100,19 +96,19 @@ public final class EditorLayout extends TableLayout {
         System.out.println("Resetting");
         codeLayout.getCodeLines().forEach(
             codeLine -> codeLine.setCompleting(false));
-        executor.stop();
+        //executor.stop();
         statusLabel.setText("Status:\nReset");
         resetWin();
-        screen.getLevel().reset();
+        level.reset();
     }
 
     public void stop() {
-        executor.stop();
+        //executor.stop();
         statusLabel.setText("Status:\nEnd");
     }
 
     private void resetWin() {
-        for (Zone zone : screen.getLevel().getZones()) {
+        for (Zone zone : level.getZones()) {
             if (zone instanceof WinZone winZone) {
                 winZone.setActivated(false);
             }
@@ -121,8 +117,6 @@ public final class EditorLayout extends TableLayout {
 
     // Getters:
     public LevelLayout getRoot() { return root; }
-
-    public Executor getExecutor() { return executor; }
 
     public CodeLayout getCodeLayout() { return codeLayout; }
 
