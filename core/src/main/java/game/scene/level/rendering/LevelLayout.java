@@ -2,15 +2,17 @@ package game.scene.level.rendering;
 
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import game.common.logic.event.EventListener;
 import game.config.Display;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.ColoredString;
+import game.scene.level.LevelEvent;
 import game.scene.level.rendering.component.LevelStatusbar;
 import game.scene.level.rendering.component.LevelToolbar;
 import game.scene.level.rendering.component.editor.EditorLayout;
 import game.scene.level.logic.Level;
 
-public final class LevelLayout extends TableLayout {
+public final class LevelLayout extends TableLayout implements EventListener<LevelEvent> {
     private final Level level;
 
     private final EditorLayout editorLayout;
@@ -20,6 +22,7 @@ public final class LevelLayout extends TableLayout {
 
     public LevelLayout(Level level) {
         this.level = level;
+        level.subscribe(this);
 
         levelToolbar = new LevelToolbar(this);
         infoString = new ColoredString();
@@ -66,4 +69,10 @@ public final class LevelLayout extends TableLayout {
     }
 
     public LevelStatusbar getStatusBar() { return levelStatusbar; }
+
+    @Override
+    public void onEvent(LevelEvent event) {
+        if (event.equals(LevelEvent.WIN)) System.out.println("WIN");
+        if (event.equals(LevelEvent.NEW_COMMAND)) System.out.println("NC");
+    }
 }

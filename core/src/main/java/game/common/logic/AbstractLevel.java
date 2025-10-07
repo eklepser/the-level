@@ -7,11 +7,12 @@ import game.common.rendering.screen.GameScreen;
 import game.common.rendering.tilemap.BaseConfiguration;
 import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.tilemap.ZoneTile;
+import game.scene.level.LevelEventSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractLevel {
+public abstract class AbstractLevel extends LevelEventSource {
     protected final BaseConfiguration config;
     protected final GameScreen screen;
 

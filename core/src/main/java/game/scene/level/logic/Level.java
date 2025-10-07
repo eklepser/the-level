@@ -5,7 +5,11 @@ import game.common.logic.AbstractLevel;
 import game.common.logic.collision.CollisionHandler;
 import game.common.logic.entity.Entity;
 import game.common.logic.collision.zone.Zone;
+import game.common.logic.event.EventListener;
+import game.common.logic.event.EventSource;
 import game.common.rendering.tilemap.TileMap;
+import game.scene.level.LevelEvent;
+import game.scene.level.LevelEventSource;
 import game.scene.level.logic.editor.execution.Executor;
 import game.scene.level.rendering.LevelScreen;
 
@@ -44,11 +48,15 @@ public final class Level extends AbstractLevel {
 
     public void runExecution(List<String> inputLines) {
         executor.runExecution(inputLines);
+
+        win();
     }
 
     public void reset() {
         entities.clear();
         spawnEntity((int) startPos.x, (int) startPos.y);
+
+        newCommand();
     }
 
     public void spawnEntity(int worldPosX, int worldPosY) {
