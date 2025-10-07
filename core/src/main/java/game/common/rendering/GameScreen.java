@@ -12,8 +12,7 @@ public abstract class GameScreen extends BaseScreen {
     protected final SpriteBatch batch;
     protected final Tileset tileset;
 
-    public GameScreen(Game game, TileMap map) {
-        super(game);
+    public GameScreen(TileMap map) {
         this.map = map;
 
         batch = new SpriteBatch();

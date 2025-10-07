@@ -11,13 +11,10 @@ import game.config.Display;
 
 public abstract class BaseScreen extends ScreenAdapter {
     protected TableLayout layout;
-    protected final Game game;
     protected final Stage stage;
     protected final InputMultiplexer multiplexer;
 
-    public BaseScreen(Game game) {
-        this.game = game;
-
+    public BaseScreen() {
         stage = new Stage(new FitViewport(Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT));
         multiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(multiplexer);

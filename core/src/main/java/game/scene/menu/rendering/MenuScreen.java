@@ -4,9 +4,9 @@ import com.badlogic.gdx.Game;
 import game.common.rendering.BaseScreen;
 
 public final class MenuScreen extends BaseScreen {
-    public MenuScreen(Game game) {
-        super(game);
-        layout = new MenuLayout(game);
+    public MenuScreen() {
+        super();
+        layout = new MenuLayout();
     }
 
     @Override

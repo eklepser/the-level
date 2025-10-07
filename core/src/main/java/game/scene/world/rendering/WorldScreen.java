@@ -13,8 +13,8 @@ public final class WorldScreen extends GameScreen {
     private final World world;
     private final WorldLayout layout;
 
-    public WorldScreen(Game game, WorldConfiguration config) {
-        super(game, config.tileMap);
+    public WorldScreen(WorldConfiguration config) {
+        super(config.tileMap);
 
         camera = new GameCamera();
 
@@ -30,7 +30,7 @@ public final class WorldScreen extends GameScreen {
 
         stage.addActor(layout);
 
-        multiplexer.addProcessor(new WorldProcessor(game, world));
+        multiplexer.addProcessor(new WorldProcessor(world));
         multiplexer.addProcessor(stage);
     }
 

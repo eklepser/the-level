@@ -6,11 +6,7 @@ import game.common.rendering.component.ColoredString;
 import game.config.Display;
 
 public final class MenuLayout extends TableLayout {
-    private final Game game;
-
-    public MenuLayout(Game game) {
-        this.game = game;
-
+    public MenuLayout() {
         setFillParent(true);
 
         setup();
@@ -21,15 +17,15 @@ public final class MenuLayout extends TableLayout {
         add(new ColoredString("/blue_4 The LEVEL")).padBottom(20);
         row();
 
-        add(MenuButtonFactory.startButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
+        add(MenuButtonFactory.startButton()).width(Display.VIEWPORT_WIDTH / 4.0f).
             height(Display.VIEWPORT_HEIGHT / 16.0f);
         row();
 
-        add(MenuButtonFactory.levelsButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
+        add(MenuButtonFactory.levelsButton()).width(Display.VIEWPORT_WIDTH / 4.0f).
             height(Display.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         row();
 
-        add(MenuButtonFactory.builderButton(game)).width(Display.VIEWPORT_WIDTH / 4.0f).
+        add(MenuButtonFactory.builderButton()).width(Display.VIEWPORT_WIDTH / 4.0f).
             height(Display.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         row();
 

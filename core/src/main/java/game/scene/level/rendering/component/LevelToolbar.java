@@ -19,6 +19,6 @@ public final class LevelToolbar extends TableLayout {
     public void setup() {
         add(new TextButton("View", Assets.getSkin())).expandX().fillX();
         add(new TextButton("Tools", Assets.getSkin())).expandX().fillX();
-        add(EditorButtonFactory.createHelpButton(new HelpWindow(null))).expandX().fillX();
+        add(EditorButtonFactory.createHelpButton(new HelpWindow())).expandX().fillX();
     }
 }

@@ -3,6 +3,7 @@ package game.scene.world.logic;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import game.common.ScreenNavigator;
 import game.config.Paths;
 import game.scene.level.rendering.LevelScreen;
 import game.scene.menu.rendering.MenuScreen;
@@ -11,14 +12,12 @@ import game.common.logic.entity.Entity;
 import game.scene.level.logic.LevelConfiguration;
 import game.common.logic.Direction;
 
-public class WorldProcessor extends InputAdapter {
-    private final Game game;
+public class WorldProcessor extends InputAdapter {;
     private final World world;
     private final Entity player;
     private int previousKey;
 
-    public WorldProcessor(Game game, World world) {
-        this.game = game;
+    public WorldProcessor(World world) {
         this.world = world;
         this.player = world.getEntities().get(0);
     }
@@ -50,10 +49,10 @@ public class WorldProcessor extends InputAdapter {
             world.setSelectedLevelId(0);
             LevelConfiguration levelConfiguration = BaseConfiguration.listFrom(
                 LevelConfiguration.class, Paths.LEVEL_CONFIG).get(0);
-            game.setScreen(new LevelScreen(game, levelConfiguration));
+            ScreenNavigator.gotoScreen(new LevelScreen(levelConfiguration));
         }
         else if (keycode == Input.Keys.ESCAPE) {
-            game.setScreen(new MenuScreen(game));
+            ScreenNavigator.gotoScreen(new MenuScreen());
         }
         if (keycode != previousKey) previousKey = keycode;
         return false;

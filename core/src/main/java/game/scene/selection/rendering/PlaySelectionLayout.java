@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import game.common.ScreenNavigator;
 import game.config.Display;
 import game.config.Paths;
 import game.common.rendering.TableLayout;
@@ -17,11 +18,9 @@ import game.scene.selection.logic.LevelMetadata;
 import java.util.List;
 
 public final class PlaySelectionLayout extends TableLayout {
-    private final Game game;
     private final List<LevelMetadata> levels;
 
-    public PlaySelectionLayout(Game game, List<LevelMetadata> levels) {
-        this.game = game;
+    public PlaySelectionLayout(List<LevelMetadata> levels) {
         this.levels = levels;
 
         setup();
@@ -37,7 +36,7 @@ public final class PlaySelectionLayout extends TableLayout {
             String text = String.format(data.tag());
             TextButton button = new TextButton(text, Assets.getSkin());
             String path = String.format("%slevel_%s.json" , Paths.BUILDER_DATA, data.tag());
-            button.addListener(new ButtonListener(game, path));
+            button.addListener(new ButtonListener(path));
 
             add(button).padTop(10).width(Display.VIEWPORT_WIDTH / 4.0f).row();
         }
@@ -45,11 +44,9 @@ public final class PlaySelectionLayout extends TableLayout {
 
     // Button listener class:
     private static class ButtonListener extends ClickListener {
-        private final Game game;
         private final String path;
 
-        public ButtonListener(Game game, String path) {
-            this.game = game;
+        public ButtonListener(String path) {
             this.path = path;
         }
 
@@ -57,7 +54,7 @@ public final class PlaySelectionLayout extends TableLayout {
         public void clicked(InputEvent event, float x, float y) {
             LevelConfiguration config = BaseConfiguration.from(
                 LevelConfiguration.class, path);
-            game.setScreen(new LevelScreen(game, config));
+            ScreenNavigator.gotoScreen(new LevelScreen(config));
         }
     }
 }

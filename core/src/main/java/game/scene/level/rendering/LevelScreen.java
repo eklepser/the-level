@@ -18,8 +18,8 @@ public final class LevelScreen extends GameScreen {
     private final HelpWindow helpWindow;
     private final WinWindow winWindow;
 
-    public LevelScreen(Game game, LevelConfiguration config) {
-        super(game, config.tileMap);
+    public LevelScreen(LevelConfiguration config) {
+        super(config.tileMap);
         camera = new GameCamera();
 
         this.config = config;
@@ -27,8 +27,8 @@ public final class LevelScreen extends GameScreen {
 
         layout = new LevelLayout(this);
 
-        helpWindow = new HelpWindow(game);
-        winWindow = new WinWindow(game);
+        helpWindow = new HelpWindow();
+        winWindow = new WinWindow();
     }
 
     @Override

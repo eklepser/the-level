@@ -4,13 +4,14 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import game.common.ScreenNavigator;
 import game.scene.world.rendering.WorldScreen;
 import game.common.tilemap.BaseConfiguration;
 import game.scene.world.logic.WorldConfiguration;
 import game.resources.Assets;
 
 public class ExitLevelButton extends TextButton {
-    public ExitLevelButton(Game game) {
+    public ExitLevelButton() {
         super("Exit", Assets.getSkin());
         addListener(new ClickListener() {
             @Override
@@ -18,7 +19,7 @@ public class ExitLevelButton extends TextButton {
                 System.out.println("Exit");
                 WorldConfiguration worldConfig = BaseConfiguration.listFrom(
                     WorldConfiguration.class, "world/world.json").get(0);
-                game.setScreen(new WorldScreen(game, worldConfig));
+                ScreenNavigator.gotoScreen(new WorldScreen(worldConfig));
             }
         });
     }

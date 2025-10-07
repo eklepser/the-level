@@ -22,7 +22,7 @@ public abstract class Zone implements Collidable {
 
         Zone zone = switch (tile.type) {
             case "win" -> {
-                WinWindow winWindow = new WinWindow(null);
+                WinWindow winWindow = new WinWindow();
                 yield new WinZone(x, y, winWindow);
             }
             case "colored" -> new ColoredZone(x, y, properties[0]);

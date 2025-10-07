@@ -20,11 +20,11 @@ public class HelpWindow extends Window {
     private final ExitLevelButton exitLevelButton;
     private final ArrayList<CommandInfo> commandInfos;
 
-    public HelpWindow(Game game) {
+    public HelpWindow() {
         super("", Assets.getSkin());
         commandsTable = new Table();
         scrollPane = new ScrollPane(commandsTable);
-        exitLevelButton = new ExitLevelButton(game);
+        exitLevelButton = new ExitLevelButton();
 
         Json json = new Json();
         commandInfos = json.fromJson(ArrayList.class, CommandInfo.class,

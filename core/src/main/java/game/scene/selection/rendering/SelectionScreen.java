@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import game.common.rendering.BaseScreen;
 import game.config.Display;
 import game.resources.LevelLoader;
 import game.common.rendering.TableLayout;
@@ -16,16 +17,14 @@ import game.scene.selection.logic.SelectionProcessor;
 
 import java.util.List;
 
-public final class SelectionScreen extends ScreenAdapter {
-    private final Game game;
+public final class SelectionScreen extends BaseScreen {
     private final Stage stage;
     private final InputMultiplexer multiplexer;
 
     private final List<LevelMetadata> levels;
     private final TableLayout layout;
 
-    public SelectionScreen(Game game, Class<? extends TableLayout> layoutClass) {
-        this.game = game;
+    public SelectionScreen(Class<? extends TableLayout> layoutClass) {
         stage = new Stage(new FitViewport(
             Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT, new OrthographicCamera()));
         multiplexer = new InputMultiplexer();
@@ -34,15 +33,15 @@ public final class SelectionScreen extends ScreenAdapter {
         levels = LevelLoader.loadMetadata("data/builder");
 
         if (BuilderSelectionLayout.class.equals(layoutClass)) {
-            layout = new BuilderSelectionLayout(game, levels);
+            layout = new BuilderSelectionLayout(levels);
         }
-        else layout = new PlaySelectionLayout(game, levels);
+        else layout = new PlaySelectionLayout(levels);
     }
 
     @Override
     public void show() {
         multiplexer.addProcessor(stage);
-        multiplexer.addProcessor(new SelectionProcessor(game));
+        multiplexer.addProcessor(new SelectionProcessor());
         stage.addActor(layout);
     }
 

@@ -3,6 +3,7 @@ package game.scene.builder.rendering;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import game.common.ScreenNavigator;
 import game.common.input.BaseInputHandler;
 import game.common.input.BaseInputListener;
 import game.common.rendering.DynamicGameCamera;
@@ -16,7 +17,6 @@ import game.scene.selection.rendering.SelectionScreen;
 
 public final class BuilderScreen extends GameScreen implements BaseInputListener {
     private final LevelConfiguration config;
-    private final Game game;
     private final DynamicGameCamera camera;
 
     private final Builder builder;
@@ -24,10 +24,9 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
     private final Stage gridStage;
     private final GridActor gridActor;
 
-    public BuilderScreen(Game game, LevelConfiguration config) {
-        super(game, config.tileMap);
+    public BuilderScreen(LevelConfiguration config) {
+        super(config.tileMap);
         this.config = config;
-        this.game = game;
 
         camera = new DynamicGameCamera();
 
@@ -81,7 +80,7 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
     // Listener methods:
     @Override
     public void onEscapePressed() {
-        game.setScreen(new SelectionScreen(game, BuilderSelectionLayout.class));
+        ScreenNavigator.gotoScreen(new SelectionScreen(BuilderSelectionLayout.class));
     }
 
     @Override

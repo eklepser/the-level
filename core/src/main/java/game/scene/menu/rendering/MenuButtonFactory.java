@@ -3,6 +3,7 @@ package game.scene.menu.rendering;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import game.common.ScreenNavigator;
 import game.common.tilemap.BaseConfiguration;
 import game.common.rendering.ButtonFactory;
 import game.scene.selection.rendering.BuilderSelectionLayout;
@@ -12,22 +13,22 @@ import game.scene.world.logic.WorldConfiguration;
 import game.scene.world.rendering.WorldScreen;
 
 public final class MenuButtonFactory extends ButtonFactory {
-    public static TextButton startButton(Game game) {
+    public static TextButton startButton( ) {
         return createButton("Start Game", () -> {
             WorldConfiguration config = BaseConfiguration.from(
                 WorldConfiguration.class, "world/world_one.json");
-            game.setScreen(new WorldScreen(game, config));
+            ScreenNavigator.gotoScreen(new WorldScreen(config));
         });
     }
 
-    public static TextButton levelsButton(Game game) {
+    public static TextButton levelsButton() {
         return createButton("Levels", () ->
-            game.setScreen(new SelectionScreen(game, PlaySelectionLayout.class)));
+            ScreenNavigator.gotoScreen(new SelectionScreen(PlaySelectionLayout.class)));
     }
 
-    public static TextButton builderButton(Game game) {
+    public static TextButton builderButton() {
         return createButton("Build Level", () ->
-            game.setScreen(new SelectionScreen(game, BuilderSelectionLayout.class)));
+            ScreenNavigator.gotoScreen(new SelectionScreen(BuilderSelectionLayout.class)));
     }
 
     public static TextButton exitButton() {

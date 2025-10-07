@@ -9,15 +9,13 @@ import game.common.rendering.component.TextLabel;
 import game.resources.Assets;
 
 public class WinWindow extends Window {
-    private final Game game;
     private final TextLabel winLabel;
     private final ExitLevelButton exitLevelButton;
 
-    public WinWindow(Game game) {
+    public WinWindow() {
         super("", Assets.getSkin());
-        this.game = game;
         winLabel = new TextLabel("YOU WIN!");
-        exitLevelButton = new ExitLevelButton(game);
+        exitLevelButton = new ExitLevelButton();
 
         setupLayout();
     }
