@@ -3,17 +3,11 @@ package game.scene.level.logic.editor.execution;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import game.common.CollisionContext;
-import game.common.logic.zone.Zone;
-import game.scene.level.rendering.LevelScreen;
-import game.scene.level.rendering.component.editor.CodeLine;
-import game.scene.level.rendering.component.editor.EditorLayout;
+import game.common.logic.collision.CollisionContext;
 import game.scene.level.logic.editor.command.Command;
 import game.common.logic.entity.Entity;
-import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -68,6 +62,9 @@ public final class Executor implements TimeController {
 
             //sequence.addAction(Actions.run(() -> codeLine.setCompleting(true)));
             sequence.addAction(Actions.run(() -> currentLineNum = finalI));
+
+            sequence.addAction(Actions.run(() -> System.out.println("Executing " + currentLineNum)));
+
             sequence.addAction(new TimedAction(this));
             //sequence.addAction(Actions.run(() -> editorLayout.getRoot().getStatusBar().update(currentCmd, target)));
             //sequence.addAction(Actions.run(() -> codeLine.setCompleting(false)));

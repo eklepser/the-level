@@ -1,14 +1,12 @@
 package game.scene.level.logic;
 
-import game.common.CollisionContext;
+import game.common.logic.collision.CollisionContext;
 import game.common.logic.AbstractLevel;
 import game.common.logic.collision.CollisionHandler;
 import game.common.logic.entity.Entity;
-import game.common.logic.zone.Zone;
-import game.common.tilemap.TileMap;
-import game.common.tilemap.ZoneTile;
+import game.common.logic.collision.zone.Zone;
+import game.common.rendering.tilemap.TileMap;
 import game.scene.level.logic.editor.execution.Executor;
-import game.scene.level.rendering.LevelLayout;
 import game.scene.level.rendering.LevelScreen;
 
 import java.util.ArrayList;
@@ -25,10 +23,9 @@ public final class Level extends AbstractLevel {
 
         loadZones(map);
         entitiesToAdd = new ArrayList<>();
-        collisionHandler = new CollisionHandler(map, zones, entities);
 
         CollisionContext collisionContext = new CollisionContext(map.collision, zones, entities);
-
+        collisionHandler = new CollisionHandler(collisionContext);
         executor = new Executor(config, collisionContext);
 
         spawnEntity((int) startPos.x, (int) startPos.y);
@@ -43,6 +40,10 @@ public final class Level extends AbstractLevel {
         }
         entities.forEach(Entity::update);
         entities.forEach(entity -> entity.act(delta));
+    }
+
+    public void runExecution(List<String> inputLines) {
+        executor.runExecution(inputLines);
     }
 
     public void reset() {

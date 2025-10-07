@@ -5,30 +5,28 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.TextLabel;
-import game.scene.level.logic.LevelConfiguration;
 import game.common.logic.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CodeLayout extends TableLayout {
+public class CodeField extends TableLayout {
     private final EditorLayout root;
-    private final LevelConfiguration conf;
+    private final int linesAmount;
+
     private ScrollPane codeScrollPane;
     private final List<CodeLine> codeLines = new ArrayList<>();
     private int selectedLine = -1;
 
-    public CodeLayout(EditorLayout root, LevelConfiguration conf) {
+    public CodeField(EditorLayout root, int linesAmount) {
         this.root = root;
-        this.conf = conf;
+        this.linesAmount = linesAmount;
+
+        setup();
     }
 
     @Override
     public void setup() {
-        createCodeLines(conf.codeLinesNum);
-    }
-
-    private void createCodeLines(int linesAmount) {
         clear();
         for (int i = 0; i < linesAmount; i++) {
             row();
@@ -74,4 +72,13 @@ public class CodeLayout extends TableLayout {
     }
 
     public List<CodeLine> getCodeLines() { return codeLines; }
+
+    public List<String> getCodeLinesText() {
+        List<String> inputLines = new ArrayList<>();
+        for (CodeLine codeLine : codeLines) {
+            String text = codeLine.getText() == null ? "" : codeLine.getText();
+            inputLines.add(text);
+        }
+        return inputLines;
+    }
 }
