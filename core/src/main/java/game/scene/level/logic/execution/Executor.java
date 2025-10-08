@@ -21,7 +21,6 @@ public final class Executor implements TimeController {
     private Map<Integer, Command> codeMap;
 
     private float executionDelay = 0.5f;
-    private int currentLineNum;
 
     public Executor(LevelConfiguration config, Level level) {
         translator = new Translator(config.allowedInstructions, this);
@@ -31,18 +30,12 @@ public final class Executor implements TimeController {
         //codeLines = editorLayout.getCodeLayout().getCodeLines();
     }
 
-    @Override
-    public float getDelay() {
-        return executionDelay;
-    }
-
     // Class logic:
     public void runExecution(List<String> inputLines) {
         TranslationResult result = translator.translateAll(inputLines);
         if (result.success()) {
             codeMap = translator.getCodeMap();
             execute(0, codeMap);
-            //editorLayout.getRoot().getStatusBar().start();
         }
     }
 
@@ -62,26 +55,21 @@ public final class Executor implements TimeController {
 
             if (currentCmd == null) continue;
 
-            int finalI = i;
-
-            //sequence.addAction(Actions.run(() -> codeLine.setCompleting(true)));
-            sequence.addAction(Actions.run(() -> currentLineNum = finalI));
-
-            //sequence.addAction(Actions.run(() -> System.out.println("Executing " + currentLineNum)));
+            // notify all level subscribers
             sequence.addAction(Actions.run(() ->
                 level.fire(new NewCommandEvent(currentCmd))));
 
+            // time delay
             sequence.addAction(new TimedAction(this));
-            //sequence.addAction(Actions.run(() -> editorLayout.getRoot().getStatusBar().update(currentCmd, target)));
-            //sequence.addAction(Actions.run(() -> codeLine.setCompleting(false)));
 
+            // add new command to target
             sequence.addAction(Actions.run(() -> {
                 target.setAnimationSpeed(this.executionDelay / 4.0f);
                 currentCmd.execute(target);
             }));
         }
 
-        sequence.addAction(new TimedAction(this));
+        //sequence.addAction(new TimedAction(this));
         //sequence.addAction(Actions.run(editorLayout::stop));
         return sequence;
     }
@@ -91,6 +79,15 @@ public final class Executor implements TimeController {
     }
 
     // Getters & setters:
+    @Override
+    public float getDelay() {
+        return executionDelay;
+    }
+
+    public void setExecutionDelay(float executionDelay) {
+        this.executionDelay = executionDelay;
+    }
+
     public CollisionContext getCollisionContext() {
         return collisionContext;
     }
@@ -98,6 +95,4 @@ public final class Executor implements TimeController {
     public Map<Integer, Command> getCodeMap() {
         return codeMap;
     }
-
-    public int getCurrentLineNum() { return currentLineNum; }
 }

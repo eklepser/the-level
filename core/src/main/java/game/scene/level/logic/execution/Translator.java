@@ -111,9 +111,9 @@ public final class Translator {
     private String uncomment(String text) {
         if (text.isBlank() || text.startsWith(";")) return "";
         if (!text.contains(";")) return text;
-        String[] commentarySplited = text.split(";");
-        if (commentarySplited.length > 1) {
-            return commentarySplited[0];
+        String[] commentarySplit = text.split(";");
+        if (commentarySplit.length > 1) {
+            return commentarySplit[0];
         }
         else return "";
     }

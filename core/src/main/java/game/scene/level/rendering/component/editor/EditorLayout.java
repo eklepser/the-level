@@ -15,7 +15,6 @@ public final class EditorLayout extends TableLayout {
     private final Level level;
 
     private final CodeField codeField;
-
     private final TextLabel statusLabel;
     private final ShowCommandsButton showCommandsButton;
     private final ParametersLayout parametersLayout;
