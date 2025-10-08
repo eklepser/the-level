@@ -6,8 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import game.common.rendering.CommandIconFactory;
 import game.common.rendering.TableLayout;
-import game.scene.level.logic.command.Command;
 import game.resources.Assets;
+import game.scene.level.logic.command.Command;
 
 import java.util.LinkedList;
 

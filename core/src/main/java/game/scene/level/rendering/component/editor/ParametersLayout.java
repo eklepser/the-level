@@ -6,8 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.TextLabel;
-import game.scene.level.logic.Level;
 import game.resources.Assets;
+import game.scene.level.logic.Level;
 
 public final class ParametersLayout extends TableLayout {
     private final TextLabel label;

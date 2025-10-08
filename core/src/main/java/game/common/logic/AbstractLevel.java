@@ -1,8 +1,8 @@
 package game.common.logic;
 
 import com.badlogic.gdx.math.Vector2;
-import game.common.logic.entity.Entity;
 import game.common.logic.collision.zone.Zone;
+import game.common.logic.entity.Entity;
 import game.common.logic.event.EventSource;
 import game.common.rendering.tilemap.BaseConfiguration;
 import game.common.rendering.tilemap.TileMap;

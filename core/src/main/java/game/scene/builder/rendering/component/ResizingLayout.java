@@ -3,13 +3,12 @@ package game.scene.builder.rendering.component;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import game.scene.builder.logic.Builder;
-import game.scene.builder.rendering.BuilderScreen;
-import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.InputField;
 import game.common.rendering.component.TextLabel;
+import game.common.rendering.tilemap.TileMap;
 import game.resources.Assets;
+import game.scene.builder.logic.Builder;
 
 import static game.utils.NumberUtils.tryParseInt;
 

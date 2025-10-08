@@ -1,6 +1,5 @@
 package game.scene.level.logic.command;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import game.common.logic.Direction;
 import game.scene.level.logic.condition.Condition;
 import game.scene.level.logic.condition.ConditionFactory;

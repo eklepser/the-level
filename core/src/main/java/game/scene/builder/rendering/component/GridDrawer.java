@@ -4,12 +4,12 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import game.config.Display;
-import game.scene.builder.logic.Builder;
-import game.scene.builder.logic.event.TilePlacedEvent;
 import game.common.rendering.tilemap.TileDefinition;
 import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.tilemap.ZoneTile;
+import game.config.Display;
+import game.scene.builder.logic.Builder;
+import game.scene.builder.logic.event.TilePlacedEvent;
 
 public final class GridDrawer extends Actor {
     private final TileMap map;

@@ -6,7 +6,6 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
 import game.config.Paths;
 import game.scene.level.logic.LevelConfiguration;
-import game.scene.level.logic.command.Instruction;
 
 public final class LevelSaver {
     private LevelSaver() {

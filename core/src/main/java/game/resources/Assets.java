@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import game.common.rendering.tilemap.Tileset;
 import game.config.Display;
 import game.config.Paths;
-import game.common.rendering.tilemap.Tileset;
 
 public final class Assets {
     private Assets() {

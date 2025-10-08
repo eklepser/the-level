@@ -2,9 +2,9 @@ package game.scene.menu.rendering;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import game.common.rendering.ButtonFactory;
 import game.common.rendering.screen.ScreenNavigator;
 import game.common.rendering.tilemap.BaseConfiguration;
-import game.common.rendering.ButtonFactory;
 import game.scene.selection.rendering.BuilderSelectionLayout;
 import game.scene.selection.rendering.PlaySelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;

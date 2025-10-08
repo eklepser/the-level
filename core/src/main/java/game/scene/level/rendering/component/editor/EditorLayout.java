@@ -3,12 +3,12 @@ package game.scene.level.rendering.component.editor;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import game.config.Display;
 import game.common.rendering.TableLayout;
-import game.scene.level.rendering.LevelLayout;
 import game.common.rendering.component.TextLabel;
-import game.scene.level.logic.Level;
+import game.config.Display;
 import game.resources.Assets;
+import game.scene.level.logic.Level;
+import game.scene.level.rendering.LevelLayout;
 
 public final class EditorLayout extends TableLayout {
     private final LevelLayout root;

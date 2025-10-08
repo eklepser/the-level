@@ -1,21 +1,16 @@
 package game.scene.builder.rendering.component;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.JsonWriter;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.InputField;
 import game.common.rendering.component.TextLabel;
-import game.config.Paths;
-import game.resources.LevelSaver;
-import game.scene.level.logic.command.Instruction;
-import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
+import game.resources.LevelSaver;
+import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.command.Instruction;
 
 public final class ConfigTable extends TableLayout {
     private final LevelConfiguration config;

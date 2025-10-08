@@ -7,8 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.ColoredString;
 import game.common.rendering.component.TextLabel;
-import game.scene.level.logic.command.Instruction;
 import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.command.Instruction;
 
 public final class LevelStatusLayout extends TableLayout {
     private final ColoredString levelString;

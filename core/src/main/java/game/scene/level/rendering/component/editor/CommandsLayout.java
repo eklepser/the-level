@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.TextLabel;
-import game.scene.level.logic.command.Instruction;
 import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.command.Instruction;
 
 import java.util.List;
 

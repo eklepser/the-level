@@ -2,11 +2,11 @@ package game.scene.builder.rendering;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import game.common.rendering.screen.ScreenNavigator;
 import game.common.input.BaseInputHandler;
 import game.common.input.BaseInputListener;
 import game.common.rendering.screen.DynamicGameCamera;
 import game.common.rendering.screen.GameScreen;
+import game.common.rendering.screen.ScreenNavigator;
 import game.config.Display;
 import game.scene.builder.logic.Builder;
 import game.scene.level.logic.LevelConfiguration;

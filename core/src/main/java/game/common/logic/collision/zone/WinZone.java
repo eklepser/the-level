@@ -1,8 +1,7 @@
 package game.common.logic.collision.zone;
 
-import game.scene.level.logic.Level;
-import game.scene.level.window.WinWindow;
 import game.common.logic.entity.Entity;
+import game.scene.level.logic.Level;
 
 public final class WinZone extends Zone {
     private final Level level;

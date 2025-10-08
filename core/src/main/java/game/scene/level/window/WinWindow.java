@@ -1,12 +1,11 @@
 package game.scene.level.window;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
-import game.config.Display;
-import game.scene.level.rendering.component.ExitLevelButton;
 import game.common.rendering.component.TextLabel;
+import game.config.Display;
 import game.resources.Assets;
+import game.scene.level.rendering.component.ExitLevelButton;
 
 public class WinWindow extends Window {
     private final TextLabel winLabel;

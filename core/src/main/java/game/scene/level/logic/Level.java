@@ -1,11 +1,11 @@
 package game.scene.level.logic;
 
-import game.common.logic.collision.CollisionContext;
 import game.common.logic.AbstractLevel;
+import game.common.logic.collision.CollisionContext;
 import game.common.logic.collision.CollisionHandler;
 import game.common.logic.collision.zone.WinZone;
-import game.common.logic.entity.Entity;
 import game.common.logic.collision.zone.Zone;
+import game.common.logic.entity.Entity;
 import game.common.rendering.tilemap.TileMap;
 import game.scene.level.logic.event.WinEvent;
 import game.scene.level.logic.execution.Executor;

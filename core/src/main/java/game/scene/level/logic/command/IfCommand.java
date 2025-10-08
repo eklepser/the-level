@@ -1,9 +1,9 @@
 package game.scene.level.logic.command;
 
 import game.common.logic.collision.CollisionContext;
+import game.common.logic.entity.Entity;
 import game.scene.level.logic.condition.Condition;
 import game.scene.level.logic.execution.Executor;
-import game.common.logic.entity.Entity;
 
 public final class IfCommand extends Command {
     private final Condition condition;

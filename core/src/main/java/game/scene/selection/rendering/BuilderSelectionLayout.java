@@ -3,14 +3,14 @@ package game.scene.selection.rendering;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import game.common.rendering.screen.ScreenNavigator;
-import game.config.Display;
 import game.common.rendering.TableLayout;
-import game.scene.builder.rendering.BuilderScreen;
 import game.common.rendering.component.TextLabel;
+import game.common.rendering.screen.ScreenNavigator;
 import game.common.rendering.tilemap.BaseConfiguration;
-import game.scene.level.logic.LevelConfiguration;
+import game.config.Display;
 import game.resources.Assets;
+import game.scene.builder.rendering.BuilderScreen;
+import game.scene.level.logic.LevelConfiguration;
 import game.scene.selection.logic.LevelMetadata;
 
 import java.util.List;

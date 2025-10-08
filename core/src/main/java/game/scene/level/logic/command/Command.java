@@ -1,6 +1,5 @@
 package game.scene.level.logic.command;
 
-import game.scene.level.logic.execution.Executor;
 import game.common.logic.entity.Entity;
 
 public abstract class Command {

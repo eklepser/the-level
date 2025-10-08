@@ -1,6 +1,5 @@
 package game.scene.menu.rendering;
 
-import com.badlogic.gdx.Game;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.ColoredString;
 import game.config.Display;

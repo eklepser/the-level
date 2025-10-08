@@ -4,14 +4,14 @@ import com.badlogic.gdx.math.Vector2;
 import game.common.logic.collision.CollisionContext;
 import game.common.logic.collision.CollisionHandler;
 import game.common.logic.collision.zone.Zone;
-import game.common.rendering.tilemap.ZoneTile;
-import game.common.rendering.tilemap.TileMap;
+import game.common.logic.entity.Entity;
 import game.common.rendering.screen.GameScreen;
+import game.common.rendering.tilemap.TileMap;
+import game.common.rendering.tilemap.ZoneTile;
 import game.resources.LevelLoader;
 import game.scene.level.rendering.LevelLayout;
 import game.scene.selection.logic.LevelMetadata;
 import game.scene.world.rendering.WorldScreen;
-import game.common.logic.entity.Entity;
 
 import java.util.ArrayList;
 import java.util.List;
