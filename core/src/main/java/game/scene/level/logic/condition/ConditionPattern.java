@@ -4,19 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum ConditionPattern {
-    FACING(FacingCondition.class, "facing", 1, "word", new ArrayList<>(List.of(
+    FACING("facing", 1, "word", new ArrayList<>(List.of(
         "r", "g", "b", "red", "green", "blue", "wall"))),
-    NONE(FacingCondition.class, "none", 0, "none", null);
+    FALSE("false", 0, "none", null);
 
-    public final Class<? extends Condition> conditionClass;
     public final String name;
     public final int argsNum;
     public final String argsType;
     public final ArrayList<String> allowedArgs;
 
-    ConditionPattern(Class<? extends Condition> conditionClass, String name,
+    ConditionPattern(String name,
                      int argsNum, String argsType, ArrayList<String> allowedArgs) {
-        this.conditionClass = conditionClass;
         this.name = name;
         this.argsNum = argsNum;
         this.argsType = argsType;
@@ -29,6 +27,6 @@ public enum ConditionPattern {
                 return conditionPattern;
             }
         }
-        return NONE;
+        return FALSE;
     }
 }

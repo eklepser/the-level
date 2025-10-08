@@ -6,13 +6,10 @@ import game.common.logic.collision.zone.Zone;
 import game.common.logic.entity.Entity;
 
 public class FacingCondition extends Condition {
-    private final String targetObject;
+    private final String zoneName;
 
-    public FacingCondition(String arg) {
-        if (arg.equals("r")) arg = "red";
-        if (arg.equals("g")) arg = "green";
-        if (arg.equals("b")) arg = "blue";
-        this.targetObject = arg;
+    public FacingCondition(String zoneName) {
+        this.zoneName = zoneName;
     }
 
     @Override
@@ -22,19 +19,19 @@ public class FacingCondition extends Condition {
 
         System.out.println(target.getFacingDirection());
 
-        if (targetObject.equals("wall")) {
+        if (zoneName.equals("wall")) {
             return collisionContext.collisionMap()[targetY][targetX] == 1;
         }
 
         for (Zone zone : collisionContext.zones()) {
             if (!(zone instanceof ColoredZone colored)) continue;
-            if (!colored.getColorName().equals(targetObject)) continue;
+            if (!colored.getColorName().equals(zoneName)) continue;
             return (targetX == zone.getX() && targetY == zone.getY());
         }
         return false;
     }
 
-    public String getTargetObject() {
-        return targetObject;
+    public String getZoneName() {
+        return zoneName;
     }
 }

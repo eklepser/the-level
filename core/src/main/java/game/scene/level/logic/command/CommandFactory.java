@@ -3,6 +3,7 @@ package game.scene.level.logic.command;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import game.common.logic.Direction;
 import game.scene.level.logic.condition.Condition;
+import game.scene.level.logic.condition.ConditionFactory;
 import game.scene.level.logic.execution.Executor;
 
 import java.util.Arrays;
@@ -46,7 +47,7 @@ public final class CommandFactory {
     }
 
     private static Command ifCommand(int lineNum, String[] args, Executor executor) {
-        Condition condition = Condition.from(args[0].toLowerCase(), args[1].toLowerCase());
+        Condition condition = ConditionFactory.condition(args[0].toLowerCase(), args[1].toLowerCase());
 
         String newInstruction = args[2];
         String[] newInstructionArgs = Arrays.copyOfRange(args, 3, args.length);
