@@ -1,14 +1,17 @@
 package game.scene.builder.rendering;
 
+import game.common.logic.event.EventListener;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.TextLabel;
 import game.resources.Assets;
+import game.scene.builder.logic.Builder;
+import game.scene.builder.logic.event.BuilderEvent;
 import game.scene.builder.rendering.component.ConfigTable;
 import game.scene.builder.rendering.component.ResizingLayout;
 import game.scene.builder.rendering.component.Statusbar;
 import game.scene.builder.rendering.component.TilePalette;
 
-public final class BuilderLayout extends TableLayout {
+public final class BuilderLayout extends TableLayout implements EventListener<BuilderEvent> {
     private final Statusbar statusbar;
     private final ConfigTable configTable;
     private final ResizingLayout resizingLayout;
@@ -18,15 +21,17 @@ public final class BuilderLayout extends TableLayout {
     private final TilePalette zonePalette;
     private final TilePalette utilPalette;
 
-    public BuilderLayout(BuilderScreen screen) {
-        statusbar = new Statusbar(screen);
-        configTable = new ConfigTable(screen.getConfig(), statusbar);
-        resizingLayout = new ResizingLayout(screen);
+    public BuilderLayout(BuilderScreen screen, Builder builder) {
+        builder.subscribe(this);
 
-        groundPalette = new TilePalette(screen.getBuilder(), Assets.getTileset(), 10, 19);
-        wallPalette = new TilePalette(screen.getBuilder(), Assets.getTileset(), 20, 29);
-        zonePalette = new TilePalette(screen.getBuilder(), Assets.getTileset(), 30, 59);
-        utilPalette = new TilePalette(screen.getBuilder(), Assets.getTileset(), 90, 99);
+        statusbar = new Statusbar(screen);
+        configTable = new ConfigTable(builder.getConfig(), statusbar);
+        resizingLayout = new ResizingLayout(builder);
+
+        groundPalette = new TilePalette(builder, Assets.getTileset(), 10, 19);
+        wallPalette = new TilePalette(builder, Assets.getTileset(), 20, 29);
+        zonePalette = new TilePalette(builder, Assets.getTileset(), 30, 59);
+        utilPalette = new TilePalette(builder, Assets.getTileset(), 90, 99);
 
         setup();
     }
@@ -61,9 +66,10 @@ public final class BuilderLayout extends TableLayout {
         add(statusbar).colspan(2).padBottom(10).fillX();
     }
 
-//    public void update() {
-//        statusbar.update();
-//    }
+    @Override
+    public void onEvent(BuilderEvent event) {
+        statusbar.update();
+    }
 
     //Getters:
     public ConfigTable getConfigTable() { return configTable; }

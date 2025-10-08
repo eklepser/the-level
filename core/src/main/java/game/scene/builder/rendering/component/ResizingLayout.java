@@ -3,6 +3,7 @@ package game.scene.builder.rendering.component;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import game.scene.builder.logic.Builder;
 import game.scene.builder.rendering.BuilderScreen;
 import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.TableLayout;
@@ -13,7 +14,7 @@ import game.resources.Assets;
 import static game.utils.NumberUtils.tryParseInt;
 
 public final class ResizingLayout extends TableLayout {
-    private final BuilderScreen screen;
+    private final Builder builder;
     private final TileMap map;
 
     private final TextLabel widthLabel;
@@ -27,9 +28,9 @@ public final class ResizingLayout extends TableLayout {
 
     private final TextButton applyButton;
 
-    public ResizingLayout(BuilderScreen screen) {
-        this.screen = screen;
-        map = screen.getMap();
+    public ResizingLayout(Builder builder) {
+        this.builder = builder;
+        map = builder.getMap();
 
         widthLabel = new TextLabel(String.format("X(%s)", map.width));
         heightLabel = new TextLabel(String.format("Y(%s)", map.height));
@@ -44,7 +45,14 @@ public final class ResizingLayout extends TableLayout {
         applyButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                resizeMap();
+                int width = parseSize(map.width, inputWidth.getText());
+                int height = parseSize(map.height, inputHeight.getText());
+                int offsetX = tryParseInt(inputOffsetX.getText(), 0);
+                int offsetY = tryParseInt(inputOffsetY.getText(), 0);
+
+                builder.resizeMap(width, height, offsetX, offsetY);
+
+                updateLabels();
             }
         });
 
@@ -76,18 +84,9 @@ public final class ResizingLayout extends TableLayout {
         add(applyButton).colspan(2).fillX();
     }
 
-    // Class logic:
-    private void resizeMap() {
-        int width = parseSize(map.width, inputWidth.getText());
-        int height = parseSize(map.width, inputHeight.getText());
-        int offsetX = tryParseInt(inputOffsetX.getText(), 0);
-        int offsetY = tryParseInt(inputOffsetY.getText(), 0);
-
-        map.resize(width, height);
-        map.offset(offsetX, offsetY);
-
-        screen.getGridActor().update();
-        updateLabels();
+    private void updateLabels() {
+        widthLabel.setText(String.format("X(%s)", map.width));
+        heightLabel.setText(String.format("Y(%s)", map.height));
     }
 
     private int parseSize(int startSize, String sizeText) {
@@ -104,10 +103,5 @@ public final class ResizingLayout extends TableLayout {
         if (newSize > 0) {
             return newSize;
         } else return startSize;
-    }
-
-    private void updateLabels() {
-        widthLabel.setText(String.format("X(%s)", map.width));
-        heightLabel.setText(String.format("Y(%s)", map.height));
     }
 }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import game.config.Display;
 import game.scene.builder.logic.Builder;
+import game.scene.builder.logic.event.PlacedTileEvent;
 import game.scene.builder.rendering.BuilderScreen;
 import game.common.rendering.tilemap.TileDefinition;
 import game.common.rendering.tilemap.TileMap;
@@ -14,15 +15,14 @@ import game.common.rendering.tilemap.ZoneTile;
 public final class GridActor extends Actor {
     private final TileMap map;
 
-    public GridActor(BuilderScreen screen) {
-        map = screen.getMap();
+    public GridActor(Builder builder) {
+        this.map = builder.getMap();
+        setDebug(true);
 
         setSize(map.width * Display.TILE_SIZE,
             map.height * Display.TILE_SIZE);
 
-        addListener(new GridListener(screen));
-
-        setDebug(true);
+        addListener(new GridListener(builder));
     }
 
     @Override
@@ -30,24 +30,20 @@ public final class GridActor extends Actor {
         map.draw(batch, 0);
     }
 
-    public void update() {
+    public void resize() {
         setSize(map.width * Display.TILE_SIZE,
             map.height * Display.TILE_SIZE);
-
-        setDebug(true);
     }
 }
 
 // Input listener class for GridActor:
 final class GridListener extends InputListener {
-    private final BuilderScreen screen;
     private final TileMap map;
     private final Builder builder;
 
-    public GridListener(BuilderScreen screen) {
-        this.screen = screen;
-        map = screen.getMap();
-        builder = screen.getBuilder();
+    public GridListener(Builder builder) {
+        this.builder = builder;
+        map = builder.getMap();
     }
 
     @Override
@@ -70,8 +66,9 @@ final class GridListener extends InputListener {
         int mapX = x / Display.TILE_SIZE;
         int mapY = y / Display.TILE_SIZE;
 
-        TileDefinition def = builder.getSelectedTileDef();
-        switch (def.type) {
+        TileDefinition tileDefinition = builder.getSelectedTileDef();
+        builder.fire(new PlacedTileEvent(tileDefinition));
+        switch (tileDefinition.type) {
             case "ground":
                 map.tiles[mapY][mapX] = builder.getSelectedTileDef().id;
                 map.collision[mapY][mapX] = 0;
@@ -81,7 +78,7 @@ final class GridListener extends InputListener {
                 map.collision[mapY][mapX] = 1;
                 break;
             case "zone":
-                ZoneTile newZone = new ZoneTile(def.id, mapX, mapY, def.zoneType, def.zoneProperties);
+                ZoneTile newZone = new ZoneTile(tileDefinition.id, mapX, mapY, tileDefinition.zoneType, tileDefinition.zoneProperties);
                 map.removeZoneByPos(mapX, mapY);
                 map.zones.add(newZone);
                 break;
@@ -94,7 +91,6 @@ final class GridListener extends InputListener {
                 break;
         }
 
-        String message = String.format("%s (%s) placed on (%s, %s)", def.type, def.id, mapX, mapY);
-        //screen.getLayout().getStatusBar().setActionText(message);
+        String message = String.format("%s (%s) placed on (%s, %s)", tileDefinition.type, tileDefinition.id, mapX, mapY);
     }
 }

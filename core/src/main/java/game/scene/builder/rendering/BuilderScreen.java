@@ -18,24 +18,20 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
     private final DynamicGameCamera camera;
     private final Builder builder;
 
-    private final LevelConfiguration config;
     private final Stage gridStage;
-    private final GridActor gridActor;
 
     public BuilderScreen(LevelConfiguration config) {
         super(config.tileMap);
 
         camera = new DynamicGameCamera();
-        this.config = config;
         builder = new Builder(config);
 
         // Order is important! Builder -> gridStage -> layout.
-        gridActor = new GridActor(this);
         gridStage = new Stage(new FitViewport(
             Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT, camera));
-        gridStage.addActor(gridActor);
+        gridStage.addActor(builder.getGridActor());
 
-        stage.addActor(new BuilderLayout(this));
+        stage.addActor(new BuilderLayout(this, builder));
     }
 
     @Override
@@ -44,6 +40,7 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
             map.height * Display.TILE_SIZE);
 
         multiplexer.addProcessor(new BaseInputHandler(this));
+
         multiplexer.addProcessor(gridStage);
     }
 
@@ -88,20 +85,12 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
     }
 
     // Getters:
-    public LevelConfiguration getConfig() {
-        return config;
-    }
-
     public Builder getBuilder() {
         return builder;
     }
 
     public Stage getGridStage() {
         return gridStage;
-    }
-
-    public GridActor getGridActor() {
-        return gridActor;
     }
 
     public DynamicGameCamera getCamera() {
