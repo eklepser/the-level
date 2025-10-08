@@ -44,7 +44,7 @@ public enum Instruction {
         this.iconPath = iconPath;
     }
 
-    public static Instruction from(String name) {
+    public static Instruction getByName(String name) {
         for (Instruction instruction : values()) {
             if (instruction.name.equals(name.toLowerCase())) {
                 return instruction;
@@ -53,10 +53,10 @@ public enum Instruction {
         return NONE;
     }
 
-    public static List<Instruction> listFrom(String[] names) {
+    public static List<Instruction> getListByName(String[] names) {
         List<Instruction> instructions = new ArrayList<>();
         for (String name : names) {
-            instructions.add(from(name));
+            instructions.add(getByName(name));
         }
         return  instructions;
     }

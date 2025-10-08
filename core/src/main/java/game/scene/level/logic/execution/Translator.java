@@ -1,6 +1,7 @@
 package game.scene.level.logic.execution;
 
 import game.scene.level.logic.command.Command;
+import game.scene.level.logic.command.CommandFactory;
 import game.scene.level.logic.command.Instruction;
 import game.scene.level.logic.condition.ConditionPattern;
 
@@ -45,7 +46,7 @@ public final class Translator {
         String[] args;
 
         if (allowedInstructionNames.contains(instructionName)) {
-            instruction = Instruction.from(instructionName);
+            instruction = Instruction.getByName(instructionName);
             args = Arrays.copyOfRange(words, 1, words.length);
         }
         else {
@@ -101,7 +102,7 @@ public final class Translator {
             if (!result.success()) return result;
         }
 
-        Command command = Command.from(lineNum, instructionName, args, executor);
+        Command command = CommandFactory.command(lineNum, instructionName, args, executor);
         codeMap.put(command.getLineNum(), command);
 
         return new TranslationResult(true, "Successfully translated");

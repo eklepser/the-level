@@ -10,10 +10,9 @@ public class GotoCommand extends Command {
     private final int targetLineNum;
     private final Executor executor;
 
-    public GotoCommand(int lineNum, String[] args, Executor executor) {
+    public GotoCommand(int lineNum, int targetLineNum, Executor executor) {
         super(lineNum);
-
-        this.targetLineNum = Integer.parseInt(args[0]);
+        this.targetLineNum = targetLineNum;
         this.executor = executor;
     }
 

@@ -9,9 +9,8 @@ import game.common.logic.entity.Entity;
 public class EndCommand extends Command {
     private final Executor executor;
 
-    public EndCommand(int lineNum, String[] args, Executor executor) {
+    public EndCommand(int lineNum, Executor executor) {
         super(lineNum);
-
         this.executor = executor;
     }
 

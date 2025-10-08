@@ -14,17 +14,10 @@ public class IfCommand extends Command {
     private final Command innerCommand;
     private final CollisionContext collisionContext;
 
-    public IfCommand(int lineNum, String[] args, Executor executor) {
+    public IfCommand(int lineNum, Condition condition, Command innerCommand, Executor executor) {
         super(lineNum);
-
-        String conditionName = args[0].toLowerCase();
-        String conditionArg = args[1].toLowerCase();
-        condition = Condition.from(conditionName, conditionArg);
-
-        String newInstruction = args[2];
-        String[] newArgs = Arrays.copyOfRange(args, 3, args.length);
-        innerCommand = Command.from(lineNum, newInstruction, newArgs, executor);
-
+        this.condition = condition;
+        this.innerCommand = innerCommand;
         collisionContext = executor.getCollisionContext();
     }
 
@@ -33,7 +26,7 @@ public class IfCommand extends Command {
         System.out.println("IF");
         if (condition.check(target, collisionContext))
         {
-            System.out.println("EXECUTING COND CMD");
+            System.out.println("EXECUTING INNER COMMAND");
             innerCommand.execute(target);
         }
     }
@@ -45,16 +38,4 @@ public class IfCommand extends Command {
     public Command getInnerCommand() {
         return innerCommand;
     }
-
-//    public Image[] getIcons() {
-//        Image commandImage = new Image(new Texture(Gdx.files.internal("ui/icon/if.png")));
-//        Image conditionImage = condition.getIcon();
-//        if (condition.check(target, collisionContext)) {
-//            Image conditionCommandImage = innerCommand.getIcons()[0];
-//            return new Image[] {conditionImage, conditionCommandImage};
-//        }
-//        commandImage.setColor(Color.DARK_GRAY);
-//        conditionImage.setColor(Color.DARK_GRAY);
-//        return new Image[] {conditionImage};
-//    }
 }

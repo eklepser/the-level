@@ -124,7 +124,7 @@ public final class ConfigTable extends TableLayout {
         }
 
         // AllowedInstructions parse:
-        newConfig.allowedInstructions = Instruction.listFrom(allowedCommands.getText().split("\\s++"));
+        newConfig.allowedInstructions = Instruction.getListByName(allowedCommands.getText().split("\\s++"));
 
         return true;
     }

@@ -8,9 +8,10 @@ import game.common.logic.Direction;
 
 public class RotateCommand extends Command {
     private final Direction direction;
-    public RotateCommand(int lineNum, String[] args) {
+
+    public RotateCommand(int lineNum, Direction direction) {
         super(lineNum);
-        this.direction = Direction.getByName(args[0]);
+        this.direction = direction;
     }
 
     @Override

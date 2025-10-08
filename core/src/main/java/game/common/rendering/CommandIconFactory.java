@@ -13,6 +13,9 @@ public final class CommandIconFactory {
         if (command instanceof MoveCommand moveCommand) {
             return moveIcon(moveCommand);
         }
+        if (command instanceof RotateCommand rotateCommand) {
+            return rotateIcon(rotateCommand);
+        }
         if (command instanceof GotoCommand gotoCommand) {
             return gotoIcon(gotoCommand);
         }
@@ -21,9 +24,6 @@ public final class CommandIconFactory {
         }
         if (command instanceof EndCommand endCommand) {
             return endIcon(endCommand);
-        }
-        if (command instanceof RotateCommand rotateCommand) {
-            return rotateIcon(rotateCommand);
         }
         return noneIcon();
     }

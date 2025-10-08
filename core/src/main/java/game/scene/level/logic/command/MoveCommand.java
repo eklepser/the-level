@@ -9,10 +9,9 @@ import game.common.logic.Direction;
 public class MoveCommand extends Command {
     private final Direction direction;
 
-    public MoveCommand(int lineNum, String[] args) {
+    public MoveCommand(int lineNum, Direction direction) {
         super(lineNum);
-
-        direction = Direction.getByName(args[0].toLowerCase());
+        this.direction = direction;
     }
 
     @Override
