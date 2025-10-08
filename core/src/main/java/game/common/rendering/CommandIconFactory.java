@@ -51,9 +51,15 @@ public final class CommandIconFactory {
         return new Image[] {image};
     }
 
-    private static Image[] ifIcon(IfCommand ifCmd) {
+    private static Image[] ifIcon(IfCommand ifCommand) {
         Image ifImage = new Image(new Texture(Gdx.files.internal("ui/icon/if.png")));
-        Image conditionIcon = ConditionIconFactory.conditionIcon(ifCmd.getCondition());
+        Image conditionIcon = ConditionIconFactory.conditionIcon(ifCommand.getCondition());
+
+        if (ifCommand.isTrue()) {
+            Image innerCommandIcon = CommandIconFactory.commandIcon(ifCommand.getInnerCommand())[0];
+            return new Image[] {ifImage, conditionIcon, innerCommandIcon};
+        }
+
         return new Image[] {ifImage, conditionIcon};
     }
 
