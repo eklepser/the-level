@@ -1,13 +1,11 @@
 package game.scene.level.logic.command;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import game.common.logic.entity.Entity;
 import game.common.logic.Direction;
+import game.common.logic.entity.Entity;
 
 public class MoveCommand extends Command {
     private final Direction direction;
+    private Direction concreteDirection;
 
     public MoveCommand(int lineNum, Direction direction) {
         super(lineNum);
@@ -17,10 +15,21 @@ public class MoveCommand extends Command {
     @Override
     public void execute(Entity target) {
         System.out.println("MOVE " + direction.name());
-        target.setTargetWorldPos(direction);
+        if (direction.equals(Direction.FORWARD)) {
+            System.out.println(target.getFacingDirection());
+            concreteDirection = target.getFacingDirection();
+        }
+        else {
+            concreteDirection = direction;
+        }
+        target.setTargetWorldPos(concreteDirection);
     }
 
     public Direction getDirection() {
         return direction;
+    }
+
+    public Direction getConcreteDirection() {
+        return concreteDirection;
     }
 }

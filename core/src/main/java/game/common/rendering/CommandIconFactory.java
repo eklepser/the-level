@@ -30,9 +30,10 @@ public final class CommandIconFactory {
 
     private static Image[] moveIcon(MoveCommand moveCommand) {
         Direction direction = moveCommand.getDirection();
+        Direction concreteDirection = moveCommand.getConcreteDirection();
         String iconPath;
-        if (direction.name.equals("forward")) {
-            iconPath = "ui/icon/move_forward_" + "up" + ".png";
+        if (direction.equals(Direction.FORWARD)) {
+            iconPath = "ui/icon/move_forward_" + concreteDirection.name+ ".png";
         } else iconPath = "ui/icon/move_" + direction.name + ".png";
         Image image = new Image(new Texture(Gdx.files.internal(iconPath)));
         return new Image[] {image};

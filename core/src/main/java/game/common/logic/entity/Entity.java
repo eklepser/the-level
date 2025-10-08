@@ -60,12 +60,8 @@ public class Entity extends TiledActor {
 
     // Getters & setters
     public void setTargetWorldPos(Direction direction) {
-        if (direction == Direction.FORWARD) {
-            direction = facingDirection;
-        } else {
-            facingDirection = direction;
-            sprite.setRotation(Direction.getDegrees(direction));
-        }
+        facingDirection = direction;
+        sprite.setRotation(Direction.getDegrees(direction));
         targetWorldPos.set(targetWorldPos).add(direction.vector);
     }
 }

@@ -78,8 +78,8 @@ public final class Level extends AbstractLevel {
     }
 
     // Getters & setters:
-    public void setExecutionSpeed(float speed) {
-        executor.setExecutionDelay(speed);
+    public void setExecutionDelay(float delay) {
+        executor.setExecutionDelay(delay);
     }
 
     public CollisionContext getCollisionContext() {

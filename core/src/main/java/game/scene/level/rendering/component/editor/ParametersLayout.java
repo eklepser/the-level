@@ -23,7 +23,7 @@ public final class ParametersLayout extends TableLayout {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 float duration = values[(int) slider.getValue()];
-                level.setExecutionSpeed(1 / duration);
+                level.setExecutionDelay(1 / duration);
                 label.setText("Execution speed: " + duration);
             }
         });
