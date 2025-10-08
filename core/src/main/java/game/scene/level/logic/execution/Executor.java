@@ -8,6 +8,7 @@ import game.common.logic.entity.Entity;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
 import game.scene.level.logic.command.Command;
+import game.scene.level.logic.event.ExecutionStartEvent;
 import game.scene.level.logic.event.NewCommandEvent;
 
 import java.util.List;
@@ -30,8 +31,9 @@ public final class Executor implements TimeController {
 
     // Class logic:
     public void runExecution(List<String> inputLines) {
-        TranslationResult result = translator.translateAll(inputLines);
-        if (result.success()) {
+        TranslationResult translationResult = translator.translateAll(inputLines);
+        level.fire(new ExecutionStartEvent(translationResult));
+        if (translationResult.success()) {
             codeMap = translator.getCodeMap();
             execute(0, codeMap);
         }

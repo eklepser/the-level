@@ -8,6 +8,7 @@ import game.common.rendering.component.ColoredString;
 import game.config.Display;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.command.Command;
+import game.scene.level.logic.event.ExecutionStartEvent;
 import game.scene.level.logic.event.LevelEvent;
 import game.scene.level.logic.event.NewCommandEvent;
 import game.scene.level.rendering.component.LevelStatusbar;
@@ -68,6 +69,10 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
 
     @Override
     public void onEvent(LevelEvent event) {
+        if (event instanceof ExecutionStartEvent startEvent) {
+            String status = startEvent.translationResult.status();
+            editorLayout.getStatusLabel().setText("Status:\n" + status);
+        }
         if (event instanceof NewCommandEvent commandEvent) {
             Command command = commandEvent.command;
 
