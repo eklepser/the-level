@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import game.common.logic.entity.Entity;
 
-public class NoneCommand extends Command {
+public final class NoneCommand extends Command {
 
     public NoneCommand(int lineNum) {
         super(lineNum);

@@ -3,7 +3,7 @@ package game.scene.level.logic.command;
 import game.common.logic.Direction;
 import game.common.logic.entity.Entity;
 
-public class MoveCommand extends Command {
+public final class MoveCommand extends Command {
     private final Direction direction;
     private Direction concreteDirection;
 

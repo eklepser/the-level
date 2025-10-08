@@ -2,7 +2,7 @@ package game.scene.level.logic.event;
 
 import game.scene.level.logic.execution.TranslationResult;
 
-public class ExecutionStartEvent extends LevelEvent {
+public final class ExecutionStartEvent extends LevelEvent {
     public final TranslationResult translationResult;
 
     public ExecutionStartEvent(TranslationResult translationResult) {

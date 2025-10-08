@@ -3,7 +3,7 @@ package game.scene.level.logic.condition;
 import game.common.logic.collision.CollisionContext;
 import game.common.logic.entity.Entity;
 
-public class FalseCondition extends Condition {
+public final class FalseCondition extends Condition {
 
     @Override
     public boolean check(Entity target, CollisionContext collisionContext) {

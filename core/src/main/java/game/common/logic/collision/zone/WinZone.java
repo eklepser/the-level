@@ -4,7 +4,7 @@ import game.scene.level.logic.Level;
 import game.scene.level.window.WinWindow;
 import game.common.logic.entity.Entity;
 
-public class WinZone extends Zone {
+public final class WinZone extends Zone {
     private final Level level;
     private boolean activated = false;
 

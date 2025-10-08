@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import game.common.logic.entity.Entity;
 import game.common.logic.Direction;
 
-public class RotateCommand extends Command {
+public final class RotateCommand extends Command {
     private final Direction direction;
 
     public RotateCommand(int lineNum, Direction direction) {

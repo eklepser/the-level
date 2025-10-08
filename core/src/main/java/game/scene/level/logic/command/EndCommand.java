@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import game.scene.level.logic.execution.Executor;
 import game.common.logic.entity.Entity;
 
-public class EndCommand extends Command {
+public final class EndCommand extends Command {
     private final Executor executor;
 
     public EndCommand(int lineNum, Executor executor) {

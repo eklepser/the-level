@@ -5,7 +5,7 @@ import game.scene.level.logic.condition.Condition;
 import game.scene.level.logic.execution.Executor;
 import game.common.logic.entity.Entity;
 
-public class IfCommand extends Command {
+public final class IfCommand extends Command {
     private final Condition condition;
     private final Command innerCommand;
     private final CollisionContext collisionContext;

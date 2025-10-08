@@ -1,4 +1,4 @@
 package game.scene.level.logic.event;
 
-public class WinEvent extends LevelEvent {
+public final class WinEvent extends LevelEvent {
 }

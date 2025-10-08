@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import game.resources.Assets;
 
-public class CodeLine extends TextField {
+public final class CodeLine extends TextField {
     private final Color lineColor = Color.PURPLE;
     private static final int MAX_LENGTH = 32;
 

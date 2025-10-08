@@ -10,7 +10,7 @@ import game.common.logic.Direction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CodeField extends TableLayout {
+public final class CodeField extends TableLayout {
     private final EditorLayout root;
     private final int linesAmount;
 

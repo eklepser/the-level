@@ -3,7 +3,7 @@ package game.common.logic.collision.zone;
 import game.common.logic.entity.Entity;
 import game.scene.world.logic.World;
 
-public class LevelZone extends Zone {
+public final class LevelZone extends Zone {
     private final World world;
     private final int levelId;
 

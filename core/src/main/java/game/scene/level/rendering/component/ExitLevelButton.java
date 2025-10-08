@@ -9,7 +9,7 @@ import game.common.rendering.tilemap.BaseConfiguration;
 import game.scene.world.logic.WorldConfiguration;
 import game.resources.Assets;
 
-public class ExitLevelButton extends TextButton {
+public final class ExitLevelButton extends TextButton {
     public ExitLevelButton() {
         super("Exit", Assets.getSkin());
         addListener(new ClickListener() {

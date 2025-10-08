@@ -5,7 +5,7 @@ import game.common.logic.collision.zone.ColoredZone;
 import game.common.logic.collision.zone.Zone;
 import game.common.logic.entity.Entity;
 
-public class FacingCondition extends Condition {
+public final class FacingCondition extends Condition {
     private final String zoneName;
 
     public FacingCondition(String zoneName) {
