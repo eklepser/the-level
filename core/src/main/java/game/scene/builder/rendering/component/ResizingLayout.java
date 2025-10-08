@@ -52,7 +52,8 @@ public final class ResizingLayout extends TableLayout {
 
                 builder.resizeMap(width, height, offsetX, offsetY);
 
-                updateLabels();
+                widthLabel.setText(String.format("X(%s)", map.width));
+                heightLabel.setText(String.format("Y(%s)", map.height));
             }
         });
 
@@ -82,11 +83,6 @@ public final class ResizingLayout extends TableLayout {
 
         add();
         add(applyButton).colspan(2).fillX();
-    }
-
-    private void updateLabels() {
-        widthLabel.setText(String.format("X(%s)", map.width));
-        heightLabel.setText(String.format("Y(%s)", map.height));
     }
 
     private int parseSize(int startSize, String sizeText) {

@@ -12,6 +12,7 @@ import game.common.rendering.TableLayout;
 import game.common.rendering.component.InputField;
 import game.common.rendering.component.TextLabel;
 import game.config.Paths;
+import game.resources.LevelSaver;
 import game.scene.level.logic.command.Instruction;
 import game.scene.level.logic.LevelConfiguration;
 import game.resources.Assets;
@@ -44,7 +45,13 @@ public final class ConfigTable extends TableLayout {
         saveButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
-                saveLevel();
+                LevelConfiguration newConfig = parseInput();
+                if (newConfig == null) return;
+
+                LevelSaver.saveLevel(newConfig);
+
+                String status = String.format("/green Level %s saved", newConfig.tag);
+                statusbar.setActionText(status);
             }
         });
 
@@ -69,64 +76,45 @@ public final class ConfigTable extends TableLayout {
         add(saveButton).padTop(4).center().fillX();
     }
 
-    // Class logic:
-    private void saveLevel() {
+    private LevelConfiguration parseInput() {
         LevelConfiguration newConfig = new LevelConfiguration();
 
-        if (!isDataCorrect(newConfig)) return;
-
-        Json json = new Json();
-        json.setOutputType(JsonWriter.OutputType.json);
-        String jsonContent = json.toJson(newConfig);
-
-        String path = String.format("%slevel_%s.json", Paths.BUILDER_DATA, newConfig.tag);
-        FileHandle file = Gdx.files.local(path);
-        file.writeString(jsonContent, false);
-
-        Gdx.app.log("Save", "Level saved to: " + file.path());
-
-        String status = String.format("/green Level %s saved", newConfig.tag);
-        statusbar.setActionText(status);
-    }
-
-    private boolean isDataCorrect(LevelConfiguration newConfig) {
-        // Tag parse:
+        // parse tag
         newConfig.tag = tagField.getText();
         if (newConfig.tag.isBlank()) {
             String status = "/red Level not saved\nTag cannot be empty";
             statusbar.setActionText(status);
-            return false;
+            return null;
         }
 
-        // TileMap parse:
+        //parse tilemap
         newConfig.tileMap = config.tileMap;
         boolean hasStartZone = newConfig.tileMap.zones.stream().anyMatch(obj -> obj.type.equals("start"));
         boolean hasWinZone = newConfig.tileMap.zones.stream().anyMatch(obj -> obj.type.equals("win"));
         if (!hasStartZone) {
             String status = "/red Level not saved\nThere must be at least one start zone";
             statusbar.setActionText(status);
-            return false;
+            return null;
         }
         if (!hasWinZone) {
             String status = "/red Level not saved\nThere must be at least one win zone";
             statusbar.setActionText(status);
-            return false;
+            return null;
         }
 
-        // Title parse:
         newConfig.title = titleField.getText();
 
-        // CodeLinesNum Instructions parse:
+        // parse codelines amount
         try {
             newConfig.codeLinesNum = Integer.parseInt(codeLinesNum.getText());
         } catch (NumberFormatException e) {
-            return false;
+            return null;
         }
 
-        // AllowedInstructions parse:
+        // parse allowed instructions
         newConfig.allowedInstructions = Instruction.getListByName(allowedCommands.getText().split("\\s++"));
 
-        return true;
+        return newConfig;
     }
 
     // Getters:

@@ -6,21 +6,21 @@ import game.common.rendering.tilemap.TileDefinition;
 import game.common.rendering.tilemap.TileMap;
 import game.resources.Assets;
 import game.scene.builder.logic.event.BuilderEvent;
-import game.scene.builder.rendering.component.GridActor;
+import game.scene.builder.rendering.component.GridDrawer;
 import game.scene.level.logic.LevelConfiguration;
 
 import static game.utils.NumberUtils.tryParseInt;
 
 public final class Builder extends EventSource<BuilderEvent> {
     private final LevelConfiguration config;
-    private final GridActor gridActor;
+    private final GridDrawer gridDrawer;
 
     private TileDefinition selectedTileDef;
 
     public Builder(LevelConfiguration config) {
         this.config = config;
 
-        gridActor = new GridActor(this);
+        gridDrawer = new GridDrawer(this);
 
         selectedTileDef = Assets.getTileset().getDefinitions().get(10);
     }
@@ -28,7 +28,7 @@ public final class Builder extends EventSource<BuilderEvent> {
     public void resizeMap(int width, int height, int offsetX, int offsetY) {
         config.tileMap.resize(width, height);
         config.tileMap.offset(offsetX, offsetY);
-        gridActor.resize();
+        gridDrawer.resize();
     }
 
     private int parseSize(int startSize, String sizeText) {
@@ -52,8 +52,8 @@ public final class Builder extends EventSource<BuilderEvent> {
         return config;
     }
 
-    public GridActor getGridActor() {
-        return gridActor;
+    public GridDrawer getGridActor() {
+        return gridDrawer;
     }
 
     public TileMap getMap() {

@@ -11,10 +11,10 @@ import game.common.rendering.tilemap.TileDefinition;
 import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.tilemap.ZoneTile;
 
-public final class GridActor extends Actor {
+public final class GridDrawer extends Actor {
     private final TileMap map;
 
-    public GridActor(Builder builder) {
+    public GridDrawer(Builder builder) {
         this.map = builder.getMap();
         setDebug(true);
 
@@ -47,24 +47,28 @@ final class GridListener extends InputListener {
 
     @Override
     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-        drawTile((int) x, (int) y);
+        int mapX = (int) x / Display.TILE_SIZE;
+        int mapY = (int) y / Display.TILE_SIZE;
+
+        if (mapX < 0 || mapX >= map.width || mapY < 0 || mapY >= map.height) {
+            return false;
+        }
+        drawTile(mapX, mapY);
         return true;
     }
 
     @Override
     public void touchDragged(InputEvent event, float x, float y, int pointer) {
-        try {
-            drawTile((int) x, (int) y);
+        int mapX = (int) x / Display.TILE_SIZE;
+        int mapY = (int) y / Display.TILE_SIZE;
+
+        if (mapX < 0 || mapX >= map.width || mapY < 0 || mapY >= map.height) {
+            return;
         }
-        catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("out of map");
-        }
+        drawTile(mapX, mapY);
     }
 
-    private void drawTile(int x, int y) {
-        int mapX = x / Display.TILE_SIZE;
-        int mapY = y / Display.TILE_SIZE;
-
+    private void drawTile(int mapX, int mapY) {
         TileDefinition tileDefinition = builder.getSelectedTileDef();
         builder.fire(new TilePlacedEvent(mapX, mapY, tileDefinition));
         switch (tileDefinition.type) {
@@ -89,7 +93,5 @@ final class GridListener extends InputListener {
                 map.removeZoneByPos(mapX, mapY);
                 break;
         }
-
-        String message = String.format("%s (%s) placed on (%s, %s)", tileDefinition.type, tileDefinition.id, mapX, mapY);
     }
 }

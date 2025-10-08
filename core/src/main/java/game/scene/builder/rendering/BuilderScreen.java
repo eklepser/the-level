@@ -9,7 +9,6 @@ import game.common.rendering.screen.DynamicGameCamera;
 import game.common.rendering.screen.GameScreen;
 import game.config.Display;
 import game.scene.builder.logic.Builder;
-import game.scene.builder.rendering.component.GridActor;
 import game.scene.level.logic.LevelConfiguration;
 import game.scene.selection.rendering.BuilderSelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
