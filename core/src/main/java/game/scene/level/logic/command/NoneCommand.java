@@ -15,10 +15,4 @@ public class NoneCommand extends Command {
     public void execute( Entity target) {
         System.out.println("NONE");
     }
-
-    @Override
-    public Image[] getIcons() {
-        Image image = new Image(new Texture(Gdx.files.internal("ui/icon/none.png")));
-        return new Image[] {image};
-    }
 }

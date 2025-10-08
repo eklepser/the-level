@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import game.common.rendering.CommandIconFactory;
 import game.common.rendering.TableLayout;
 import game.scene.level.logic.command.Command;
-import game.common.logic.entity.Entity;
 import game.resources.Assets;
 
 import java.util.LinkedList;
@@ -32,7 +32,7 @@ public final class LevelStatusbar extends TableLayout {
             .mapToInt(arr -> arr.length).sum();
         if (totalItems >= itemsLimit) itemGroups.removeFirst();
 
-        itemGroups.add(command.getIcons());
+        itemGroups.add(CommandIconFactory.commandIcon(command));
         clearChildren();
         for (Actor[] group : itemGroups) {
             add().padLeft(4);

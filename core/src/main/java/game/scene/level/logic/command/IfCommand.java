@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class IfCommand extends Command {
     private final Condition condition;
-    private final Command command;
+    private final Command innerCommand;
     private final CollisionContext collisionContext;
 
     public IfCommand(int lineNum, String[] args, Executor executor) {
@@ -23,7 +23,7 @@ public class IfCommand extends Command {
 
         String newInstruction = args[2];
         String[] newArgs = Arrays.copyOfRange(args, 3, args.length);
-        command = Command.from(lineNum, newInstruction, newArgs, executor);
+        innerCommand = Command.from(lineNum, newInstruction, newArgs, executor);
 
         collisionContext = executor.getCollisionContext();
     }
@@ -34,20 +34,27 @@ public class IfCommand extends Command {
         if (condition.check(target, collisionContext))
         {
             System.out.println("EXECUTING COND CMD");
-            command.execute(target);
+            innerCommand.execute(target);
         }
     }
 
-    @Override
-    public Image[] getIcons() {
-        //Image commandImage = new Image(new Texture(Gdx.files.internal("ui/icon/if.png")));
-        Image conditionImage = condition.getIcon();
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public Command getInnerCommand() {
+        return innerCommand;
+    }
+
+//    public Image[] getIcons() {
+//        Image commandImage = new Image(new Texture(Gdx.files.internal("ui/icon/if.png")));
+//        Image conditionImage = condition.getIcon();
 //        if (condition.check(target, collisionContext)) {
-            Image conditionCommandImage = command.getIcons()[0];
+//            Image conditionCommandImage = innerCommand.getIcons()[0];
 //            return new Image[] {conditionImage, conditionCommandImage};
 //        }
-        //commandImage.setColor(Color.DARK_GRAY);
-        conditionImage.setColor(Color.DARK_GRAY);
-        return new Image[] {conditionImage};
-    }
+//        commandImage.setColor(Color.DARK_GRAY);
+//        conditionImage.setColor(Color.DARK_GRAY);
+//        return new Image[] {conditionImage};
+//    }
 }

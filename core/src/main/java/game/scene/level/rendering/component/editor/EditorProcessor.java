@@ -15,13 +15,14 @@ public final class EditorProcessor extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
         if (previousKey == Input.Keys.CONTROL_LEFT) {
+            // Run code
             if (keycode == Input.Keys.ENTER) {
-                layout.run();
+                layout.runCode();
                 previousKey = 0;
                 return true;
             }
             if (keycode == Input.Keys.BACKSLASH) {
-                layout.resetRunning();
+                layout.resetCode();
                 previousKey = 0;
                 return true;
             }
@@ -35,11 +36,11 @@ public final class EditorProcessor extends InputAdapter {
             return true;
         }
         else if (keycode == Input.Keys.F4) {
-            layout.resetRunning();
+            layout.resetCode();
             return true;
         }
         else if (keycode == Input.Keys.F5) {
-            layout.run();
+            layout.runCode();
             return true;
         }
         else if (keycode == Input.Keys.DOWN || keycode == Input.Keys.ENTER) {

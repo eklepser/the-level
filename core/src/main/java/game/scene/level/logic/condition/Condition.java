@@ -7,8 +7,6 @@ import game.common.logic.entity.Entity;
 import java.lang.reflect.Constructor;
 
 public abstract class Condition {
-    public abstract Image getIcon();
-
     public abstract boolean check(Entity target, CollisionContext collisionContext);
 
     public static Condition from(String conditionName, String arg) {

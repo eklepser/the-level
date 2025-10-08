@@ -3,12 +3,10 @@ package game.scene.level.logic;
 import game.common.logic.collision.CollisionContext;
 import game.common.logic.AbstractLevel;
 import game.common.logic.collision.CollisionHandler;
+import game.common.logic.collision.zone.WinZone;
 import game.common.logic.entity.Entity;
 import game.common.logic.collision.zone.Zone;
-import game.common.logic.event.EventType;
 import game.common.rendering.tilemap.TileMap;
-import game.scene.level.logic.event.LevelEvent;
-import game.scene.level.logic.event.NewCommandEvent;
 import game.scene.level.logic.event.WinEvent;
 import game.scene.level.logic.execution.Executor;
 
@@ -34,7 +32,6 @@ public final class Level extends AbstractLevel {
         loadZones(map);
         entitiesToAdd = new ArrayList<>();
 
-
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
 
@@ -49,25 +46,35 @@ public final class Level extends AbstractLevel {
     }
 
     // Class logic:
-    public void win() {
-        System.out.println("Level: win");
-        fire(new WinEvent());
-        executor.stop();
-    }
-
     public void runExecution(List<String> inputLines) {
         executor.runExecution(inputLines);
     }
 
-    public void reset() {
+    public void resetExecution() {
+        executor.stop();
+
         entities.clear();
         spawnEntity((int) startPos.x, (int) startPos.y);
+
+        for (Zone zone : zones) {
+            if (zone instanceof WinZone winZone) {
+                winZone.setActivated(false);
+            }
+        }
+    }
+
+    public void stopExecution() {
         executor.stop();
     }
 
     public void spawnEntity(int worldPosX, int worldPosY) {
         Entity entity = new Entity(worldPosX, worldPosY, "tileset/target.png");
         entities.add(entity);
+    }
+
+    public void win() {
+        fire(new WinEvent());
+        executor.stop();
     }
 
     // Getters & setters:

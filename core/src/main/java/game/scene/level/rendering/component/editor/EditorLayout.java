@@ -7,8 +7,6 @@ import game.config.Display;
 import game.common.rendering.TableLayout;
 import game.scene.level.rendering.LevelLayout;
 import game.common.rendering.component.TextLabel;
-import game.common.logic.collision.zone.WinZone;
-import game.common.logic.collision.zone.Zone;
 import game.scene.level.logic.Level;
 import game.resources.Assets;
 
@@ -77,39 +75,25 @@ public final class EditorLayout extends TableLayout {
     }
 
     // Class logic:
-    public void run() {
-        resetRunning();
+    public void runCode() {
+        resetCode();
         root.getStatusBar().clear();
-        //statusLabel.setText("Status:\n" + status);
-
         level.runExecution(codeField.getCodeLinesText());
     }
 
-    public void clearRunning() {
-        resetRunning();
+    public void resetCode() {
+        codeField.clearCompleting();
+        level.resetExecution();
+    }
+
+    public void clearCode() {
+        resetCode();
         codeField.clearCode();
     }
 
-    public void resetRunning() {
-        System.out.println("Resetting");
-        codeField.getCodeLines().forEach(codeLine -> codeLine.setCompleting(false));
-        //executor.stop();
-        statusLabel.setText("Status:\nReset");
-        resetWin();
-        level.reset();
-    }
-
-    public void stop() {
-        //executor.stop();
+    public void stopCode() {
+        level.stopExecution();
         statusLabel.setText("Status:\nEnd");
-    }
-
-    private void resetWin() {
-        for (Zone zone : level.getZones()) {
-            if (zone instanceof WinZone winZone) {
-                winZone.setActivated(false);
-            }
-        }
     }
 
     // Getters:

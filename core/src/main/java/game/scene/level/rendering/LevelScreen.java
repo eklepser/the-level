@@ -22,7 +22,6 @@ public final class LevelScreen extends GameScreen {
 
         LevelLayout layout = new LevelLayout(level);
         stage.addActor(layout);
-
         multiplexer.addProcessor(0, new EditorProcessor(layout.getEditor()));
     }
 

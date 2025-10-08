@@ -22,12 +22,4 @@ public class GotoCommand extends Command {
         System.out.println("GOTO " + targetLineNum);
         executor.execute(targetLineNum - 1, executor.getCodeMap());
     }
-
-    @Override
-    public Image[] getIcons() {
-        Image image = new Image(new Texture(Gdx.files.internal("ui/icon/goto.png")));
-        return new Image[] {image};
-    }
-
-    public int getLineNum() { return lineNum; }
 }

@@ -19,12 +19,5 @@ public class RotateCommand extends Command {
         target.rotate(direction);
     }
 
-    @Override
-    public Image[] getIcons() {
-        String iconPath = "ui/icon/rot_" + direction.name + ".png";
-        Image image = new Image(new Texture(Gdx.files.internal(iconPath)));
-        return new Image[] {image};
-    }
-
     public Direction getDirection() { return direction; }
 }

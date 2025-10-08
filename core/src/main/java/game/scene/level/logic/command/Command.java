@@ -14,7 +14,6 @@ public abstract class Command {
     }
 
     public abstract void execute(Entity target);
-    public abstract Image[] getIcons();
 
     public static Command from(int lineNum, String commandName, String[] args, Executor executor) {
         Instruction instruction = Instruction.from(commandName);

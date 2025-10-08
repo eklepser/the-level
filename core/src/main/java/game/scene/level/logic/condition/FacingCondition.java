@@ -1,12 +1,9 @@
 package game.scene.level.logic.condition;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import game.common.logic.collision.CollisionContext;
+import game.common.logic.collision.zone.ColoredZone;
 import game.common.logic.collision.zone.Zone;
 import game.common.logic.entity.Entity;
-import game.common.logic.collision.zone.ColoredZone;
 
 public class FacingCondition extends Condition {
     private final String targetObject;
@@ -37,9 +34,7 @@ public class FacingCondition extends Condition {
         return false;
     }
 
-    @Override
-    public Image getIcon() {
-        String iconPath = "ui/icon/facing_" + targetObject + ".png";
-        return new Image(new Texture(Gdx.files.internal(iconPath)));
+    public String getTargetObject() {
+        return targetObject;
     }
 }

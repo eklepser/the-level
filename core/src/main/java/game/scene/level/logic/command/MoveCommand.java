@@ -21,13 +21,7 @@ public class MoveCommand extends Command {
         target.setTargetWorldPos(direction);
     }
 
-    @Override
-    public Image[] getIcons() {
-        String iconPath;
-        if (direction.name.equals("forward")) {
-            iconPath = "ui/icon/move_forward_" + "up" + ".png";
-        } else iconPath = "ui/icon/move_" + direction.name + ".png";
-        Image image = new Image(new Texture(Gdx.files.internal(iconPath)));
-        return new Image[] {image};
+    public Direction getDirection() {
+        return direction;
     }
 }

@@ -20,10 +20,4 @@ public class EndCommand extends Command {
         System.out.println("END");
         executor.stop();
     }
-
-    @Override
-    public Image[] getIcons() {
-        Image image = new Image(new Texture(Gdx.files.internal("ui/icon/end.png")));
-        return new Image[] {image};
-    }
 }
