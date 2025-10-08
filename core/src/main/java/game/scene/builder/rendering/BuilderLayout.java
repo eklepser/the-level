@@ -6,6 +6,7 @@ import game.common.rendering.component.TextLabel;
 import game.resources.Assets;
 import game.scene.builder.logic.Builder;
 import game.scene.builder.logic.event.BuilderEvent;
+import game.scene.builder.logic.event.TilePlacedEvent;
 import game.scene.builder.rendering.component.ConfigTable;
 import game.scene.builder.rendering.component.ResizingLayout;
 import game.scene.builder.rendering.component.Statusbar;
@@ -66,9 +67,16 @@ public final class BuilderLayout extends TableLayout implements EventListener<Bu
         add(statusbar).colspan(2).padBottom(10).fillX();
     }
 
+    public void update() {
+        statusbar.update();
+    }
+
     @Override
     public void onEvent(BuilderEvent event) {
-        statusbar.update();
+        if (event instanceof TilePlacedEvent tilePlaced) {
+            String status = String.format("%s on (%s, %s)", tilePlaced.tileDefinition.name, tilePlaced.x, tilePlaced.y);
+            statusbar.setActionText(status);
+        }
     }
 
     //Getters:

@@ -17,8 +17,8 @@ import game.scene.selection.rendering.SelectionScreen;
 public final class BuilderScreen extends GameScreen implements BaseInputListener {
     private final DynamicGameCamera camera;
     private final Builder builder;
-
     private final Stage gridStage;
+    private final BuilderLayout layout;
 
     public BuilderScreen(LevelConfiguration config) {
         super(config.tileMap);
@@ -31,7 +31,8 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
             Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT, camera));
         gridStage.addActor(builder.getGridActor());
 
-        stage.addActor(new BuilderLayout(this, builder));
+        layout = new BuilderLayout(this, builder);
+        stage.addActor(layout);
     }
 
     @Override
@@ -47,6 +48,7 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
     @Override
     protected void update(float delta) {
         camera.moveAndUpdate(delta);
+        layout.update();
         gridStage.act();
     }
 

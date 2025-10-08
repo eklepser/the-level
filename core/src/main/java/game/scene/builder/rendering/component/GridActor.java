@@ -6,8 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import game.config.Display;
 import game.scene.builder.logic.Builder;
-import game.scene.builder.logic.event.PlacedTileEvent;
-import game.scene.builder.rendering.BuilderScreen;
+import game.scene.builder.logic.event.TilePlacedEvent;
 import game.common.rendering.tilemap.TileDefinition;
 import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.tilemap.ZoneTile;
@@ -67,7 +66,7 @@ final class GridListener extends InputListener {
         int mapY = y / Display.TILE_SIZE;
 
         TileDefinition tileDefinition = builder.getSelectedTileDef();
-        builder.fire(new PlacedTileEvent(tileDefinition));
+        builder.fire(new TilePlacedEvent(mapX, mapY, tileDefinition));
         switch (tileDefinition.type) {
             case "ground":
                 map.tiles[mapY][mapX] = builder.getSelectedTileDef().id;
