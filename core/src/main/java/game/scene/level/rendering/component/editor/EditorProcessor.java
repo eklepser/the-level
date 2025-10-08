@@ -39,8 +39,8 @@ public final class EditorProcessor extends InputAdapter {
             return true;
         }
         else if (keycode == Input.Keys.F5) {
-        layout.run();
-        return true;
+            layout.run();
+            return true;
         }
         else if (keycode == Input.Keys.DOWN || keycode == Input.Keys.ENTER) {
             layout.getCodeLayout().setFocusOnLine(Direction.DOWN);

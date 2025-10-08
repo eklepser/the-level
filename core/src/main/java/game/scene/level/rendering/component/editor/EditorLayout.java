@@ -80,7 +80,6 @@ public final class EditorLayout extends TableLayout {
     public void run() {
         resetRunning();
         root.getStatusBar().clear();
-
         //statusLabel.setText("Status:\n" + status);
 
         level.runExecution(codeField.getCodeLinesText());

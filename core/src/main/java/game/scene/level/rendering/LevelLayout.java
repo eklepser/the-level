@@ -3,17 +3,16 @@ package game.scene.level.rendering;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.common.logic.event.EventListener;
-import game.common.logic.event.EventType;
-import game.config.Display;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.ColoredString;
-import game.scene.level.logic.event.LevelEvent;
+import game.config.Display;
+import game.scene.level.logic.Level;
 import game.scene.level.logic.command.Command;
+import game.scene.level.logic.event.LevelEvent;
 import game.scene.level.logic.event.NewCommandEvent;
 import game.scene.level.rendering.component.LevelStatusbar;
 import game.scene.level.rendering.component.LevelToolbar;
 import game.scene.level.rendering.component.editor.EditorLayout;
-import game.scene.level.logic.Level;
 
 public final class LevelLayout extends TableLayout implements EventListener<LevelEvent> {
     private final Level level;
@@ -74,8 +73,6 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
 
             editorLayout.getCodeLayout().clearCompleting();
             editorLayout.getCodeLayout().setCompletingLine(command.getLineNum(), true);
-
-            System.out.println(commandEvent.command + " line " + commandEvent.command.getLineNum());
 
             levelStatusbar.update(command);
         }

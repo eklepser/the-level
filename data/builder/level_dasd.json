@@ -1,1 +1,0 @@
-{"tag":"dasd","tileMap":{"name":"","width":1,"height":2,"tiles":[[10],[10]],"collision":[[0],[0]],"zones":[{"id":30,"type":"start"},{"id":31,"y":1,"type":"win"}]},"title":"","codeLinesNum":10,"allowedInstructions":["MOVE"]}

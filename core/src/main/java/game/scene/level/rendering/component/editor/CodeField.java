@@ -59,7 +59,7 @@ public class CodeField extends TableLayout {
 
     public void setFocusOnLine(int lineNum) {
         if ((lineNum >= 0) && (lineNum < codeLines.size())) {
-            root.getStage().setKeyboardFocus(codeLines.get(lineNum));
+            root.getRoot().getStage().setKeyboardFocus(codeLines.get(lineNum));
         }
     }
 

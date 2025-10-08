@@ -5,6 +5,7 @@ import game.common.rendering.screen.GameScreen;
 import game.config.Display;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.rendering.component.editor.EditorProcessor;
 
 public final class LevelScreen extends GameScreen {
     private final GameCamera camera;
@@ -19,8 +20,10 @@ public final class LevelScreen extends GameScreen {
         this.config = config;
         level = new Level(config);
 
-        stage.addActor(new LevelLayout(level));
-        //multiplexer.addProcessor(new EditorProcessor());
+        LevelLayout layout = new LevelLayout(level);
+        stage.addActor(layout);
+
+        multiplexer.addProcessor(0, new EditorProcessor(layout.getEditor()));
     }
 
     @Override

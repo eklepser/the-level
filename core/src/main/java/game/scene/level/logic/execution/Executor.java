@@ -57,9 +57,6 @@ public final class Executor implements TimeController {
         System.out.println("Running");
         SequenceAction sequence = new SequenceAction();
 
-        codeMap.values().forEach(v -> System.out.println(v));
-        codeMap.keySet().forEach(v -> System.out.println(v));
-
         for (int i = start; i < codeMap.size(); i++) {
             Command currentCmd = codeMap.get(i);
 

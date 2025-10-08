@@ -7,6 +7,7 @@ public final class MenuScreen extends BaseScreen {
         super();
 
         stage.addActor(new MenuLayout());
+        multiplexer.addProcessor(stage);
     }
 }
 

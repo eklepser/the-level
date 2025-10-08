@@ -62,6 +62,7 @@ public final class Level extends AbstractLevel {
     public void reset() {
         entities.clear();
         spawnEntity((int) startPos.x, (int) startPos.y);
+        executor.stop();
     }
 
     public void spawnEntity(int worldPosX, int worldPosY) {
