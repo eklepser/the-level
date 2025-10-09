@@ -25,7 +25,6 @@ public final class Level extends AbstractLevel {
 
     public Level(LevelConfiguration config) {
         super(config);
-        loadZones(map);
 
         collisionContext = new CollisionContext(map.collision, zones, entities);
         collisionHandler = new CollisionHandler(collisionContext);

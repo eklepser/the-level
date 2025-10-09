@@ -13,7 +13,8 @@
   { "id": 42, "name": "red_plate", "type": "zone", "zoneType": "colored", "zoneProperties": ["red"]},
   { "id": 50, "name": "green_zone", "type": "zone","zoneType": "colored", "zoneProperties": ["green"] },
   { "id": 51, "name": "blue_zone", "type": "zone", "zoneType": "colored", "zoneProperties": ["blue"]},
-  { "id": 52, "name": "red_zone", "type": "zone","zoneType": "colored", "zoneProperties": ["red"] },
+  { "id": 52, "name": "red_zone", "type": "zone", "zoneType": "colored", "zoneProperties": ["red"] },
   { "id": 90, "name": "remove_zone", "type": "remove_zone"},
-  { "id": 91, "name": "remove_tile", "type": "remove_tile"}
+  { "id": 91, "name": "remove_tile", "type": "remove_tile"},
+  { "id": 92, "name": "level_entrance", "type": "zone", "zoneType": "level_entrance"}
 ]

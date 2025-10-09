@@ -21,6 +21,7 @@ public final class LevelEntranceZone extends WorldZone {
 
     @Override
     public void onCollision(Entity entity) {
+        System.out.println("ON ENTRANCE");
 //        if (world.getSelectedLevelId() != levelId) {
 //            world.getScreen().getRoot().getLevelIdString().setText("/gray " + levelId);
 //            world.setSelectedLevelId(levelId);

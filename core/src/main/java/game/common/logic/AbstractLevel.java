@@ -34,6 +34,7 @@ public abstract class AbstractLevel extends EventSource<LevelEvent> {
         startPos = map.getStartPos();
 
         zones = new ArrayList<>();
+        loadZones(map);
         entities = new ArrayList<>();
     }
 }

@@ -6,7 +6,7 @@ import game.scene.level.logic.Level;
 public final class LevelZoneFactory {
     private LevelZoneFactory() { }
 
-    public static LevelZone levelZone(ZoneTile tile, Level level) {
+    public static Zone levelZone(ZoneTile tile, Level level) {
         int x = tile.x;
         int y = tile.y;
         String[] properties = tile.properties;
@@ -14,7 +14,7 @@ public final class LevelZoneFactory {
         return switch (tile.type) {
             case "win" -> new WinZone(x, y, level);
             case "colored" -> new ColoredZone(x, y, properties[0]);
-            default -> null;
+            default -> new UnknownZone(x, y);
         };
     }
 }

@@ -31,23 +31,6 @@ public final class Builder extends EventSource<BuilderEvent> {
         gridDrawer.resize();
     }
 
-    private int parseSize(int startSize, String sizeText) {
-        int newSize;
-
-        if (sizeText.startsWith("-")) {
-            newSize = startSize - Math.abs(tryParseInt(sizeText, startSize));
-        } else if (sizeText.startsWith("+")) {
-            newSize = startSize + Math.abs(tryParseInt(sizeText, startSize));
-        } else {
-            newSize = tryParseInt(sizeText, startSize);
-        }
-
-        if (newSize > 0) {
-            return newSize;
-        } else return startSize;
-    }
-
-    // Getters & setters:
     public LevelConfiguration getConfig() {
         return config;
     }
