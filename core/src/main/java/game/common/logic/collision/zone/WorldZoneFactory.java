@@ -11,11 +11,10 @@ public final class WorldZoneFactory {
         int y = tile.y;
         String[] properties = tile.properties;
 
-        System.out.println(tile.type);
-
         return switch (tile.type) {
-            case "level_entrance" ->
-                new LevelEntranceZone(x, y, world, Integer.parseInt(properties[0]));
+            case "entrance" ->
+                new LevelEntranceZone(x, y, world, 0);
+//            new LevelEntranceZone(x, y, world, Integer.parseInt(properties[0]));
             default -> new UnknownZone(x, y);
         };
     }

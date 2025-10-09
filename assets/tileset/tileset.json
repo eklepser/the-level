@@ -16,5 +16,5 @@
   { "id": 52, "name": "red_zone", "type": "zone", "zoneType": "colored", "zoneProperties": ["red"] },
   { "id": 90, "name": "remove_zone", "type": "remove_zone"},
   { "id": 91, "name": "remove_tile", "type": "remove_tile"},
-  { "id": 92, "name": "level_entrance", "type": "zone", "zoneType": "level_entrance"}
+  { "id": 92, "name": "level_entrance", "type": "zone", "zoneType": "entrance"}
 ]

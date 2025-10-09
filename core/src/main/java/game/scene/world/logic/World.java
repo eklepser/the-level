@@ -54,7 +54,6 @@ public final class World extends AbstractLevel {
     @Override
     protected void loadZones(TileMap map) {
         for (ZoneTile tile : map.zones) {
-            System.out.println(tile.type);
             if (tile.type.equals("start")) continue;
             zones.add(WorldZoneFactory.worldZone(tile,  this));
         }
