@@ -3,7 +3,7 @@ package game.common.logic.collision.zone;
 import game.common.logic.entity.Entity;
 import game.scene.level.logic.Level;
 
-public final class WinZone extends Zone {
+public final class WinZone extends LevelZone {
     private final Level level;
     private boolean activated = false;
 

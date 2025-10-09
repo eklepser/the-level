@@ -2,7 +2,7 @@ package game.common.logic.collision.zone;
 
 import game.common.logic.entity.Entity;
 
-public final class ColoredZone extends Zone {
+public final class ColoredZone extends LevelZone {
     private final String colorName;
 
     public ColoredZone(int x, int y, String colorName) {

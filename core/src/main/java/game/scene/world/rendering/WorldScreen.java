@@ -3,6 +3,7 @@ package game.scene.world.rendering;
 import game.common.rendering.screen.GameCamera;
 import game.common.rendering.screen.GameScreen;
 import game.config.Display;
+import game.scene.level.rendering.component.editor.LevelProcessor;
 import game.scene.world.logic.World;
 import game.scene.world.logic.WorldConfiguration;
 import game.scene.world.logic.WorldProcessor;
@@ -15,20 +16,16 @@ public final class WorldScreen extends GameScreen {
         super(config.tileMap);
 
         camera = new GameCamera();
-        world = new World(config, this);
+        world = new World(config);
 
         stage.addActor(new WorldLayout());
+        multiplexer.addProcessor(new WorldProcessor(world));
     }
 
     @Override
     public void show() {
         camera.center(map.width * Display.TILE_SIZE, map.height * Display.TILE_SIZE);
-        camera.offset(-Display.EDITOR_MENU_SCALE * Display.VIEWPORT_WIDTH / 2.0f, 0);
         batch.setProjectionMatrix(camera.combined);
-
-
-        multiplexer.addProcessor(new WorldProcessor(world));
-        multiplexer.addProcessor(stage);
     }
 
     @Override
@@ -39,6 +36,7 @@ public final class WorldScreen extends GameScreen {
     @Override
     protected void draw() {
         batch.begin();
+        map.draw(batch, 10);
         world.getEntities().forEach(entity -> entity.draw(batch, 1.0f));
         batch.end();
     }

@@ -1,6 +1,7 @@
 package game.common.logic;
 
 import com.badlogic.gdx.math.Vector2;
+import game.common.logic.collision.zone.LevelZoneFactory;
 import game.common.logic.collision.zone.Zone;
 import game.common.logic.entity.Entity;
 import game.common.logic.event.EventSource;
@@ -22,6 +23,10 @@ public abstract class AbstractLevel extends EventSource<LevelEvent> {
     protected final List<Zone> zones;
     protected final List<Entity> entities;
 
+    public abstract void update(float delta);
+
+    protected abstract void loadZones(TileMap map);
+
     public AbstractLevel(BaseConfiguration config) {
         this.config = config;
 
@@ -30,12 +35,5 @@ public abstract class AbstractLevel extends EventSource<LevelEvent> {
 
         zones = new ArrayList<>();
         entities = new ArrayList<>();
-    }
-
-    public void loadZones(TileMap map) {
-        for (ZoneTile tile : map.zones) {
-            if (tile.type.equals("start")) continue;
-            zones.add(Zone.from(tile, (Level) this));
-        }
     }
 }

@@ -14,9 +14,9 @@ import game.scene.world.rendering.WorldScreen;
 public final class MenuButtonFactory extends ButtonFactory {
     public static TextButton startButton( ) {
         return createButton("Start Game", () -> {
-            WorldConfiguration config = BaseConfiguration.from(
+            WorldConfiguration worldConfig = BaseConfiguration.from(
                 WorldConfiguration.class, "world/world_one.json");
-            ScreenNavigator.gotoScreen(new WorldScreen(config));
+            ScreenNavigator.gotoScreen(new WorldScreen(worldConfig));
         });
     }
 

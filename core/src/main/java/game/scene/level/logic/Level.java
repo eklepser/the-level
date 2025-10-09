@@ -3,10 +3,12 @@ package game.scene.level.logic;
 import game.common.logic.AbstractLevel;
 import game.common.logic.collision.CollisionContext;
 import game.common.logic.collision.CollisionHandler;
+import game.common.logic.collision.zone.LevelZoneFactory;
 import game.common.logic.collision.zone.WinZone;
 import game.common.logic.collision.zone.Zone;
 import game.common.logic.entity.Entity;
 import game.common.rendering.tilemap.TileMap;
+import game.common.rendering.tilemap.ZoneTile;
 import game.scene.level.logic.event.WinEvent;
 import game.scene.level.logic.execution.Executor;
 
@@ -23,18 +25,19 @@ public final class Level extends AbstractLevel {
 
     public Level(LevelConfiguration config) {
         super(config);
+        loadZones(map);
 
         collisionContext = new CollisionContext(map.collision, zones, entities);
         collisionHandler = new CollisionHandler(collisionContext);
 
         executor = new Executor(config, this);
 
-        loadZones(map);
         entitiesToAdd = new ArrayList<>();
 
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
 
+    @Override
     public void update(float delta) {
         collisionHandler.update();
         if (!entitiesToAdd.isEmpty()) {
@@ -43,6 +46,14 @@ public final class Level extends AbstractLevel {
         }
         entities.forEach(Entity::update);
         entities.forEach(entity -> entity.act(delta));
+    }
+
+    @Override
+    protected void loadZones(TileMap map) {
+        for (ZoneTile tile : map.zones) {
+            if (tile.type.equals("start")) continue;
+            zones.add(LevelZoneFactory.levelZone(tile,  this));
+        }
     }
 
     // Class logic:

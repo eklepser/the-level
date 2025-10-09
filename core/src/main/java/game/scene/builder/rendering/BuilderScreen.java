@@ -1,6 +1,7 @@
 package game.scene.builder.rendering;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import game.common.input.BaseInputHandler;
 import game.common.input.BaseInputListener;
@@ -45,7 +46,7 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
 
     @Override
     protected void update(float delta) {
-        if (!layout.hasTextFieldFocus()) {
+        if (!(stage.getKeyboardFocus() instanceof TextField)) {
             camera.moveAndUpdate(delta);
         }
         layout.update();

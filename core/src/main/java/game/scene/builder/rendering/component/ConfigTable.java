@@ -11,6 +11,7 @@ import game.resources.Assets;
 import game.resources.LevelSaver;
 import game.scene.level.logic.LevelConfiguration;
 import game.scene.level.logic.command.Instruction;
+import game.utils.TimeUtils;
 
 public final class ConfigTable extends TableLayout {
     private final LevelConfiguration config;
@@ -45,7 +46,8 @@ public final class ConfigTable extends TableLayout {
 
                 LevelSaver.saveLevel(newConfig);
 
-                String status = String.format("/green Level %s saved", newConfig.tag);
+                String time = TimeUtils.getFormattedTime("HH:mm:ss");
+                String status = String.format("/green Level %s saved (%s)", newConfig.tag, time);
                 statusbar.setActionText(status);
             }
         });
@@ -104,6 +106,8 @@ public final class ConfigTable extends TableLayout {
         try {
             newConfig.codeLinesNum = Integer.parseInt(codeLinesNum.getText());
         } catch (NumberFormatException e) {
+            String status = "/red Level not saved\nCodelines amount must be integer";
+            statusbar.setActionText(status);
             return null;
         }
 
