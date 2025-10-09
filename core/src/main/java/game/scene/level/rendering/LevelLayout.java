@@ -11,6 +11,7 @@ import game.scene.level.logic.command.Command;
 import game.scene.level.logic.event.ExecutionStartEvent;
 import game.scene.level.logic.event.LevelEvent;
 import game.scene.level.logic.event.NewCommandEvent;
+import game.scene.level.logic.event.WinEvent;
 import game.scene.level.rendering.component.LevelStatusbar;
 import game.scene.level.rendering.component.LevelToolbar;
 import game.scene.level.rendering.component.editor.EditorLayout;
@@ -70,6 +71,7 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
     @Override
     public void onEvent(LevelEvent event) {
         if (event instanceof ExecutionStartEvent startEvent) {
+            levelStatusbar.start();
             String status = startEvent.translationResult.status();
             editorLayout.getStatusLabel().setText("Status:\n" + status);
         }
@@ -80,6 +82,9 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
             editorLayout.getCodeLayout().setCompletingLine(command.getLineNum(), true);
 
             levelStatusbar.update(command);
+        }
+        if (event instanceof WinEvent winEvent) {
+            levelStatusbar.win();
         }
     }
 

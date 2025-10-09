@@ -22,6 +22,9 @@ public final class CollisionHandler {
         int targetX = (int) entity.getTargetWorldPos().x;
         int targetY = (int) entity.getTargetWorldPos().y;
 
+        if (targetX < 0 || targetX >= collisionContext.collisionMap()[0].length) return;
+        if (targetY < 0 || targetY >= collisionContext.collisionMap().length) return;
+
         if (collisionContext.collisionMap()[targetY][targetX] == 1) {
             entity.resetTargetWorldPos();
             if (hittingWalls) entity.hit();
