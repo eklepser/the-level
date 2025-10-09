@@ -1,16 +1,16 @@
 package game.scene.builder.rendering;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.common.logic.event.EventListener;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.TextLabel;
+import game.common.rendering.tilemap.TileDefinition;
 import game.resources.Assets;
 import game.scene.builder.logic.Builder;
 import game.scene.builder.logic.event.BuilderEvent;
 import game.scene.builder.logic.event.TilePlacedEvent;
-import game.scene.builder.rendering.component.ConfigTable;
-import game.scene.builder.rendering.component.ResizingLayout;
-import game.scene.builder.rendering.component.Statusbar;
-import game.scene.builder.rendering.component.TilePalette;
+import game.scene.builder.logic.event.TileSelectedEvent;
+import game.scene.builder.rendering.component.*;
 
 public final class BuilderLayout extends TableLayout implements EventListener<BuilderEvent> {
     private final Statusbar statusbar;
@@ -22,10 +22,14 @@ public final class BuilderLayout extends TableLayout implements EventListener<Bu
     private final TilePalette zonePalette;
     private final TilePalette utilPalette;
 
+    private final CustomZoneTable customZoneTable;
+
     public BuilderLayout(BuilderScreen screen, Builder builder) {
         builder.subscribe(this);
 
         statusbar = new Statusbar(screen);
+        statusbar.setSelectionStatus(builder.getSelectedTileDef());
+
         configTable = new ConfigTable(builder.getConfig(), statusbar);
         resizingLayout = new ResizingLayout(builder);
 
@@ -34,6 +38,8 @@ public final class BuilderLayout extends TableLayout implements EventListener<Bu
         zonePalette = new TilePalette(builder, Assets.getTileset(), 30, 59);
         utilPalette = new TilePalette(builder, Assets.getTileset(), 90, 99);
 
+        customZoneTable = new CustomZoneTable(builder);
+
         setup();
     }
 
@@ -41,26 +47,40 @@ public final class BuilderLayout extends TableLayout implements EventListener<Bu
     public void setup() {
         setFillParent(true);
 
-        add(new TextLabel("Level info:")).left().row();
-        add(configTable).left().padBottom(20).row();
+        // setup palette table
+        Table paletteTable = new Table();
 
-        add(resizingLayout).left().padBottom(20).row();
+        paletteTable.add(new TextLabel("Ground:")).left().row();
+        paletteTable.add(groundPalette).left();
+        paletteTable.add().expandX().row();
 
-        add(new TextLabel("Ground:")).left().row();
-        add(groundPalette).left();
-        add().expandX().row();
+        paletteTable.add(new TextLabel("Walls:")).left().row();
+        paletteTable.add(wallPalette).left();
+        paletteTable.add().expandX().row();
 
-        add(new TextLabel("Walls:")).left().row();
-        add(wallPalette).left();
-        add().expandX().row();
+        paletteTable.add(new TextLabel("Zones:")).left().row();
+        paletteTable.add(zonePalette).left();
+        paletteTable.add().expandX().row();
 
-        add(new TextLabel("Zones:")).left().row();
-        add(zonePalette).left();
-        add().expandX().row();
+        paletteTable.add(new TextLabel("Action:")).left().row();
+        paletteTable.add(utilPalette).left();
+        paletteTable.add().expandX().row();
 
-        add(new TextLabel("Action:")).left().row();
-        add(utilPalette).left();
-        add().expandX().row();
+        customZoneTable.setVisible(false);
+        paletteTable.add(customZoneTable).left();
+        paletteTable.add().expandX().row();
+
+        // setup level info table
+        Table infoTable = new Table();
+
+        infoTable.add(new TextLabel("Level info:")).expandX().right().row();
+        infoTable.add(configTable).left().padBottom(20).expandX().right().row();
+
+        infoTable.add(resizingLayout).right().padBottom(20).expandX().right().row();
+
+        // setup layout
+        add(paletteTable).fillX().expandX().left().top().padLeft(10);
+        add(infoTable).fillX().expandX().right().top().padRight(10);
 
         add().expandY().row();
 
@@ -73,20 +93,14 @@ public final class BuilderLayout extends TableLayout implements EventListener<Bu
 
     @Override
     public void onEvent(BuilderEvent event) {
+        if (event instanceof TileSelectedEvent tileSelected) {
+            TileDefinition def = tileSelected.tileDefinition;
+            customZoneTable.setVisible(def.type.equals("custom_zone"));
+            statusbar.setSelectionStatus(def);
+        }
         if (event instanceof TilePlacedEvent tilePlaced) {
             String status = String.format("%s on (%s, %s)", tilePlaced.tileDefinition.name, tilePlaced.x, tilePlaced.y);
-            statusbar.setActionText(status);
+            statusbar.setActionStatus(status);
         }
-    }
-
-    public boolean hasTextFieldFocus() {
-        return configTable.hasTextFieldFocus() ||
-            resizingLayout.hasTextFieldFocus();
-    }
-
-    public ConfigTable getConfigTable() { return configTable; }
-
-    public Statusbar getStatusBar() {
-        return statusbar;
     }
 }

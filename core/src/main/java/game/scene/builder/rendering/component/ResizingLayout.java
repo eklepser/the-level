@@ -66,13 +66,13 @@ public final class ResizingLayout extends TableLayout {
 
         row();
 
-        add(new TextLabel("size")).padRight(10).left();
+        add(new TextLabel("size")).padRight(10);
         add(inputWidth).width(32).padRight(10);
         add(inputHeight).width(32);
 
         row();
 
-        add(new TextLabel("offset")).padRight(10).padTop(4).left();
+        add(new TextLabel("offset")).padRight(10).padTop(4);
         add(inputOffsetX).width(32).padRight(10);
         add(inputOffsetY).width(32);
 
@@ -96,12 +96,5 @@ public final class ResizingLayout extends TableLayout {
         if (newSize > 0) {
             return newSize;
         } else return startSize;
-    }
-
-    public boolean hasTextFieldFocus() {
-        return inputWidth.hasKeyboardFocus() ||
-            inputHeight.hasKeyboardFocus() ||
-            inputOffsetX.hasKeyboardFocus() ||
-            inputOffsetY.hasKeyboardFocus();
     }
 }

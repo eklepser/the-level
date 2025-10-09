@@ -13,15 +13,15 @@ import game.scene.builder.logic.Builder;
 import java.util.Map;
 
 public final class TilePalette extends TableLayout {
-    private final Tileset tileSet;
+    private final Tileset tileset;
     private final Builder builder;
     private final int idStart;
     private final int idEnd;
 
     private final int colsNum = 4;
 
-    public TilePalette(Builder builder, Tileset tileSet, int idStart, int idEnd) {
-        this.tileSet = tileSet;
+    public TilePalette(Builder builder, Tileset tileset, int idStart, int idEnd) {
+        this.tileset = tileset;
         this.builder = builder;
 
         this.idStart = idStart;
@@ -32,14 +32,14 @@ public final class TilePalette extends TableLayout {
 
     @Override
     public void setup() {
-        Map<Integer, TileDefinition> defs = tileSet.getDefinitions();
+        Map<Integer, TileDefinition> defs = tileset.getDefinitions();
 
         int count = 1;
         for (int id : defs.keySet()) {
 
             if (id < idStart || id > idEnd) continue;
 
-            TextureRegion icon = tileSet.getTile(id);
+            TextureRegion icon = tileset.getTile(id);
             if (icon == null || icon.getTexture() == null) {
                 continue;
             }
@@ -47,7 +47,8 @@ public final class TilePalette extends TableLayout {
             ImageButton btn = new ImageButton(new TextureRegionDrawable(icon));
             btn.addListener(new ClickListener() {
                 @Override public void clicked(InputEvent event, float x, float y) {
-                    builder.setSelectedTileDef(defs.get(id));
+                    TileDefinition def = defs.get(id);
+                    builder.setSelectedTileDef(def);
                 }
             });
             add(btn);

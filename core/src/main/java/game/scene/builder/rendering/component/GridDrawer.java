@@ -70,7 +70,9 @@ final class GridListener extends InputListener {
 
     private void drawTile(int mapX, int mapY) {
         TileDefinition tileDefinition = builder.getSelectedTileDef();
+
         builder.fire(new TilePlacedEvent(mapX, mapY, tileDefinition));
+
         switch (tileDefinition.type) {
             case "ground":
                 map.tiles[mapY][mapX] = builder.getSelectedTileDef().id;
@@ -80,7 +82,7 @@ final class GridListener extends InputListener {
                 map.tiles[mapY][mapX] = builder.getSelectedTileDef().id;
                 map.collision[mapY][mapX] = 1;
                 break;
-            case "zone":
+            case "zone", "custom_zone":
                 ZoneTile newZone = new ZoneTile(tileDefinition.id, mapX, mapY, tileDefinition.zoneType, tileDefinition.zoneProperties);
                 map.removeZoneByPos(mapX, mapY);
                 map.zones.add(newZone);

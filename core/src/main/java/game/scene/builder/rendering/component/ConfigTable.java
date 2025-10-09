@@ -48,7 +48,7 @@ public final class ConfigTable extends TableLayout {
 
                 String time = TimeUtils.getFormattedTime("HH:mm:ss");
                 String status = String.format("/green Level %s saved (%s)", newConfig.tag, time);
-                statusbar.setActionText(status);
+                statusbar.setActionStatus(status);
             }
         });
 
@@ -57,16 +57,16 @@ public final class ConfigTable extends TableLayout {
 
     @Override
     public void setup() {
-        add(new TextLabel("tag (file name)")).padRight(6).left();
+        add(new TextLabel("tag (file name)")).padRight(6).right();
         add(tagField).padTop(4).row();
 
-        add(new TextLabel("title")).padRight(4).left();
+        add(new TextLabel("title")).padRight(4).right();
         add(titleField).padTop(4).row();
 
-        add(new TextLabel("codelines amount")).padRight(6).left();
+        add(new TextLabel("codelines amount")).padRight(6).right();
         add(codeLinesNum).padTop(4).row();
 
-        add(new TextLabel("allowed commands")).padRight(6).left();
+        add(new TextLabel("allowed commands")).padRight(6).right();
         add(allowedCommands).padTop(4).row();
 
         add();
@@ -80,7 +80,7 @@ public final class ConfigTable extends TableLayout {
         newConfig.tag = tagField.getText();
         if (newConfig.tag.isBlank()) {
             String status = "/red Level not saved\nTag cannot be empty";
-            statusbar.setActionText(status);
+            statusbar.setActionStatus(status);
             return null;
         }
 
@@ -90,12 +90,12 @@ public final class ConfigTable extends TableLayout {
         boolean hasWinZone = newConfig.tileMap.zones.stream().anyMatch(obj -> obj.type.equals("win"));
         if (!hasStartZone) {
             String status = "/red Level not saved\nThere must be at least one start zone";
-            statusbar.setActionText(status);
+            statusbar.setActionStatus(status);
             return null;
         }
         if (!hasWinZone) {
             String status = "/red Level not saved\nThere must be at least one win zone";
-            statusbar.setActionText(status);
+            statusbar.setActionStatus(status);
             return null;
         }
 
@@ -107,7 +107,7 @@ public final class ConfigTable extends TableLayout {
             newConfig.codeLinesNum = Integer.parseInt(codeLinesNum.getText());
         } catch (NumberFormatException e) {
             String status = "/red Level not saved\nCodelines amount must be integer";
-            statusbar.setActionText(status);
+            statusbar.setActionStatus(status);
             return null;
         }
 
@@ -115,12 +115,5 @@ public final class ConfigTable extends TableLayout {
         newConfig.allowedInstructions = Instruction.getListByName(allowedCommands.getText().split("\\s++"));
 
         return newConfig;
-    }
-
-    public boolean hasTextFieldFocus() {
-        return tagField.hasKeyboardFocus() ||
-            titleField.hasKeyboardFocus() ||
-            codeLinesNum.hasKeyboardFocus() ||
-            allowedCommands.hasKeyboardFocus();
     }
 }

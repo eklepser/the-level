@@ -1,15 +1,13 @@
 package game.scene.builder.logic;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import game.common.logic.event.EventSource;
 import game.common.rendering.tilemap.TileDefinition;
 import game.common.rendering.tilemap.TileMap;
 import game.resources.Assets;
 import game.scene.builder.logic.event.BuilderEvent;
+import game.scene.builder.logic.event.TileSelectedEvent;
 import game.scene.builder.rendering.component.GridDrawer;
 import game.scene.level.logic.LevelConfiguration;
-
-import static game.utils.NumberUtils.tryParseInt;
 
 public final class Builder extends EventSource<BuilderEvent> {
     private final LevelConfiguration config;
@@ -31,6 +29,11 @@ public final class Builder extends EventSource<BuilderEvent> {
         gridDrawer.resize();
     }
 
+    public void setSelectedTileDef(TileDefinition selectedTileDef) {
+        this.selectedTileDef = selectedTileDef;
+        fire(new TileSelectedEvent(selectedTileDef));
+    }
+
     public LevelConfiguration getConfig() {
         return config;
     }
@@ -44,12 +47,4 @@ public final class Builder extends EventSource<BuilderEvent> {
     }
 
     public TileDefinition getSelectedTileDef() { return selectedTileDef; }
-
-    public void setSelectedTileDef(TileDefinition selectedTileDef) {
-        this.selectedTileDef = selectedTileDef;
-    }
-
-    public TextureRegion getSelectedTile() {
-        return Assets.getTileset().getTile(selectedTileDef.id);
-    }
 }

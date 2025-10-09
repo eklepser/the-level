@@ -11,22 +11,23 @@ import game.common.rendering.component.ColoredString;
 import game.common.rendering.component.TextLabel;
 import game.common.rendering.tilemap.TileDefinition;
 import game.config.Display;
-import game.scene.builder.logic.Builder;
+import game.resources.Assets;
 import game.scene.builder.rendering.BuilderScreen;
+
+import java.util.Arrays;
 
 public final class Statusbar extends TableLayout {
     private final BuilderScreen screen;
-    private final Builder builder;
 
     private final Image selectedTileImage;
     private final TextLabel selectedTileLabel;
     private final ColoredString actionLabel;
+
     private final TextLabel cursorPositionLabel;
     private final TextLabel cameraPositionLabel;
 
     public Statusbar(BuilderScreen screen) {
         this.screen = screen;
-        builder = screen.getBuilder();
 
         selectedTileImage = new Image();
         selectedTileLabel = new TextLabel();
@@ -58,14 +59,6 @@ public final class Statusbar extends TableLayout {
     }
 
     public void update() {
-        TextureRegion icon = builder.getSelectedTile();
-        if (icon == null || icon.getTexture() == null) return;
-
-        selectedTileImage.setDrawable(new TextureRegionDrawable(icon));
-
-        TileDefinition def = builder.getSelectedTileDef();
-        selectedTileLabel.setText(def.name);
-
         Vector2 screenPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
         Vector2 gridPos = screen.getGridStage().screenToStageCoordinates(screenPos);
         String cursorText = String.format("Cursor: %.2f, %.2f", gridPos.x / 32f, gridPos.y / 32f);
@@ -76,7 +69,22 @@ public final class Statusbar extends TableLayout {
         cameraPositionLabel.setText(cameraText);
     }
 
-    public void setActionText(String text) {
+    public void setSelectionStatus(TileDefinition def) {
+        TextureRegion icon = Assets.getTileset().getTile(def.id);
+        if (icon == null || icon.getTexture() == null) return;
+
+        selectedTileImage.setDrawable(new TextureRegionDrawable(icon));
+
+        if (def.type.equals("custom_zone")) {
+            String selected = String.format("%s \n(%s, %s)", def.name, def.zoneType, Arrays.toString(def.zoneProperties));
+            selectedTileLabel.setText(selected);
+        }
+        else {
+            selectedTileLabel.setText(def.name);
+        }
+    }
+
+    public void setActionStatus(String text) {
         actionLabel.setText(text);
     }
 }
