@@ -40,15 +40,7 @@ public class WorldProcessor extends InputAdapter {
             return true;
         }
         else if (keycode == Input.Keys.ENTER || keycode == Input.Keys.SPACE) {
-            if (world.getSelectedLevelId() != 0) {
-                //game.setScreen(new LevelScreen(game, world.getSelectedLevelConfig()));
-            }
-        }
-        else if (keycode == Input.Keys.F1) {
-            world.setSelectedLevelId(0);
-            LevelConfiguration levelConfiguration = BaseConfiguration.listFrom(
-                LevelConfiguration.class, Paths.LEVEL_CONFIG).get(0);
-            ScreenNavigator.gotoScreen(new LevelScreen(levelConfiguration));
+
         }
         else if (keycode == Input.Keys.ESCAPE) {
             ScreenNavigator.gotoScreen(new MenuScreen());

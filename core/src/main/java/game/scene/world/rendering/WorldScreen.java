@@ -18,13 +18,16 @@ public final class WorldScreen extends GameScreen {
         camera = new GameCamera();
         world = new World(config);
 
-        stage.addActor(new WorldLayout());
+        stage.addActor(new WorldLayout(world));
         multiplexer.addProcessor(new WorldProcessor(world));
     }
 
     @Override
     public void show() {
+        float zoom = map.height / 16.0f;
         camera.center(map.width * Display.TILE_SIZE, map.height * Display.TILE_SIZE);
+        camera.zoom = zoom;
+        camera.update();
         batch.setProjectionMatrix(camera.combined);
     }
 

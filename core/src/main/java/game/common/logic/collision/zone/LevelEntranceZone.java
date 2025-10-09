@@ -5,23 +5,17 @@ import game.scene.world.logic.World;
 
 public final class LevelEntranceZone extends WorldZone {
     private final World world;
-    private final int levelId;
+    private final String levelTag;
 
-    public LevelEntranceZone(int x, int y, World world, int levelId) {
+    public LevelEntranceZone(int x, int y, World world, String levelTag) {
         super(x, y);
         this.world = world;
-        this.levelId = levelId;
+        this.levelTag = levelTag;
     }
-
-//    public static LevelZone from(RectangleMapObject rectObj, World world) {
-//        Rectangle rect = rectObj.getRectangle();
-//        int levelId = (int) rectObj.getProperties().get("id");
-//        return new LevelZone(rect, world, levelId);
-//    }
 
     @Override
     public void onCollision(Entity entity) {
-        System.out.println("ON ENTRANCE");
+        world.setSelectedLevelConfig(levelTag);
 //        if (world.getSelectedLevelId() != levelId) {
 //            world.getScreen().getRoot().getLevelIdString().setText("/gray " + levelId);
 //            world.setSelectedLevelId(levelId);

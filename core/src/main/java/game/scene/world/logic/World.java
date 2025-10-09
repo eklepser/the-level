@@ -1,35 +1,28 @@
 package game.scene.world.logic;
 
 import com.badlogic.gdx.math.Vector2;
-import game.common.logic.AbstractLevel;
+import game.common.logic.AbstractWorld;
 import game.common.logic.collision.CollisionContext;
 import game.common.logic.collision.CollisionHandler;
-import game.common.logic.collision.zone.LevelZoneFactory;
 import game.common.logic.collision.zone.WorldZoneFactory;
-import game.common.logic.collision.zone.Zone;
 import game.common.logic.entity.Entity;
-import game.common.rendering.screen.GameScreen;
 import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.tilemap.ZoneTile;
 import game.resources.LevelLoader;
-import game.scene.level.logic.Level;
 import game.scene.level.logic.LevelConfiguration;
-import game.scene.level.logic.execution.Executor;
-import game.scene.level.rendering.LevelLayout;
-import game.scene.selection.logic.LevelMetadata;
-import game.scene.world.rendering.WorldScreen;
+import game.scene.world.logic.event.OnLevelEntranceEvent;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-public final class World extends AbstractLevel {
+public final class World extends AbstractWorld {
     private final CollisionContext collisionContext;
     private final CollisionHandler collisionHandler;
 
     private final Vector2 startPos;
 
-    private int selectedLevelId;
-    private final List<LevelMetadata> levels;
+    private final Map<String, LevelConfiguration> levelConfigs;
+    private LevelConfiguration selectedLevelConfig;
 
     public World(WorldConfiguration config) {
         super(config);
@@ -39,7 +32,7 @@ public final class World extends AbstractLevel {
 
         startPos = map.getStartPos();
 
-        levels = LevelLoader.loadMetadata("data/builder");
+        levelConfigs = LevelLoader.loadConfigurations("assets/world");
 
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
@@ -64,15 +57,12 @@ public final class World extends AbstractLevel {
         entities.add(entity);
     }
 
+    public void setSelectedLevelConfig(String selectedLevelTag) {
+        selectedLevelConfig = levelConfigs.get(selectedLevelTag);
+        fire(new OnLevelEntranceEvent(selectedLevelConfig));
+    }
+
     public List<Entity> getEntities() {
         return entities;
-    }
-
-    public int getSelectedLevelId() {
-        return selectedLevelId;
-    }
-
-    public void setSelectedLevelId(int selectedLevelId) {
-        this.selectedLevelId = selectedLevelId;
     }
 }

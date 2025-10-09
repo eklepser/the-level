@@ -38,9 +38,7 @@ public final class LevelStatusLayout extends TableLayout {
     }
 
     //Class logic:
-    public void update() {
-        LevelConfiguration config = new LevelConfiguration();
-
+    public void setStatus(LevelConfiguration config) {
         levelString.setText(config.tag);
         limitString.setText("/gray_1.5 Lines limit: /white_2 " + config.codeLinesNum);
         commandsString.setText("/gray_1.5 Allowed commands:");
