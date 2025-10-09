@@ -21,9 +21,8 @@ public final class IfCommand extends Command {
 
     @Override
     public void execute(Entity target) {
-        if (condition.check(target, collisionContext))
-        {
-            isTrue = true;
+        isTrue = condition.check(target, collisionContext);
+        if (isTrue) {
             innerCommand.execute(target);
         }
     }

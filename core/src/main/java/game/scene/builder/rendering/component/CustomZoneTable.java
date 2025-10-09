@@ -37,7 +37,6 @@ public class CustomZoneTable extends TableLayout {
                 newDef.type = def.type; // must be "custom_zone" type
 
                 newDef.id = NumberUtils.tryParseInt(tileIdField.getText(), def.id);
-                newDef.name = nameField.getText();
                 newDef.zoneType = zoneTypeField.getText();
                 newDef.zoneProperties = zonePropertiesField.getText().split("\\s+");
 
@@ -67,4 +66,6 @@ public class CustomZoneTable extends TableLayout {
         add();
         add(saveButton).padTop(4).center().fillX();
     }
+
+
 }

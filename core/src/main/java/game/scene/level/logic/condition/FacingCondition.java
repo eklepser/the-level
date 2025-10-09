@@ -17,16 +17,24 @@ public final class FacingCondition extends Condition {
         int targetX = (int) (target.getWorldPos().x + target.getFacingDirection().vector.x);
         int targetY = (int) (target.getWorldPos().y + target.getFacingDirection().vector.y);
 
-        System.out.println(target.getFacingDirection());
+        System.out.println("facing direction:" + target.getFacingDirection());
+        System.out.println(targetX);
+        System.out.println(targetY);
 
         if (zoneName.equals("wall")) {
             return collisionContext.collisionMap()[targetY][targetX] == 1;
         }
 
+        System.out.println("zone count: " + collisionContext.zones().size());
         for (Zone zone : collisionContext.zones()) {
+            System.out.println(zone);
+
             if (!(zone instanceof ColoredZone colored)) continue;
             if (!colored.getColorName().equals(zoneName)) continue;
-            return (targetX == zone.getX() && targetY == zone.getY());
+
+            if (targetX == zone.getX() && targetY == zone.getY()) {
+                return true;
+            }
         }
         return false;
     }

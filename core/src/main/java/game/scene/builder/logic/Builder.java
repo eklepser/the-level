@@ -22,7 +22,10 @@ public final class Builder extends EventSource<BuilderEvent> {
         gridDrawer = new GridDrawer(this);
 
         selectedTileDef = Assets.getTileset().getDefinitions().get(10);
+
         customZoneDef = Assets.getTileset().getDefinitions().get(92);
+        customZoneDef.zoneType = "";
+        customZoneDef.zoneProperties = new String[] { };
     }
 
     public void resizeMap(int width, int height, int offsetX, int offsetY) {
