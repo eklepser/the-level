@@ -25,7 +25,6 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
         camera = new DynamicGameCamera();
         builder = new Builder(config);
 
-        // Order is important! Builder -> gridStage -> layout.
         gridStage = new Stage(new FitViewport(
             Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT, camera));
         gridStage.addActor(builder.getGridActor());
@@ -46,7 +45,9 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
 
     @Override
     protected void update(float delta) {
-        camera.moveAndUpdate(delta);
+        if (!layout.hasTextFieldFocus()) {
+            camera.moveAndUpdate(delta);
+        }
         layout.update();
         gridStage.act();
     }

@@ -64,8 +64,7 @@ public final class Statusbar extends TableLayout {
         selectedTileImage.setDrawable(new TextureRegionDrawable(icon));
 
         TileDefinition def = builder.getSelectedTileDef();
-        String selectedText = String.format("%s (%s)", def.type, def.id );
-        selectedTileLabel.setText(selectedText);
+        selectedTileLabel.setText(def.name);
 
         Vector2 screenPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
         Vector2 gridPos = screen.getGridStage().screenToStageCoordinates(screenPos);

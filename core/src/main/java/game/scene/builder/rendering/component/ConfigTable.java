@@ -97,6 +97,7 @@ public final class ConfigTable extends TableLayout {
             return null;
         }
 
+        // tile
         newConfig.title = titleField.getText();
 
         // parse codelines amount
@@ -112,7 +113,6 @@ public final class ConfigTable extends TableLayout {
         return newConfig;
     }
 
-    // Getters:
     public boolean hasTextFieldFocus() {
         return tagField.hasKeyboardFocus() ||
             titleField.hasKeyboardFocus() ||

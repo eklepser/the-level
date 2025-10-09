@@ -79,7 +79,11 @@ public final class BuilderLayout extends TableLayout implements EventListener<Bu
         }
     }
 
-    //Getters:
+    public boolean hasTextFieldFocus() {
+        return configTable.hasTextFieldFocus() ||
+            resizingLayout.hasTextFieldFocus();
+    }
+
     public ConfigTable getConfigTable() { return configTable; }
 
     public Statusbar getStatusBar() {

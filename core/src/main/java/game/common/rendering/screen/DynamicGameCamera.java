@@ -8,10 +8,6 @@ public class DynamicGameCamera extends GameCamera {
         super();
     }
 
-    public DynamicGameCamera(float viewportWidth, float viewportHeight) {
-        super(viewportWidth, viewportHeight);
-    }
-
     public void moveAndUpdate(float delta) {
 
         float moveDistance = 200 * delta;

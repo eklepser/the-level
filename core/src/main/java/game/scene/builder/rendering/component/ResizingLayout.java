@@ -13,7 +13,6 @@ import game.scene.builder.logic.Builder;
 import static game.utils.NumberUtils.tryParseInt;
 
 public final class ResizingLayout extends TableLayout {
-    private final Builder builder;
     private final TileMap map;
 
     private final TextLabel widthLabel;
@@ -28,7 +27,6 @@ public final class ResizingLayout extends TableLayout {
     private final TextButton applyButton;
 
     public ResizingLayout(Builder builder) {
-        this.builder = builder;
         map = builder.getMap();
 
         widthLabel = new TextLabel(String.format("X(%s)", map.width));
@@ -98,5 +96,12 @@ public final class ResizingLayout extends TableLayout {
         if (newSize > 0) {
             return newSize;
         } else return startSize;
+    }
+
+    public boolean hasTextFieldFocus() {
+        return inputWidth.hasKeyboardFocus() ||
+            inputHeight.hasKeyboardFocus() ||
+            inputOffsetX.hasKeyboardFocus() ||
+            inputOffsetY.hasKeyboardFocus();
     }
 }
