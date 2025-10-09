@@ -38,7 +38,7 @@ public final class LevelLoader {
                 String id = root.getString("id", "unknown id");
                 String tag = root.getString("tag", "unknown tag");
                 String title = root.getString("title", "No title");
-                int linesAmount = root.getInt("tag", 10);
+                levels.add(new LevelMetadata(id, tag, title));
             } catch (Exception e) {
                 Gdx.app.error("LevelScanner", "Failed to parse: " + file.name(), e);
             }
