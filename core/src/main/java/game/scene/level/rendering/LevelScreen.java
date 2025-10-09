@@ -27,8 +27,11 @@ public final class LevelScreen extends GameScreen {
 
     @Override
     public void show() {
+        float zoom = map.height / 16.0f;
         camera.center(map.width * Display.TILE_SIZE, map.height * Display.TILE_SIZE);
-        camera.offset(-Display.EDITOR_MENU_SCALE * Display.VIEWPORT_WIDTH / 2.0f, 0);
+        camera.zoom = zoom;
+        camera.offset(-zoom * Display.EDITOR_MENU_SCALE * Display.VIEWPORT_WIDTH / 2.0f , 0);
+        camera.update();
         batch.setProjectionMatrix(camera.combined);
     }
 

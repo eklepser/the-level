@@ -13,7 +13,7 @@ public class GameCamera extends OrthographicCamera {
         setToOrtho(false, viewportWidth, viewportHeight);
     }
 
-    public void center(int width, int height) {
+    public void center(float width, float height) {
         float centerX = width / 2f;
         float centerY = height / 2f;
         position.set(centerX, centerY, 0);
