@@ -14,6 +14,7 @@ public final class Builder extends EventSource<BuilderEvent> {
     private final GridDrawer gridDrawer;
 
     private TileDefinition selectedTileDef;
+    private TileDefinition customZoneDef;
 
     public Builder(LevelConfiguration config) {
         this.config = config;
@@ -21,6 +22,7 @@ public final class Builder extends EventSource<BuilderEvent> {
         gridDrawer = new GridDrawer(this);
 
         selectedTileDef = Assets.getTileset().getDefinitions().get(10);
+        customZoneDef = Assets.getTileset().getDefinitions().get(92);
     }
 
     public void resizeMap(int width, int height, int offsetX, int offsetY) {
@@ -29,9 +31,21 @@ public final class Builder extends EventSource<BuilderEvent> {
         gridDrawer.resize();
     }
 
-    public void setSelectedTileDef(TileDefinition selectedTileDef) {
-        this.selectedTileDef = selectedTileDef;
+    public TileDefinition getSelectedTileDef() { return selectedTileDef; }
+
+    public void setSelectedTileDef(TileDefinition def) {
+        if (def.type.equals("custom_zone")) {
+            selectedTileDef = customZoneDef;
+        }
+        else {
+            selectedTileDef = def;
+        }
         fire(new TileSelectedEvent(selectedTileDef));
+    }
+
+    public void setCustomZoneDef(TileDefinition def) {
+        this.customZoneDef = def;
+        setSelectedTileDef(def);
     }
 
     public LevelConfiguration getConfig() {
@@ -46,5 +60,4 @@ public final class Builder extends EventSource<BuilderEvent> {
         return config.tileMap;
     }
 
-    public TileDefinition getSelectedTileDef() { return selectedTileDef; }
 }

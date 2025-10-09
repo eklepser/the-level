@@ -10,18 +10,23 @@ import game.common.rendering.component.TextLabel;
 import game.common.rendering.tilemap.TileDefinition;
 import game.resources.Assets;
 import game.scene.builder.logic.Builder;
+import game.utils.NumberUtils;
 
 public class CustomZoneTable extends TableLayout {
+    private final TextField tileIdField;
+    private final TextField nameField;
     private final TextField zoneTypeField;
     private final TextField zonePropertiesField;
 
     private final TextButton saveButton;
 
     public CustomZoneTable(Builder builder) {
+        tileIdField = new InputField("", 10);
+        nameField = new InputField("", 20);
         zoneTypeField = new InputField("", 10);
         zonePropertiesField = new InputField("", 20);
 
-        saveButton = new TextButton("Save", Assets.getSkin());
+        saveButton = new TextButton("Apply", Assets.getSkin());
         saveButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
@@ -29,13 +34,14 @@ public class CustomZoneTable extends TableLayout {
                 if (!def.type.equals("custom_zone")) return;
 
                 TileDefinition newDef = new TileDefinition();
-                newDef.id = def.id;
-                newDef.name = def.name;
-                newDef.type = def.type;
+                newDef.type = def.type; // must be "custom_zone" type
+
+                newDef.id = NumberUtils.tryParseInt(tileIdField.getText(), def.id);
+                newDef.name = nameField.getText();
                 newDef.zoneType = zoneTypeField.getText();
                 newDef.zoneProperties = zonePropertiesField.getText().split("\\s+");
 
-                builder.setSelectedTileDef(newDef);
+                builder.setCustomZoneDef(newDef);
             }
         });
 
@@ -45,6 +51,12 @@ public class CustomZoneTable extends TableLayout {
     @Override
     protected void setup() {
         add(new TextLabel("Custom zone setup:")).left().colspan(2).row();
+
+        add(new TextLabel("tile id")).padRight(6).left();
+        add(tileIdField).padTop(4).row();
+
+        add(new TextLabel("name")).padRight(4).left();
+        add(nameField).padTop(4).row();
 
         add(new TextLabel("type")).padRight(6).left();
         add(zoneTypeField).padTop(4).row();

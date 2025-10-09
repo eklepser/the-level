@@ -95,7 +95,9 @@ public final class BuilderLayout extends TableLayout implements EventListener<Bu
     public void onEvent(BuilderEvent event) {
         if (event instanceof TileSelectedEvent tileSelected) {
             TileDefinition def = tileSelected.tileDefinition;
-            customZoneTable.setVisible(def.type.equals("custom_zone"));
+            if (def.type.equals("custom_zone")) {
+                customZoneTable.setVisible(true);
+            }
             statusbar.setSelectionStatus(def);
         }
         if (event instanceof TilePlacedEvent tilePlaced) {

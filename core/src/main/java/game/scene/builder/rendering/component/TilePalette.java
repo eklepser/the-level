@@ -47,8 +47,7 @@ public final class TilePalette extends TableLayout {
             ImageButton btn = new ImageButton(new TextureRegionDrawable(icon));
             btn.addListener(new ClickListener() {
                 @Override public void clicked(InputEvent event, float x, float y) {
-                    TileDefinition def = defs.get(id);
-                    builder.setSelectedTileDef(def);
+                    builder.setSelectedTileDef(defs.get(id));
                 }
             });
             add(btn);
