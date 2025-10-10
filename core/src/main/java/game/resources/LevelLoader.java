@@ -5,9 +5,8 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import game.scene.level.logic.LevelConfigurationOld;
-import game.scene.level.logic.LevelMetadata;
-import game.scene.level.logic.LevelMetadataOld;
+import game.scene.level.data.LevelData;
+import game.scene.level.data.LevelMetadata;
 import game.scene.level.logic.command.Instruction;
 
 import java.util.ArrayList;
@@ -20,9 +19,44 @@ public final class LevelLoader {
         throw new UnsupportedOperationException();
     }
 
-    public static List<LevelMetadata> loadMetadata(String directoryPath) {
+    public static LevelData loadData(String internalPath) {
+        Json json = new Json();
+        return json.fromJson(LevelData.class, Gdx.files.internal(internalPath));
+    }
+
+    public static Map<String, LevelData> loadDataMap(String localPath) {
+        Map<String, LevelData> levelDataMap = new HashMap<>();
+        FileHandle dir = Gdx.files.local(localPath);
+
+        if (!dir.exists() || !dir.isDirectory()) {
+            Gdx.app.error("Loader", "Directory not found: " + dir);
+            return levelDataMap;
+        }
+
+        Json json = new Json();
+
+        for (FileHandle file : dir.list()) {
+            String fileName = file.name();
+            if (!fileName.endsWith(".json")) continue;
+            if (fileName.endsWith("template.json")) continue;
+
+            try {
+                LevelData data = json.fromJson(LevelData.class, file);
+                if (data != null) {
+                    levelDataMap.put(data.metadata.tag, data);
+                } else {
+                    Gdx.app.error("LevelScanner", "Parsed null config from: " + fileName);
+                }
+            } catch (Exception e) {
+                Gdx.app.error("LevelScanner", "Failed to parse: " + fileName, e);
+            }
+        }
+        return levelDataMap;
+    }
+
+    public static List<LevelMetadata> loadMetadata(String localDirPath) {
         List<LevelMetadata> levels = new ArrayList<>();
-        FileHandle dir = Gdx.files.local(directoryPath);
+        FileHandle dir = Gdx.files.local(localDirPath);
 
         if (!dir.exists() || !dir.isDirectory()) {
             Gdx.app.error("Loader", "Directory not found: " + dir);
@@ -38,26 +72,23 @@ public final class LevelLoader {
             try {
                 JsonValue root = jsonReader.parse(file);
 
-                // Получаем объект metadata из LevelData
                 JsonValue metadataJson = root.get("metadata");
                 if (metadataJson == null) {
                     Gdx.app.error("LevelScanner", "No metadata found in: " + file.name());
                     continue;
                 }
 
-                // Парсим поля из metadata
                 String tag = metadataJson.getString("tag", "unknown tag");
                 String title = metadataJson.getString("title", "No title");
                 int codeLinesAmount = metadataJson.getInt("codeLinesAmount", 10);
 
-                // Парсим allowedInstructions
                 List<Instruction> allowedInstructions = new ArrayList<>();
                 JsonValue instructionsJson = metadataJson.get("allowedInstructions");
                 if (instructionsJson != null) {
                     for (JsonValue instructionJson : instructionsJson) {
                         String instructionName = instructionJson.asString();
                         try {
-                            Instruction instruction = Instruction.valueOf(instructionName);
+                            Instruction instruction = Instruction.getByName(instructionName);
                             allowedInstructions.add(instruction);
                         } catch (IllegalArgumentException e) {
                             Gdx.app.error("LevelScanner", "Unknown instruction: " + instructionName + " in file: " + file.name());
@@ -72,35 +103,5 @@ public final class LevelLoader {
             }
         }
         return levels;
-    }
-
-    public static Map<String, LevelConfigurationOld> loadConfigurations(String directoryPath) {
-        Map<String, LevelConfigurationOld> configsMap = new HashMap<>();
-        FileHandle dir = Gdx.files.local(directoryPath);
-
-        if (!dir.exists() || !dir.isDirectory()) {
-            Gdx.app.error("Loader", "Directory not found: " + dir);
-            return configsMap;
-        }
-
-        Json json = new Json();
-
-        for (FileHandle file : dir.list()) {
-            String fileName = file.name();
-            if (!fileName.endsWith(".json")) continue;
-            if (fileName.endsWith("template.json")) continue;
-
-            try {
-                LevelConfigurationOld config = json.fromJson(LevelConfigurationOld.class, file);
-                if (config != null) {
-                    configsMap.put(config.tag, config);
-                } else {
-                    Gdx.app.error("LevelScanner", "Parsed null config from: " + fileName);
-                }
-            } catch (Exception e) {
-                Gdx.app.error("LevelScanner", "Failed to parse: " + fileName, e);
-            }
-        }
-        return configsMap;
     }
 }

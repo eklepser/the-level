@@ -1,22 +1,21 @@
 package game.scene.world.rendering;
 
-import game.common.rendering.screen.GameCamera;
-import game.common.rendering.screen.GameScreen;
+import game.scene.common.rendering.screen.GameCamera;
+import game.scene.common.rendering.screen.GameScreen;
 import game.config.Display;
-import game.scene.level.rendering.component.editor.LevelProcessor;
 import game.scene.world.logic.World;
-import game.scene.world.logic.WorldConfiguration;
+import game.scene.world.data.WorldData;
 import game.scene.world.logic.WorldProcessor;
 
 public final class WorldScreen extends GameScreen {
     private final GameCamera camera;
     private final World world;
 
-    public WorldScreen(WorldConfiguration config) {
-        super(config.tileMap);
+    public WorldScreen(WorldData worldData) {
+        super(worldData.tileMap);
 
         camera = new GameCamera();
-        world = new World(config);
+        world = new World(worldData);
 
         stage.addActor(new WorldLayout(world));
         multiplexer.addProcessor(new WorldProcessor(world));

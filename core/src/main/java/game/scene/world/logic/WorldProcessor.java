@@ -2,9 +2,9 @@ package game.scene.world.logic;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import game.common.logic.Direction;
-import game.common.logic.entity.Entity;
-import game.common.rendering.screen.ScreenNavigator;
+import game.scene.common.logic.Direction;
+import game.scene.common.logic.entity.Entity;
+import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.menu.rendering.MenuScreen;
 
 public class WorldProcessor extends InputAdapter {

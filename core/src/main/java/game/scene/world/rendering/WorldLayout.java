@@ -1,8 +1,8 @@
 package game.scene.world.rendering;
 
-import game.common.logic.event.EventListener;
-import game.common.rendering.TableLayout;
-import game.common.rendering.component.ColoredString;
+import game.scene.common.logic.event.EventListener;
+import game.scene.common.rendering.TableLayout;
+import game.scene.level.data.LevelData;
 import game.scene.world.logic.World;
 import game.scene.world.logic.event.OnLevelEntranceEvent;
 import game.scene.world.logic.event.WorldEvent;
@@ -32,7 +32,9 @@ public final class WorldLayout extends TableLayout implements EventListener<Worl
     public void onEvent(WorldEvent event) {
         if (event instanceof OnLevelEntranceEvent entranceEvent) {
             System.out.println("EVENT");
-            levelStatusLayout.setStatus(entranceEvent.levelConfiguration);
+            LevelData levelData = entranceEvent.levelData;
+            if (levelData == null) return;
+            levelStatusLayout.setStatus(levelData);
         }
     }
 }

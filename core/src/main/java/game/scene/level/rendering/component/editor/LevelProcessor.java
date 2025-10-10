@@ -2,8 +2,8 @@ package game.scene.level.rendering.component.editor;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import game.common.logic.Direction;
-import game.common.rendering.screen.ScreenNavigator;
+import game.scene.common.logic.Direction;
+import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.selection.rendering.PlaySelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
 

@@ -1,10 +1,10 @@
 package game.scene.level.rendering;
 
-import game.common.rendering.screen.GameCamera;
-import game.common.rendering.screen.GameScreen;
+import game.scene.common.rendering.screen.GameCamera;
+import game.scene.common.rendering.screen.GameScreen;
 import game.config.Display;
 import game.scene.level.logic.Level;
-import game.scene.level.logic.LevelData;
+import game.scene.level.data.LevelData;
 import game.scene.level.rendering.component.editor.LevelProcessor;
 
 public final class LevelScreen extends GameScreen {

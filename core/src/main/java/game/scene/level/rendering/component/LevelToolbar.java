@@ -1,7 +1,7 @@
 package game.scene.level.rendering.component;
 
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import game.common.rendering.TableLayout;
+import game.scene.common.rendering.TableLayout;
 import game.resources.Assets;
 import game.scene.level.rendering.LevelLayout;
 import game.scene.level.rendering.component.editor.EditorButtonFactory;

@@ -3,10 +3,8 @@ package game.scene.level.rendering.component.editor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import game.common.rendering.TableLayout;
-import game.common.rendering.component.TextLabel;
-import game.scene.level.logic.LevelConfigurationOld;
-import game.scene.level.logic.LevelData;
+import game.scene.common.rendering.TableLayout;
+import game.scene.common.rendering.component.TextLabel;
 import game.scene.level.logic.command.Instruction;
 
 import java.util.List;

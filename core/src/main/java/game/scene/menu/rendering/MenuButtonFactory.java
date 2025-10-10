@@ -2,21 +2,21 @@ package game.scene.menu.rendering;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import game.common.rendering.ButtonFactory;
-import game.common.rendering.screen.ScreenNavigator;
-import game.common.rendering.tilemap.BaseConfiguration;
+import com.badlogic.gdx.utils.Json;
+import game.scene.common.rendering.ButtonFactory;
+import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.selection.rendering.BuilderSelectionLayout;
 import game.scene.selection.rendering.PlaySelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
-import game.scene.world.logic.WorldConfiguration;
+import game.scene.world.data.WorldData;
 import game.scene.world.rendering.WorldScreen;
 
 public final class MenuButtonFactory extends ButtonFactory {
     public static TextButton startButton( ) {
         return createButton("Start Game", () -> {
-            WorldConfiguration worldConfig = BaseConfiguration.from(
-                WorldConfiguration.class, "world/world_one.json");
-            ScreenNavigator.gotoScreen(new WorldScreen(worldConfig));
+            Json json = new Json();
+            WorldData worldData = json.fromJson(WorldData.class, Gdx.files.internal("world/world_one.json"));
+            ScreenNavigator.gotoScreen(new WorldScreen(worldData));
         });
     }
 

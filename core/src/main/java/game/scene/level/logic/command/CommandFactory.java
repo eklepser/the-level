@@ -1,6 +1,6 @@
 package game.scene.level.logic.command;
 
-import game.common.logic.Direction;
+import game.scene.common.logic.Direction;
 import game.scene.level.logic.condition.Condition;
 import game.scene.level.logic.condition.ConditionFactory;
 import game.scene.level.logic.execution.Executor;

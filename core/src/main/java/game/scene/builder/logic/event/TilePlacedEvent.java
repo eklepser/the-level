@@ -1,6 +1,6 @@
 package game.scene.builder.logic.event;
 
-import game.common.rendering.tilemap.TileDefinition;
+import game.scene.common.rendering.tilemap.TileDefinition;
 
 public final class TilePlacedEvent extends BuilderEvent {
     public final int x;

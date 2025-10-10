@@ -1,7 +1,7 @@
 package game.scene.level.logic.command;
 
-import game.common.logic.Direction;
-import game.common.logic.entity.Entity;
+import game.scene.common.logic.Direction;
+import game.scene.common.logic.entity.Entity;
 
 public final class RotateCommand extends Command {
     private final Direction direction;

@@ -1,10 +1,10 @@
 package game.scene.builder.rendering;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import game.common.logic.event.EventListener;
-import game.common.rendering.TableLayout;
-import game.common.rendering.component.TextLabel;
-import game.common.rendering.tilemap.TileDefinition;
+import game.scene.common.logic.event.EventListener;
+import game.scene.common.rendering.TableLayout;
+import game.scene.common.rendering.component.TextLabel;
+import game.scene.common.rendering.tilemap.TileDefinition;
 import game.resources.Assets;
 import game.scene.builder.logic.Builder;
 import game.scene.builder.logic.event.BuilderEvent;

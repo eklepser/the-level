@@ -1,9 +1,9 @@
 package game.scene.level.logic.condition;
 
-import game.common.logic.collision.CollisionContext;
-import game.common.logic.collision.zone.ColoredZone;
-import game.common.logic.collision.zone.Zone;
-import game.common.logic.entity.Entity;
+import game.scene.common.logic.collision.CollisionContext;
+import game.scene.common.logic.collision.zone.ColoredZone;
+import game.scene.common.logic.collision.zone.Zone;
+import game.scene.common.logic.entity.Entity;
 
 public final class FacingCondition extends Condition {
     private final String zoneName;

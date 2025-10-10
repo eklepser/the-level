@@ -1,7 +1,7 @@
 package game.scene.level.rendering.component.editor;
 
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import game.common.rendering.ButtonFactory;
+import game.scene.common.rendering.ButtonFactory;
 import game.scene.level.window.HelpWindow;
 
 public final class EditorButtonFactory extends ButtonFactory {

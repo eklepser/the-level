@@ -1,6 +1,6 @@
 package game.scene.level.logic.command;
 
-import game.common.logic.entity.Entity;
+import game.scene.common.logic.entity.Entity;
 
 public final class NoneCommand extends Command {
 

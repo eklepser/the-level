@@ -2,7 +2,7 @@ package game.scene.selection.logic;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import game.common.rendering.screen.ScreenNavigator;
+import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.menu.rendering.MenuScreen;
 
 public class SelectionProcessor extends InputAdapter {
