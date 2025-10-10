@@ -5,14 +5,8 @@ import game.scene.level.logic.command.Instruction;
 
 import java.util.List;
 
-public final class LevelConfiguration extends BaseConfiguration {
+public final class LevelConfigurationOld extends BaseConfiguration {
     public String title;
     public int codeLinesNum;
     public List<Instruction> allowedInstructions;
-
-    public String[] getAllowedInstructionsAsStrings() {
-        return allowedInstructions.stream()
-            .map(Instruction::getName)
-            .toArray(String[]::new);
-    }
 }

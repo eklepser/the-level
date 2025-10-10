@@ -44,7 +44,7 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
         setFillParent(true);
 
         // Setup elements:
-        infoString.setText("/_2 " + level.getConfig().title);
+        infoString.setText("/_2 " + level.getLevelData().metadata.title);
 
         levelStatusbar.left();
         ScrollPane scrollPane = new ScrollPane(levelStatusbar);

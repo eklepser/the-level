@@ -9,7 +9,7 @@ import game.common.logic.entity.Entity;
 import game.common.rendering.tilemap.TileMap;
 import game.common.rendering.tilemap.ZoneTile;
 import game.resources.LevelLoader;
-import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.LevelConfigurationOld;
 import game.scene.world.logic.event.OnLevelEntranceEvent;
 
 import java.util.List;
@@ -21,8 +21,8 @@ public final class World extends AbstractWorld {
 
     private final Vector2 startPos;
 
-    private final Map<String, LevelConfiguration> levelConfigs;
-    private LevelConfiguration selectedLevelConfig;
+    private final Map<String, LevelConfigurationOld> levelConfigs;
+    private LevelConfigurationOld selectedLevelConfig;
 
     public World(WorldConfiguration config) {
         super(config);

@@ -6,7 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import game.common.logic.collision.CollisionContext;
 import game.common.logic.entity.Entity;
 import game.scene.level.logic.Level;
-import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.LevelConfigurationOld;
+import game.scene.level.logic.LevelData;
 import game.scene.level.logic.command.Command;
 import game.scene.level.logic.event.ExecutionStartEvent;
 import game.scene.level.logic.event.NewCommandEvent;
@@ -23,8 +24,8 @@ public final class Executor implements TimeController {
 
     private float executionDelay = 0.5f;
 
-    public Executor(LevelConfiguration config, Level level) {
-        translator = new Translator(config.allowedInstructions, this);
+    public Executor(LevelData levelData, Level level) {
+        translator = new Translator(levelData.metadata.allowedInstructions, this);
         this.level = level;
         collisionContext = level.getCollisionContext();
     }

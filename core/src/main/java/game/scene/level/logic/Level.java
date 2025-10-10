@@ -23,13 +23,13 @@ public final class Level extends AbstractLevel {
 
     private final List<Entity> entitiesToAdd;
 
-    public Level(LevelConfiguration config) {
-        super(config);
+    public Level(LevelData levelData) {
+        super(levelData);
 
         collisionContext = new CollisionContext(map.collision, zones, entities);
         collisionHandler = new CollisionHandler(collisionContext);
 
-        executor = new Executor(config, this);
+        executor = new Executor(levelData, this);
 
         entitiesToAdd = new ArrayList<>();
 
@@ -100,7 +100,7 @@ public final class Level extends AbstractLevel {
 
     public List<Entity> getEntitiesToAdd() { return entitiesToAdd; }
 
-    public LevelConfiguration getConfig() { return (LevelConfiguration) config;}
+    public LevelData getLevelData() { return levelData;}
 
     public TileMap getMap() {
         return map;

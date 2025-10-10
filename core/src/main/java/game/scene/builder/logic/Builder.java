@@ -7,17 +7,18 @@ import game.resources.Assets;
 import game.scene.builder.logic.event.BuilderEvent;
 import game.scene.builder.logic.event.TileSelectedEvent;
 import game.scene.builder.rendering.component.GridDrawer;
-import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.LevelConfigurationOld;
+import game.scene.level.logic.LevelData;
 
 public final class Builder extends EventSource<BuilderEvent> {
-    private final LevelConfiguration config;
+    private final LevelData levelData;
     private final GridDrawer gridDrawer;
 
     private TileDefinition selectedTileDef;
     private TileDefinition customZoneDef;
 
-    public Builder(LevelConfiguration config) {
-        this.config = config;
+    public Builder(LevelData levelData) {
+        this.levelData = levelData;
 
         gridDrawer = new GridDrawer(this);
 
@@ -29,8 +30,8 @@ public final class Builder extends EventSource<BuilderEvent> {
     }
 
     public void resizeMap(int width, int height, int offsetX, int offsetY) {
-        config.tileMap.resize(width, height);
-        config.tileMap.offset(offsetX, offsetY);
+        levelData.tileMap.resize(width, height);
+        levelData.tileMap.offset(offsetX, offsetY);
         gridDrawer.resize();
     }
 
@@ -51,8 +52,8 @@ public final class Builder extends EventSource<BuilderEvent> {
         setSelectedTileDef(def);
     }
 
-    public LevelConfiguration getConfig() {
-        return config;
+    public LevelData getLevelData() {
+        return levelData;
     }
 
     public GridDrawer getGridActor() {
@@ -60,7 +61,7 @@ public final class Builder extends EventSource<BuilderEvent> {
     }
 
     public TileMap getMap() {
-        return config.tileMap;
+        return levelData.tileMap;
     }
 
 }

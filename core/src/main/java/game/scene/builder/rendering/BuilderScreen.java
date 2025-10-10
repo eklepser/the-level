@@ -10,7 +10,8 @@ import game.common.rendering.screen.GameScreen;
 import game.common.rendering.screen.ScreenNavigator;
 import game.config.Display;
 import game.scene.builder.logic.Builder;
-import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.LevelConfigurationOld;
+import game.scene.level.logic.LevelData;
 import game.scene.selection.rendering.BuilderSelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
 
@@ -20,11 +21,11 @@ public final class BuilderScreen extends GameScreen implements BaseInputListener
     private final Stage gridStage;
     private final BuilderLayout layout;
 
-    public BuilderScreen(LevelConfiguration config) {
-        super(config.tileMap);
+    public BuilderScreen(LevelData levelData) {
+        super(levelData.tileMap);
 
         camera = new DynamicGameCamera();
-        builder = new Builder(config);
+        builder = new Builder(levelData);
 
         gridStage = new Stage(new FitViewport(
             Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT, camera));

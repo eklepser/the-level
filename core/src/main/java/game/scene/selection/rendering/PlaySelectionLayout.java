@@ -1,8 +1,10 @@
 package game.scene.selection.rendering;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Json;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.TextLabel;
 import game.common.rendering.screen.ScreenNavigator;
@@ -10,9 +12,11 @@ import game.common.rendering.tilemap.BaseConfiguration;
 import game.config.Display;
 import game.config.Paths;
 import game.resources.Assets;
-import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.LevelConfigurationOld;
+import game.scene.level.logic.LevelData;
+import game.scene.level.logic.LevelMetadata;
 import game.scene.level.rendering.LevelScreen;
-import game.scene.selection.logic.LevelMetadata;
+import game.scene.level.logic.LevelMetadataOld;
 
 import java.util.List;
 
@@ -32,9 +36,9 @@ public final class PlaySelectionLayout extends TableLayout {
         add(new TextLabel("Play level:")).padTop(20).row();
 
         for (LevelMetadata data : levels) {
-            String text = String.format(data.tag());
+            String text = String.format(data.tag);
             TextButton button = new TextButton(text, Assets.getSkin());
-            String path = String.format("%slevel_%s.json" , Paths.BUILDER_DATA, data.tag());
+            String path = String.format("%slevel_%s.json" , Paths.BUILDER_DATA, data.tag);
             button.addListener(new ButtonListener(path));
 
             add(button).padTop(10).width(Display.VIEWPORT_WIDTH / 4.0f).row();
@@ -51,9 +55,9 @@ public final class PlaySelectionLayout extends TableLayout {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            LevelConfiguration config = BaseConfiguration.from(
-                LevelConfiguration.class, path);
-            ScreenNavigator.gotoScreen(new LevelScreen(config));
+            Json json = new Json();
+            LevelData levelData = json.fromJson(LevelData.class, Gdx.files.internal(path));
+            ScreenNavigator.gotoScreen(new LevelScreen(levelData));
         }
     }
 }

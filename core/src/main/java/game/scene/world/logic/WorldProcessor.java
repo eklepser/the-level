@@ -5,10 +5,6 @@ import com.badlogic.gdx.InputAdapter;
 import game.common.logic.Direction;
 import game.common.logic.entity.Entity;
 import game.common.rendering.screen.ScreenNavigator;
-import game.common.rendering.tilemap.BaseConfiguration;
-import game.config.Paths;
-import game.scene.level.logic.LevelConfiguration;
-import game.scene.level.rendering.LevelScreen;
 import game.scene.menu.rendering.MenuScreen;
 
 public class WorldProcessor extends InputAdapter {

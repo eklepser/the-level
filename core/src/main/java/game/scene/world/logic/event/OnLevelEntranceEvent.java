@@ -1,11 +1,11 @@
 package game.scene.world.logic.event;
 
-import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.LevelConfigurationOld;
 
 public final class OnLevelEntranceEvent extends  WorldEvent {
-    public final LevelConfiguration levelConfiguration;
+    public final LevelConfigurationOld levelConfiguration;
 
-    public OnLevelEntranceEvent(LevelConfiguration levelConfiguration) {
+    public OnLevelEntranceEvent(LevelConfigurationOld levelConfiguration) {
         this.levelConfiguration = levelConfiguration;
     }
 }

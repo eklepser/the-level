@@ -9,12 +9,14 @@ import game.common.rendering.component.InputField;
 import game.common.rendering.component.TextLabel;
 import game.resources.Assets;
 import game.resources.LevelSaver;
-import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.LevelConfigurationOld;
+import game.scene.level.logic.LevelData;
+import game.scene.level.logic.LevelMetadata;
 import game.scene.level.logic.command.Instruction;
 import game.utils.TimeUtils;
 
 public final class ConfigTable extends TableLayout {
-    private final LevelConfiguration config;
+    private final LevelData levelData;
 
     private final Statusbar statusbar;
 
@@ -25,23 +27,23 @@ public final class ConfigTable extends TableLayout {
 
     private final TextButton saveButton;
 
-    public ConfigTable(LevelConfiguration config, Statusbar statusbar) {
-        this.config = config;
+    public ConfigTable(LevelData levelData, Statusbar statusbar) {
+        this.levelData = levelData;
         this.statusbar = statusbar;
 
-        tagField = new InputField(config.tag, 20);
-        titleField = new InputField(config.title, 20);
+        tagField = new InputField(levelData.metadata.tag, 20);
+        titleField = new InputField(levelData.metadata.title, 20);
         codeLinesNum = new InputField(String.valueOf(
-            config.codeLinesNum), 3);
+            levelData.metadata.codeLinesAmount), 3);
 
         allowedCommands = new InputField(String.join(
-            " ", config.getAllowedInstructionsAsStrings()), 30);
+            " ", levelData.metadata.getAllowedInstructionsAsStrings()), 30);
 
         saveButton = new TextButton("Save level", Assets.getSkin());
         saveButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeListener.ChangeEvent event, Actor actor) {
-                LevelConfiguration newConfig = parseInput();
+                LevelConfigurationOld newConfig = parseInput();
                 if (newConfig == null) return;
 
                 LevelSaver.saveLevel(newConfig);
@@ -73,8 +75,8 @@ public final class ConfigTable extends TableLayout {
         add(saveButton).padTop(4).center().fillX();
     }
 
-    private LevelConfiguration parseInput() {
-        LevelConfiguration newConfig = new LevelConfiguration();
+    private LevelConfigurationOld parseInput() {
+        LevelConfigurationOld newConfig = new LevelConfigurationOld();
 
         // parse tag
         newConfig.tag = tagField.getText();
@@ -85,7 +87,7 @@ public final class ConfigTable extends TableLayout {
         }
 
         //parse tilemap
-        newConfig.tileMap = config.tileMap;
+        newConfig.tileMap = levelData.tileMap;
         boolean hasStartZone = newConfig.tileMap.zones.stream().anyMatch(obj -> obj.type.equals("start"));
         boolean hasWinZone = newConfig.tileMap.zones.stream().anyMatch(obj -> obj.type.equals("win"));
         if (!hasStartZone) {

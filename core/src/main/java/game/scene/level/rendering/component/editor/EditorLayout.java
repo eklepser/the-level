@@ -25,13 +25,13 @@ public final class EditorLayout extends TableLayout {
         this.root = root;
         this.level = level;
 
-        codeField = new CodeField(this, level.getConfig().codeLinesNum);
+        codeField = new CodeField(this, level.getLevelData().metadata.codeLinesAmount);
         codeScrollPane = new ScrollPane(codeField, Assets.getSkin());
         codeField.setCodeScrollPane(codeScrollPane);
 
         statusLabel = new TextLabel("Status:\nNo status", true);
         parametersLayout = new ParametersLayout(level);
-        commandsLayout = new CommandsLayout(level.getConfig());
+        commandsLayout = new CommandsLayout(level.getLevelData().metadata.allowedInstructions);
         showCommandsButton = new ShowCommandsButton(commandsLayout);
 
         setup();

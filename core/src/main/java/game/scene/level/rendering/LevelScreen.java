@@ -4,21 +4,21 @@ import game.common.rendering.screen.GameCamera;
 import game.common.rendering.screen.GameScreen;
 import game.config.Display;
 import game.scene.level.logic.Level;
-import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.LevelData;
 import game.scene.level.rendering.component.editor.LevelProcessor;
 
 public final class LevelScreen extends GameScreen {
     private final GameCamera camera;
     private final Level level;
 
-    private final LevelConfiguration config;
+    private final LevelData levelData;
 
-    public LevelScreen(LevelConfiguration config) {
-        super(config.tileMap);
+    public LevelScreen(LevelData levelData) {
+        super(levelData.tileMap);
 
         camera = new GameCamera();
-        this.config = config;
-        level = new Level(config);
+        this.levelData = levelData;
+        level = new Level(levelData);
 
         LevelLayout layout = new LevelLayout(level);
         stage.addActor(layout);
@@ -48,9 +48,8 @@ public final class LevelScreen extends GameScreen {
         batch.end();
     }
 
-    // Getters:
-    public LevelConfiguration getConfig() {
-        return config;
+    public LevelData getLevelData() {
+        return levelData;
     }
 
     public Level getLevel() {

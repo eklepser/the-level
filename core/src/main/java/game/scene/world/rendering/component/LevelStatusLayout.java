@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.common.rendering.TableLayout;
 import game.common.rendering.component.ColoredString;
 import game.common.rendering.component.TextLabel;
-import game.scene.level.logic.LevelConfiguration;
+import game.scene.level.logic.LevelConfigurationOld;
 import game.scene.level.logic.command.Instruction;
 
 public final class LevelStatusLayout extends TableLayout {
@@ -38,7 +38,7 @@ public final class LevelStatusLayout extends TableLayout {
     }
 
     //Class logic:
-    public void setStatus(LevelConfiguration config) {
+    public void setStatus(LevelConfigurationOld config) {
         levelString.setText("/_3 " + config.title);
         limitString.setText("/gray_1.5 Lines limit: /white_2 " + config.codeLinesNum);
         commandsString.setText("/gray_1.5 Allowed commands:");

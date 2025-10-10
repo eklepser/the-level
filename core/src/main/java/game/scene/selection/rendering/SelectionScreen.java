@@ -10,7 +10,8 @@ import game.common.rendering.TableLayout;
 import game.common.rendering.screen.BaseScreen;
 import game.config.Display;
 import game.resources.LevelLoader;
-import game.scene.selection.logic.LevelMetadata;
+import game.scene.level.logic.LevelMetadata;
+import game.scene.level.logic.LevelMetadataOld;
 import game.scene.selection.logic.SelectionProcessor;
 
 import java.util.List;

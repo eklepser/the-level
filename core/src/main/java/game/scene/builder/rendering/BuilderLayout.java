@@ -30,7 +30,7 @@ public final class BuilderLayout extends TableLayout implements EventListener<Bu
         statusbar = new Statusbar(screen);
         statusbar.setSelectionStatus(builder.getSelectedTileDef());
 
-        configTable = new ConfigTable(builder.getConfig(), statusbar);
+        configTable = new ConfigTable(builder.getLevelData(), statusbar);
         resizingLayout = new ResizingLayout(builder);
 
         groundPalette = new TilePalette(builder, Assets.getTileset(), 10, 19);
