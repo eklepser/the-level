@@ -4,16 +4,13 @@ import com.badlogic.gdx.math.Vector2;
 import game.scene.common.logic.collision.zone.Zone;
 import game.scene.common.logic.entity.Entity;
 import game.scene.common.logic.event.EventSource;
+import game.scene.common.logic.event.GameEvent;
 import game.scene.common.rendering.tilemap.TileMap;
-import game.scene.world.data.WorldData;
-import game.scene.world.logic.event.WorldEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractWorld extends EventSource<WorldEvent> {
-    protected final WorldData worldData;
-
+public abstract class AbstractScene<E extends GameEvent> extends EventSource<E> {
     protected final TileMap map;
     protected final Vector2 startPos;
 
@@ -24,14 +21,11 @@ public abstract class AbstractWorld extends EventSource<WorldEvent> {
 
     protected abstract void loadZones(TileMap map);
 
-    public AbstractWorld(WorldData worldData) {
-        this.worldData = worldData;
-
-        map = worldData.tileMap;
-        startPos = map.getStartPos();
-
-        zones = new ArrayList<>();
+    protected AbstractScene(TileMap tileMap) {
+        this.map = tileMap;
+        this.startPos = tileMap.getStartPos();
+        this.zones = new ArrayList<>();
+        this.entities = new ArrayList<>();
         loadZones(map);
-        entities = new ArrayList<>();
     }
 }

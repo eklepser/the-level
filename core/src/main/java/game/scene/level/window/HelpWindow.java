@@ -4,11 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Json;
-import game.scene.common.rendering.component.ColoredString;
-import game.scene.common.rendering.component.TextLabel;
 import game.config.Display;
 import game.config.Paths;
 import game.resources.Assets;
+import game.scene.common.rendering.component.ColoredString;
+import game.scene.common.rendering.component.TextLabel;
 import game.scene.level.rendering.component.ExitLevelButton;
 
 import java.util.ArrayList;

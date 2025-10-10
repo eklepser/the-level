@@ -3,12 +3,14 @@ package game.scene.selection.rendering;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import game.scene.common.rendering.TableLayout;
-import game.scene.common.rendering.component.TextLabel;
-import game.scene.common.rendering.screen.ScreenNavigator;
 import game.config.Display;
 import game.config.Paths;
 import game.resources.Assets;
+import game.resources.LevelLoader;
+import game.scene.common.rendering.TableLayout;
+import game.scene.common.rendering.component.TextLabel;
+import game.scene.common.rendering.screen.ScreenNavigator;
+import game.scene.level.data.LevelData;
 import game.scene.level.data.LevelMetadata;
 import game.scene.level.rendering.LevelScreen;
 
@@ -49,7 +51,7 @@ public final class PlaySelectionLayout extends TableLayout {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
-
+            LevelData levelData = LevelLoader.loadData(path);
             ScreenNavigator.gotoScreen(new LevelScreen(levelData));
         }
     }

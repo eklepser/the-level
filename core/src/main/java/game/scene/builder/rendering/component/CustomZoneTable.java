@@ -4,12 +4,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import game.resources.Assets;
+import game.scene.builder.logic.Builder;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.InputField;
 import game.scene.common.rendering.component.TextLabel;
 import game.scene.common.rendering.tilemap.TileDefinition;
-import game.resources.Assets;
-import game.scene.builder.logic.Builder;
 import game.utils.NumberUtils;
 
 public class CustomZoneTable extends TableLayout {

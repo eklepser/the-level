@@ -1,10 +1,10 @@
 package game.scene.world.rendering;
 
+import game.config.Display;
 import game.scene.common.rendering.screen.GameCamera;
 import game.scene.common.rendering.screen.GameScreen;
-import game.config.Display;
-import game.scene.world.logic.World;
 import game.scene.world.data.WorldData;
+import game.scene.world.logic.World;
 import game.scene.world.logic.WorldProcessor;
 
 public final class WorldScreen extends GameScreen {

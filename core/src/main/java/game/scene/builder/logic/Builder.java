@@ -1,12 +1,12 @@
 package game.scene.builder.logic;
 
-import game.scene.common.logic.event.EventSource;
-import game.scene.common.rendering.tilemap.TileDefinition;
-import game.scene.common.rendering.tilemap.TileMap;
 import game.resources.Assets;
 import game.scene.builder.logic.event.BuilderEvent;
 import game.scene.builder.logic.event.TileSelectedEvent;
 import game.scene.builder.rendering.component.GridDrawer;
+import game.scene.common.logic.event.EventSource;
+import game.scene.common.rendering.tilemap.TileDefinition;
+import game.scene.common.rendering.tilemap.TileMap;
 import game.scene.level.data.LevelData;
 
 public final class Builder extends EventSource<BuilderEvent> {

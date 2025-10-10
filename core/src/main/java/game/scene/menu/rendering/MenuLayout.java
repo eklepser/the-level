@@ -1,8 +1,8 @@
 package game.scene.menu.rendering;
 
+import game.config.Display;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.ColoredString;
-import game.config.Display;
 
 public final class MenuLayout extends TableLayout {
     public MenuLayout() {

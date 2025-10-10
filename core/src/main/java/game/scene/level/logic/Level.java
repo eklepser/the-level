@@ -1,6 +1,5 @@
 package game.scene.level.logic;
 
-import game.scene.common.logic.AbstractLevel;
 import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.collision.CollisionHandler;
 import game.scene.common.logic.collision.zone.LevelZoneFactory;

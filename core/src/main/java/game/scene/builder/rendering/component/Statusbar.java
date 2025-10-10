@@ -6,13 +6,13 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import game.config.Display;
+import game.resources.Assets;
+import game.scene.builder.rendering.BuilderScreen;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.ColoredString;
 import game.scene.common.rendering.component.TextLabel;
 import game.scene.common.rendering.tilemap.TileDefinition;
-import game.config.Display;
-import game.resources.Assets;
-import game.scene.builder.rendering.BuilderScreen;
 
 import java.util.Arrays;
 

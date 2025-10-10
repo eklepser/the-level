@@ -3,10 +3,10 @@ package game.scene.level.rendering.component.editor;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import game.scene.common.rendering.TableLayout;
-import game.scene.common.rendering.component.TextLabel;
 import game.config.Display;
 import game.resources.Assets;
+import game.scene.common.rendering.TableLayout;
+import game.scene.common.rendering.component.TextLabel;
 import game.scene.level.logic.Level;
 import game.scene.level.rendering.LevelLayout;
 

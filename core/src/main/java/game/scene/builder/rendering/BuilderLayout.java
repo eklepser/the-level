@@ -1,16 +1,16 @@
 package game.scene.builder.rendering;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import game.scene.common.logic.event.EventListener;
-import game.scene.common.rendering.TableLayout;
-import game.scene.common.rendering.component.TextLabel;
-import game.scene.common.rendering.tilemap.TileDefinition;
 import game.resources.Assets;
 import game.scene.builder.logic.Builder;
 import game.scene.builder.logic.event.BuilderEvent;
 import game.scene.builder.logic.event.TilePlacedEvent;
 import game.scene.builder.logic.event.TileSelectedEvent;
 import game.scene.builder.rendering.component.*;
+import game.scene.common.logic.event.EventListener;
+import game.scene.common.rendering.TableLayout;
+import game.scene.common.rendering.component.TextLabel;
+import game.scene.common.rendering.tilemap.TileDefinition;
 
 public final class BuilderLayout extends TableLayout implements EventListener<BuilderEvent> {
     private final Statusbar statusbar;
