@@ -9,14 +9,16 @@ public final class LevelMetadata {
     public String title;
     public int codeLinesAmount;
     public List<Instruction> allowedInstructions;
+    public List<String> unlocks;
 
     public LevelMetadata() { }
 
-    public LevelMetadata(String tag, String title, int codeLinesAmount, List<Instruction> allowedInstructions) {
+    public LevelMetadata(String tag, String title, int codeLinesAmount, List<Instruction> allowedInstructions, List<String> unlocks) {
         this.tag = tag;
         this.title = title;
         this.codeLinesAmount = codeLinesAmount;
         this.allowedInstructions = allowedInstructions;
+        this.unlocks = unlocks;
     }
 
     public String[] getAllowedInstructionsAsStrings() {

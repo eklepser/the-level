@@ -1,1 +1,1 @@
-{"progressData":{"completionList":[{"levelTag":"labyrinth","levelStatus":"COMPLETED"},{"levelTag":"level1","levelStatus":"LOCKED"},{"levelTag":"level2","levelStatus":"COMPLETED"},{"levelTag":"level3","levelStatus":"COMPLETED"}]}}
+{"progressData":{"completionList":[{"tag":"level1","status":"COMPLETED"},{"tag":"level2","status":"COMPLETED"},{"tag":"level3","status":"UNLOCKED"}]}}

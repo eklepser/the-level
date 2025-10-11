@@ -96,7 +96,19 @@ public final class LevelDataIO {
                     }
                 }
 
-                levels.add(new LevelMetadata(tag, title, codeLinesAmount, allowedInstructions));
+                List<String> unlocks = new ArrayList<>();
+                JsonValue unlocksJson = metadataJson.get("unlocks");
+                if (unlocksJson != null && unlocksJson.isArray()) {
+                    for (JsonValue unlockJson : unlocksJson) {
+                        if (unlockJson.isString()) {
+                            unlocks.add(unlockJson.asString());
+                        } else {
+                            Gdx.app.error("LevelScanner", "Non-string value in 'unlocks' array in file: " + file.name());
+                        }
+                    }
+                }
+
+                levels.add(new LevelMetadata(tag, title, codeLinesAmount, allowedInstructions, unlocks));
 
             } catch (Exception e) {
                 Gdx.app.error("LevelScanner", "Failed to parse: " + file.name(), e);

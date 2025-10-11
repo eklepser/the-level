@@ -13,8 +13,6 @@ import game.scene.common.logic.collision.zone.Zone;
 import game.scene.common.logic.entity.Entity;
 import game.scene.common.rendering.tilemap.TileMap;
 import game.scene.common.rendering.tilemap.ZoneTile;
-import game.scene.level.logic.command.Command;
-import game.scene.level.logic.event.NewCommandEvent;
 import game.scene.level.logic.event.WinEvent;
 import game.scene.level.logic.execution.Executor;
 
@@ -89,12 +87,21 @@ public final class Level extends AbstractLevel {
 
     public void win() {
         isWin = true;
-        System.out.println("ON WIN");
-
         fire(new WinEvent());
 
+        // Userdata update:
         UserData userData = UserDataIO.loadUserData(Paths.USER_DATA);
+
+        // mark level as completed
         userData.progressData.setStatus(levelData.metadata.tag, LevelStatus.COMPLETED);
+
+        // unlock new levels
+        List<String> unlocks = levelData.metadata.unlocks;
+        System.out.println(unlocks);
+        for (String tag : unlocks) {
+            userData.progressData.setStatus(tag, LevelStatus.UNLOCKED);
+        }
+
         UserDataIO.saveUserData(userData, Paths.USER_DATA);
     }
 

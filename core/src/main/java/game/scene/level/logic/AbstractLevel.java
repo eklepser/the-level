@@ -4,7 +4,7 @@ import game.data.level.LevelData;
 import game.scene.common.logic.AbstractScene;
 import game.scene.level.logic.command.Command;
 import game.scene.level.logic.event.LevelEvent;
-import game.scene.level.logic.event.NewCommandEvent;
+import game.scene.level.logic.event.LevelTurnEvent;
 
 public abstract class AbstractLevel extends AbstractScene<LevelEvent> {
     protected final LevelData levelData;
@@ -16,6 +16,6 @@ public abstract class AbstractLevel extends AbstractScene<LevelEvent> {
 
     public void makeTurn(Command command) {
         super.makeTurn();
-        fire(new NewCommandEvent(command));
+        fire(new LevelTurnEvent(command));
     }
 }

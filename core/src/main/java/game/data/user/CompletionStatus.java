@@ -1,13 +1,13 @@
 package game.data.user;
 
 public final class CompletionStatus {
-    public String levelTag;
-    public LevelStatus levelStatus;
+    public String tag;
+    public LevelStatus status;
 
     public CompletionStatus() { }
 
-    public CompletionStatus(String levelTag, LevelStatus levelStatus) {
-        this.levelTag = levelTag;
-        this.levelStatus = levelStatus;
+    public CompletionStatus(String tag, LevelStatus status) {
+        this.tag = tag;
+        this.status = status;
     }
 }

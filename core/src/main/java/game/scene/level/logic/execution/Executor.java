@@ -1,17 +1,14 @@
 package game.scene.level.logic.execution;
 
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.badlogic.gdx.utils.Array;
 import game.data.level.LevelData;
 import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.entity.Entity;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.command.Command;
 import game.scene.level.logic.event.ExecutionStartEvent;
-import game.scene.level.logic.event.NewCommandEvent;
 
 import java.util.List;
 import java.util.Map;
