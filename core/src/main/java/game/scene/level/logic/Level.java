@@ -97,7 +97,7 @@ public final class Level extends AbstractLevel {
 
         // unlock new levels
         List<String> unlocks = levelData.metadata.unlocks;
-        System.out.println(unlocks);
+
         for (String tag : unlocks) {
             userData.progressData.setStatus(tag, LevelStatus.UNLOCKED);
         }

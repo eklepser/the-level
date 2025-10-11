@@ -2,6 +2,7 @@ package game.data.level;
 
 import game.scene.level.logic.command.Instruction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class LevelMetadata {
@@ -9,7 +10,7 @@ public final class LevelMetadata {
     public String title;
     public int codeLinesAmount;
     public List<Instruction> allowedInstructions;
-    public List<String> unlocks;
+    public List<String> unlocks = new ArrayList<>();
 
     public LevelMetadata() { }
 

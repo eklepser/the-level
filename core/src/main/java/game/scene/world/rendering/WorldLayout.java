@@ -7,6 +7,7 @@ import game.scene.common.rendering.TableLayout;
 import game.scene.world.logic.World;
 import game.scene.world.logic.event.OnLevelEntranceEvent;
 import game.scene.world.logic.event.WorldEvent;
+import game.scene.world.logic.event.WorldTurnEvent;
 import game.scene.world.rendering.component.LevelStatusLayout;
 
 public final class WorldLayout extends TableLayout implements EventListener<WorldEvent> {
@@ -34,22 +35,21 @@ public final class WorldLayout extends TableLayout implements EventListener<Worl
 
     @Override
     public void onSubscribe() {
+        updateStatus();
+    }
+
+    @Override
+    public void onEvent(WorldEvent event) {
+        if (event instanceof WorldTurnEvent turnEvent) {
+            updateStatus();
+        }
+    }
+
+    private void updateStatus() {
         LevelData levelData = world.getSelectedLevelData();
         LevelStatus levelStatus = world.getSelectedLevelStatus();
         if (levelData == null || levelStatus == null) return;
 
         levelStatusLayout.setStatus(levelData, levelStatus);
-    }
-
-    @Override
-    public void onEvent(WorldEvent event) {
-        if (event instanceof OnLevelEntranceEvent entranceEvent) {
-            System.out.println("ON ENTRANCE");
-            LevelData levelData = entranceEvent.levelData;
-            LevelStatus levelStatus = entranceEvent.levelStatus;
-            if (levelData == null || levelStatus == null) return;
-
-            levelStatusLayout.setStatus(levelData, levelStatus);
-        }
     }
 }

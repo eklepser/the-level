@@ -15,6 +15,6 @@ public final class LevelEntranceZone extends WorldZone {
 
     @Override
     public void onCollision(Entity entity) {
-        world.setSelectedLevelConfig(levelTag);
+        world.setSelectedLevel(levelTag);
     }
 }

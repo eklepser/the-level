@@ -15,6 +15,7 @@ import game.scene.common.rendering.tilemap.TileMap;
 import game.scene.common.rendering.tilemap.ZoneTile;
 import game.scene.level.rendering.LevelScreen;
 import game.scene.world.logic.event.OnLevelEntranceEvent;
+import game.scene.world.logic.event.WorldTurnEvent;
 
 import java.util.List;
 import java.util.Map;
@@ -39,9 +40,10 @@ public final class World extends AbstractWorld {
         collisionHandler = new CollisionHandler(collisionContext);
 
         userData = UserDataIO.loadUserData(Paths.USER_DATA);
-        levelProgressMap = UserDataIO.loadUserData(Paths.USER_DATA).progressData.getStatusMap();
+        levelProgressMap = userData.progressData.getStatusMap();
         levelDataMap = LevelDataIO.loadDataMap("assets/world");
 
+        // start pos calculating
         if (userData.worldPosition.x != 0 && userData.worldPosition.y != 0) {
             startPos = new Vector2(userData.worldPosition.x, userData.worldPosition.y);
         }
@@ -62,6 +64,7 @@ public final class World extends AbstractWorld {
         collisionHandler.wallsUpdate();
         entities.forEach(Entity::update);
         collisionHandler.zonesUpdate();
+        fire(new WorldTurnEvent());
     }
 
     @Override
@@ -82,13 +85,10 @@ public final class World extends AbstractWorld {
         ScreenNavigator.gotoScreen(new LevelScreen(selectedLevelData));
     }
 
-    public void setSelectedLevelConfig(String selectedLevelTag) {
+    public void setSelectedLevel(String selectedLevelTag) {
         selectedLevelData = levelDataMap.get(selectedLevelTag);
         selectedLevelStatus = levelProgressMap.get(selectedLevelTag);
-
         if (selectedLevelStatus == null) selectedLevelStatus = LevelStatus.LOCKED;
-
-        fire(new OnLevelEntranceEvent(selectedLevelData,  selectedLevelStatus));
     }
 
     public LevelStatus getSelectedLevelStatus() {

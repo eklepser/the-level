@@ -39,7 +39,7 @@ public abstract class AbstractScene<E extends GameEvent> extends EventSource<E> 
         loadZones(map);
     }
 
-    protected void makeTurn() {
+    public void makeTurn() {
         turnMade = true;
     }
 

@@ -7,8 +7,6 @@ import java.util.Map;
 public final class UserProgressData {
     public List<CompletionStatus> completionList;
 
-    private Map<String, LevelStatus> statusMap;
-
     public void setStatus(String levelTag, LevelStatus levelStatus) {
         for (CompletionStatus entry : completionList) {
             if (entry.tag.equals(levelTag)) {
@@ -22,12 +20,10 @@ public final class UserProgressData {
     }
 
     public Map<String, LevelStatus> getStatusMap() {
-        if (statusMap == null) {
-            statusMap = new HashMap<>();
-            for (CompletionStatus entry : completionList) {
-                if (entry.tag != null && entry.status != null) {
-                    statusMap.put(entry.tag, entry.status);
-                }
+        Map<String, LevelStatus> statusMap = new HashMap<>();
+        for (CompletionStatus entry : completionList) {
+            if (entry.tag != null && entry.status != null) {
+                statusMap.put(entry.tag, entry.status);
             }
         }
         return statusMap;
