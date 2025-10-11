@@ -48,16 +48,23 @@ public final class LevelStatusLayout extends TableLayout {
 
     //Class logic:
     public void setStatus(LevelData levelData, LevelStatus levelStatus) {
+        clearContent();
+
         if (levelStatus.equals(LevelStatus.LOCKED)) {
             levelString.setText("/_3 ???");
             return;
         }
 
-        levelString.setText("/_3 " + levelData.metadata.title);
+        if (!levelData.metadata.title.isBlank()) {
+            levelString.setText("/_3 " + levelData.metadata.title);
+        }
+        else {
+            levelString.setText("/_3 " + levelData.metadata.tag);
+        }
+
         limitString.setText("/gray_1.5 Lines limit: /white_2 " + levelData.metadata.codeLinesAmount);
         commandsString.setText("/gray_1.5 Allowed commands:");
 
-        commandsTable.clear();
         int count = 0;
         for (Instruction instruction : levelData.metadata.allowedInstructions) {
             String iconPath = instruction.iconPath + ".png";
@@ -74,5 +81,13 @@ public final class LevelStatusLayout extends TableLayout {
         else {
             completedString.setText("/red_1.5 Uncompleted");
         }
+    }
+
+    private void clearContent() {
+        levelString.clear();
+        limitString.clear();
+        commandsString.clear();
+        commandsTable.clear();
+        completedString.clear();
     }
 }

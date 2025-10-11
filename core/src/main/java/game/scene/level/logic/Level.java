@@ -1,6 +1,12 @@
 package game.scene.level.logic;
 
+import game.config.Paths;
 import game.data.level.LevelData;
+import game.data.level.LevelDataIO;
+import game.data.user.CompletionStatus;
+import game.data.user.LevelStatus;
+import game.data.user.UserData;
+import game.data.user.UserDataIO;
 import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.collision.CollisionHandler;
 import game.scene.common.logic.collision.zone.LevelZoneFactory;
@@ -90,6 +96,12 @@ public final class Level extends AbstractLevel {
 
     public void win() {
         fire(new WinEvent());
+        System.out.println("ON WIN");
+
+        UserData userData = UserDataIO.loadUserData(Paths.USER_DATA);
+        userData.progressData.setStatus(levelData.metadata.tag, LevelStatus.COMPLETED);
+        UserDataIO.saveUserData(userData, Paths.USER_DATA);
+
         executor.stop();
     }
 

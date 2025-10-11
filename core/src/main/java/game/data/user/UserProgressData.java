@@ -11,6 +11,15 @@ public final class UserProgressData {
 
     private Map<String, LevelStatus> statusMap;
 
+    public void setStatus(String levelTag, LevelStatus levelStatus) {
+        for (CompletionStatus entry : completionList) {
+            if (entry.levelTag.equals(levelTag)) {
+                entry.levelStatus = levelStatus;
+                System.out.println("UPDATE LEVEL STATUS");
+            }
+        }
+    }
+
     public Map<String, LevelStatus> getStatusMap() {
         if (statusMap == null) {
             statusMap = new HashMap<>();

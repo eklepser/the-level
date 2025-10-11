@@ -13,8 +13,10 @@ import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.collision.CollisionHandler;
 import game.scene.common.logic.collision.zone.WorldZoneFactory;
 import game.scene.common.logic.entity.Entity;
+import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.common.rendering.tilemap.TileMap;
 import game.scene.common.rendering.tilemap.ZoneTile;
+import game.scene.level.rendering.LevelScreen;
 import game.scene.world.logic.event.OnLevelEntranceEvent;
 
 import java.util.List;
@@ -27,8 +29,9 @@ public final class World extends AbstractWorld {
     private final Vector2 startPos;
 
     private final Map<String, LevelStatus> levelProgressMap;
-
     private final Map<String, LevelData> levelDataMap;
+
+    private LevelStatus selectedLevelStatus;
     private LevelData selectedLevelData;
 
     public World(WorldData worldData) {
@@ -38,8 +41,6 @@ public final class World extends AbstractWorld {
         collisionHandler = new CollisionHandler(collisionContext);
 
         levelProgressMap = UserDataIO.loadUserData(Paths.USER_DATA).progressData.getStatusMap();
-        System.out.println(levelProgressMap);
-
         levelDataMap = LevelDataIO.loadDataMap("assets/world");
 
         startPos = map.getStartPos();
@@ -71,13 +72,18 @@ public final class World extends AbstractWorld {
         entities.add(entity);
     }
 
+    public void startLevel() {
+        if (selectedLevelStatus.equals(LevelStatus.LOCKED)) return;
+        ScreenNavigator.gotoScreen(new LevelScreen(selectedLevelData));
+    }
+
     public void setSelectedLevelConfig(String selectedLevelTag) {
         selectedLevelData = levelDataMap.get(selectedLevelTag);
+        selectedLevelStatus = levelProgressMap.get(selectedLevelTag);
 
-        LevelStatus levelStatus = levelProgressMap.get(selectedLevelData.metadata.tag);
-        if (levelStatus == null) levelStatus = LevelStatus.LOCKED;
+        if (selectedLevelStatus == null) selectedLevelStatus = LevelStatus.LOCKED;
 
-        fire(new OnLevelEntranceEvent(selectedLevelData,  levelStatus));
+        fire(new OnLevelEntranceEvent(selectedLevelData,  selectedLevelStatus));
     }
 
     public List<Entity> getEntities() {

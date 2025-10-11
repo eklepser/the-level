@@ -38,7 +38,7 @@ public class WorldProcessor extends InputAdapter {
             return true;
         }
         else if (keycode == Input.Keys.ENTER || keycode == Input.Keys.SPACE) {
-
+            world.startLevel();
         }
         else if (keycode == Input.Keys.ESCAPE) {
             ScreenNavigator.gotoScreen(new MenuScreen());
