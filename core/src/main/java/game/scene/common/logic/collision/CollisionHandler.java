@@ -12,6 +12,7 @@ public final class CollisionHandler {
     }
 
     public void update() {
+        System.out.println("collisison handler update");
         for (Entity entity : collisionContext.entities()) {
             wallsUpdate(entity);
             zonesUpdate(entity);

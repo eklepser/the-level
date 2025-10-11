@@ -62,6 +62,7 @@ public final class Executor implements TimeController {
             sequence.addAction(Actions.run(() -> {
                 target.setAnimationSpeed(executionDelay / 4.0f);
                 currentCmd.execute(target);
+                level.updateCollisions();
             }));
 
             // notify all level subscribers

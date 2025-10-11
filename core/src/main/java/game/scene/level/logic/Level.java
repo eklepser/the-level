@@ -38,7 +38,6 @@ public final class Level extends AbstractLevel {
 
     @Override
     public void update(float delta) {
-        collisionHandler.update();
         if (!entitiesToAdd.isEmpty()) {
             entities.addAll(entitiesToAdd);
             entitiesToAdd.clear();
@@ -53,6 +52,10 @@ public final class Level extends AbstractLevel {
             if (tile.type.equals("start")) continue;
             zones.add(LevelZoneFactory.levelZone(tile,  this));
         }
+    }
+
+    public void updateCollisions() {
+        collisionHandler.update();
     }
 
     // Class logic:
@@ -87,7 +90,6 @@ public final class Level extends AbstractLevel {
         executor.stop();
     }
 
-    // Getters & setters:
     public void setExecutionDelay(float delay) {
         executor.setExecutionDelay(delay);
     }

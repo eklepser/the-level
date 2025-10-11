@@ -48,7 +48,6 @@ public final class World extends AbstractWorld {
 
     @Override
     public void update(float delta) {
-        collisionHandler.update();
         entities.forEach(Entity::update);
         entities.forEach(entity -> entity.act(delta));
     }
@@ -59,6 +58,10 @@ public final class World extends AbstractWorld {
             if (tile.type.equals("start")) continue;
             zones.add(WorldZoneFactory.worldZone(tile,  this));
         }
+    }
+
+    public void updateCollisions() {
+        collisionHandler.update();
     }
 
     public void spawnEntity(int worldPosX, int worldPosY) {
