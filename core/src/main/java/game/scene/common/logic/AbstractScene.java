@@ -46,5 +46,6 @@ public abstract class AbstractScene<E extends GameEvent> extends EventSource<E> 
     protected void spawnEntity(int worldPosX, int worldPosY) {
         Entity entity = new Entity(worldPosX, worldPosY, "tileset/target.png");
         entities.add(entity);
+        onTurnMade();
     }
 }

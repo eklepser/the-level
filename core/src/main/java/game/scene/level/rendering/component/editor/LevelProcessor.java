@@ -1,11 +1,15 @@
 package game.scene.level.rendering.component.editor;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.utils.Json;
+import game.data.world.WorldData;
 import game.scene.common.logic.Direction;
 import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.selection.rendering.PlaySelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
+import game.scene.world.rendering.WorldScreen;
 
 public final class LevelProcessor extends InputAdapter {
     private final EditorLayout layout;
@@ -30,7 +34,9 @@ public final class LevelProcessor extends InputAdapter {
             }
         }
         else if (keycode == Input.Keys.ESCAPE) {
-            ScreenNavigator.gotoScreen(new SelectionScreen(PlaySelectionLayout.class));
+            Json json = new Json();
+            WorldData worldData = json.fromJson(WorldData.class, Gdx.files.internal("world/world_one.json"));
+            ScreenNavigator.gotoScreen(new WorldScreen(worldData));
             return true;
         }
         else if (keycode == Input.Keys.F1) {

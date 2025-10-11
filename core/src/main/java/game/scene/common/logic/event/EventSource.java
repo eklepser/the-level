@@ -13,6 +13,7 @@ public abstract class EventSource<T extends GameEvent> {
     public void subscribe(EventListener<T> listener) {
         if (!subscribers.contains(listener)) {
             subscribers.add(listener);
+            listener.onSubscribe();
         }
     }
 

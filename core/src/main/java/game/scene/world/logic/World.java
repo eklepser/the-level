@@ -4,10 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import game.config.Paths;
 import game.data.level.LevelData;
 import game.data.level.LevelDataIO;
-import game.data.user.CompletionStatus;
-import game.data.user.LevelStatus;
-import game.data.user.UserDataIO;
-import game.data.user.UserProgressData;
+import game.data.user.*;
 import game.data.world.WorldData;
 import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.collision.CollisionHandler;
@@ -28,6 +25,7 @@ public final class World extends AbstractWorld {
 
     private final Vector2 startPos;
 
+    private final UserData userData;
     private final Map<String, LevelStatus> levelProgressMap;
     private final Map<String, LevelData> levelDataMap;
 
@@ -40,10 +38,17 @@ public final class World extends AbstractWorld {
         collisionContext = new CollisionContext(map.collision, zones, entities);
         collisionHandler = new CollisionHandler(collisionContext);
 
+        userData = UserDataIO.loadUserData(Paths.USER_DATA);
         levelProgressMap = UserDataIO.loadUserData(Paths.USER_DATA).progressData.getStatusMap();
         levelDataMap = LevelDataIO.loadDataMap("assets/world");
 
-        startPos = map.getStartPos();
+        if (userData.worldPosition.x != 0 && userData.worldPosition.y != 0) {
+            startPos = new Vector2(userData.worldPosition.x, userData.worldPosition.y);
+        }
+        else {
+            startPos = map.getStartPos();
+        }
+
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
 
@@ -69,6 +74,11 @@ public final class World extends AbstractWorld {
 
     public void startLevel() {
         if (selectedLevelStatus.equals(LevelStatus.LOCKED)) return;
+
+        userData.worldPosition.x = (int) entities.get(0).getWorldPos().x;
+        userData.worldPosition.y = (int) entities.get(0).getWorldPos().y;
+        UserDataIO.saveUserData(userData, Paths.USER_DATA);
+
         ScreenNavigator.gotoScreen(new LevelScreen(selectedLevelData));
     }
 
@@ -79,6 +89,14 @@ public final class World extends AbstractWorld {
         if (selectedLevelStatus == null) selectedLevelStatus = LevelStatus.LOCKED;
 
         fire(new OnLevelEntranceEvent(selectedLevelData,  selectedLevelStatus));
+    }
+
+    public LevelStatus getSelectedLevelStatus() {
+        return selectedLevelStatus;
+    }
+
+    public LevelData getSelectedLevelData() {
+        return selectedLevelData;
     }
 
     public List<Entity> getEntities() {
