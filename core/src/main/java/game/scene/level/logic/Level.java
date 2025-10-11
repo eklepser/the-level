@@ -29,6 +29,8 @@ public final class Level extends AbstractLevel {
 
     private final List<Entity> entitiesToAdd;
 
+    private boolean isWin = false;
+
     public Level(LevelData levelData) {
         super(levelData);
 
@@ -73,7 +75,7 @@ public final class Level extends AbstractLevel {
     }
 
     public void resetExecution() {
-        executor.stop();
+        executor.clearActions();
 
         entities.clear();
         spawnEntity((int) startPos.x, (int) startPos.y);
@@ -85,24 +87,20 @@ public final class Level extends AbstractLevel {
         }
     }
 
-    public void stopExecution() {
-        executor.stop();
-    }
-
     public void spawnEntity(int worldPosX, int worldPosY) {
         Entity entity = new Entity(worldPosX, worldPosY, "tileset/target.png");
         entities.add(entity);
     }
 
     public void win() {
-        fire(new WinEvent());
+        isWin = true;
         System.out.println("ON WIN");
+
+        fire(new WinEvent());
 
         UserData userData = UserDataIO.loadUserData(Paths.USER_DATA);
         userData.progressData.setStatus(levelData.metadata.tag, LevelStatus.COMPLETED);
         UserDataIO.saveUserData(userData, Paths.USER_DATA);
-
-        executor.stop();
     }
 
     public void setExecutionDelay(float delay) {
@@ -123,5 +121,9 @@ public final class Level extends AbstractLevel {
 
     public List<Zone> getZones() {
         return zones;
+    }
+
+    public boolean isWin() {
+        return isWin;
     }
 }

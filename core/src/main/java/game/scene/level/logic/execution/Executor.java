@@ -1,8 +1,10 @@
 package game.scene.level.logic.execution;
 
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
+import com.badlogic.gdx.utils.Array;
 import game.data.level.LevelData;
 import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.entity.Entity;
@@ -61,19 +63,16 @@ public final class Executor implements TimeController {
             // add new command to target
             sequence.addAction(Actions.run(() -> {
                 target.setAnimationSpeed(executionDelay / 4.0f);
-                currentCmd.execute(target);
+                if (!level.isWin()) currentCmd.execute(target);
+                if (!level.isWin()) level.fire(new NewCommandEvent(currentCmd));
                 level.makeTurn();
             }));
-
-            // notify all level subscribers
-            sequence.addAction(Actions.run(() ->
-                level.fire(new NewCommandEvent(currentCmd))));
         }
 
         return sequence;
     }
 
-    public void stop() {
+    public void clearActions() {
         collisionContext.entities().forEach(Actor::clearActions);
     }
 

@@ -14,6 +14,6 @@ public final class EndCommand extends Command {
     @Override
     public void execute(Entity target) {
         System.out.println("END");
-        executor.stop();
+        executor.clearActions();
     }
 }
