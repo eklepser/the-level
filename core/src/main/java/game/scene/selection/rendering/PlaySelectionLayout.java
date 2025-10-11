@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import game.config.Display;
 import game.config.Paths;
 import game.data.level.LevelData;
-import game.data.level.LevelLoader;
+import game.data.level.LevelDataIO;
 import game.data.level.LevelMetadata;
 import game.data.resources.Assets;
 import game.scene.common.rendering.TableLayout;
@@ -51,7 +51,7 @@ public final class PlaySelectionLayout extends TableLayout {
 
         @Override
         public void clicked(InputEvent event, float x, float y) {
-            LevelData levelData = LevelLoader.loadData(path);
+            LevelData levelData = LevelDataIO.loadData(path);
             ScreenNavigator.gotoScreen(new LevelScreen(levelData));
         }
     }

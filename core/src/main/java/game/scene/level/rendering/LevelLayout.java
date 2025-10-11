@@ -29,7 +29,7 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
         this.level = level;
         level.subscribe(this);
 
-        levelToolbar = new LevelToolbar(this);
+        levelToolbar = new LevelToolbar();
         infoString = new ColoredString();
         levelStatusbar = new LevelStatusbar();
 

@@ -14,5 +14,6 @@ public final class Paths {
     public static final String LEVEL_CONFIG = "world/level.json";
 
     // Local paths:
+    public static final String USER_DATA = "data/user/userdata.json";
     public static final String BUILDER_DATA = "data/builder/";
 }

@@ -1,8 +1,11 @@
 package game.scene.world.logic;
 
 import com.badlogic.gdx.math.Vector2;
+import game.config.Paths;
 import game.data.level.LevelData;
-import game.data.level.LevelLoader;
+import game.data.level.LevelDataIO;
+import game.data.user.CompletionStatus;
+import game.data.user.UserDataIO;
 import game.data.world.WorldData;
 import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.collision.CollisionHandler;
@@ -21,6 +24,7 @@ public final class World extends AbstractWorld {
 
     private final Vector2 startPos;
 
+    private final List<CompletionStatus> completionStatusList;
     private final Map<String, LevelData> levelDataMap;
     private LevelData selectedLevelData;
 
@@ -30,10 +34,10 @@ public final class World extends AbstractWorld {
         collisionContext = new CollisionContext(map.collision, zones, entities);
         collisionHandler = new CollisionHandler(collisionContext);
 
+        completionStatusList = UserDataIO.loadUserData(Paths.USER_DATA).progressData.completionList;
+        levelDataMap = LevelDataIO.loadDataMap("assets/world");
+
         startPos = map.getStartPos();
-
-        levelDataMap = LevelLoader.loadDataMap("assets/world");
-
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
 

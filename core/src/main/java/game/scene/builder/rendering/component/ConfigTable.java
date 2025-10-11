@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import game.data.level.LevelData;
-import game.data.level.LevelSaver;
+import game.data.level.LevelDataIO;
 import game.data.resources.Assets;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.InputField;
@@ -44,7 +44,7 @@ public final class ConfigTable extends TableLayout {
                 LevelData newLevelData = parseInput();
                 if (newLevelData == null) return;
 
-                LevelSaver.saveLevel(newLevelData);
+                LevelDataIO.saveLevel(newLevelData);
 
                 String time = TimeUtils.getFormattedTime("HH:mm:ss");
                 String status = String.format("/green Level %s saved (%s)", newLevelData.metadata.tag, time);

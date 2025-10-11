@@ -1,0 +1,14 @@
+{
+  "progressData": {
+    "completionList": [
+      {
+        "levelTag": "level1",
+        "levelStatus": "LOCKED"
+      },
+      {
+        "levelTag": "level2",
+        "levelStatus": "LOCKED"
+      }
+    ]
+  }
+}
