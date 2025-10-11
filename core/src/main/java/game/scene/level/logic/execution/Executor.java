@@ -64,8 +64,7 @@ public final class Executor implements TimeController {
             sequence.addAction(Actions.run(() -> {
                 target.setAnimationSpeed(executionDelay / 4.0f);
                 if (!level.isWin()) currentCmd.execute(target);
-                if (!level.isWin()) level.fire(new NewCommandEvent(currentCmd));
-                level.makeTurn();
+                if (!level.isWin()) level.makeTurn(currentCmd);
             }));
         }
 

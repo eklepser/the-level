@@ -67,11 +67,6 @@ public final class World extends AbstractWorld {
         }
     }
 
-    public void spawnEntity(int worldPosX, int worldPosY) {
-        Entity entity = new Entity(worldPosX, worldPosY, "tileset/target.png");
-        entities.add(entity);
-    }
-
     public void startLevel() {
         if (selectedLevelStatus.equals(LevelStatus.LOCKED)) return;
         ScreenNavigator.gotoScreen(new LevelScreen(selectedLevelData));

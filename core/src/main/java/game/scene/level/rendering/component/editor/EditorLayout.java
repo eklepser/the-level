@@ -82,7 +82,7 @@ public final class EditorLayout extends TableLayout {
 
     public void resetCode() {
         codeField.clearCompleting();
-        level.resetExecution();
+        level.reset();
     }
 
     public void clearCode() {

@@ -20,7 +20,6 @@ public class WorldProcessor extends InputAdapter {
     @Override
     public boolean keyDown(int keycode) {
         world.makeTurn();
-        System.out.println("new turn");
         if (keycode == Input.Keys.W || keycode == Input.Keys.UP) {
             player.setTargetWorldPos(Direction.UP);
             return true;

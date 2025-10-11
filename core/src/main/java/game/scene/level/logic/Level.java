@@ -2,8 +2,6 @@ package game.scene.level.logic;
 
 import game.config.Paths;
 import game.data.level.LevelData;
-import game.data.level.LevelDataIO;
-import game.data.user.CompletionStatus;
 import game.data.user.LevelStatus;
 import game.data.user.UserData;
 import game.data.user.UserDataIO;
@@ -15,6 +13,8 @@ import game.scene.common.logic.collision.zone.Zone;
 import game.scene.common.logic.entity.Entity;
 import game.scene.common.rendering.tilemap.TileMap;
 import game.scene.common.rendering.tilemap.ZoneTile;
+import game.scene.level.logic.command.Command;
+import game.scene.level.logic.event.NewCommandEvent;
 import game.scene.level.logic.event.WinEvent;
 import game.scene.level.logic.execution.Executor;
 
@@ -69,27 +69,22 @@ public final class Level extends AbstractLevel {
         }
     }
 
-    // Class logic:
     public void runExecution(List<String> inputLines) {
         executor.runExecution(inputLines);
     }
 
-    public void resetExecution() {
+    public void reset() {
         executor.clearActions();
 
         entities.clear();
         spawnEntity((int) startPos.x, (int) startPos.y);
 
+        isWin = false;
         for (Zone zone : zones) {
             if (zone instanceof WinZone winZone) {
                 winZone.setActivated(false);
             }
         }
-    }
-
-    public void spawnEntity(int worldPosX, int worldPosY) {
-        Entity entity = new Entity(worldPosX, worldPosY, "tileset/target.png");
-        entities.add(entity);
     }
 
     public void win() {
@@ -107,23 +102,15 @@ public final class Level extends AbstractLevel {
         executor.setExecutionDelay(delay);
     }
 
-    public CollisionContext getCollisionContext() {
-        return collisionContext;
-    }
+    public CollisionContext getCollisionContext() { return collisionContext; }
 
     public List<Entity> getEntities() { return entities; }
 
     public LevelData getLevelData() { return levelData;}
 
-    public TileMap getMap() {
-        return map;
-    }
+    public TileMap getMap() { return map; }
 
-    public List<Zone> getZones() {
-        return zones;
-    }
+    public List<Zone> getZones() { return zones; }
 
-    public boolean isWin() {
-        return isWin;
-    }
+    public boolean isWin() { return isWin; }
 }
