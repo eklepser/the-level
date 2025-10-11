@@ -2,8 +2,8 @@
   "progressData": {
     "completionList": [
       {
-        "levelTag": "level1",
-        "levelStatus": "LOCKED"
+        "levelTag": "labyrinth",
+        "levelStatus": "COMPLETED"
       },
       {
         "levelTag": "level2",

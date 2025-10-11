@@ -1,6 +1,7 @@
 package game.scene.world.rendering;
 
 import game.data.level.LevelData;
+import game.data.user.LevelStatus;
 import game.scene.common.logic.event.EventListener;
 import game.scene.common.rendering.TableLayout;
 import game.scene.world.logic.World;
@@ -31,10 +32,11 @@ public final class WorldLayout extends TableLayout implements EventListener<Worl
     @Override
     public void onEvent(WorldEvent event) {
         if (event instanceof OnLevelEntranceEvent entranceEvent) {
-            System.out.println("EVENT");
             LevelData levelData = entranceEvent.levelData;
-            if (levelData == null) return;
-            levelStatusLayout.setStatus(levelData);
+            LevelStatus levelStatus = entranceEvent.levelStatus;
+            if (levelData == null || levelStatus == null) return;
+
+            levelStatusLayout.setStatus(levelData, levelStatus);
         }
     }
 }

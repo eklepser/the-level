@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.data.level.LevelData;
+import game.data.user.LevelStatus;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.ColoredString;
 import game.scene.common.rendering.component.TextLabel;
@@ -14,14 +15,20 @@ public final class LevelStatusLayout extends TableLayout {
     private final ColoredString levelString;
     private final ColoredString limitString;
     private final ColoredString commandsString;
+
     private final Table commandsTable;
     private final int itemsPerRow = 2;
+
+    private final ColoredString completedString;
 
     public LevelStatusLayout() {
         levelString = new ColoredString();
         limitString = new ColoredString();
         commandsString = new ColoredString();
+
         commandsTable = new Table();
+
+        completedString = new ColoredString();
 
         setup();
     }
@@ -35,10 +42,17 @@ public final class LevelStatusLayout extends TableLayout {
         add(commandsString).left();
         row();
         add(commandsTable).left().padTop(10);
+        row();
+        add(completedString).left();
     }
 
     //Class logic:
-    public void setStatus(LevelData levelData) {
+    public void setStatus(LevelData levelData, LevelStatus levelStatus) {
+        if (levelStatus.equals(LevelStatus.LOCKED)) {
+            levelString.setText("/_3 ???");
+            return;
+        }
+
         levelString.setText("/_3 " + levelData.metadata.title);
         limitString.setText("/gray_1.5 Lines limit: /white_2 " + levelData.metadata.codeLinesAmount);
         commandsString.setText("/gray_1.5 Allowed commands:");
@@ -52,6 +66,13 @@ public final class LevelStatusLayout extends TableLayout {
             TextLabel label = new TextLabel("(" + instruction.name + ")");
             commandsTable.add(label).padRight(10);
             if (++count % itemsPerRow == 0) commandsTable.row().padTop(10);
+        }
+
+        if (levelStatus.equals(LevelStatus.COMPLETED)) {
+            completedString.setText("/green_1.5 Completed");
+        }
+        else {
+            completedString.setText("/red_1.5 Uncompleted");
         }
     }
 }

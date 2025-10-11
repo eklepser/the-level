@@ -5,7 +5,9 @@ import game.config.Paths;
 import game.data.level.LevelData;
 import game.data.level.LevelDataIO;
 import game.data.user.CompletionStatus;
+import game.data.user.LevelStatus;
 import game.data.user.UserDataIO;
+import game.data.user.UserProgressData;
 import game.data.world.WorldData;
 import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.collision.CollisionHandler;
@@ -24,7 +26,8 @@ public final class World extends AbstractWorld {
 
     private final Vector2 startPos;
 
-    private final List<CompletionStatus> completionStatusList;
+    private final Map<String, LevelStatus> levelProgressMap;
+
     private final Map<String, LevelData> levelDataMap;
     private LevelData selectedLevelData;
 
@@ -34,7 +37,9 @@ public final class World extends AbstractWorld {
         collisionContext = new CollisionContext(map.collision, zones, entities);
         collisionHandler = new CollisionHandler(collisionContext);
 
-        completionStatusList = UserDataIO.loadUserData(Paths.USER_DATA).progressData.completionList;
+        levelProgressMap = UserDataIO.loadUserData(Paths.USER_DATA).progressData.getStatusMap();
+        System.out.println(levelProgressMap);
+
         levelDataMap = LevelDataIO.loadDataMap("assets/world");
 
         startPos = map.getStartPos();
@@ -63,7 +68,11 @@ public final class World extends AbstractWorld {
 
     public void setSelectedLevelConfig(String selectedLevelTag) {
         selectedLevelData = levelDataMap.get(selectedLevelTag);
-        fire(new OnLevelEntranceEvent(selectedLevelData));
+
+        LevelStatus levelStatus = levelProgressMap.get(selectedLevelData.metadata.tag);
+        if (levelStatus == null) levelStatus = LevelStatus.LOCKED;
+
+        fire(new OnLevelEntranceEvent(selectedLevelData,  levelStatus));
     }
 
     public List<Entity> getEntities() {
