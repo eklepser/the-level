@@ -1,5 +1,6 @@
 package game.scene.level.logic;
 
+import game.data.level.LevelData;
 import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.collision.CollisionHandler;
 import game.scene.common.logic.collision.zone.LevelZoneFactory;
@@ -8,7 +9,6 @@ import game.scene.common.logic.collision.zone.Zone;
 import game.scene.common.logic.entity.Entity;
 import game.scene.common.rendering.tilemap.TileMap;
 import game.scene.common.rendering.tilemap.ZoneTile;
-import game.scene.level.data.LevelData;
 import game.scene.level.logic.event.WinEvent;
 import game.scene.level.logic.execution.Executor;
 
@@ -97,8 +97,6 @@ public final class Level extends AbstractLevel {
     }
 
     public List<Entity> getEntities() { return entities; }
-
-    public List<Entity> getEntitiesToAdd() { return entitiesToAdd; }
 
     public LevelData getLevelData() { return levelData;}
 

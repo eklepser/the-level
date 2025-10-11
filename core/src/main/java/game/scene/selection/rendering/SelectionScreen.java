@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import game.config.Display;
-import game.resources.LevelLoader;
+import game.data.level.LevelLoader;
+import game.data.level.LevelMetadata;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.screen.BaseScreen;
-import game.scene.level.data.LevelMetadata;
 import game.scene.selection.logic.SelectionProcessor;
 
 import java.util.List;

@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import game.data.level.LevelData;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.ColoredString;
 import game.scene.common.rendering.component.TextLabel;
-import game.scene.level.data.LevelData;
 import game.scene.level.logic.command.Instruction;
 
 public final class LevelStatusLayout extends TableLayout {

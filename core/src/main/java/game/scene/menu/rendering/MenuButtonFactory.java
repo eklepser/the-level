@@ -3,12 +3,12 @@ package game.scene.menu.rendering;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Json;
+import game.data.world.WorldData;
 import game.scene.common.rendering.ButtonFactory;
 import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.selection.rendering.BuilderSelectionLayout;
 import game.scene.selection.rendering.PlaySelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
-import game.scene.world.data.WorldData;
 import game.scene.world.rendering.WorldScreen;
 
 public final class MenuButtonFactory extends ButtonFactory {

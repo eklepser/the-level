@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Json;
 import game.config.Display;
 import game.config.Paths;
-import game.resources.Assets;
+import game.data.resources.Assets;
 import game.scene.common.rendering.component.ColoredString;
 import game.scene.common.rendering.component.TextLabel;
 import game.scene.level.rendering.component.ExitLevelButton;

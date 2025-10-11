@@ -1,7 +1,7 @@
 package game;
 
 import com.badlogic.gdx.Game;
-import game.resources.Assets;
+import game.data.resources.Assets;
 import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.menu.rendering.MenuScreen;
 

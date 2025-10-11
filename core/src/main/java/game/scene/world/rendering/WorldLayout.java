@@ -1,8 +1,8 @@
 package game.scene.world.rendering;
 
+import game.data.level.LevelData;
 import game.scene.common.logic.event.EventListener;
 import game.scene.common.rendering.TableLayout;
-import game.scene.level.data.LevelData;
 import game.scene.world.logic.World;
 import game.scene.world.logic.event.OnLevelEntranceEvent;
 import game.scene.world.logic.event.WorldEvent;

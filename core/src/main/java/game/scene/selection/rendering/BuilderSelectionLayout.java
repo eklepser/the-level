@@ -6,13 +6,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Json;
 import game.config.Display;
-import game.resources.Assets;
+import game.data.level.LevelData;
+import game.data.level.LevelMetadata;
+import game.data.resources.Assets;
 import game.scene.builder.rendering.BuilderScreen;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.TextLabel;
 import game.scene.common.rendering.screen.ScreenNavigator;
-import game.scene.level.data.LevelData;
-import game.scene.level.data.LevelMetadata;
 
 import java.util.List;
 

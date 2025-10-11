@@ -1,29 +1,24 @@
 package game.scene.common.rendering.component;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.utils.Align;
-import game.resources.Assets;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ColoredString extends HorizontalGroup {
     private final String text;
-    private final BitmapFont font;
     private final List<TextLabel> labels;
 
     public ColoredString(String text) {
         this.text = text;
-        this.font = Assets.getSkin().getFont("default");
         labels = parseText(text);
         labels.forEach(this::addActor);
     }
 
     public ColoredString() {
         this.text = "";
-        this.font = Assets.getSkin().getFont("default");
         labels = new ArrayList<>();
     }
 

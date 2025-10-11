@@ -1,4 +1,4 @@
-package game.scene.level.data;
+package game.data.level;
 
 import game.scene.level.logic.command.Instruction;
 

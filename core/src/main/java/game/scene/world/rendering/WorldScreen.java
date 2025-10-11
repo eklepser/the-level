@@ -1,9 +1,9 @@
 package game.scene.world.rendering;
 
 import game.config.Display;
+import game.data.world.WorldData;
 import game.scene.common.rendering.screen.GameCamera;
 import game.scene.common.rendering.screen.GameScreen;
-import game.scene.world.data.WorldData;
 import game.scene.world.logic.World;
 import game.scene.world.logic.WorldProcessor;
 

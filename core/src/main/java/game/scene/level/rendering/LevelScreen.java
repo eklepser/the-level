@@ -1,9 +1,9 @@
 package game.scene.level.rendering;
 
 import game.config.Display;
+import game.data.level.LevelData;
 import game.scene.common.rendering.screen.GameCamera;
 import game.scene.common.rendering.screen.GameScreen;
-import game.scene.level.data.LevelData;
 import game.scene.level.logic.Level;
 import game.scene.level.rendering.component.editor.LevelProcessor;
 

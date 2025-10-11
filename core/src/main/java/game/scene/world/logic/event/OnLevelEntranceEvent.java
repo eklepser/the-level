@@ -1,6 +1,6 @@
 package game.scene.world.logic.event;
 
-import game.scene.level.data.LevelData;
+import game.data.level.LevelData;
 
 public final class OnLevelEntranceEvent extends  WorldEvent {
     public final LevelData levelData;

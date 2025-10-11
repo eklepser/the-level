@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.config.Display;
-import game.resources.Assets;
+import game.data.resources.Assets;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.TextLabel;
 import game.scene.level.logic.Level;
@@ -88,11 +88,6 @@ public final class EditorLayout extends TableLayout {
     public void clearCode() {
         resetCode();
         codeField.clearCode();
-    }
-
-    public void stopCode() {
-        level.stopExecution();
-        statusLabel.setText("Status:\nEnd");
     }
 
     // Getters:

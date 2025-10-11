@@ -4,13 +4,13 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import game.config.Display;
+import game.data.level.LevelData;
 import game.scene.builder.logic.Builder;
 import game.scene.common.input.BaseInputHandler;
 import game.scene.common.input.BaseInputListener;
 import game.scene.common.rendering.screen.DynamicGameCamera;
 import game.scene.common.rendering.screen.GameScreen;
 import game.scene.common.rendering.screen.ScreenNavigator;
-import game.scene.level.data.LevelData;
 import game.scene.selection.rendering.BuilderSelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
 

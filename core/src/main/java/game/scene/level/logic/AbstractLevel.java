@@ -1,7 +1,7 @@
 package game.scene.level.logic;
 
+import game.data.level.LevelData;
 import game.scene.common.logic.AbstractScene;
-import game.scene.level.data.LevelData;
 import game.scene.level.logic.event.LevelEvent;
 
 public abstract class AbstractLevel extends AbstractScene<LevelEvent> {

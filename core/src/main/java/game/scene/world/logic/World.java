@@ -1,15 +1,15 @@
 package game.scene.world.logic;
 
 import com.badlogic.gdx.math.Vector2;
-import game.resources.LevelLoader;
+import game.data.level.LevelData;
+import game.data.level.LevelLoader;
+import game.data.world.WorldData;
 import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.collision.CollisionHandler;
 import game.scene.common.logic.collision.zone.WorldZoneFactory;
 import game.scene.common.logic.entity.Entity;
 import game.scene.common.rendering.tilemap.TileMap;
 import game.scene.common.rendering.tilemap.ZoneTile;
-import game.scene.level.data.LevelData;
-import game.scene.world.data.WorldData;
 import game.scene.world.logic.event.OnLevelEntranceEvent;
 
 import java.util.List;
