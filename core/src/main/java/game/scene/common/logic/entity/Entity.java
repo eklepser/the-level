@@ -29,20 +29,12 @@ public class Entity extends TiledActor {
 
     public void move(Vector2 targetWorldPos) {
         this.targetWorldPos.set(targetWorldPos);
+        worldPos.set(targetWorldPos);
 
         float targetX = targetWorldPos.x * size;
         float targetY = targetWorldPos.y * size;
 
-        addAction(Actions.sequence(
-            Actions.moveTo(targetX, targetY, animationSpeed),
-            new Action() {
-                @Override
-                public boolean act(float delta) {
-                    worldPos.set(targetWorldPos);
-                    return true;
-                }
-            }
-        ));
+        addAction(Actions.moveTo(targetX, targetY, animationSpeed));
     }
 
     public void hit() {

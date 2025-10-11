@@ -6,8 +6,16 @@
         "levelStatus": "COMPLETED"
       },
       {
+        "levelTag": "level1",
+        "levelStatus": "UNLOCKED"
+      },
+      {
         "levelTag": "level2",
-        "levelStatus": "LOCKED"
+        "levelStatus": "UNLOCKED"
+      },
+      {
+        "levelTag": "level3",
+        "levelStatus": "UNLOCKED"
       }
     ]
   }

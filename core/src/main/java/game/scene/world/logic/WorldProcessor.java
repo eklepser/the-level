@@ -19,24 +19,22 @@ public class WorldProcessor extends InputAdapter {
 
     @Override
     public boolean keyDown(int keycode) {
+        world.makeTurn();
+        System.out.println("new turn");
         if (keycode == Input.Keys.W || keycode == Input.Keys.UP) {
             player.setTargetWorldPos(Direction.UP);
-            world.updateCollisions();
             return true;
         }
         else if (keycode == Input.Keys.A || keycode == Input.Keys.LEFT) {
             player.setTargetWorldPos(Direction.LEFT);
-            world.updateCollisions();
             return true;
         }
         else if (keycode == Input.Keys.S || keycode == Input.Keys.DOWN) {
             player.setTargetWorldPos(Direction.DOWN);
-            world.updateCollisions();
             return true;
         }
         else if (keycode == Input.Keys.D || keycode == Input.Keys.RIGHT) {
             player.setTargetWorldPos(Direction.RIGHT);
-            world.updateCollisions();
             return true;
         }
         else if (keycode == Input.Keys.ENTER || keycode == Input.Keys.SPACE) {

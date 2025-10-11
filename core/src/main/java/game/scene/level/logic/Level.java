@@ -38,12 +38,19 @@ public final class Level extends AbstractLevel {
 
     @Override
     public void update(float delta) {
+        super.update(delta);
+
         if (!entitiesToAdd.isEmpty()) {
             entities.addAll(entitiesToAdd);
             entitiesToAdd.clear();
         }
+    }
+
+    @Override
+    protected void onTurnMade() {
+        collisionHandler.wallsUpdate();
         entities.forEach(Entity::update);
-        entities.forEach(entity -> entity.act(delta));
+        collisionHandler.zonesUpdate();
     }
 
     @Override
@@ -52,10 +59,6 @@ public final class Level extends AbstractLevel {
             if (tile.type.equals("start")) continue;
             zones.add(LevelZoneFactory.levelZone(tile,  this));
         }
-    }
-
-    public void updateCollisions() {
-        collisionHandler.update();
     }
 
     // Class logic:

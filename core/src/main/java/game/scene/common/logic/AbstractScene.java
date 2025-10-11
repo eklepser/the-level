@@ -17,7 +17,17 @@ public abstract class AbstractScene<E extends GameEvent> extends EventSource<E> 
     protected final List<Zone> zones;
     protected final List<Entity> entities;
 
-    public abstract void update(float delta);
+    protected boolean turnMade;
+
+    public void update(float delta) {
+        if (turnMade) {
+            onTurnMade();
+            turnMade = false;
+        }
+        entities.forEach(entity -> entity.act(delta));
+    }
+
+    protected abstract void onTurnMade();
 
     protected abstract void loadZones(TileMap map);
 
@@ -27,5 +37,9 @@ public abstract class AbstractScene<E extends GameEvent> extends EventSource<E> 
         this.zones = new ArrayList<>();
         this.entities = new ArrayList<>();
         loadZones(map);
+    }
+
+    public void makeTurn() {
+        turnMade = true;
     }
 }
