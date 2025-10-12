@@ -1,7 +1,7 @@
 package game.scene.builder.logic;
 
 import game.data.level.LevelData;
-import game.data.resources.Assets;
+import game.data.IO.Assets;
 import game.scene.builder.logic.event.BuilderEvent;
 import game.scene.builder.logic.event.TileSelectedEvent;
 import game.scene.builder.rendering.component.GridDrawer;

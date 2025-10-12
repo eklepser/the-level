@@ -1,9 +1,9 @@
 package game.scene.world.logic;
 
 import com.badlogic.gdx.math.Vector2;
-import game.config.Paths;
+import game.data.IO.UserDataIO;
 import game.data.level.LevelData;
-import game.data.level.LevelDataIO;
+import game.data.IO.LevelDataIO;
 import game.data.user.*;
 import game.data.world.WorldData;
 import game.scene.common.logic.collision.CollisionContext;
@@ -14,7 +14,6 @@ import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.common.rendering.tilemap.TileMap;
 import game.scene.common.rendering.tilemap.ZoneTile;
 import game.scene.level.rendering.LevelScreen;
-import game.scene.world.logic.event.OnLevelEntranceEvent;
 import game.scene.world.logic.event.WorldTurnEvent;
 
 import java.util.List;
@@ -39,7 +38,7 @@ public final class World extends AbstractWorld {
         collisionContext = new CollisionContext(map.collision, zones, entities);
         collisionHandler = new CollisionHandler(collisionContext);
 
-        userData = UserDataIO.loadUserData(Paths.USER_DATA);
+        userData = UserDataIO.loadUserData();
         levelProgressMap = userData.progressData.getStatusMap();
         levelDataMap = LevelDataIO.loadDataMap("assets/world");
 
@@ -76,12 +75,9 @@ public final class World extends AbstractWorld {
     }
 
     public void startLevel() {
+        if (selectedLevelStatus == null) return;
         if (selectedLevelStatus.equals(LevelStatus.LOCKED)) return;
-
-        userData.worldPosition.x = (int) entities.get(0).getWorldPos().x;
-        userData.worldPosition.y = (int) entities.get(0).getWorldPos().y;
-        UserDataIO.saveUserData(userData, Paths.USER_DATA);
-
+        progressManager.saveWorldPosition();
         ScreenNavigator.gotoScreen(new LevelScreen(selectedLevelData));
     }
 

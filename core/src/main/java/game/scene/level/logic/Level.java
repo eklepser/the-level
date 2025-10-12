@@ -1,10 +1,7 @@
 package game.scene.level.logic;
 
-import game.config.Paths;
 import game.data.level.LevelData;
-import game.data.user.LevelStatus;
-import game.data.user.UserData;
-import game.data.user.UserDataIO;
+import game.scene.common.logic.ProgressManager;
 import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.collision.CollisionHandler;
 import game.scene.common.logic.collision.zone.LevelZoneFactory;
@@ -88,21 +85,7 @@ public final class Level extends AbstractLevel {
     public void win() {
         isWin = true;
         fire(new WinEvent());
-
-        // Userdata update:
-        UserData userData = UserDataIO.loadUserData(Paths.USER_DATA);
-
-        // mark level as completed
-        userData.progressData.setStatus(levelData.metadata.tag, LevelStatus.COMPLETED);
-
-        // unlock new levels
-        List<String> unlocks = levelData.metadata.unlocks;
-
-        for (String tag : unlocks) {
-            userData.progressData.setStatus(tag, LevelStatus.UNLOCKED);
-        }
-
-        UserDataIO.saveUserData(userData, Paths.USER_DATA);
+        progressManager.completeLevel(levelData.metadata);
     }
 
     public void setExecutionDelay(float delay) {

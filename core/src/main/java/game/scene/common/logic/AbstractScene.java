@@ -17,7 +17,22 @@ public abstract class AbstractScene<E extends GameEvent> extends EventSource<E> 
     protected final List<Zone> zones;
     protected final List<Entity> entities;
 
+    protected final ProgressManager progressManager;
+
     protected boolean turnMade;
+
+    protected AbstractScene(TileMap tileMap) {
+        this.map = tileMap;
+        this.startPos = tileMap.getStartPos();
+        this.zones = new ArrayList<>();
+        this.entities = new ArrayList<>();
+        progressManager = new ProgressManager(this);
+        loadZones(map);
+    }
+
+    protected abstract void onTurnMade();
+
+    protected abstract void loadZones(TileMap map);
 
     public void update(float delta) {
         if (turnMade) {
@@ -27,19 +42,7 @@ public abstract class AbstractScene<E extends GameEvent> extends EventSource<E> 
         entities.forEach(entity -> entity.act(delta));
     }
 
-    protected abstract void onTurnMade();
-
-    protected abstract void loadZones(TileMap map);
-
-    protected AbstractScene(TileMap tileMap) {
-        this.map = tileMap;
-        this.startPos = tileMap.getStartPos();
-        this.zones = new ArrayList<>();
-        this.entities = new ArrayList<>();
-        loadZones(map);
-    }
-
-    public void makeTurn() {
+    protected void makeTurn() {
         turnMade = true;
     }
 

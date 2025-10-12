@@ -3,7 +3,7 @@ package game.scene.common.rendering;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import game.data.resources.Assets;
+import game.data.IO.Assets;
 
 public abstract class ButtonFactory {
     protected static TextButton createButton(String text, Runnable action) {

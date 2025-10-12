@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.Json;
 import game.config.Display;
 import game.data.level.LevelData;
 import game.data.level.LevelMetadata;
-import game.data.resources.Assets;
+import game.data.IO.Assets;
 import game.scene.builder.rendering.BuilderScreen;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.TextLabel;

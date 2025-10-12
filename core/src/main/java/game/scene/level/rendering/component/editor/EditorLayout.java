@@ -4,7 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.config.Display;
-import game.data.resources.Assets;
+import game.data.IO.Assets;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.TextLabel;
 import game.scene.level.logic.Level;

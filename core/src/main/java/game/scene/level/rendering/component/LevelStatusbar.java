@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import game.data.resources.Assets;
+import game.data.IO.Assets;
 import game.scene.common.rendering.CommandIconFactory;
 import game.scene.common.rendering.TableLayout;
 import game.scene.level.logic.command.Command;

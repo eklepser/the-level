@@ -11,4 +11,8 @@ public abstract class AbstractWorld extends AbstractScene<WorldEvent> {
         super(worldData.tileMap);
         this.worldData = worldData;
     }
+
+    public void makeTurn() {
+        super.makeTurn();
+    }
 }

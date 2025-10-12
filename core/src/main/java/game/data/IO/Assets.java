@@ -1,4 +1,4 @@
-package game.data.resources;
+package game.data.IO;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;

@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import game.config.Display;
-import game.data.resources.Assets;
+import game.data.IO.Assets;
 import game.scene.builder.rendering.BuilderScreen;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.ColoredString;

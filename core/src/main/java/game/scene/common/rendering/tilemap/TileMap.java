@@ -3,7 +3,7 @@ package game.scene.common.rendering.tilemap;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import game.data.resources.Assets;
+import game.data.IO.Assets;
 
 import java.util.ArrayList;
 import java.util.List;

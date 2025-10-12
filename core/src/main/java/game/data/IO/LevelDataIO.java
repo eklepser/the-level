@@ -1,4 +1,4 @@
-package game.data.level;
+package game.data.IO;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -7,6 +7,8 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.JsonWriter;
 import game.config.Paths;
+import game.data.level.LevelData;
+import game.data.level.LevelMetadata;
 import game.scene.level.logic.command.Instruction;
 
 import java.util.ArrayList;

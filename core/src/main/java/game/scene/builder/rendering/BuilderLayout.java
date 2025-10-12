@@ -1,7 +1,7 @@
 package game.scene.builder.rendering;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import game.data.resources.Assets;
+import game.data.IO.Assets;
 import game.scene.builder.logic.Builder;
 import game.scene.builder.logic.event.BuilderEvent;
 import game.scene.builder.logic.event.TilePlacedEvent;

@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import game.config.Display;
-import game.data.level.LevelDataIO;
+import game.data.IO.LevelDataIO;
 import game.data.level.LevelMetadata;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.screen.BaseScreen;
@@ -32,8 +32,7 @@ public final class SelectionScreen extends BaseScreen {
 
         if (BuilderSelectionLayout.class.equals(layoutClass)) {
             layout = new BuilderSelectionLayout(levels);
-        }
-        else layout = new PlaySelectionLayout(levels);
+        } else layout = new PlaySelectionLayout(levels);
     }
 
     @Override

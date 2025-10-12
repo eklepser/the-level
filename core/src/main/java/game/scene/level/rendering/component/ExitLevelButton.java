@@ -5,7 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Json;
-import game.data.resources.Assets;
+import game.data.IO.Assets;
 import game.data.world.WorldData;
 import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.world.rendering.WorldScreen;

@@ -1,7 +1,7 @@
 package game.scene.common.rendering.component;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import game.data.resources.Assets;
+import game.data.IO.Assets;
 
 public class TextLabel extends Label {
     public TextLabel() {

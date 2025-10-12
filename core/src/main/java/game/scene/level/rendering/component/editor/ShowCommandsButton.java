@@ -3,7 +3,7 @@ package game.scene.level.rendering.component.editor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import game.data.resources.Assets;
+import game.data.IO.Assets;
 
 public final class ShowCommandsButton extends TextButton {
     private boolean activated = false;
