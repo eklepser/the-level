@@ -13,7 +13,7 @@ import game.scene.common.rendering.component.TextLabel;
 import game.scene.common.rendering.tilemap.TileDefinition;
 
 public final class BuilderLayout extends TableLayout implements EventListener<BuilderEvent> {
-    private final Statusbar statusbar;
+    private final BuilderStatusbar builderStatusbar;
     private final ConfigTable configTable;
     private final ResizingLayout resizingLayout;
 
@@ -27,10 +27,10 @@ public final class BuilderLayout extends TableLayout implements EventListener<Bu
     public BuilderLayout(BuilderScreen screen, Builder builder) {
         builder.subscribe(this);
 
-        statusbar = new Statusbar(screen);
-        statusbar.setSelectionStatus(builder.getSelectedTileDef());
+        builderStatusbar = new BuilderStatusbar(screen);
+        builderStatusbar.setSelectionStatus(builder.getSelectedTileDef());
 
-        configTable = new ConfigTable(builder.getLevelData(), statusbar);
+        configTable = new ConfigTable(builder.getLevelData(), builderStatusbar);
         resizingLayout = new ResizingLayout(builder);
 
         groundPalette = new TilePalette(builder, Assets.getTileset(), 10, 19);
@@ -84,11 +84,11 @@ public final class BuilderLayout extends TableLayout implements EventListener<Bu
 
         add().expandY().row();
 
-        add(statusbar).colspan(2).padBottom(10).fillX();
+        add(builderStatusbar).colspan(2).padBottom(10).fillX();
     }
 
     public void update() {
-        statusbar.update();
+        builderStatusbar.update();
     }
 
     @Override
@@ -98,11 +98,11 @@ public final class BuilderLayout extends TableLayout implements EventListener<Bu
             if (def.type.equals("custom_zone")) {
                 customZoneTable.setVisible(true);
             }
-            statusbar.setSelectionStatus(def);
+            builderStatusbar.setSelectionStatus(def);
         }
         if (event instanceof TilePlacedEvent tilePlaced) {
             String status = String.format("%s on (%s, %s)", tilePlaced.tileDefinition.name, tilePlaced.x, tilePlaced.y);
-            statusbar.setActionStatus(status);
+            builderStatusbar.setActionStatus(status);
         }
     }
 }

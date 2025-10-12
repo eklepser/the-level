@@ -1,6 +1,7 @@
 package game.scene.world.logic;
 
 import com.badlogic.gdx.math.Vector2;
+import game.config.Paths;
 import game.data.IO.UserDataIO;
 import game.data.level.LevelData;
 import game.data.IO.LevelDataIO;
@@ -41,7 +42,7 @@ public final class World extends AbstractWorld {
 
         userData = UserDataIO.loadUserData();
         levelStatusMap = userData.progressData.getStatusMap();
-        levelDataMap = LevelDataIO.loadDataMap("assets/world");
+        levelDataMap = LevelDataIO.loadDataMap(Paths.WORLD_DATA);
 
         loadZones(map);
 

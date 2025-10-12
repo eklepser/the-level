@@ -16,7 +16,7 @@ import game.utils.TimeUtils;
 public final class ConfigTable extends TableLayout {
     private final LevelData levelData;
 
-    private final Statusbar statusbar;
+    private final BuilderStatusbar builderStatusbar;
 
     private final TextField tagField;
     private final TextField titleField;
@@ -25,9 +25,9 @@ public final class ConfigTable extends TableLayout {
 
     private final TextButton saveButton;
 
-    public ConfigTable(LevelData levelData, Statusbar statusbar) {
+    public ConfigTable(LevelData levelData, BuilderStatusbar builderStatusbar) {
         this.levelData = levelData;
-        this.statusbar = statusbar;
+        this.builderStatusbar = builderStatusbar;
 
         tagField = new InputField(levelData.metadata.tag, 20);
         titleField = new InputField(levelData.metadata.title, 20);
@@ -48,7 +48,7 @@ public final class ConfigTable extends TableLayout {
 
                 String time = TimeUtils.getFormattedTime("HH:mm:ss");
                 String status = String.format("/green Level %s saved (%s)", newLevelData.metadata.tag, time);
-                statusbar.setActionStatus(status);
+                builderStatusbar.setActionStatus(status);
             }
         });
 
@@ -80,7 +80,7 @@ public final class ConfigTable extends TableLayout {
         newLevelData.metadata.tag = tagField.getText();
         if (newLevelData.metadata.tag.isBlank()) {
             String status = "/red Level not saved\nTag cannot be empty";
-            statusbar.setActionStatus(status);
+            builderStatusbar.setActionStatus(status);
             return null;
         }
 
@@ -90,12 +90,12 @@ public final class ConfigTable extends TableLayout {
         boolean hasWinZone = newLevelData.tileMap.zones.stream().anyMatch(obj -> obj.type.equals("win"));
         if (!hasStartZone) {
             String status = "/red Level not saved\nThere must be at least one start zone";
-            statusbar.setActionStatus(status);
+            builderStatusbar.setActionStatus(status);
             return null;
         }
         if (!hasWinZone) {
             String status = "/red Level not saved\nThere must be at least one win zone";
-            statusbar.setActionStatus(status);
+            builderStatusbar.setActionStatus(status);
             return null;
         }
 
@@ -107,7 +107,7 @@ public final class ConfigTable extends TableLayout {
             newLevelData.metadata.codeLinesAmount = Integer.parseInt(codeLinesNum.getText());
         } catch (NumberFormatException e) {
             String status = "/red Level not saved\nCodelines amount must be integer";
-            statusbar.setActionStatus(status);
+            builderStatusbar.setActionStatus(status);
             return null;
         }
 

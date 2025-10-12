@@ -1,6 +1,6 @@
 package game.data.user;
 
 public final class UserData {
-    public UserProgressData progressData;
-    public WorldPosition worldPosition;
+    public UserProgressData progressData = new UserProgressData();
+    public WorldPosition worldPosition = new WorldPosition();
 }

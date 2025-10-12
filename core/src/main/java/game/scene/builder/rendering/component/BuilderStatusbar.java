@@ -16,7 +16,7 @@ import game.scene.common.rendering.tilemap.TileDefinition;
 
 import java.util.Arrays;
 
-public final class Statusbar extends TableLayout {
+public final class BuilderStatusbar extends TableLayout {
     private final BuilderScreen screen;
 
     private final Image selectedTileImage;
@@ -26,7 +26,7 @@ public final class Statusbar extends TableLayout {
     private final TextLabel cursorPositionLabel;
     private final TextLabel cameraPositionLabel;
 
-    public Statusbar(BuilderScreen screen) {
+    public BuilderStatusbar(BuilderScreen screen) {
         this.screen = screen;
 
         selectedTileImage = new Image();
@@ -75,13 +75,15 @@ public final class Statusbar extends TableLayout {
 
         selectedTileImage.setDrawable(new TextureRegionDrawable(icon));
 
+        String selected;
         if (def.type.equals("custom_zone")) {
-            String selected = String.format("%s \n(%s, %s)", def.name, def.zoneType, Arrays.toString(def.zoneProperties));
-            selectedTileLabel.setText(selected);
+            selected = String.format("%s \n(%s, %s)", def.name, def.zoneType, Arrays.toString(def.zoneProperties));
         }
+
         else {
-            selectedTileLabel.setText(def.name);
+            selected = String.format("%s (id %s)", def.name, def.id);
         }
+        selectedTileLabel.setText(selected);
     }
 
     public void setActionStatus(String text) {

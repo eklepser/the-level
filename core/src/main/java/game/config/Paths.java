@@ -11,9 +11,10 @@ public final class Paths {
 
     public static final String TILESET = "tileset/tileset";
     public static final String COMMANDS_INFO = "text/commands-info.json";
-    public static final String LEVEL_CONFIG = "world/level.json";
 
     // Local paths:
     public static final String USER_DATA = "data/user/userdata.json";
+    public static final String WORLD_DATA = "data/world/";
+    public static final String WORLD_ONE = "data/world/world_one.json";
     public static final String BUILDER_DATA = "data/builder/";
 }

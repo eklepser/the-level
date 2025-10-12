@@ -24,10 +24,11 @@ public final class LevelEntranceZone extends WorldZone {
 
     private void setColor(ZoneTile tile) {
         LevelStatus status = world.getLevelStatusMap().get(levelTag);
+        if (status == null) return;
         switch (status) {
-            case UNLOCKED -> tile.color = Color.GRAY;
-            case COMPLETED -> tile.color = Color.WHITE;
-            default -> tile.color = Color.PURPLE;
+            case UNLOCKED -> tile.color = new Color(0x9999ffff);
+            case COMPLETED -> tile.color = new Color(0xccccffff);
+            default -> tile.color = new Color(0x00000000);
         }
     }
 }

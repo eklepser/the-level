@@ -3,6 +3,7 @@ package game.scene.menu.rendering;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Json;
+import game.config.Paths;
 import game.data.world.WorldData;
 import game.scene.common.rendering.ButtonFactory;
 import game.scene.common.rendering.screen.ScreenNavigator;
@@ -15,7 +16,7 @@ public final class MenuButtonFactory extends ButtonFactory {
     public static TextButton startButton( ) {
         return createButton("Start Game", () -> {
             Json json = new Json();
-            WorldData worldData = json.fromJson(WorldData.class, Gdx.files.internal("world/world_one.json"));
+            WorldData worldData = json.fromJson(WorldData.class, Gdx.files.local(Paths.WORLD_ONE));
             ScreenNavigator.gotoScreen(new WorldScreen(worldData));
         });
     }
