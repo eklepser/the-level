@@ -36,6 +36,8 @@ public final class Level extends AbstractLevel {
 
         entitiesToAdd = new ArrayList<>();
 
+        loadZones(levelData.tileMap);
+
         spawnEntity((int) startPos.x, (int) startPos.y);
     }
 

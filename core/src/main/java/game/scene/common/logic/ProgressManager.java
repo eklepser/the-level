@@ -18,23 +18,17 @@ public final class ProgressManager {
     }
 
     public void saveWorldPosition() {
-        userData.worldPosition.x = (int) scene.entities.get(0).getWorldPos().x;
-        userData.worldPosition.y = (int) scene.entities.get(0).getWorldPos().y;
-
+        userData.worldPosition.x = (int)scene.getPlayer().getWorldPos().x;
+        userData.worldPosition.y = (int)scene.getPlayer().getWorldPos().y;
         UserDataIO.saveUserData(userData);
     }
 
-
     public void completeLevel(LevelMetadata metadata) {
-        UserData userData = UserDataIO.loadUserData();
-
         userData.progressData.setStatus(metadata.tag, LevelStatus.COMPLETED);
-
         List<String> unlocks = metadata.unlocks;
         for (String tag : unlocks) {
             userData.progressData.setStatus(tag, LevelStatus.UNLOCKED);
         }
-
         UserDataIO.saveUserData(userData);
     }
 }

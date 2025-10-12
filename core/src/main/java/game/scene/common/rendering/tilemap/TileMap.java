@@ -1,5 +1,6 @@
 package game.scene.common.rendering.tilemap;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -49,8 +50,10 @@ public class TileMap {
             float screenX = zoneTile.x * TILE_SIZE;
             float screenY = zoneTile.y * TILE_SIZE;
 
+            batch.setColor(zoneTile.color);
             batch.draw(region, screenX, screenY);
         }
+        batch.setColor(Color.WHITE);
     }
 
     public void resize(int newWidth, int newHeight) {
@@ -101,7 +104,6 @@ public class TileMap {
         this.collision = newCollision;
     }
 
-    // Getters:
     public Vector2 getStartPos() {
         for (ZoneTile zoneTile : zones) {
             if (zoneTile.type.equals("start"))

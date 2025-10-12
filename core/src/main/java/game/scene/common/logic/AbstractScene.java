@@ -27,7 +27,6 @@ public abstract class AbstractScene<E extends GameEvent> extends EventSource<E> 
         this.zones = new ArrayList<>();
         this.entities = new ArrayList<>();
         progressManager = new ProgressManager(this);
-        loadZones(map);
     }
 
     protected abstract void onTurnMade();
@@ -40,6 +39,10 @@ public abstract class AbstractScene<E extends GameEvent> extends EventSource<E> 
             turnMade = false;
         }
         entities.forEach(entity -> entity.act(delta));
+    }
+
+    public Entity getPlayer() {
+        return entities.isEmpty() ? null : entities.get(0);
     }
 
     protected void makeTurn() {

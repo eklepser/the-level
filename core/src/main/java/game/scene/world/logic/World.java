@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import game.data.IO.UserDataIO;
 import game.data.level.LevelData;
 import game.data.IO.LevelDataIO;
+import game.data.user.LevelStatus;
 import game.data.user.*;
 import game.data.world.WorldData;
 import game.scene.common.logic.collision.CollisionContext;
@@ -26,7 +27,7 @@ public final class World extends AbstractWorld {
     private final Vector2 startPos;
 
     private final UserData userData;
-    private final Map<String, LevelStatus> levelProgressMap;
+    private final Map<String, LevelStatus> levelStatusMap;
     private final Map<String, LevelData> levelDataMap;
 
     private LevelStatus selectedLevelStatus;
@@ -39,8 +40,10 @@ public final class World extends AbstractWorld {
         collisionHandler = new CollisionHandler(collisionContext);
 
         userData = UserDataIO.loadUserData();
-        levelProgressMap = userData.progressData.getStatusMap();
+        levelStatusMap = userData.progressData.getStatusMap();
         levelDataMap = LevelDataIO.loadDataMap("assets/world");
+
+        loadZones(map);
 
         // start pos calculating
         if (userData.worldPosition.x != 0 && userData.worldPosition.y != 0) {
@@ -83,8 +86,12 @@ public final class World extends AbstractWorld {
 
     public void setSelectedLevel(String selectedLevelTag) {
         selectedLevelData = levelDataMap.get(selectedLevelTag);
-        selectedLevelStatus = levelProgressMap.get(selectedLevelTag);
+        selectedLevelStatus = levelStatusMap.get(selectedLevelTag);
         if (selectedLevelStatus == null) selectedLevelStatus = LevelStatus.LOCKED;
+    }
+
+    public void saveWorldPosition() {
+        progressManager.saveWorldPosition();
     }
 
     public LevelStatus getSelectedLevelStatus() {
@@ -93,6 +100,10 @@ public final class World extends AbstractWorld {
 
     public LevelData getSelectedLevelData() {
         return selectedLevelData;
+    }
+
+    public Map<String, LevelStatus> getLevelStatusMap() {
+        return levelStatusMap;
     }
 
     public List<Entity> getEntities() {

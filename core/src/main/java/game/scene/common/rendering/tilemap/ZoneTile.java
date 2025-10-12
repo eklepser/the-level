@@ -1,11 +1,15 @@
 package game.scene.common.rendering.tilemap;
 
+import com.badlogic.gdx.graphics.Color;
+
 public class ZoneTile {
     public int id;
     public int x;
     public int y;
     public String type;
     public String[] properties;
+
+    public Color color = Color.WHITE;
 
     public ZoneTile() { }
 

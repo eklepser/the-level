@@ -40,6 +40,7 @@ public class WorldProcessor extends InputAdapter {
             world.startLevel();
         }
         else if (keycode == Input.Keys.ESCAPE) {
+            world.saveWorldPosition();
             ScreenNavigator.gotoScreen(new MenuScreen());
         }
         if (keycode != previousKey) previousKey = keycode;

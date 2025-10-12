@@ -5,7 +5,6 @@ import game.data.user.LevelStatus;
 import game.scene.common.logic.event.EventListener;
 import game.scene.common.rendering.TableLayout;
 import game.scene.world.logic.World;
-import game.scene.world.logic.event.OnLevelEntranceEvent;
 import game.scene.world.logic.event.WorldEvent;
 import game.scene.world.logic.event.WorldTurnEvent;
 import game.scene.world.rendering.component.LevelStatusLayout;
