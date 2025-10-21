@@ -45,7 +45,6 @@ public abstract class TiledActor extends Actor {
 
     @Override
     public void act(float delta) {
-        sprite.setColor(Color.WHITE);
         super.act(delta);
     }
 

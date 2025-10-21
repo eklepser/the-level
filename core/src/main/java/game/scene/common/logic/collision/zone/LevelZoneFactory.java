@@ -13,6 +13,7 @@ public final class LevelZoneFactory {
 
         return switch (tile.type) {
             case "win" -> new WinZone(x, y, level);
+            case "death" -> new DeathZone(x, y, level);
             case "colored" -> new ColoredZone(x, y, properties[0]);
             default -> new UnknownZone(x, y);
         };

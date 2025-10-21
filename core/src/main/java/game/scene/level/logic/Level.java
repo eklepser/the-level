@@ -1,7 +1,6 @@
 package game.scene.level.logic;
 
 import game.data.level.LevelData;
-import game.scene.common.logic.ProgressManager;
 import game.scene.common.logic.collision.CollisionContext;
 import game.scene.common.logic.collision.CollisionHandler;
 import game.scene.common.logic.collision.zone.LevelZoneFactory;
@@ -10,6 +9,7 @@ import game.scene.common.logic.collision.zone.Zone;
 import game.scene.common.logic.entity.Entity;
 import game.scene.common.rendering.tilemap.TileMap;
 import game.scene.common.rendering.tilemap.ZoneTile;
+import game.scene.level.logic.event.DeathEvent;
 import game.scene.level.logic.event.WinEvent;
 import game.scene.level.logic.execution.Executor;
 
@@ -23,8 +23,10 @@ public final class Level extends AbstractLevel {
     private final Executor executor;
 
     private final List<Entity> entitiesToAdd;
+    private final List<Entity> entitiesToRemove;
 
     private boolean isWin = false;
+    private boolean isDead = false;
 
     public Level(LevelData levelData) {
         super(levelData);
@@ -35,6 +37,7 @@ public final class Level extends AbstractLevel {
         executor = new Executor(levelData, this);
 
         entitiesToAdd = new ArrayList<>();
+        entitiesToRemove = new ArrayList<>();
 
         loadZones(levelData.tileMap);
 
@@ -44,15 +47,15 @@ public final class Level extends AbstractLevel {
     @Override
     public void update(float delta) {
         super.update(delta);
-
-        if (!entitiesToAdd.isEmpty()) {
-            entities.addAll(entitiesToAdd);
-            entitiesToAdd.clear();
-        }
     }
 
     @Override
     protected void onTurnMade() {
+        if (!entitiesToRemove.isEmpty()) {
+            entities.removeAll(entitiesToRemove);
+            entitiesToRemove.clear();
+        }
+
         collisionHandler.wallsUpdate();
         entities.forEach(Entity::update);
         collisionHandler.zonesUpdate();
@@ -86,8 +89,15 @@ public final class Level extends AbstractLevel {
 
     public void win() {
         isWin = true;
-        fire(new WinEvent());
         progressManager.completeLevel(levelData.metadata);
+        fire(new WinEvent());
+    }
+
+    public void kill(Entity entity) {
+        isDead = true;
+        entitiesToRemove.add(entity);
+        entity.die();
+        fire(new DeathEvent());
     }
 
     public void setExecutionDelay(float delay) {
@@ -105,4 +115,8 @@ public final class Level extends AbstractLevel {
     public List<Zone> getZones() { return zones; }
 
     public boolean isWin() { return isWin; }
+
+    public boolean isDead() {
+        return isDead;
+    }
 }

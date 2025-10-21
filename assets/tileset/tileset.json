@@ -8,6 +8,7 @@
   { "id": 21, "name": "wall_1", "type": "wall" },
   { "id": 30, "name": "start_zone", "type": "zone", "zoneType": "start"},
   { "id": 31, "name": "win_zone", "type": "zone","zoneType": "win" },
+  { "id": 32, "name": "death_zone", "type": "zone","zoneType": "death" },
   { "id": 40, "name": "green_plate", "type": "zone", "zoneType": "colored", "zoneProperties": ["green"]},
   { "id": 41, "name": "blue_plate", "type": "zone","zoneType": "colored", "zoneProperties": ["blue"] },
   { "id": 42, "name": "red_plate", "type": "zone", "zoneType": "colored", "zoneProperties": ["red"]},

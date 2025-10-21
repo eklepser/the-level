@@ -4,7 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.ColorAction;
 import game.scene.common.logic.Direction;
+
+import java.util.ArrayList;
 
 public class Entity extends TiledActor {
     public Entity(int worldPosX, int worldPosY, String textureName) {
@@ -22,7 +25,6 @@ public class Entity extends TiledActor {
     }
 
     public void rotate(Direction rotateDirection) {
-        sprite.setColor(Color.WHITE);
         facingDirection = Direction.getRotatedDirection(facingDirection, rotateDirection);
         sprite.setRotation(Direction.getDegrees(facingDirection));
     }
@@ -48,6 +50,10 @@ public class Entity extends TiledActor {
 
     public void resetTargetWorldPos() {
         targetWorldPos.set(worldPos);
+    }
+
+    public void die() {
+        sprite.setColor(0.3f, 0.3f, 0.3f, 0.8f);
     }
 
     // Getters & setters

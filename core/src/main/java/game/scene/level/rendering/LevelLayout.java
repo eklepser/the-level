@@ -8,10 +8,7 @@ import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.ColoredString;
 import game.scene.level.logic.Level;
 import game.scene.level.logic.command.Command;
-import game.scene.level.logic.event.ExecutionStartEvent;
-import game.scene.level.logic.event.LevelEvent;
-import game.scene.level.logic.event.LevelTurnEvent;
-import game.scene.level.logic.event.WinEvent;
+import game.scene.level.logic.event.*;
 import game.scene.level.rendering.component.LevelStatusbar;
 import game.scene.level.rendering.component.LevelToolbar;
 import game.scene.level.rendering.component.editor.EditorLayout;
@@ -85,6 +82,9 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
         }
         if (event instanceof WinEvent) {
             levelStatusbar.win();
+        }
+        if (event instanceof DeathEvent) {
+            levelStatusbar.die();
         }
     }
 

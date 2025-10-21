@@ -60,8 +60,8 @@ public final class Executor implements TimeController {
             // add new command to target
             sequence.addAction(Actions.run(() -> {
                 target.setAnimationSpeed(executionDelay / 4.0f);
-                if (!level.isWin()) currentCmd.execute(target);
-                if (!level.isWin()) level.makeTurn(currentCmd);
+                if (!level.isWin() && !level.isDead()) currentCmd.execute(target);
+                if (!level.isWin() && !level.isDead()) level.makeTurn(currentCmd);
             }));
         }
 

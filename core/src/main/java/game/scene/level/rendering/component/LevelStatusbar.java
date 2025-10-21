@@ -16,11 +16,13 @@ public final class LevelStatusbar extends TableLayout {
     private final int itemsLimit = 999;
     private final Image startImage;
     private final Image winImage;
+    private final Image deathImage;
 
     public LevelStatusbar() {
         itemGroups = new LinkedList<>();
         startImage = Assets.getImage("ui/icon/start.png");
         winImage = Assets.getImage("ui/icon/win.png");
+        deathImage = Assets.getImage("ui/icon/death.png");
     }
 
     @Override
@@ -58,5 +60,9 @@ public final class LevelStatusbar extends TableLayout {
 
     public void win() {
         add(winImage).size(32, 32).expand(false, false).padLeft(4);
+    }
+
+    public void die() {
+        add(deathImage).size(32, 32).expand(false, false).padLeft(4);
     }
 }
