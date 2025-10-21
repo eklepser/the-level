@@ -97,6 +97,10 @@ public final class Translator {
                 return new TranslationResult(false, message);
             }
             ConditionPattern cond = ConditionPattern.from(conditionName);
+            if (!cond.allowedArgs.contains(conditionArg)) {
+                String message = String.format("Line %d: condition argument %s is not allowed", lineNum + 1, args[1]);
+                return new TranslationResult(false, message);
+            }
             String commandText = String.join(" ", Arrays.copyOfRange(args, 2, args.length));
             TranslationResult result = translate(commandText, lineNum, true, codeLine, inputLines);
             if (!result.success()) return result;

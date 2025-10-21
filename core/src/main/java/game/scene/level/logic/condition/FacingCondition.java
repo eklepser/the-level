@@ -18,6 +18,8 @@ public final class FacingCondition extends Condition {
         int targetY = (int) (target.getWorldPos().y + target.getFacingDirection().vector.y);
 
         if (zoneName.equals("wall")) {
+            if (targetX < 0 || targetX >= collisionContext.collisionMap()[0].length) return false;
+            if (targetY < 0 || targetY >= collisionContext.collisionMap().length) return false;
             return collisionContext.collisionMap()[targetY][targetX] == 1;
         }
 
