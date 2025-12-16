@@ -1,0 +1,26 @@
+{
+  "progressData": {
+    "completionList": [
+      {
+        "tag": "beginning",
+        "status": "UNLOCKED"
+      },
+      {
+        "tag": "goto_learning",
+        "status": "UNLOCKED"
+      },
+      {
+        "tag": "spiral",
+        "status": "UNLOCKED"
+      },
+      {
+        "tag": "snake",
+        "status": "UNLOCKED"
+      },
+      {
+        "tag": "anchor",
+        "status": "UNLOCKED"
+      }
+    ]
+  }
+}

@@ -36,7 +36,7 @@ public final class LevelProcessor extends InputAdapter {
         else if (keycode == Input.Keys.ESCAPE) {
             Json json = new Json();
             if (ScreenNavigator.getPreviousScreen() instanceof WorldScreen) {
-                WorldData worldData = json.fromJson(WorldData.class, Gdx.files.internal("world/world_one.json"));
+                WorldData worldData = json.fromJson(WorldData.class, Gdx.files.internal("data/world/world_one.json"));
                 ScreenNavigator.gotoScreen(new WorldScreen(worldData));
             }
             else  {
