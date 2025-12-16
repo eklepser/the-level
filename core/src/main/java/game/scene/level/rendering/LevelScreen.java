@@ -6,12 +6,18 @@ import game.scene.common.rendering.screen.GameCamera;
 import game.scene.common.rendering.screen.GameScreen;
 import game.scene.level.logic.Level;
 import game.scene.level.rendering.component.editor.LevelProcessor;
+import game.scene.level.window.HelpWindow;
 
 public final class LevelScreen extends GameScreen {
     private final GameCamera camera;
     private final Level level;
+    private final LevelLayout layout;
+
+    private final HelpWindow helpWindow;
 
     private final LevelData levelData;
+
+    private boolean isViewInverted = false;
 
     public LevelScreen(LevelData levelData) {
         super(levelData.tileMap);
@@ -20,7 +26,10 @@ public final class LevelScreen extends GameScreen {
         this.levelData = levelData;
         level = new Level(levelData);
 
-        LevelLayout layout = new LevelLayout(level);
+        helpWindow = new HelpWindow();
+
+        stage.addActor(helpWindow);
+        layout = new LevelLayout(this, level, helpWindow);
         stage.addActor(layout);
         multiplexer.addProcessor(0, new LevelProcessor(layout.getEditor()));
     }
@@ -48,12 +57,39 @@ public final class LevelScreen extends GameScreen {
         batch.end();
     }
 
+    public void invertView() {
+        isViewInverted = !isViewInverted;
+
+        float zoom = map.height / 16.0f;
+
+        camera.center(map.width * Display.TILE_SIZE, map.height * Display.TILE_SIZE);
+        if (isViewInverted) {
+            camera.offset(zoom * Display.EDITOR_MENU_SCALE * Display.VIEWPORT_WIDTH / 2.0f , 0);
+        }
+        else  {
+            camera.offset(-zoom * Display.EDITOR_MENU_SCALE * Display.VIEWPORT_WIDTH / 2.0f , 0);
+        }
+
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
+
+        if (layout != null) {
+            layout.toggleEditorSide(isViewInverted);
+        }
+
+        helpWindow.invertPosition(isViewInverted);
+    }
+
     public LevelData getLevelData() {
         return levelData;
     }
 
     public Level getLevel() {
         return level;
+    }
+
+    public HelpWindow getHelpWindow() {
+        return helpWindow;
     }
 }
 

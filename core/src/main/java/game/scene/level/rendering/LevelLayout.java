@@ -12,6 +12,8 @@ import game.scene.level.logic.event.*;
 import game.scene.level.rendering.component.LevelStatusbar;
 import game.scene.level.rendering.component.LevelToolbar;
 import game.scene.level.rendering.component.editor.EditorLayout;
+import game.scene.level.window.HelpWindow;
+import game.scene.level.window.WinWindow;
 
 public final class LevelLayout extends TableLayout implements EventListener<LevelEvent> {
     private final Level level;
@@ -22,11 +24,13 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
     private final ColoredString infoString;
     private final LevelStatusbar levelStatusbar;
 
-    public LevelLayout(Level level) {
+    private boolean editorOnRight = false;
+
+    public LevelLayout(LevelScreen screen, Level level, HelpWindow helpWindow) {
         this.level = level;
         level.subscribe(this);
 
-        levelToolbar = new LevelToolbar();
+        levelToolbar = new LevelToolbar(screen, helpWindow);
         infoString = new ColoredString();
         levelStatusbar = new LevelStatusbar();
 
@@ -38,10 +42,11 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
 
     @Override
     public void setup() {
+        setDebug(true);
         setFillParent(true);
 
-        // Setup elements:
         infoString.setText("/_2 " + level.getLevelData().metadata.title);
+        infoString.center();
 
         levelStatusbar.left();
         ScrollPane scrollPane = new ScrollPane(levelStatusbar);
@@ -52,17 +57,34 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
         Table statusTable = new Table();
         statusTable.add(scrollPane);
 
-        // Adding elements:
-        row().colspan(2);
-        add(levelToolbar).width(Display.VIEWPORT_WIDTH * Display.EDITOR_MENU_SCALE).left().top().fillX();
-        add().fillX();
+        float editorWidth = Display.VIEWPORT_WIDTH * Display.EDITOR_MENU_SCALE;
+        float mainWidth = Display.VIEWPORT_WIDTH - editorWidth;
 
-        row();
-        add(editorLayout).width(Display.VIEWPORT_WIDTH * Display.EDITOR_MENU_SCALE).top().expandY();
-        add(infoString).expand().top();
+        columnDefaults(0).width(editorOnRight ? mainWidth : editorWidth).expandX();
+        columnDefaults(1).width(editorOnRight ? editorWidth : mainWidth).expandX();
+
+        if (editorOnRight) {
+            add().fill();
+            add(levelToolbar).fillX().top().left();
+            row();
+            add(infoString).expandX().top().fillX();
+            add(editorLayout).top().expandY().fillX();
+        } else {
+            add(levelToolbar).fillX().top().left();
+            add().fill();
+            row();
+            add(editorLayout).top().expandY().fillX();
+            add(infoString).expandX().top().fillX();
+        }
 
         row().colspan(2);
-        add(statusTable).left().padRight(10).height(32);
+        add(statusTable).left().padRight(10).height(32).expandX().fillX();
+    }
+
+    public void toggleEditorSide(boolean editorOnRight) {
+        this.editorOnRight = editorOnRight;
+        clear();
+        setup();
     }
 
     @Override

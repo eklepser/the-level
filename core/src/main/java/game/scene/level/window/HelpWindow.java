@@ -34,8 +34,11 @@ public class HelpWindow extends Window {
 
     private void setupLayout() {
         float editorWidth = Display.VIEWPORT_WIDTH * Display.EDITOR_MENU_SCALE;
-        setSize(Display.VIEWPORT_WIDTH - editorWidth, Display.VIEWPORT_HEIGHT);
-        setPosition(editorWidth, 0);
+        float freeWidth = Display.VIEWPORT_WIDTH - editorWidth;
+
+        setSize(freeWidth, Display.VIEWPORT_HEIGHT);
+        setVisible(false);
+        setColor(0.5f, 0, 0.75f, 0.9f);
 
         for (CommandInfo info : commandInfos) {
             commandsTable.add(getCommandPanel(info)).pad(10).expand().left().fillX().row();
@@ -46,8 +49,17 @@ public class HelpWindow extends Window {
         row();
         add(exitLevelButton).width(Display.VIEWPORT_WIDTH / 4.0f)
             .height(Display.VIEWPORT_HEIGHT / 16.0f).pad(30, 10, 30, 10);
-        setVisible(false);
-        setColor(0.5f, 0, 0.75f, 0.9f);
+
+        setPosition(editorWidth, 0);
+    }
+
+    public void invertPosition(boolean editorOnRight) {
+        float editorWidth = Display.VIEWPORT_WIDTH * Display.EDITOR_MENU_SCALE;
+        if (editorOnRight) {
+            setPosition(0, 0);
+        } else {
+            setPosition(editorWidth, 0);
+        }
     }
 
     private Table getCommandPanel(CommandInfo info) {
@@ -58,7 +70,6 @@ public class HelpWindow extends Window {
         TextLabel desc = new TextLabel(info.descriptionText);
         desc.setWrap(true);
         desc.setColor(0.65f, 0.65f, 0.65f, 1);
-        //example.setColor(0.75f, 0.75f, 0.75f, 1);
 
         Table table = new Table();
         HorizontalGroup group = new HorizontalGroup();
@@ -86,5 +97,7 @@ public class HelpWindow extends Window {
         return table;
     }
 
-    public void toggle() { setVisible(!isVisible()); }
+    public void toggle() {
+        setVisible(!isVisible());
+    }
 }
