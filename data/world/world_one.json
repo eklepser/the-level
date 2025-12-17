@@ -47,10 +47,31 @@
       },
       {
         "id": 41,
+        "x": 2,
+        "y": 2,
+        "type": "entrance",
+        "properties": ["shot"]
+      },
+      {
+        "id": 41,
         "x": 3,
         "y": 3,
         "type": "entrance",
         "properties": ["spiral"]
+      },
+      {
+        "id": 41,
+        "x": 2,
+        "y": 3,
+        "type": "entrance",
+        "properties": ["rgb"]
+      },
+      {
+        "id": 41,
+        "x": 2,
+        "y": 4,
+        "type": "entrance",
+        "properties": ["minefield"]
       },
       {
         "id": 41,
@@ -65,6 +86,20 @@
         "y": 3,
         "type": "entrance",
         "properties": ["anchor"]
+      },
+      {
+        "id": 41,
+        "x": 4,
+        "y": 4,
+        "type": "entrance",
+        "properties": ["dots"]
+      },
+      {
+        "id": 41,
+        "x": 4,
+        "y": 5,
+        "type": "entrance",
+        "properties": ["resolver"]
       },
       {
         "id": 41,
