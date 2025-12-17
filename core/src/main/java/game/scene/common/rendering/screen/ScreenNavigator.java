@@ -18,6 +18,10 @@ public final class ScreenNavigator {
         game.setScreen(screen);
     }
 
+    public static Screen getScreen() {
+        return game.getScreen();
+    }
+
     public static Screen getPreviousScreen() {
         return previousScreen;
     }

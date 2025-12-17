@@ -23,6 +23,7 @@ public class HelpWindow extends Window {
         super("", Assets.getSkin());
         commandsTable = new Table();
         scrollPane = new ScrollPane(commandsTable);
+        scrollPane.setCancelTouchFocus(false);
         exitLevelButton = new ExitLevelButton();
 
         Json json = new Json();
@@ -40,13 +41,27 @@ public class HelpWindow extends Window {
         setVisible(false);
         setColor(0.5f, 0, 0.75f, 0.9f);
 
+        defaults().padLeft(16f);
+        add(new ColoredString("/_2 Hotkeys")).padBottom(8).colspan(2).center().padLeft(2);
+        row();
+        add(new ColoredString("F1 /light-gray Increase execution speed")).left();
+        add(new ColoredString("F4, CTRL+\\ /light-gray Reset execution")).left();
+        row();
+        add(new ColoredString("F2 /light-gray Decrease execution speed")).left();
+        add(new ColoredString("F5, CTRL+ENTER /light-gray Run execution")).left();
+        defaults().padLeft(0);
+
+        row().colspan(2);
+        add(new ColoredString("/_2 Commands")).padTop(12).center();
+        row().colspan(2);
+
         for (CommandInfo info : commandInfos) {
             commandsTable.add(getCommandPanel(info)).pad(10).expand().left().fillX().row();
         }
 
         add(scrollPane).left();
 
-        row();
+        row().colspan(2);
         add(exitLevelButton).width(Display.VIEWPORT_WIDTH / 4.0f)
             .height(Display.VIEWPORT_HEIGHT / 16.0f).pad(30, 10, 30, 10);
 
@@ -98,6 +113,10 @@ public class HelpWindow extends Window {
     }
 
     public void toggle() {
-        setVisible(!isVisible());
+        boolean willBeVisible = !isVisible();
+        setVisible(willBeVisible);
+        if (willBeVisible && getStage() != null) {
+            getStage().setScrollFocus(scrollPane);
+        }
     }
 }

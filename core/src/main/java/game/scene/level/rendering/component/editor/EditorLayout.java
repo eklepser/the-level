@@ -39,7 +39,6 @@ public final class EditorLayout extends TableLayout {
 
     @Override
     public void setup() {
-        setDebug(true);
         // parameters menu
         add(parametersLayout).padBottom(10).colspan(3).fillX().padLeft(10);
 

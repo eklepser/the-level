@@ -51,7 +51,6 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
     @Override
     public void setup() {
         setFillParent(true);
-        setDebug(true);
 
         infoString.setText("/_2 " + level.getLevelData().metadata.title);
         infoString.center();
