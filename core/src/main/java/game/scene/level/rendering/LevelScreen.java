@@ -1,5 +1,6 @@
 package game.scene.level.rendering;
 
+import com.badlogic.gdx.math.Matrix4;
 import game.config.Display;
 import game.data.level.LevelData;
 import game.scene.common.rendering.screen.GameCamera;
@@ -13,6 +14,8 @@ public final class LevelScreen extends GameScreen {
     private final GameCamera camera;
     private final Level level;
     private final LevelLayout layout;
+
+    private final BackgroundEffect backgroundParticles;
 
     private final HelpWindow helpWindow;
     private final WinWindow winWindow;
@@ -30,8 +33,8 @@ public final class LevelScreen extends GameScreen {
 
         helpWindow = new HelpWindow();
         winWindow = new WinWindow();
-
         layout = new LevelLayout(this, level, helpWindow, winWindow);
+        backgroundParticles = new BackgroundEffect(BackgroundEffect.Shape.CIRCLE);
 
         stage.addActor(layout);
         stage.addActor(helpWindow);
@@ -52,10 +55,18 @@ public final class LevelScreen extends GameScreen {
     @Override
     protected void update(float delta) {
         level.update(delta);
+        backgroundParticles.update(delta, Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT);
     }
 
     @Override
     protected void draw() {
+        Matrix4 screenMatrix = new Matrix4().setToOrtho2D(
+            0, 0,
+            Display.VIEWPORT_WIDTH,
+            Display.VIEWPORT_HEIGHT
+        );
+        backgroundParticles.draw(screenMatrix);
+
         batch.begin();
         map.draw(batch, 10);
         level.getEntities().forEach(entity -> entity.draw(batch, 1.0f));

@@ -1,6 +1,11 @@
 package game.scene.menu.rendering;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.config.Display;
+import game.data.IO.Assets;
 import game.scene.common.rendering.TableLayout;
 import game.scene.common.rendering.component.ColoredString;
 
