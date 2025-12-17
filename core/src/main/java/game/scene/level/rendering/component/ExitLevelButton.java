@@ -10,6 +10,7 @@ import game.data.world.WorldData;
 import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.level.rendering.LevelScreen;
 import game.scene.selection.rendering.BuilderSelectionLayout;
+import game.scene.selection.rendering.PlaySelectionLayout;
 import game.scene.selection.rendering.SelectionScreen;
 import game.scene.world.rendering.WorldScreen;
 
@@ -24,7 +25,7 @@ public final class ExitLevelButton extends TextButton {
                     WorldData worldData = json.fromJson(WorldData.class, Gdx.files.internal("data/world/world_one.json"));
                     ScreenNavigator.gotoScreen(new WorldScreen(worldData));
                 }
-                else ScreenNavigator.gotoScreen(new SelectionScreen(BuilderSelectionLayout.class));
+                else ScreenNavigator.gotoScreen(new SelectionScreen(PlaySelectionLayout.class));
             }
         });
     }

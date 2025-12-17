@@ -1,28 +1,30 @@
 package game.scene.level.window;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Json;
 import game.config.Display;
 import game.data.IO.Assets;
-import game.data.world.WorldData;
 import game.scene.common.rendering.component.TextLabel;
-import game.scene.common.rendering.screen.ScreenNavigator;
 import game.scene.level.rendering.component.ExitLevelButton;
-import game.scene.world.rendering.WorldScreen;
 
 public class WinWindow extends Window {
     private final TextLabel winLabel;
+    private final Image winImage;
     private final ExitLevelButton exitLevelButton;
     private final TextButton closeButton;
 
     public WinWindow() {
         super("", Assets.getSkin());
         winLabel = new TextLabel("YOU WIN!");
+        winLabel.setAlignment(Align.center);
+        winLabel.setFontScale(4.0f);
+
+        winImage = Assets.getImage("ui/icon/win.png");
+
         exitLevelButton = new ExitLevelButton();
 
         closeButton = new TextButton("Close", Assets.getSkin());
@@ -37,32 +39,24 @@ public class WinWindow extends Window {
     }
 
     private void setupLayout() {
-        float editorWidth = Display.VIEWPORT_WIDTH * Display.EDITOR_MENU_SCALE;
-        float freeWidth = Display.VIEWPORT_WIDTH - editorWidth;
-
-        setSize(freeWidth, Display.VIEWPORT_HEIGHT);
+        setSize(Display.VIEWPORT_WIDTH, Display.VIEWPORT_HEIGHT);
         setVisible(false);
         setColor(0.5f, 0, 0.75f, 0.9f);
+        setPosition(0, 0);
 
-        add(winLabel).pad(10).width(Display.VIEWPORT_WIDTH / 8.0f).align(Align.center);
-        setPosition(editorWidth, 0);
+        float labelWidth = Display.VIEWPORT_WIDTH * 0.7f;
+        float imageWidth = Display.VIEWPORT_WIDTH * 0.16f;
+        float buttonWidth = Display.VIEWPORT_WIDTH * 0.4f;
+        float buttonHeight = Display.VIEWPORT_HEIGHT * 0.06f;
 
-        row();
-        add(exitLevelButton).width(Display.VIEWPORT_WIDTH / 8.0f)
-            .height(Display.VIEWPORT_HEIGHT / 16.0f).padBottom(20);
-
-        row();
-        add(closeButton).width(Display.VIEWPORT_WIDTH / 8.0f)
-            .height(Display.VIEWPORT_HEIGHT / 16.0f).padBottom(20);
+        add(winLabel).padTop(80).padBottom(30).align(Align.center).width(labelWidth).row();
+        add(winImage).padBottom(50).align(Align.center).size(imageWidth).row();
+        add(exitLevelButton).width(buttonWidth).height(buttonHeight).padBottom(15).row();
+        add(closeButton).width(buttonWidth).height(buttonHeight).padBottom(30);
     }
 
     public void invertPosition(boolean editorOnRight) {
-        float editorWidth = Display.VIEWPORT_WIDTH * Display.EDITOR_MENU_SCALE;
-        if (editorOnRight) {
-            setPosition(0, 0);
-        } else {
-            setPosition(editorWidth, 0);
-        }
+        setPosition(0, 0);
     }
 
     public void toggle() {

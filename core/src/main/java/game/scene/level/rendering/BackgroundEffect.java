@@ -14,11 +14,11 @@ public class BackgroundEffect {
 
     private static class Particle {
         float x, y;
-        float size;               // radius для круга, side для квадрата
+        float size;
         float targetSize;
-        float rotation;           // только для SQUARE
-        float rotSpeed;           // только для SQUARE
-        float speedX, speedY;     // короткие "дрожания"
+        float rotation;
+        float rotSpeed;
+        float speedX, speedY;
         float driftSpeedX, driftSpeedY;
         Color color;
         float alpha;
@@ -207,7 +207,6 @@ public class BackgroundEffect {
             shapeRenderer.setColor(p.color.r, p.color.g, p.color.b, p.alpha);
             shapeRenderer.rect(p.x - half, p.y - half, p.size, p.size);
 
-            // Внутренний квадрат — для мягкости
             float innerSize = p.size * 0.6f;
             float innerHalf = innerSize * 0.5f;
             float innerAlpha = p.alpha * 0.6f;
