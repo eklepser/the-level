@@ -17,7 +17,7 @@ public final class ExitLevelButton extends TextButton {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Json json = new Json();
-                WorldData worldData = json.fromJson(WorldData.class, Gdx.files.internal("world/world.json"));
+                WorldData worldData = json.fromJson(WorldData.class, Gdx.files.internal("data/world/world_one.json"));
                 ScreenNavigator.gotoScreen(new WorldScreen(worldData));
             }
         });

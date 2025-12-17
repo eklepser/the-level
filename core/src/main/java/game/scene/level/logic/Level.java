@@ -74,6 +74,7 @@ public final class Level extends AbstractLevel {
     }
 
     public void reset() {
+        isDead = false;
         executor.clearActions();
 
         entities.clear();

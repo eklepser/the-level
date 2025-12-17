@@ -7,6 +7,7 @@ import game.scene.common.rendering.screen.GameScreen;
 import game.scene.level.logic.Level;
 import game.scene.level.rendering.component.editor.LevelProcessor;
 import game.scene.level.window.HelpWindow;
+import game.scene.level.window.WinWindow;
 
 public final class LevelScreen extends GameScreen {
     private final GameCamera camera;
@@ -14,6 +15,7 @@ public final class LevelScreen extends GameScreen {
     private final LevelLayout layout;
 
     private final HelpWindow helpWindow;
+    private final WinWindow winWindow;
 
     private final LevelData levelData;
 
@@ -27,10 +29,13 @@ public final class LevelScreen extends GameScreen {
         level = new Level(levelData);
 
         helpWindow = new HelpWindow();
+        winWindow = new WinWindow();
 
-        stage.addActor(helpWindow);
-        layout = new LevelLayout(this, level, helpWindow);
+        layout = new LevelLayout(this, level, helpWindow, winWindow);
+
         stage.addActor(layout);
+        stage.addActor(helpWindow);
+        stage.addActor(winWindow);
         multiplexer.addProcessor(0, new LevelProcessor(layout.getEditor()));
     }
 
@@ -78,6 +83,7 @@ public final class LevelScreen extends GameScreen {
         }
 
         helpWindow.invertPosition(isViewInverted);
+        winWindow.invertPosition(isViewInverted);
     }
 
     public LevelData getLevelData() {

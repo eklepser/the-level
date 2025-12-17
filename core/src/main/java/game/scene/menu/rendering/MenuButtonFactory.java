@@ -34,4 +34,9 @@ public final class MenuButtonFactory extends ButtonFactory {
     public static TextButton exitButton() {
         return createButton("Exit", () -> Gdx.app.exit());
     }
+
+    public static TextButton optionsButton() {
+        return createButton("Options", () ->
+            ScreenNavigator.gotoScreen(new SelectionScreen(BuilderSelectionLayout.class)));
+    }
 }

@@ -28,6 +28,10 @@ public final class MenuLayout extends TableLayout {
             height(Display.VIEWPORT_HEIGHT / 16.0f).padTop(20);
         row();
 
+//        add(MenuButtonFactory.optionsButton()).width(Display.VIEWPORT_WIDTH / 4.0f).
+//            height(Display.VIEWPORT_HEIGHT / 16.0f).padTop(20);
+//        row();
+
         add(MenuButtonFactory.exitButton()).width(Display.VIEWPORT_WIDTH / 8.0f).
             height(Display.VIEWPORT_HEIGHT / 16.0f).padTop(20);
     }

@@ -18,21 +18,29 @@ import game.scene.level.window.WinWindow;
 public final class LevelLayout extends TableLayout implements EventListener<LevelEvent> {
     private final Level level;
 
+    private final LevelScreen levelScreen;
+
     private final EditorLayout editorLayout;
 
     private final LevelToolbar levelToolbar;
     private final ColoredString infoString;
     private final LevelStatusbar levelStatusbar;
 
+    private final WinWindow winWindow;
+
     private boolean editorOnRight = false;
 
-    public LevelLayout(LevelScreen screen, Level level, HelpWindow helpWindow) {
+    public LevelLayout(LevelScreen screen, Level level, HelpWindow helpWindow, WinWindow winWindow) {
         this.level = level;
         level.subscribe(this);
+
+        this.levelScreen = screen;
 
         levelToolbar = new LevelToolbar(screen, helpWindow);
         infoString = new ColoredString();
         levelStatusbar = new LevelStatusbar();
+
+        this.winWindow = winWindow;
 
         // Init editor after all others!
         editorLayout = new EditorLayout(this, level);
@@ -42,43 +50,41 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
 
     @Override
     public void setup() {
-        setDebug(true);
         setFillParent(true);
+        setDebug(true);
 
         infoString.setText("/_2 " + level.getLevelData().metadata.title);
         infoString.center();
 
         levelStatusbar.left();
+
         ScrollPane scrollPane = new ScrollPane(levelStatusbar);
         scrollPane.setOverscroll(true, false);
         scrollPane.setVelocityX(100);
         scrollPane.setScrollingDisabled(false, true);
 
-        Table statusTable = new Table();
-        statusTable.add(scrollPane);
+        Table statusBarWrapper = new Table();
+        statusBarWrapper.add(scrollPane).fillX().expandX();
 
         float editorWidth = Display.VIEWPORT_WIDTH * Display.EDITOR_MENU_SCALE;
         float mainWidth = Display.VIEWPORT_WIDTH - editorWidth;
 
-        columnDefaults(0).width(editorOnRight ? mainWidth : editorWidth).expandX();
-        columnDefaults(1).width(editorOnRight ? editorWidth : mainWidth).expandX();
-
         if (editorOnRight) {
-            add().fill();
-            add(levelToolbar).fillX().top().left();
+            add().width(mainWidth).fill();
+            add(levelToolbar).width(editorWidth).fillX().top().left();
             row();
-            add(infoString).expandX().top().fillX();
-            add(editorLayout).top().expandY().fillX();
+            add(infoString).width(mainWidth).expandX().top().fillX();
+            add(editorLayout).width(editorWidth).top().expandY().fillX();
         } else {
-            add(levelToolbar).fillX().top().left();
-            add().fill();
+            add(levelToolbar).width(editorWidth).fillX().top().left();
+            add().width(mainWidth).fill();
             row();
-            add(editorLayout).top().expandY().fillX();
-            add(infoString).expandX().top().fillX();
+            add(editorLayout).width(editorWidth).top().expandY().fillX();
+            add(infoString).width(mainWidth).expandX().top().fillX();
         }
 
         row().colspan(2);
-        add(statusTable).left().padRight(10).height(32).expandX().fillX();
+        add(statusBarWrapper).height(32).fillX().expandX();
     }
 
     public void toggleEditorSide(boolean editorOnRight) {
@@ -104,6 +110,7 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
         }
         if (event instanceof WinEvent) {
             levelStatusbar.win();
+            winWindow.toggle();
         }
         if (event instanceof DeathEvent) {
             levelStatusbar.die();
@@ -111,6 +118,10 @@ public final class LevelLayout extends TableLayout implements EventListener<Leve
     }
 
     // Getters:
+    public LevelScreen getLevelScreen() {
+        return levelScreen;
+    }
+
     public EditorLayout getEditor() {
         return editorLayout;
     }
