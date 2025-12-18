@@ -28,13 +28,6 @@
     "exampleText": "/light-gray Example: / IF FACING RED MOVE U"
   },
   {
-    "titleText": "/_2 CLONE [argument]",
-    "iconPath": "ui/icon/clone.png",
-    "argsText": "/light-gray Arguments: / U (up), R (right), D (down), L (left), F (forward)",
-    "descriptionText": "Creates a clone of the target in the specified direction. The newly created clone starts executing the same program from the current instruction.",
-    "exampleText": "/light-gray Example: / CLONE R"
-  },
-  {
     "titleText": "/gray_2 END",
     "iconPath": "ui/icon/end.png",
     "argsText": "",

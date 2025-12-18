@@ -1,13 +1,9 @@
 package game.scene.menu.rendering;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import game.config.Display;
 import game.data.IO.Assets;
 import game.scene.common.rendering.TableLayout;
-import game.scene.common.rendering.component.ColoredString;
 
 public final class MenuLayout extends TableLayout {
     public MenuLayout() {
@@ -18,7 +14,10 @@ public final class MenuLayout extends TableLayout {
 
     @Override
     public void setup() {
-        add(new ColoredString("/blue_4 The LEVEL")).padBottom(20);
+        Image logoImage = Assets.getImage("logo.png");
+        add(logoImage).padBottom(20);
+        row();
+
         row();
 
         add(MenuButtonFactory.startButton()).width(Display.VIEWPORT_WIDTH / 4.0f).
