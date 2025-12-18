@@ -28,7 +28,7 @@ public final class WorldScreen extends GameScreen {
     @Override
     public void show() {
         float zoom = map.height / 16.0f;
-        camera.center(map.width * Display.TILE_SIZE, map.height * Display.TILE_SIZE);
+        camera.center(map.width * Display.TILE_SIZE, map.height * Display.TILE_SIZE - 20);
         camera.zoom = zoom;
         camera.update();
         batch.setProjectionMatrix(camera.combined);

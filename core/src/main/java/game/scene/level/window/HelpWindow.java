@@ -63,7 +63,7 @@ public class HelpWindow extends Window {
 
         row().colspan(2);
         add(exitLevelButton).width(Display.VIEWPORT_WIDTH / 4.0f)
-            .height(Display.VIEWPORT_HEIGHT / 16.0f).pad(30, 10, 30, 10);
+            .height(Display.VIEWPORT_HEIGHT / 12.0f).pad(30, 10, 30, 10);
 
         setPosition(editorWidth, 0);
     }

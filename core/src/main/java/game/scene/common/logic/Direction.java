@@ -25,7 +25,7 @@ public enum Direction {
     }
 
     public static Direction getByName(String name) {
-        return switch (name) {
+        return switch (name.toLowerCase()) {
             case "u", "up" -> UP;
             case "d", "down" -> DOWN;
             case "l", "left" -> LEFT;
